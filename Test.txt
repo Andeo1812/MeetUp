@@ -33,7 +33,7 @@ TEST create_group: {"create_group":{"title":"Texnosrac", "description":"2132", "
 RES: {"create_group":{"group_id":"56"}}
 
 TEST rewrite_group: {"rewrite_group":{"group_id":"56","title":"Texnosrac", "description":"2132"}}
-RES: {"create_group":OK}
+RES: {"rewrite_group":OK}
 
 TEST delete_group: {"delete_group":{"group_id":"23"}}
 RES: {"delete_group":OK}
@@ -71,7 +71,7 @@ RES {"get_groups":[{"group_id":"48","title":"111111111111111111"},{"group_id":"2
 
 
 //  PERSONAL DATA
-TEST write_personal: "write_personal":{"user_id":"8", "first_name":"Bogdan", "surname":"Kazimirov", "age":"21", "phone_number":"+79017453550", "status":"asdas", "label":"1asd", "description":"MT11-72", "email":"bs@mt11.su"}}
+TEST write_personal: {"write_personal":{"user_id":"8", "first_name":"Bogdan", "surname":"Kazimirov", "age":"21", "phone_number":"+79017453550", "status":"asdas", "label":"1asd", "description":"MT11-72", "email":"bs@mt11.su"}}
 RES write_personal: {"write_personal:"OK"}
 
 TEST get_personal: {"get_personal":{"user_id":"1"}}
