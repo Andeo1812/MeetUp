@@ -1,0 +1,56 @@
+<RCC>
+    <qresource prefix="/resc">
+        <file>resc/arrow_back.svg</file>
+        <file>resc/user_circle.svg</file>
+        <file>resc/done_outline.svg</file>
+        <file>resc/loader.gif</file>
+        <file>resc/logo.png</file>
+        <file>resc/logo.svg</file>
+        <file>resc/bin.svg</file>
+        <file>resc/online_status_onn.svg</file>
+        <file>resc/online_status_off.svg</file>
+        <file>resc/group.svg</file>
+        <file>resc/user.png</file>
+        <file>resc/loader2.gif</file>
+        <file>resc/loader3.gif</file>
+        <file>resc/groupusers.svg</file>
+        <file>resc/client_secret_googleusercontent.com.json</file>
+        <file>resc/loader4.gif</file>
+        <file>resc/user2.png</file>
+        <file>resc/group2.svg</file>
+        <file>resc/group3.svg</file>
+        <file>resc/enter.svg</file>
+        <file>resc/cog.svg</file>
+        <file>resc/lock.svg</file>
+        <file>resc/users.svg</file>
+        <file>resc/user.svg</file>
+        <file>resc/calendar.svg</file>
+        <file>resc/key.svg</file>
+        <file>resc/bin_white.svg</file>
+        <file>resc/plus.svg</file>
+        <file>resc/plus_white.svg</file>
+        <file>resc/arrow_right.svg</file>
+        <file>resc/cross.svg</file>
+        <file>resc/QtLanguage_ru.qm</file>
+        <file>resc/arrow_up.svg</file>
+        <file>resc/chevron-left.svg</file>
+        <file>resc/chevron-right.svg</file>
+        <file>resc/bg-events.png</file>
+        <file>resc/checkbox-unchecked.svg</file>
+        <file>resc/checkbox-checked.svg</file>
+        <file>resc/loading.gif</file>
+        <file>resc/loading_30px.gif</file>
+        <file>resc/setting_45px.gif</file>
+        <file>resc/settings_50px.gif</file>
+        <file>resc/arrow_up_white.svg</file>
+        <file>resc/upload_photo.svg</file>
+        <file>resc/check.svg</file>
+        <file>resc/profile.svg</file>
+        <file>resc/chevron-left-disabled.svg</file>
+        <file>resc/chevron-right-disabled.svg</file>
+        <file>resc/arrow-left.svg</file>
+        <file>resc/search.svg</file>
+        <file>resc/person.png</file>
+    </qresource>
+    <qresource prefix="/"/>
+</RCC>
