@@ -1,7 +1,7 @@
 #include "navigator.h"
 #include "screensfactory.h"
 
-#include <QLinkedList>
+#include <QList>
 
 using namespace screens;
 

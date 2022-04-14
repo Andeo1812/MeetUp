@@ -5,7 +5,9 @@
 #include <QTranslator>
 #include <QLibraryInfo>
 
-#include <QDesktopWidget>
+//#include <QDesktopWidget>
+#include <QScreen>
+
 #include <QException>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -32,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent)
 
         this->setWindowTitle("MeetUp");
         this->setWindowIcon(QIcon(":/resc/resc/logo.png"));
-        this->resize(QDesktopWidget().availableGeometry(this).size() * 0.7);
+        //this->resize(QDesktopWidget().availableGeometry(this).size() * 0.7);
         this->setCentralWidget(container);
     } catch (std::exception& e) {
         qDebug("%s", e.what());

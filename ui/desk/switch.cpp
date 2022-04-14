@@ -65,10 +65,10 @@ void Switch::mouseReleaseEvent(QMouseEvent *e) {
     QAbstractButton::mouseReleaseEvent(e);
 }
 
-void Switch::enterEvent(QEvent *e) {
-    setCursor(Qt::PointingHandCursor);
-    QAbstractButton::enterEvent(e);
-}
+//void Switch::enterEvent(QEvent *e) {
+//    setCursor(Qt::PointingHandCursor);
+//    QAbstractButton::enterEvent(e);
+//}
 
 QSize Switch::sizeHint() const {
     return QSize(2 * (_height + _margin), _height + 2 * _margin);

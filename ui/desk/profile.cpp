@@ -41,7 +41,7 @@ profile::profile() {
     titleLabel = new QLabel(tr("Profile"));
 
 
-    qDebug()<<"1"<<endl;
+    qDebug()<<"1"<< Qt::endl;
 
 
 
@@ -64,7 +64,7 @@ profile::profile() {
     inputNickNameInner->addWidget(userNickNameLabel);
     inputNickNameInner->addWidget(userNickNameEdit);
 
-    qDebug()<<"2"<<endl;
+    qDebug()<<"2"<< Qt::endl;
 
     QHBoxLayout *inputStatusGeneralInner = new QHBoxLayout;
     userStatusGeneralEdit = new QLineEdit;
@@ -105,10 +105,10 @@ profile::profile() {
 
 
 
-    qDebug()<<"3"<<endl;
+    qDebug()<<"3"<< Qt::endl;
 
 
-    qDebug()<<"4aaaaaaa"<<endl;
+    qDebug()<<"4aaaaaaa"<< Qt::endl;
 
 
     inputNickNameInner->setContentsMargins(0,25,0,0);
@@ -154,7 +154,7 @@ profile::profile() {
     inputcountryInner->addWidget(usercountryLabel);
     inputcountryInner->addWidget(usercountryEdit);
 
-    qDebug()<<"2"<<endl;
+    qDebug()<<"2"<<Qt::endl;
 
     QHBoxLayout *inputindexInner = new QHBoxLayout;
     userindexEdit = new QLineEdit;
@@ -218,7 +218,7 @@ profile::profile() {
     inputhousingInner->addWidget(userhousingLabel);
     inputhousingInner->addWidget(userhousingEdit);
 
-    qDebug()<<"3"<<endl;
+    qDebug()<<"3"<< Qt::endl;
 
     QHBoxLayout *inputbuildingInner = new QHBoxLayout;
     userbuildingEdit = new QLineEdit;
@@ -232,7 +232,7 @@ profile::profile() {
     inputbuildingInner->addWidget(userbuildingLabel);
     inputbuildingInner->addWidget(userbuildingEdit);
 
-    qDebug()<<"4"<<endl;
+    qDebug()<<"4"<< Qt::endl;
 
 
     inputcountryInner->setContentsMargins(0,30,0,0);
@@ -282,7 +282,7 @@ profile::profile() {
     inputNameInner->addWidget(userNameLabel);
     inputNameInner->addWidget(userNameEdit);
 
-    qDebug()<<"5"<<endl;
+    qDebug()<<"5"<<Qt::endl;
 
 
 
@@ -298,7 +298,7 @@ profile::profile() {
     inputSurnameInner->addWidget(userSurnameLabel);
     inputSurnameInner->addWidget(userSurnameEdit);
 
- qDebug()<<"6"<<endl;
+ qDebug()<<"6"<<Qt::endl;
 
     QHBoxLayout *inputAgeInner = new QHBoxLayout;
     userAgeEdit = new QLineEdit;
@@ -312,7 +312,7 @@ profile::profile() {
     inputAgeInner->addWidget(userAgeLabel);
     inputAgeInner->addWidget(userAgeEdit);
 
-     qDebug()<<"7"<<endl;
+     qDebug()<<"7"<< Qt::endl;
 
     QHBoxLayout *inputStatusInner = new QHBoxLayout;
     userStatusEdit = new QLineEdit;
@@ -326,7 +326,7 @@ profile::profile() {
     inputStatusInner->addWidget(userStatusLabel);
     inputStatusInner->addWidget(userStatusEdit);
 
-     qDebug()<<"8"<<endl;
+     qDebug()<<"8"<< Qt::endl;
 
 
     QHBoxLayout *inputDescriptionInner = new QHBoxLayout;
@@ -341,7 +341,7 @@ profile::profile() {
     inputDescriptionInner->addWidget(userDescriptionLabel);
     inputDescriptionInner->addWidget(userDescriptionEdit);
 
-     qDebug()<<"9"<<endl;
+     qDebug()<<"9"<<Qt::endl;
 
     QHBoxLayout *inputLabelInner = new QHBoxLayout;
     userLabelEdit = new QLineEdit;
@@ -355,7 +355,7 @@ profile::profile() {
     inputLabelInner->addWidget(userLabelLabel);
     inputLabelInner->addWidget(userLabelEdit);
 
-     qDebug()<<"10"<<endl;
+     qDebug()<<"10"<<Qt::endl;
 
 
     QHBoxLayout *inputPhoneNumberInner = new QHBoxLayout;
@@ -370,7 +370,7 @@ profile::profile() {
     inputPhoneNumberInner->addWidget(userPhoneNumberLabel);
     inputPhoneNumberInner->addWidget(userPhoneNumberEdit);
 
-     qDebug()<<"11"<<endl;
+     qDebug()<<"11"<<Qt::endl;
 
 
     QHBoxLayout *inputMailInner = new QHBoxLayout;
@@ -386,7 +386,7 @@ profile::profile() {
     inputMailInner->addWidget(userMailLabel);
     inputMailInner->addWidget(userMailEdit);
 
-     qDebug()<<"12"<<endl;
+     qDebug()<<"12"<<Qt::endl;
 
 
     usercountryLabel->setStyleSheet(PROFILE_LABEL);
@@ -404,7 +404,7 @@ profile::profile() {
     userhousingLabel->setStyleSheet(PROFILE_LABEL);
     userdistrictLabel->setStyleSheet(PROFILE_LABEL);
 
-     qDebug()<<"13"<<endl;
+     qDebug()<<"13"<<Qt::endl;
 
     usercountryLabel->setAlignment(Qt::AlignCenter);
     userAgeLabel->setAlignment(Qt::AlignCenter);
@@ -424,7 +424,7 @@ profile::profile() {
     userStatusGeneralLabel->setAlignment(Qt::AlignCenter);
 
 
-     qDebug()<<"14"<<endl;
+     qDebug()<<"14"<<Qt::endl;
 
 
 
@@ -702,21 +702,21 @@ void profile::getprofile() {
     userIDJson.insert("user_id", ID_QSTRING);
     loadprofileJson.insert("get_personal", userIDJson);
 
-    qDebug() << "create request" << endl;
+    qDebug() << "create request" <<Qt::endl;
 
 
 
     QNetworkRequest request(QUrl(SERVER_URL + ""));
     request.setHeader(QNetworkRequest::ContentTypeHeader,
                       QStringLiteral("application/json;charset=utf-8"));
-    qDebug() << "request data"<< QJsonDocument(loadprofileJson).toJson(QJsonDocument::Compact) << endl;
+    qDebug() << "request data"<< QJsonDocument(loadprofileJson).toJson(QJsonDocument::Compact) <<Qt::endl;
 
     request.setRawHeader("JSON_DATA", QJsonDocument(loadprofileJson).toJson(QJsonDocument::Compact));
     networkManager->post(
                 request,
                 QJsonDocument(loadprofileJson).toJson(QJsonDocument::Compact)
                 );
-    qDebug() << "request send" << endl;
+    qDebug() << "request send" <<Qt::endl;
 
 
 }
@@ -729,21 +729,21 @@ void profile::getprofileRight() {
     userIDJson.insert("user_id", ID_QSTRING);
     loadprofileJson.insert("get_address", userIDJson);
 
-    qDebug() << "create request" << endl;
+    qDebug() << "create request" <<Qt::endl;
 
 
 
     QNetworkRequest request(QUrl(SERVER_URL + ""));
     request.setHeader(QNetworkRequest::ContentTypeHeader,
                       QStringLiteral("application/json;charset=utf-8"));
-    qDebug() << "request data"<< QJsonDocument(loadprofileJson).toJson(QJsonDocument::Compact) << endl;
+    qDebug() << "request data"<< QJsonDocument(loadprofileJson).toJson(QJsonDocument::Compact) <<Qt::endl;
 
     request.setRawHeader("JSON_DATA", QJsonDocument(loadprofileJson).toJson(QJsonDocument::Compact));
     networkManagerRight->post(
                 request,
                 QJsonDocument(loadprofileJson).toJson(QJsonDocument::Compact)
                 );
-    qDebug() << "request send" << endl;
+    qDebug() << "request send" <<Qt::endl;
 
 }
 
@@ -766,13 +766,13 @@ void profile::setprofile() {
 
     setprofileJson.insert("write_personal", userIDJson);
 
-    qDebug() << "create request" << endl;
+    qDebug() << "create request" <<Qt::endl;
 
 
     QNetworkRequest request(QUrl(SERVER_URL + ""));
     request.setHeader(QNetworkRequest::ContentTypeHeader,
                       QStringLiteral("application/json;charset=utf-8"));
-    qDebug() << "request data"<< QJsonDocument(setprofileJson).toJson(QJsonDocument::Compact) << endl;
+    qDebug() << "request data"<< QJsonDocument(setprofileJson).toJson(QJsonDocument::Compact) <<Qt::endl;
 
     request.setRawHeader("JSON_DATA", QJsonDocument(setprofileJson).toJson(QJsonDocument::Compact));
 
@@ -780,7 +780,7 @@ void profile::setprofile() {
                 request,
                 QJsonDocument(setprofileJson).toJson(QJsonDocument::Compact)
                 );
-    qDebug() << "request send" << endl;
+    qDebug() << "request send" <<Qt::endl;
 }
 
 
@@ -801,13 +801,13 @@ void profile::setprofileRightPressed() {
 
     setprofileJson.insert("write_address", userIDJson);
 
-    qDebug() << "create request" << endl;
+    qDebug() << "create request" <<Qt::endl;
 
 
     QNetworkRequest request(QUrl(SERVER_URL + ""));
     request.setHeader(QNetworkRequest::ContentTypeHeader,
                       QStringLiteral("application/json;charset=utf-8"));
-    qDebug() << "request data"<< QJsonDocument(setprofileJson).toJson(QJsonDocument::Compact) << endl;
+    qDebug() << "request data"<< QJsonDocument(setprofileJson).toJson(QJsonDocument::Compact) <<Qt::endl;
 
     request.setRawHeader("JSON_DATA", QJsonDocument(setprofileJson).toJson(QJsonDocument::Compact));
 
@@ -815,7 +815,7 @@ void profile::setprofileRightPressed() {
                 request,
                 QJsonDocument(setprofileJson).toJson(QJsonDocument::Compact)
                 );
-    qDebug() << "request send" << endl;
+    qDebug() << "request send" <<Qt::endl;
 
 }
 
@@ -875,12 +875,12 @@ void profile::onCreatePressed() {
 
 void profile::onHttpResult(QNetworkReply *reply) {
 
-    qDebug() << "http finished" << endl;
+    qDebug() << "http finished" <<Qt::endl;
 
 
     if(!reply->error()) {  //
         QByteArray resp = reply->readAll();
-        qDebug() <<"ETO OTVET SERVERA GET profile :  " + resp  << endl;
+        qDebug() <<"ETO OTVET SERVERA GET profile :  " + resp  <<Qt::endl;
         QJsonDocument doc = QJsonDocument::fromJson(resp);
         QJsonObject obj;
 
@@ -917,7 +917,7 @@ void profile::onHttpResult(QNetworkReply *reply) {
 
         qDebug() << reply->errorString();
 
-        qDebug() <<  reply->readAll() << endl;
+        qDebug() <<  reply->readAll() <<Qt::endl;
 
         qDebug () << reply -> error ();
 
@@ -939,12 +939,12 @@ void profile::onHttpResult(QNetworkReply *reply) {
 
 void profile::onHttpResultRight(QNetworkReply *reply) {
 
-    qDebug() << "http finished" << endl;
+    qDebug() << "http finished" <<Qt::endl;
 
 
     if(!reply->error()) {  //
         QByteArray resp = reply->readAll();
-        qDebug() <<"ETO OTVET SERVERA GET sett right:  " + resp  << endl;
+        qDebug() <<"ETO OTVET SERVERA GET sett right:  " + resp  <<Qt::endl;
         QJsonDocument doc = QJsonDocument::fromJson(resp);
         QJsonObject obj;
 
@@ -976,7 +976,7 @@ void profile::onHttpResultRight(QNetworkReply *reply) {
 
         qDebug() << reply->errorString();
 
-        qDebug() <<  reply->readAll() << endl;
+        qDebug() <<  reply->readAll() <<Qt::endl;
 
         qDebug () << reply -> error ();
 
@@ -1013,12 +1013,12 @@ void profile::onHttpResultRight(QNetworkReply *reply) {
 void profile::onHttpResultSetprofile(QNetworkReply *reply) {
 
 
-    qDebug() << "http finished" << endl;
+    qDebug() << "http finished" <<Qt::endl;
 
 
     if(!reply->error()) {  //
         QByteArray resp = reply->readAll();
-        qDebug() <<"ETO OTVET SERVERA GET CONTACTS for group layout :  " + resp  << endl;
+        qDebug() <<"ETO OTVET SERVERA GET CONTACTS for group layout :  " + resp  <<Qt::endl;
         QJsonDocument doc = QJsonDocument::fromJson(resp);
         QJsonObject obj;
 
@@ -1031,7 +1031,7 @@ void profile::onHttpResultSetprofile(QNetworkReply *reply) {
 
         if(j["write_personal"] == "OK"){
 
-            qDebug() << "Данные польз записаны" << endl;
+            qDebug() << "Данные польз записаны" <<Qt::endl;
 
         }
 
@@ -1041,7 +1041,7 @@ void profile::onHttpResultSetprofile(QNetworkReply *reply) {
 
         qDebug() << reply->errorString();
 
-        qDebug() <<  reply->readAll() << endl;
+        qDebug() <<  reply->readAll() <<Qt::endl;
 
         qDebug () << reply -> error ();
 
@@ -1062,12 +1062,12 @@ void profile::onHttpResultSetprofile(QNetworkReply *reply) {
 
 void profile::onHttpResultSetprofileRight(QNetworkReply *reply) {
 
-    qDebug() << "http finished" << endl;
+    qDebug() << "http finished" <<Qt::endl;
 
 
     if(!reply->error()) {  //
         QByteArray resp = reply->readAll();
-        qDebug() <<"ETO OTVET SERVERA GET CONTACTS for group layout :  " + resp  << endl;
+        qDebug() <<"ETO OTVET SERVERA GET CONTACTS for group layout :  " + resp  <<Qt::endl;
         QJsonDocument doc = QJsonDocument::fromJson(resp);
         QJsonObject obj;
 
@@ -1080,7 +1080,7 @@ void profile::onHttpResultSetprofileRight(QNetworkReply *reply) {
 
         if(j["write_adress"] == "OK"){
 
-            qDebug() << "Данные  адрес записаны" << endl;
+            qDebug() << "Данные  адрес записаны" <<Qt::endl;
 
         }
 
@@ -1089,7 +1089,7 @@ void profile::onHttpResultSetprofileRight(QNetworkReply *reply) {
 
         qDebug() << reply->errorString();
 
-        qDebug() <<  reply->readAll() << endl;
+        qDebug() <<  reply->readAll() <<Qt::endl;
 
         qDebug () << reply -> error ();
 

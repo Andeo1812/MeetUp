@@ -185,19 +185,19 @@ void LoginFragment::onLoginPressed() {
         loginButton->setDisabled(true);
         loginButton->setStyleSheet(BUTTON_DISABLED);
 
-        qDebug() << "create request" << endl;
+        qDebug() << "create request" << Qt::endl;
         QNetworkRequest request(QUrl(SERVER_URL + ""));
         request.setHeader(QNetworkRequest::ContentTypeHeader,
                           QStringLiteral("application/json;charset=utf-8"));
 
         request.setRawHeader("JSON_DATA", QJsonDocument(RegJson).toJson(QJsonDocument::Compact));
 
-        qDebug() << "request data"<< QJsonDocument(RegJson).toJson(QJsonDocument::Compact) << endl;
+        qDebug() << "request data"<< QJsonDocument(RegJson).toJson(QJsonDocument::Compact) << Qt::endl;
         networkManager->post(
                     request,
                     QJsonDocument(RegJson).toJson(QJsonDocument::Compact)
                     );
-        qDebug() << "request send" << endl;
+        qDebug() << "request send" << Qt::endl;
     }
 
 
@@ -255,14 +255,14 @@ void LoginFragment::onLoginPressed() {
 
 void LoginFragment::onHttpResult(QNetworkReply *reply) {
 
-    qDebug() << "http finished" << endl;
+    qDebug() << "http finished" << Qt::endl;
     loading->stop();
     loadingContaiter->hide();
     loginButton->setDisabled(false);
     checkData();
     if(!reply->error()) {
         QByteArray resp = reply->readAll();
-        qDebug() <<"ETO OTVET SERVERA AUTORIZATION :  " + resp  << endl;
+        qDebug() <<"ETO OTVET SERVERA AUTORIZATION :  " + resp  << Qt::endl;
         QJsonDocument doc = QJsonDocument::fromJson(resp);
         QJsonObject obj;
 
@@ -299,7 +299,7 @@ void LoginFragment::onHttpResult(QNetworkReply *reply) {
 
         qDebug() << reply->errorString();
 
-        qDebug() << "Server answer: " +  reply->readAll() << endl;
+        qDebug() << "Server answer: " +  reply->readAll() << Qt::endl;
 
         qDebug () << reply -> error ();
 

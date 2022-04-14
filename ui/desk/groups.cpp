@@ -179,7 +179,7 @@ Groups::Groups() {
 
     inputContainerGroups->addLayout(addGroupContainer);
 
-    addGroupContainer->setMargin(50);
+//    addGroupContainer->setMargin(50);
 
 
     //mainHLayout->addWidget(deskScrollArea);
@@ -253,12 +253,12 @@ void Groups::onHttpResult(QNetworkReply *reply) {
 
     loading->stop();
 
-    qDebug() << "http finished" << endl;
+    qDebug() << "http finished" << Qt::endl;
     loading->stop();
     checkData();
     if(!reply->error()) {    //
         QByteArray resp = reply->readAll();
-        qDebug() <<"ETO OTVET SERVERA Groups :  " + resp  << endl;
+        qDebug() <<"ETO OTVET SERVERA Groups :  " + resp  << Qt::endl;
 
         QJsonDocument doc = QJsonDocument::fromJson(resp);
         QJsonObject obj;
@@ -424,7 +424,7 @@ void Groups::onHttpResult(QNetworkReply *reply) {
                 //////////////////////// добавление друзей в слой
 
 
-                //std::cout<< "aaaaaaaaaaaaaaaaaaaaaaa  eto yaaa" << str << endl;
+                //std::cout<< "aaaaaaaaaaaaaaaaaaaaaaa  eto yaaa" << str << Qt::endl;
 
                 // std::string strFriend = "{\"get_contacts\":[\"bogdan111\",\"Alex12345\",\"Kostya44\",\"Danzan_45\"]}";
 
@@ -564,7 +564,7 @@ void Groups::onHttpResult(QNetworkReply *reply) {
 
         qDebug() << reply->errorString();
 
-        qDebug() <<  reply->readAll() << endl;
+        qDebug() <<  reply->readAll() << Qt::endl;
 
         qDebug () << reply -> error ();
 
@@ -581,12 +581,12 @@ void Groups::onHttpResult(QNetworkReply *reply) {
 void Groups::onHttpResultAddGroup(QNetworkReply *reply) {
 
 
-    qDebug() << "http AddGroup finished" << endl;
+    qDebug() << "http AddGroup finished" << Qt::endl;
     loading->stop();
     checkData();
     if(!reply->error()) {
         QByteArray resp = reply->readAll();
-        qDebug() <<"ETO OTVET SERVERA ADD GROUP :  " + resp  << endl;
+        qDebug() <<"ETO OTVET SERVERA ADD GROUP :  " + resp  << Qt::endl;
         QJsonDocument doc = QJsonDocument::fromJson(resp);
         QJsonObject obj;
 
@@ -718,7 +718,7 @@ void Groups::onHttpResultAddGroup(QNetworkReply *reply) {
             //////////////////////// добавление друзей в слой
 
 
-            //std::cout<< "aaaaaaaaaaaaaaaaaaaaaaa  eto yaaa" << str << endl;
+            //std::cout<< "aaaaaaaaaaaaaaaaaaaaaaa  eto yaaa" << str << Qt::endl;
 
             // std::string strFriend = "{\"get_contacts\":[\"bogdan111\",\"Alex12345\",\"Kostya44\",\"Danzan_45\"]}";
 
@@ -860,7 +860,7 @@ void Groups::onHttpResultAddGroup(QNetworkReply *reply) {
 
         qDebug() << reply->errorString();
 
-        qDebug() <<  reply->readAll() << endl;
+        qDebug() <<  reply->readAll() << Qt::endl;
 
         qDebug () << reply -> error ();
 
@@ -904,21 +904,21 @@ void Groups::loadGroups() {
 
     loadGroupsJson.insert("get_groups", userIDJson);
 
-    qDebug() << "create request" << endl;
+    qDebug() << "create request" << Qt::endl;
 
 
 
     QNetworkRequest request(QUrl(SERVER_URL + ""));
     request.setHeader(QNetworkRequest::ContentTypeHeader,
                       QStringLiteral("application/json;charset=utf-8"));
-    qDebug() << "request data"<< QJsonDocument(loadGroupsJson).toJson(QJsonDocument::Compact) << endl;
+    qDebug() << "request data"<< QJsonDocument(loadGroupsJson).toJson(QJsonDocument::Compact) << Qt::endl;
 
     request.setRawHeader("JSON_DATA", QJsonDocument(loadGroupsJson).toJson(QJsonDocument::Compact));
     networkManager->post(
                 request,
                 QJsonDocument(loadGroupsJson).toJson(QJsonDocument::Compact)
                 );
-    qDebug() << "request send" << endl;
+    qDebug() << "request send" << Qt::endl;
 }
 
 
@@ -933,20 +933,20 @@ void Groups::loadFriends() {
     userIDJson.insert("user_id", ID_QSTRING);
     loadFriendsJson.insert("get_contacts", userIDJson);
 
-    qDebug() << "create request" << endl;
+    qDebug() << "create request" << Qt::endl;
 
 
     QNetworkRequest request(QUrl(SERVER_URL + ""));
     request.setHeader(QNetworkRequest::ContentTypeHeader,
                       QStringLiteral("application/json;charset=utf-8"));
-    qDebug() << "request data"<< QJsonDocument(loadFriendsJson).toJson(QJsonDocument::Compact) << endl;
+    qDebug() << "request data"<< QJsonDocument(loadFriendsJson).toJson(QJsonDocument::Compact) << Qt::endl;
 
     request.setRawHeader("JSON_DATA", QJsonDocument(loadFriendsJson).toJson(QJsonDocument::Compact));
     ManagerAddFriendsLayout->post(
                 request,
                 QJsonDocument(loadFriendsJson).toJson(QJsonDocument::Compact)
                 );
-    qDebug() << "request send" << endl;
+    qDebug() << "request send" << Qt::endl;
 }
 
 
@@ -969,20 +969,20 @@ void Groups::addGroupButtonPressed() {
 
 
 
-    qDebug() << "create request" << endl;
+    qDebug() << "create request" << Qt::endl;
 
 
     QNetworkRequest request(QUrl(SERVER_URL + ""));
     request.setHeader(QNetworkRequest::ContentTypeHeader,
                       QStringLiteral("application/json;charset=utf-8"));
-    qDebug() << "request data"<< QJsonDocument(addGroupJson).toJson(QJsonDocument::Compact) << endl;
+    qDebug() << "request data"<< QJsonDocument(addGroupJson).toJson(QJsonDocument::Compact) << Qt::endl;
 
     request.setRawHeader("JSON_DATA", QJsonDocument(addGroupJson).toJson(QJsonDocument::Compact));
     addManagerGroup->post(
                 request,
                 QJsonDocument(addGroupJson).toJson(QJsonDocument::Compact)
                 );
-    qDebug() << "request send" << endl;
+    qDebug() << "request send" << Qt::endl;
 
 
 
@@ -1000,12 +1000,12 @@ void Groups::addGroupButtonPressed() {
 void Groups::onHttpResultManagerAddFriendsLayout(QNetworkReply *reply) {
 
 
-    qDebug() << "http finished" << endl;
+    qDebug() << "http finished" << Qt::endl;
 
 
     if(!reply->error()) {  //
         QByteArray resp = reply->readAll();
-        qDebug() <<"ETO OTVET SERVERA GET CONTACTS for group layout :  " + resp  << endl;
+        qDebug() <<"ETO OTVET SERVERA GET CONTACTS for group layout :  " + resp  << Qt::endl;
         QJsonDocument doc = QJsonDocument::fromJson(resp);
         QJsonObject obj;
 
@@ -1024,7 +1024,7 @@ void Groups::onHttpResultManagerAddFriendsLayout(QNetworkReply *reply) {
 
         qDebug() << reply->errorString();
 
-        qDebug() <<  reply->readAll() << endl;
+        qDebug() <<  reply->readAll() << Qt::endl;
 
         qDebug () << reply -> error ();
 
@@ -1139,23 +1139,23 @@ void Groups::friendName2Pressed(){
 
     inviteGroupJson.insert("invite", bodyJson);
 
-    qDebug() << "create request" << endl;
+    qDebug() << "create request" << Qt::endl;
 
 
     QNetworkRequest request(QUrl(SERVER_URL + ""));
     request.setHeader(QNetworkRequest::ContentTypeHeader,
                       QStringLiteral("application/json;charset=utf-8"));
-    qDebug() << "request data"<< QJsonDocument(inviteGroupJson).toJson(QJsonDocument::Compact) << endl;
+    qDebug() << "request data"<< QJsonDocument(inviteGroupJson).toJson(QJsonDocument::Compact) << Qt::endl;
 
     request.setRawHeader("JSON_DATA", QJsonDocument(inviteGroupJson).toJson(QJsonDocument::Compact));
 
-    qDebug() << "JSON_DATA send" << endl;
+    qDebug() << "JSON_DATA send" << Qt::endl;
 
     ManagerAddFriendToGroup->post(
                 request,
                 QJsonDocument(inviteGroupJson).toJson(QJsonDocument::Compact)
                 );
-    qDebug() << "request send" << endl;
+    qDebug() << "request send" << Qt::endl;
 
 
     delete button;
@@ -1213,12 +1213,12 @@ void Groups::backAddtoGroupPressed() {
 void Groups::onHttpResultAddFriendtoGroup(QNetworkReply *reply) {
 
 
-    qDebug() << "http finished" << endl;
+    qDebug() << "http finished" << Qt::endl;
     loading->stop();
     checkData();
     if(!reply->error()) {
         QByteArray resp = reply->readAll();
-        qDebug() <<"ETO OTVET SERVERA ADD To GROUP FRIEND :  " + resp  << endl;
+        qDebug() <<"ETO OTVET SERVERA ADD To GROUP FRIEND :  " + resp  << Qt::endl;
         QJsonDocument doc = QJsonDocument::fromJson(resp);
         QJsonObject obj;
 
@@ -1242,7 +1242,7 @@ void Groups::onHttpResultAddFriendtoGroup(QNetworkReply *reply) {
 
         qDebug() << reply->errorString();
 
-        qDebug() <<  reply->readAll() << endl;
+        qDebug() <<  reply->readAll() << Qt::endl;
 
         qDebug () << reply -> error ();
 

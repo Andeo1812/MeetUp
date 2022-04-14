@@ -181,19 +181,19 @@ void RegistrationFragment::onRegPressed() {
             loginButton->setDisabled(true);
             loginButton->setStyleSheet(BUTTON_DISABLED);
 
-            qDebug() << "create request" << endl;
+            qDebug() << "create request" << Qt::endl;
 
 
             QNetworkRequest request(QUrl(SERVER_URL + ""));
             request.setHeader(QNetworkRequest::ContentTypeHeader,
                               QStringLiteral("application/json"));
-            qDebug() << "request data"<< QJsonDocument(loginPasswordValues).toJson(QJsonDocument::Compact) << endl;
+            qDebug() << "request data"<< QJsonDocument(loginPasswordValues).toJson(QJsonDocument::Compact) << Qt::endl;
             request.setRawHeader("JSON_DATA", QJsonDocument(loginPasswordValues).toJson(QJsonDocument::Compact));
             networkManager->post(
                         request,
                         QJsonDocument(loginPasswordValues).toJson(QJsonDocument::Compact)
                         );
-            qDebug() << "request send" << endl;
+            qDebug() << "request send" << Qt::endl;
         }
     }
 
@@ -207,16 +207,16 @@ void RegistrationFragment::onRegPressed() {
 
 void RegistrationFragment::onRegResult(QNetworkReply *reply) {
 
-    qDebug() << "http finished" << endl;
+    qDebug() << "http finished" << Qt::endl;
     loading->stop();
     loadingContaiter->hide();
     loginButton->setDisabled(false);
     checkData();
     if(!reply->error()) {
         QByteArray resp = reply->readAll();
-        qDebug() << resp  << endl;
+        qDebug() << resp  << Qt::endl;
 
-        qDebug() <<"ETO OTVET SERVERA REG :  " + resp  << endl;
+        qDebug() <<"ETO OTVET SERVERA REG :  " + resp  << Qt::endl;
 
         std::string str = resp.toStdString();
 
@@ -249,7 +249,7 @@ void RegistrationFragment::onRegResult(QNetworkReply *reply) {
 
         qDebug() << reply->errorString();
 
-        qDebug() <<  reply->readAll() << endl;
+        qDebug() <<  reply->readAll() << Qt::endl;
 
         qDebug () << reply -> error ();
 

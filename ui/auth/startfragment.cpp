@@ -73,19 +73,19 @@ StartFragment::StartFragment(){
 
     // Задаём два пункта с текстом локалей в комбобоксе
 
-    QComboBox *comboBox = new QComboBox;
-    comboBox->addItems(QStringList() << "ru\_RU" << "en\_US");
+//    QComboBox *comboBox = new QComboBox;
+//    comboBox->addItems(QStringList() << "ru\_RU" << "en\_US");
 
-    // подключаем к сигналу изменения пункта комбобокса лямбда функцию,
-    // в которой будет изменяться перевод приложения
-    // Здесь имеется интересный момент. Поскольку QComboBox имеет перегрузку сигнатуры сигнала,
-    // то нам необходимо скастовать сигнал к нужной сигнатуре.
-    // В данном случае будем использовать название пункта при его изменении
-    connect(comboBox, static_cast<void (QComboBox::*)(const QString &)>(&QComboBox::currentIndexChanged),
-            [=](const QString &str){
-        qtLanguageTranslator.load("QtLanguage\_" + str, ".");   // Загружаем перевод
-        qApp->installTranslator(&qtLanguageTranslator);        // Устанавливаем перевод в приложение
-    });
+//    // подключаем к сигналу изменения пункта комбобокса лямбда функцию,
+//    // в которой будет изменяться перевод приложения
+//    // Здесь имеется интересный момент. Поскольку QComboBox имеет перегрузку сигнатуры сигнала,
+//    // то нам необходимо скастовать сигнал к нужной сигнатуре.
+//    // В данном случае будем использовать название пункта при его изменении
+//    connect(comboBox, static_cast<void (QComboBox::*)(const QString &)>(&QComboBox::currentIndexChanged),
+//            [=](const QString &str){
+//        qtLanguageTranslator.load("QtLanguage\_" + str, ".");   // Загружаем перевод
+//        qApp->installTranslator(&qtLanguageTranslator);        // Устанавливаем перевод в приложение
+//    });
 
     // Сделаем первоначальную инициализацию перевода для окна прилоежния
     qtLanguageTranslator.load(QString("QtLanguage\_") + QString("ru\_RU"));

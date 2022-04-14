@@ -27,7 +27,7 @@ using namespace styles;
 #include <ui/view/qsvgbutton.h>
 #include <ui/view/waitingspinnerwidget.h>
 
-#include "flowlayout.h"
+//#include "QHBoxLayout.h"
 using namespace screens;
 
 Friends::Friends() {
@@ -80,9 +80,9 @@ Friends::Friends() {
     friendSearchInner->addWidget(friendEdit);
     friendSearchInner->addWidget(addFriendButton);
 
-    FlowLayout *flowLayoutFriends = new FlowLayout;
-    flowLayoutFriends->setContentsMargins(60,0,30,0);
-    flowLayoutFriends->setAlignment(Qt::AlignCenter);
+    QHBoxLayout *QHBoxLayoutFriends = new QHBoxLayout;
+    QHBoxLayoutFriends->setContentsMargins(60,0,30,0);
+    QHBoxLayoutFriends->setAlignment(Qt::AlignCenter);
 
     for (int i=0;i<30 ;i ++ ) {
         friendInner = new QHBoxLayout;
@@ -143,7 +143,7 @@ Friends::Friends() {
         friendFrame->setMaximumHeight(200);
         friendFrame->setMinimumHeight(200);
 
-        flowLayoutFriends->addWidget(friendFrame);
+        QHBoxLayoutFriends->addWidget(friendFrame);
     }
 
 
@@ -158,7 +158,7 @@ Friends::Friends() {
 
 
     QWidget *scrolContainer = new QWidget;
-    scrolContainer->setLayout(flowLayoutFriends);
+    scrolContainer->setLayout(QHBoxLayoutFriends);
     scrolContainer->setStyleSheet("QFrame {""background: #ff0000""}");
 
     QScrollArea *deskScrollAreaFriends = new QScrollArea;

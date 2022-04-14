@@ -382,7 +382,7 @@ Shedule::Shedule() {
     loadSheduleFromDate();
     checkData();
 
-    // qDebug() << "TTTILE EDIT COUNNTT  "<<  this->titleEditContainer->count() << endl;
+    // qDebug() << "TTTILE EDIT COUNNTT  "<<  this->titleEditContainer->count() << Qt::endl;
 
 
 
@@ -526,11 +526,11 @@ void Shedule::onCreatePressed() {
 void Shedule::onHttpResultDeleteEvent(QNetworkReply *reply) {
 
 
-    qDebug() << "http finished" << endl;
+    qDebug() << "http finished" << Qt::endl;
 
     if(!reply->error()) {
         QByteArray resp = reply->readAll();
-        qDebug() <<"ETO OTVET SERVERA DELETE EVENT :  " + resp  << endl;
+        qDebug() <<"ETO OTVET SERVERA DELETE EVENT :  " + resp  << Qt::endl;
         QJsonDocument doc = QJsonDocument::fromJson(resp);
         QJsonObject obj;
 
@@ -553,7 +553,7 @@ void Shedule::onHttpResultDeleteEvent(QNetworkReply *reply) {
 
         qDebug() << reply->errorString();
 
-        qDebug() <<  reply->readAll() << endl;
+        qDebug() <<  reply->readAll() << Qt::endl;
 
         qDebug () << reply -> error ();
 
@@ -745,7 +745,7 @@ void Shedule::onBoxTitleAdd() {  // добавление ивента
 
     addEventJson.insert("add_event", eventArray);
 
-    qDebug() << "create request" << endl;
+    qDebug() << "create request" << Qt::endl;
 
 
 
@@ -754,12 +754,12 @@ void Shedule::onBoxTitleAdd() {  // добавление ивента
                       QStringLiteral("application/json;charset=utf-8"));
 
     request.setRawHeader("JSON_DATA", QJsonDocument(addEventJson).toJson(QJsonDocument::Compact));
-    qDebug() << "request data"<< QJsonDocument(addEventJson).toJson(QJsonDocument::Compact) << endl;
+    qDebug() << "request data"<< QJsonDocument(addEventJson).toJson(QJsonDocument::Compact) << Qt::endl;
     networkManageraddEvent->post(
                 request,
                 QJsonDocument(addEventJson).toJson(QJsonDocument::Compact)
                 );
-    qDebug() << "request send" << endl;
+    qDebug() << "request send" << Qt::endl;
 
 
 
@@ -769,11 +769,11 @@ void Shedule::onBoxTitleAdd() {  // добавление ивента
 
 void Shedule::onHttpResultAddEvent(QNetworkReply *reply) {
 
-    qDebug() << "http finished" << endl;
+    qDebug() << "http finished" << Qt::endl;
     loading->stop();
     if(!reply->error()) {
         QByteArray resp = reply->readAll();
-        qDebug() <<"ETO OTVET SERVERA ADD EVENT :  " + resp  << endl;
+        qDebug() <<"ETO OTVET SERVERA ADD EVENT :  " + resp  << Qt::endl;
         QJsonDocument doc = QJsonDocument::fromJson(resp);
         QJsonObject obj;
 
@@ -903,7 +903,7 @@ void Shedule::onHttpResultAddEvent(QNetworkReply *reply) {
 
         qDebug() << reply->errorString();
 
-        qDebug() <<  reply->readAll() << endl;
+        qDebug() <<  reply->readAll() << Qt::endl;
 
         qDebug () << reply -> error ();
 
@@ -930,90 +930,90 @@ void Shedule::updateTaskButton_pressed() {
     QPushButton *button = qobject_cast<QPushButton*>(sender());
 
 
-    qDebug()<<"qqqqqq1111111111"<<endl;
+    qDebug()<<"qqqqqq1111111111"<< Qt::endl;
 
     QHBoxLayout *layout = updateTaskButtonToLayoutMap.take(button);
 
-    qDebug()<<"qqqqqq2222222"<<endl;
+    qDebug()<<"qqqqqq2222222"<< Qt::endl;
 
 
     QWidget *event_end = layout->takeAt(6)->widget();
-    qDebug()<<"q32342323232"<<endl;
+    qDebug()<<"q32342323232"<< Qt::endl;
 
     QTimeEdit* event_end_time_edit = dynamic_cast<QTimeEdit*>(event_end);
 
-    qDebug()<<"q654321"<<endl;
+    qDebug()<<"q654321"<< Qt::endl;
 
     end_time = event_end_time_edit->time();
 
-    qDebug()<<"q1111111"<<endl;
+    qDebug()<<"q1111111"<< Qt::endl;
 
     time_end_string = begin_time.toString("hh:mm");
 
-    qDebug()<<"qqwerty"<<endl;
+    qDebug()<<"qqwerty"<< Qt::endl;
 
-    qDebug() <<"TIME END"  <<  time_end_string  << endl;
+    qDebug() <<"TIME END"  <<  time_end_string  << Qt::endl;
 
 
     QWidget *event_begin = layout->takeAt(5)->widget();
-    qDebug()<<"q32342323232"<<endl;
+    qDebug()<<"q32342323232"<< Qt::endl;
 
     QTimeEdit* event_begin_time_edit = dynamic_cast<QTimeEdit*>(event_begin);
 
-    qDebug()<<"q654321"<<endl;
+    qDebug()<<"q654321"<< Qt::endl;
 
     begin_time = event_begin_time_edit->time();
 
-    qDebug()<<"q1111111"<<endl;
+    qDebug()<<"q1111111"<< Qt::endl;
 
     time_begin_string = begin_time.toString("hh:mm");
 
-    qDebug()<<"qqwerty"<<endl;
+    qDebug()<<"qqwerty"<< Qt::endl;
 
-    qDebug() <<"TIME BEGIN"  <<  time_begin_string  << endl;
-
-
+    qDebug() <<"TIME BEGIN"  <<  time_begin_string  << Qt::endl;
 
 
-      qDebug()<<"q33333333"<<endl;
+
+
+      qDebug()<<"q33333333"<< Qt::endl;
 
 //    QWidget *event_name = layout->takeAt(6)->widget();
 //    QLabel* event_nameLabel = dynamic_cast<QLabel*>(event_name);
 //    QString event_nameString = event_nameLabel->text();
-//    qDebug() <<"deleteeeeeee event"  <<  event_nameString  << endl;
+//    qDebug() <<"deleteeeeeee event"  <<  event_nameString  << Qt::endl;
 
 //    QWidget *event_name = layout->takeAt(5)->widget();
 //    QLabel* event_nameLabel = dynamic_cast<QLabel*>(event_name);
 //    QString event_nameString = event_nameLabel->text();
-//    qDebug() <<"deleteeeeeee event"  <<  event_nameString  << endl;
+//    qDebug() <<"deleteeeeeee event"  <<  event_nameString  << Qt::endl;
 
 
 
         QWidget *event_name = layout->takeAt(4)->widget();
         QLabel* event_nameLabel = dynamic_cast<QLabel*>(event_name);
         QString event_nameString = event_nameLabel->text();
-        qDebug() <<"deleteeeeeee event"  <<  event_nameString  << endl;
+        qDebug() <<"deleteeeeeee event"  <<  event_nameString  << Qt::endl;
 
 
 
-    //    qDebug() <<"timeeeeee  begin  "  <<  begin_str  << endl;
+    //    qDebug() <<"timeeeeee  begin  "  <<  begin_str  << Qt::endl;
 
-    //    qDebug() <<"timeeeeee  end  "  <<  end_str  << endl;
+    //    qDebug() <<"timeeeeee  end  "  <<  end_str  << Qt::endl;
 
     QWidget *event_id = layout->takeAt(2)->widget();
 
-    qDebug()<<"qqqqqq333333333333"<<endl;
+    qDebug()<<"qqqqqq333333333333"<< Qt::endl;
 
 
     QLabel* event_idLabel = dynamic_cast<QLabel*>(event_id);
 
-    qDebug()<<"qqqqqq444444444"<<endl;
+    qDebug()<<"qqqqqq444444444"<< Qt::endl;
 
     QString event_idString = event_idLabel->text();
 
-    qDebug()<<"qqqqqq5555555555"<<endl;
+    qDebug()<<"qqqqqq5555555555"<< Qt::endl;
 
-    qDebug() <<"Event ID===  "  <<  event_idString  << endl;
+    qDebug() <<"Event ID===  "  <<  event_idString  << Qt::endl;
 
 
 
@@ -1034,7 +1034,7 @@ void Shedule::updateTaskButton_pressed() {
 
     deleteEventJson.insert("delete_event", eventArray);
 
-    qDebug() << "create request" << endl;
+    qDebug() << "create request" << Qt::endl;
 
 
 
@@ -1043,12 +1043,12 @@ void Shedule::updateTaskButton_pressed() {
                       QStringLiteral("application/json;charset=utf-8"));
 
     request.setRawHeader("JSON_DATA", QJsonDocument(deleteEventJson).toJson(QJsonDocument::Compact));
-    qDebug() << "request data"<< QJsonDocument(deleteEventJson).toJson(QJsonDocument::Compact) << endl;
+    qDebug() << "request data"<< QJsonDocument(deleteEventJson).toJson(QJsonDocument::Compact) << Qt::endl;
     networkManagerDeleteEvent->post(
                 request,
                 QJsonDocument(deleteEventJson).toJson(QJsonDocument::Compact)
                 );
-    qDebug() << "request send" << endl;
+    qDebug() << "request send" << Qt::endl;
 
 
     while(QLayoutItem *tmpItem = layout->itemAt(0)) {
@@ -1078,7 +1078,7 @@ void Shedule::deleteButton_pressed() {
     QPushButton *button = qobject_cast<QPushButton*>(sender());
 
 
-    qDebug()<<"qqqqqq1111111111"<<endl;
+    qDebug()<<"qqqqqq1111111111"<< Qt::endl;
 
     QHBoxLayout *layout = deleteTaskButtonToLayoutMap.take(button);
 
@@ -1086,7 +1086,7 @@ void Shedule::deleteButton_pressed() {
 
     frame->hide();
 
-    qDebug()<<"qqqqqq2222222"<<endl;
+    qDebug()<<"qqqqqq2222222"<< Qt::endl;
 
 
     ////////////////////////////////////////////
@@ -1103,14 +1103,14 @@ void Shedule::deleteButton_pressed() {
     //    QWidget *event_name = layout->takeAt(4)->widget();
     //    QLabel* event_nameLabel = dynamic_cast<QLabel*>(event_name);
     //    QString event_nameString = event_nameLabel->text();
-    //    qDebug() <<"deleteeeeeee event"  <<  event_nameString  << endl;
+    //    qDebug() <<"deleteeeeeee event"  <<  event_nameString  << Qt::endl;
 
 
 
     //    QWidget *time = layout->takeAt(3)->widget();
     //    QLabel* timeLabel = dynamic_cast<QLabel*>(time);
     //    QString timeString = timeLabel->text();
-    //    qDebug() <<"Time===  "  <<  timeString  << endl;
+    //    qDebug() <<"Time===  "  <<  timeString  << Qt::endl;
 
     //    std::string time_begin = timeString.toStdString().substr(0,5);
 
@@ -1120,24 +1120,24 @@ void Shedule::deleteButton_pressed() {
 
     //    QString end_str = QString::fromStdString(time_end);
 
-    //    qDebug() <<"timeeeeee  begin  "  <<  begin_str  << endl;
+    //    qDebug() <<"timeeeeee  begin  "  <<  begin_str  << Qt::endl;
 
-    //    qDebug() <<"timeeeeee  end  "  <<  end_str  << endl;
+    //    qDebug() <<"timeeeeee  end  "  <<  end_str  << Qt::endl;
 
     QWidget *event_id = layout->takeAt(2)->widget();
 
-    qDebug()<<"qqqqqq333333333333"<<endl;
+    qDebug()<<"qqqqqq333333333333"<< Qt::endl;
 
 
     QLabel* event_idLabel = dynamic_cast<QLabel*>(event_id);
 
-    qDebug()<<"qqqqqq444444444"<<endl;
+    qDebug()<<"qqqqqq444444444"<< Qt::endl;
 
     QString event_idString = event_idLabel->text();
 
-    qDebug()<<"qqqqqq5555555555"<<endl;
+    qDebug()<<"qqqqqq5555555555"<< Qt::endl;
 
-    qDebug() <<"Event ID===  "  <<  event_idString  << endl;
+    qDebug() <<"Event ID===  "  <<  event_idString  << Qt::endl;
 
 
 
@@ -1158,7 +1158,7 @@ void Shedule::deleteButton_pressed() {
 
     deleteEventJson.insert("delete_event", eventArray);
 
-    qDebug() << "create request" << endl;
+    qDebug() << "create request" << Qt::endl;
 
 
 
@@ -1167,12 +1167,12 @@ void Shedule::deleteButton_pressed() {
                       QStringLiteral("application/json;charset=utf-8"));
 
     request.setRawHeader("JSON_DATA", QJsonDocument(deleteEventJson).toJson(QJsonDocument::Compact));
-    qDebug() << "request data"<< QJsonDocument(deleteEventJson).toJson(QJsonDocument::Compact) << endl;
+    qDebug() << "request data"<< QJsonDocument(deleteEventJson).toJson(QJsonDocument::Compact) << Qt::endl;
     networkManagerDeleteEvent->post(
                 request,
                 QJsonDocument(deleteEventJson).toJson(QJsonDocument::Compact)
                 );
-    qDebug() << "request send" << endl;
+    qDebug() << "request send" << Qt::endl;
 
 
     while(QLayoutItem *tmpItem = layout->itemAt(0)) {
@@ -1755,24 +1755,24 @@ void Shedule::sendShedulePressed() {
 
 
 
-    //    qDebug() << titleList.size() << endl;
+    //    qDebug() << titleList.size() << Qt::endl;
 
 
     //    loadSheduleJson.insert("sendSheduleFromDate", Shedule);
 
-    //        qDebug() << "create request" << endl;
+    //        qDebug() << "create request" << Qt::endl;
 
 
 
     //        QNetworkRequest request(QUrl(SERVER_URL + ""));
     //        request.setHeader(QNetworkRequest::ContentTypeHeader,
     //                          QStringLiteral("application/json;charset=utf-8"));
-    //        qDebug() << "request data"<< QJsonDocument(loadSheduleJson).toJson(QJsonDocument::Compact) << endl;
+    //        qDebug() << "request data"<< QJsonDocument(loadSheduleJson).toJson(QJsonDocument::Compact) << Qt::endl;
     //        networkManagerSendShedule->post(
     //            request,
     //            QJsonDocument(loadSheduleJson).toJson(QJsonDocument::Compact)
     //        );
-    //        qDebug() << "request send" << endl;
+    //        qDebug() << "request send" << Qt::endl;
 }
 
 
@@ -1804,7 +1804,7 @@ void Shedule::loadSheduleFromDate() {
 
     loadSheduleJson.insert("get_events", data);
 
-    qDebug() << "create request" << endl;
+    qDebug() << "create request" << Qt::endl;
 
 
 
@@ -1814,23 +1814,23 @@ void Shedule::loadSheduleFromDate() {
 
     request.setHeader(QNetworkRequest::ContentTypeHeader,
                       QStringLiteral("application/json;charset=utf-8"));
-    qDebug() << "request data"<< QJsonDocument(loadSheduleJson).toJson(QJsonDocument::Compact) << endl;
+    qDebug() << "request data"<< QJsonDocument(loadSheduleJson).toJson(QJsonDocument::Compact) << Qt::endl;
     networkManagerGetEvents->post(
                 request,
                 QJsonDocument(loadSheduleJson).toJson(QJsonDocument::Compact)
                 );
-    qDebug() << "request send" << endl;
+    qDebug() << "request send" << Qt::endl;
 }
 
 
 void Shedule::onHttpResultGetEvents(QNetworkReply *reply) {
 
 
-    qDebug() << "http finished" << endl;
+    qDebug() << "http finished" << Qt::endl;
 
     if(!reply->error()) {
         QByteArray resp = reply->readAll();
-        qDebug() <<"ETO OTVET SERVERA LOAD EVENTS :  " + resp  << endl;
+        qDebug() <<"ETO OTVET SERVERA LOAD EVENTS :  " + resp  << Qt::endl;
         QJsonDocument doc = QJsonDocument::fromJson(resp);
         QJsonObject obj;
 
@@ -2051,7 +2051,7 @@ void Shedule::onHttpResultGetEvents(QNetworkReply *reply) {
 
     qDebug() << reply->errorString();
 
-    qDebug() << "Server answer: " +  reply->readAll() << endl;
+    qDebug() << "Server answer: " +  reply->readAll() << Qt::endl;
 
     qDebug () << reply -> error ();
 

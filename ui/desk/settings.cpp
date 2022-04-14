@@ -120,7 +120,7 @@ Settings::Settings() {
 
     languageLayout->setAlignment(Qt::AlignCenter);
 
-    languageLayout->setMargin(50);
+//    languageLayout->setMargin(50);
 
 
     QComboBox *languageBox = new QComboBox;

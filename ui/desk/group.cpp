@@ -344,21 +344,21 @@ void Group::getMeets() {
 
     getMeetsJson.insert("get_meetup", bodyJson);
 
-    qDebug() << "create request" << endl;
+    qDebug() << "create request" << Qt::endl;
 
 
 
     QNetworkRequest request(QUrl(SERVER_URL + ""));
     request.setHeader(QNetworkRequest::ContentTypeHeader,
                       QStringLiteral("application/json"));
-    qDebug() << "request data"<< QJsonDocument(getMeetsJson).toJson(QJsonDocument::Compact) << endl;
+    qDebug() << "request data"<< QJsonDocument(getMeetsJson).toJson(QJsonDocument::Compact) << Qt::endl;
 
     request.setRawHeader("JSON_DATA", QJsonDocument(getMeetsJson).toJson(QJsonDocument::Compact));
     networkManagerGetMeets->post(
                 request,
                 QJsonDocument(getMeetsJson).toJson(QJsonDocument::Compact)
                 );
-    qDebug() << "request send" << endl;
+    qDebug() << "request send" << Qt::endl;
 
 
 }
@@ -413,7 +413,7 @@ void Group::loadFriends() {
     usernameGroupJson.insert("group_id", GROUP_ID);
     loadFriendsGroupJson.insert("get_group_members", usernameGroupJson);
 
-    qDebug() << "create request" << endl;
+    qDebug() << "create request" << Qt::endl;
 
 
 
@@ -423,12 +423,12 @@ void Group::loadFriends() {
 
     request.setHeader(QNetworkRequest::ContentTypeHeader,
                       QStringLiteral("application/json;charset=utf-8"));
-    qDebug() << "request data"<< QJsonDocument(loadFriendsGroupJson).toJson(QJsonDocument::Compact) << endl;
+    qDebug() << "request data"<< QJsonDocument(loadFriendsGroupJson).toJson(QJsonDocument::Compact) << Qt::endl;
     networkManagerloadFriends->post(
                 request,
                 QJsonDocument(loadFriendsGroupJson).toJson(QJsonDocument::Compact)
                 );
-    qDebug() << "request send" << endl;
+    qDebug() << "request send" << Qt::endl;
 }
 
 
@@ -438,11 +438,11 @@ void Group::onHttpResultnetworkManagerGetList(QNetworkReply *reply) {
 
 
 
-    qDebug() << "http finished" << endl;
+    qDebug() << "http finished" << Qt::endl;
 
     if(!reply->error()) {
         QByteArray resp = reply->readAll();
-        qDebug() <<"ETO OTVET SERVERA get_data_group :  " + resp  << endl;
+        qDebug() <<"ETO OTVET SERVERA get_data_group :  " + resp  << Qt::endl;
         QJsonDocument doc = QJsonDocument::fromJson(resp);
         QJsonObject obj;
 
@@ -474,7 +474,7 @@ void Group::onHttpResultnetworkManagerGetList(QNetworkReply *reply) {
 
                 friendName2 = new QLabel(QString::fromStdString(member.dump()).remove('"'));
 
-                qDebug() << friendName2 << endl;
+                qDebug() << friendName2 << Qt::endl;
 
                 friendName2->setStyleSheet(FRIEND_NAME_SURNAME);
                 friendName2->setContentsMargins(0,15,0,0);
@@ -559,7 +559,7 @@ void Group::onHttpResultnetworkManagerGetList(QNetworkReply *reply) {
 
         qDebug() << reply->errorString();
 
-        qDebug() << "Server answer: " +  reply->readAll() << endl;
+        qDebug() << "Server answer: " +  reply->readAll() << Qt::endl;
 
         qDebug () << reply -> error ();
 
@@ -576,11 +576,11 @@ void Group::onHttpResultnetworkManagerGetList(QNetworkReply *reply) {
 void Group::onHttpResultnetworkManagerGetMeets(QNetworkReply *reply) {
 
 
-    qDebug() << "http finished meeeets" << endl;
+    qDebug() << "http finished meeeets" << Qt::endl;
 
     if(!reply->error()) {
         QByteArray resp = reply->readAll();
-        qDebug() <<"ETO OTVET SERVERA GET MEETS :  " + resp  << endl;
+        qDebug() <<"ETO OTVET SERVERA GET MEETS :  " + resp  << Qt::endl;
         QJsonDocument doc = QJsonDocument::fromJson(resp);
         QJsonObject obj;
 
@@ -665,7 +665,7 @@ void Group::onHttpResultnetworkManagerGetMeets(QNetworkReply *reply) {
 
         qDebug() << reply->errorString();
 
-        qDebug() <<  reply->readAll() << endl;
+        qDebug() <<  reply->readAll() << Qt::endl;
 
         qDebug () << reply -> error ();
 
@@ -690,10 +690,10 @@ void Group::onHttpResultnetworkManagerGetMeets(QNetworkReply *reply) {
 void Group::onHttpResultnetworkManagerDeleteFriendFromGroup(QNetworkReply *reply) {
 
 
-    qDebug() << "http finished" << endl;
+    qDebug() << "http finished" << Qt::endl;
     if(!reply->error()) {
         QByteArray resp = reply->readAll();
-        qDebug() <<"ETO OTVET SERVERA DELETE FRIEND FROM GROUP :  " + resp  << endl;
+        qDebug() <<"ETO OTVET SERVERA DELETE FRIEND FROM GROUP :  " + resp  << Qt::endl;
         QJsonDocument doc = QJsonDocument::fromJson(resp);
         QJsonObject obj;
 
@@ -717,7 +717,7 @@ void Group::onHttpResultnetworkManagerDeleteFriendFromGroup(QNetworkReply *reply
 
         qDebug() << reply->errorString();
 
-        qDebug() <<  reply->readAll() << endl;
+        qDebug() <<  reply->readAll() << Qt::endl;
 
         qDebug () << reply -> error ();
 
@@ -778,23 +778,23 @@ void Group::deleteFriendPressed() {
 
     deleFromGroupJson.insert("kick", bodyJson);
 
-    qDebug() << "create request" << endl;
+    qDebug() << "create request" << Qt::endl;
 
 
     QNetworkRequest request(QUrl(SERVER_URL + ""));
     request.setHeader(QNetworkRequest::ContentTypeHeader,
                       QStringLiteral("application/json;charset=utf-8"));
-    qDebug() << "request data"<< QJsonDocument(deleFromGroupJson).toJson(QJsonDocument::Compact) << endl;
+    qDebug() << "request data"<< QJsonDocument(deleFromGroupJson).toJson(QJsonDocument::Compact) << Qt::endl;
 
     request.setRawHeader("JSON_DATA", QJsonDocument(deleFromGroupJson).toJson(QJsonDocument::Compact));
 
-    qDebug() << "JSON_DATA send" << endl;
+    qDebug() << "JSON_DATA send" << Qt::endl;
 
     networkManagerDeleteFriendFromGroup->post(
                 request,
                 QJsonDocument(deleFromGroupJson).toJson(QJsonDocument::Compact)
                 );
-    qDebug() << "request send" << endl;
+    qDebug() << "request send" << Qt::endl;
 
 
 
@@ -828,7 +828,7 @@ void Group::getIventsDatePressed() {
 
     button->setStyleSheet(BUTTON_SOLID);
 
-    qDebug() << Date << endl;
+    qDebug() << Date << Qt::endl;
 
 
 }
@@ -852,7 +852,7 @@ void Group::groupDeleteYesPressed(){
 
     deleteGroupJson.insert("delete_group", bodyJson);
 
-    qDebug() << "create request" << endl;
+    qDebug() << "create request" << Qt::endl;
 
 
     QNetworkRequest request(QUrl(SERVER_URL + ""));
@@ -860,12 +860,12 @@ void Group::groupDeleteYesPressed(){
                       QStringLiteral("application/json;charset=utf-8"));
 
     request.setRawHeader("JSON_DATA", QJsonDocument(deleteGroupJson).toJson(QJsonDocument::Compact));
-    qDebug() << "request data"<< QJsonDocument(deleteGroupJson).toJson(QJsonDocument::Compact) << endl;
+    qDebug() << "request data"<< QJsonDocument(deleteGroupJson).toJson(QJsonDocument::Compact) << Qt::endl;
     networkManagerDeleteGroup->post(
                 request,
                 QJsonDocument(deleteGroupJson).toJson(QJsonDocument::Compact)
                 );
-    qDebug() << "request send" << endl;
+    qDebug() << "request send" << Qt::endl;
 
 
 }
@@ -896,10 +896,10 @@ void Group::groupDeleteNoPressed(){
 void Group::onHttpResultDeleteGroup(QNetworkReply *reply){
 
 
-    qDebug() << "http finished" << endl;
+    qDebug() << "http finished" << Qt::endl;
     if(!reply->error()) {
         QByteArray resp = reply->readAll();
-        qDebug() <<"ETO OTVET SERVERA DELETE GRROUP :  " + resp  << endl;
+        qDebug() <<"ETO OTVET SERVERA DELETE GRROUP :  " + resp  << Qt::endl;
         QJsonDocument doc = QJsonDocument::fromJson(resp);
         QJsonObject obj;
 
@@ -926,7 +926,7 @@ void Group::onHttpResultDeleteGroup(QNetworkReply *reply){
 
         qDebug() << reply->errorString();
 
-        qDebug() <<  reply->readAll() << endl;
+        qDebug() <<  reply->readAll() << Qt::endl;
 
         qDebug () << reply -> error ();
 

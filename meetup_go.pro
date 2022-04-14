@@ -1,5 +1,6 @@
 QT       += core gui
 QT += svg
+QT += svgwidgets
 QT += network
 QT += sql
 #QT += websockets
@@ -33,7 +34,6 @@ SOURCES += \
     common/base/basefragment.cpp \
     common/base/basescreensfactory.cpp \
     common/navigator.cpp \
-    flowlayout.cpp \
     main.cpp \
     mainwindow.cpp \
     models/basemodel.cpp \
@@ -139,7 +139,6 @@ HEADERS += \
     ui/mainfragment.h \
     ui/splashfragment.h \
     ui/view/deletesvgbutton.h \
-    ui/view/loadingwidget.h \
     ui/view/qsvgbutton.h \
     ui/view/userwidget.h \
     ui/view/waitingspinnerwidget.h

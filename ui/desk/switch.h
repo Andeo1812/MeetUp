@@ -30,7 +30,7 @@ public:
 protected:
     void paintEvent(QPaintEvent*) override;
     void mouseReleaseEvent(QMouseEvent*) override;
-    void enterEvent(QEvent*) override;
+//    void enterEvent(QEvent*) override;
 
 private:
     bool _switch;
