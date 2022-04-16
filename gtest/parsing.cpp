@@ -11,37 +11,52 @@
 
 
 TEST(PARSING, RegAuth) {
+    std::string input_reg = {"{\"registration\":{\"nickname\":\"Sasha\",\"password\":\"123456asd64569898989\"}}"};
+    std::string key_nickname = {"Sasha"};
+    std::string key_password = {"123456asd64569898989"};
 
+    ParserRegAuth parser;
+
+    Context context;
+
+    User user;
+
+    context = user;
+
+    context = parser.StrToObject(input);
+
+    EXPECT_TRUE(key_nickname == context.GetPassword());
+    EXPECT_TRUE(key_nickname == context.GetNickname());
 }
 
 TEST(PARSING, Address) {
-
+//  По аналогии с RegAuth
 }
 
 TEST(PARSING, PersonalData) {
-
+//  По аналогии с RegAuth
 }
 
 TEST(PARSING, GeneralData) {
-
+//  По аналогии с RegAuth
 }
 
 TEST(PARSING, PrivateData) {
-
+//  По аналогии с RegAuth
 }
 
 TEST(PARSING, Events) {
-
+//  По аналогии с RegAuth
 }
 
 TEST(PARSING, UserContacts) {
-
+//  По аналогии с RegAuth
 }
 
 TEST(PARSING, Groups) {
-
+//  По аналогии с RegAuth
 }
 
 TEST(PARSING, MeetUps) {
-
+//  По аналогии с RegAuth
 }

@@ -12,22 +12,6 @@
 
 
 TEST(PostgreSQL, RegAuth) {
-    std::string input_reg = {"{\"registration\":{\"nickname\":\"Sasha\",\"password\":\"123456asd64569898989\"}}"};
-    std::string key_nickname = {"Sasha"};
-    std::string key_password = {"123456asd64569898989"};
-
-    ParserRegAuth parser;
-
-    Context context;
-
-    User user;
-
-    context = user;
-
-    context = parser.StrToObject(input);
-
-    EXPECT_TRUE(key_nickname == context.GetPassword());
-    EXPECT_TRUE(key_nickname == context.GetNickname());
 }
 
 TEST(PostgreSQL, GetId) {
