@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv
+CMAKE_SOURCE_DIR = /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/build
+CMAKE_BINARY_DIR = /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/server.dir/depend.make
@@ -59,107 +59,107 @@ include CMakeFiles/server.dir/flags.make
 
 CMakeFiles/server.dir/src/main.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/src/main.cpp.o"
-	g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/main.cpp.o -c /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/src/main.cpp.o"
+	g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/main.cpp.o -c /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/main.cpp
 
 CMakeFiles/server.dir/src/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/main.cpp.i"
-	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/main.cpp > CMakeFiles/server.dir/src/main.cpp.i
+	@echo "Preprocessing CXX source to CMakeFiles/server.dir/src/main.cpp.i"
+	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/main.cpp > CMakeFiles/server.dir/src/main.cpp.i
 
 CMakeFiles/server.dir/src/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/main.cpp.s"
-	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/main.cpp -o CMakeFiles/server.dir/src/main.cpp.s
+	@echo "Compiling CXX source to assembly CMakeFiles/server.dir/src/main.cpp.s"
+	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/main.cpp -o CMakeFiles/server.dir/src/main.cpp.s
 
 CMakeFiles/server.dir/src/ConnectionClientManager.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/ConnectionClientManager.cpp.o: ../src/ConnectionClientManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/server.dir/src/ConnectionClientManager.cpp.o"
-	g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/ConnectionClientManager.cpp.o -c /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/ConnectionClientManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/server.dir/src/ConnectionClientManager.cpp.o"
+	g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/ConnectionClientManager.cpp.o -c /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/ConnectionClientManager.cpp
 
 CMakeFiles/server.dir/src/ConnectionClientManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/ConnectionClientManager.cpp.i"
-	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/ConnectionClientManager.cpp > CMakeFiles/server.dir/src/ConnectionClientManager.cpp.i
+	@echo "Preprocessing CXX source to CMakeFiles/server.dir/src/ConnectionClientManager.cpp.i"
+	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/ConnectionClientManager.cpp > CMakeFiles/server.dir/src/ConnectionClientManager.cpp.i
 
 CMakeFiles/server.dir/src/ConnectionClientManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/ConnectionClientManager.cpp.s"
-	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/ConnectionClientManager.cpp -o CMakeFiles/server.dir/src/ConnectionClientManager.cpp.s
+	@echo "Compiling CXX source to assembly CMakeFiles/server.dir/src/ConnectionClientManager.cpp.s"
+	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/ConnectionClientManager.cpp -o CMakeFiles/server.dir/src/ConnectionClientManager.cpp.s
 
 CMakeFiles/server.dir/src/ClientConnection.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/ClientConnection.cpp.o: ../src/ClientConnection.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/src/ClientConnection.cpp.o"
-	g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/ClientConnection.cpp.o -c /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/ClientConnection.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/src/ClientConnection.cpp.o"
+	g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/ClientConnection.cpp.o -c /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/ClientConnection.cpp
 
 CMakeFiles/server.dir/src/ClientConnection.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/ClientConnection.cpp.i"
-	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/ClientConnection.cpp > CMakeFiles/server.dir/src/ClientConnection.cpp.i
+	@echo "Preprocessing CXX source to CMakeFiles/server.dir/src/ClientConnection.cpp.i"
+	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/ClientConnection.cpp > CMakeFiles/server.dir/src/ClientConnection.cpp.i
 
 CMakeFiles/server.dir/src/ClientConnection.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/ClientConnection.cpp.s"
-	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/ClientConnection.cpp -o CMakeFiles/server.dir/src/ClientConnection.cpp.s
+	@echo "Compiling CXX source to assembly CMakeFiles/server.dir/src/ClientConnection.cpp.s"
+	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/ClientConnection.cpp -o CMakeFiles/server.dir/src/ClientConnection.cpp.s
 
 CMakeFiles/server.dir/src/MimeTypes.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/MimeTypes.cpp.o: ../src/MimeTypes.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/src/MimeTypes.cpp.o"
-	g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/MimeTypes.cpp.o -c /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/MimeTypes.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/src/MimeTypes.cpp.o"
+	g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/MimeTypes.cpp.o -c /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/MimeTypes.cpp
 
 CMakeFiles/server.dir/src/MimeTypes.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/MimeTypes.cpp.i"
-	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/MimeTypes.cpp > CMakeFiles/server.dir/src/MimeTypes.cpp.i
+	@echo "Preprocessing CXX source to CMakeFiles/server.dir/src/MimeTypes.cpp.i"
+	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/MimeTypes.cpp > CMakeFiles/server.dir/src/MimeTypes.cpp.i
 
 CMakeFiles/server.dir/src/MimeTypes.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/MimeTypes.cpp.s"
-	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/MimeTypes.cpp -o CMakeFiles/server.dir/src/MimeTypes.cpp.s
+	@echo "Compiling CXX source to assembly CMakeFiles/server.dir/src/MimeTypes.cpp.s"
+	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/MimeTypes.cpp -o CMakeFiles/server.dir/src/MimeTypes.cpp.s
 
 CMakeFiles/server.dir/src/Reply.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/Reply.cpp.o: ../src/Reply.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/src/Reply.cpp.o"
-	g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/Reply.cpp.o -c /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/Reply.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/src/Reply.cpp.o"
+	g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/Reply.cpp.o -c /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/Reply.cpp
 
 CMakeFiles/server.dir/src/Reply.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Reply.cpp.i"
-	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/Reply.cpp > CMakeFiles/server.dir/src/Reply.cpp.i
+	@echo "Preprocessing CXX source to CMakeFiles/server.dir/src/Reply.cpp.i"
+	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/Reply.cpp > CMakeFiles/server.dir/src/Reply.cpp.i
 
 CMakeFiles/server.dir/src/Reply.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Reply.cpp.s"
-	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/Reply.cpp -o CMakeFiles/server.dir/src/Reply.cpp.s
+	@echo "Compiling CXX source to assembly CMakeFiles/server.dir/src/Reply.cpp.s"
+	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/Reply.cpp -o CMakeFiles/server.dir/src/Reply.cpp.s
 
 CMakeFiles/server.dir/src/RequestHandler.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/RequestHandler.cpp.o: ../src/RequestHandler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/server.dir/src/RequestHandler.cpp.o"
-	g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/RequestHandler.cpp.o -c /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/RequestHandler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/server.dir/src/RequestHandler.cpp.o"
+	g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/RequestHandler.cpp.o -c /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/RequestHandler.cpp
 
 CMakeFiles/server.dir/src/RequestHandler.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/RequestHandler.cpp.i"
-	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/RequestHandler.cpp > CMakeFiles/server.dir/src/RequestHandler.cpp.i
+	@echo "Preprocessing CXX source to CMakeFiles/server.dir/src/RequestHandler.cpp.i"
+	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/RequestHandler.cpp > CMakeFiles/server.dir/src/RequestHandler.cpp.i
 
 CMakeFiles/server.dir/src/RequestHandler.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/RequestHandler.cpp.s"
-	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/RequestHandler.cpp -o CMakeFiles/server.dir/src/RequestHandler.cpp.s
+	@echo "Compiling CXX source to assembly CMakeFiles/server.dir/src/RequestHandler.cpp.s"
+	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/RequestHandler.cpp -o CMakeFiles/server.dir/src/RequestHandler.cpp.s
 
 CMakeFiles/server.dir/src/RequestParser.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/RequestParser.cpp.o: ../src/RequestParser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/server.dir/src/RequestParser.cpp.o"
-	g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/RequestParser.cpp.o -c /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/RequestParser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/server.dir/src/RequestParser.cpp.o"
+	g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/RequestParser.cpp.o -c /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/RequestParser.cpp
 
 CMakeFiles/server.dir/src/RequestParser.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/RequestParser.cpp.i"
-	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/RequestParser.cpp > CMakeFiles/server.dir/src/RequestParser.cpp.i
+	@echo "Preprocessing CXX source to CMakeFiles/server.dir/src/RequestParser.cpp.i"
+	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/RequestParser.cpp > CMakeFiles/server.dir/src/RequestParser.cpp.i
 
 CMakeFiles/server.dir/src/RequestParser.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/RequestParser.cpp.s"
-	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/RequestParser.cpp -o CMakeFiles/server.dir/src/RequestParser.cpp.s
+	@echo "Compiling CXX source to assembly CMakeFiles/server.dir/src/RequestParser.cpp.s"
+	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/RequestParser.cpp -o CMakeFiles/server.dir/src/RequestParser.cpp.s
 
 CMakeFiles/server.dir/src/AsyncServer.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/AsyncServer.cpp.o: ../src/AsyncServer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/server.dir/src/AsyncServer.cpp.o"
-	g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/AsyncServer.cpp.o -c /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/AsyncServer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/server.dir/src/AsyncServer.cpp.o"
+	g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/AsyncServer.cpp.o -c /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/AsyncServer.cpp
 
 CMakeFiles/server.dir/src/AsyncServer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/AsyncServer.cpp.i"
-	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/AsyncServer.cpp > CMakeFiles/server.dir/src/AsyncServer.cpp.i
+	@echo "Preprocessing CXX source to CMakeFiles/server.dir/src/AsyncServer.cpp.i"
+	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/AsyncServer.cpp > CMakeFiles/server.dir/src/AsyncServer.cpp.i
 
 CMakeFiles/server.dir/src/AsyncServer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/AsyncServer.cpp.s"
-	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/src/AsyncServer.cpp -o CMakeFiles/server.dir/src/AsyncServer.cpp.s
+	@echo "Compiling CXX source to assembly CMakeFiles/server.dir/src/AsyncServer.cpp.s"
+	g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/src/AsyncServer.cpp -o CMakeFiles/server.dir/src/AsyncServer.cpp.s
 
 # Object files for target server
 server_OBJECTS = \
@@ -187,9 +187,8 @@ server: CMakeFiles/server.dir/build.make
 server: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0
 server: /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0
 server: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.71.0
-server: /usr/lib/x86_64-linux-gnu/libboost_atomic.so.1.71.0
 server: CMakeFiles/server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -202,6 +201,6 @@ CMakeFiles/server.dir/clean:
 .PHONY : CMakeFiles/server.dir/clean
 
 CMakeFiles/server.dir/depend:
-	cd /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/build /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/build /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/build/CMakeFiles/server.dir/DependInfo.cmake --color=$(COLOR)
+	cd /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/build /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/build /media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/build/CMakeFiles/server.dir/DependInfo.cmake
 .PHONY : CMakeFiles/server.dir/depend
 
