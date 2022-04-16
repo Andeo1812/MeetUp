@@ -20,7 +20,7 @@ TEST(PostgreSQL, Connection) {
 TEST(PostgreSQL, GetField) {
     DBRegAuthImpl reg_auth_db;
 
-    EXPECT_TRUE(reg_auth_db != nullptr);
+    EXPECT_TRUE(reg_auth_db);
 
     std::string user_id = {"123"};
     std::string password = {"GogozikPARSSS"};
