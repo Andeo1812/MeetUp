@@ -1,0 +1,3 @@
+/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/build/CMakeFiles/rebuild_cache.dir
+/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/build/CMakeFiles/edit_cache.dir
+/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/test/my_serv/build/CMakeFiles/server.dir
