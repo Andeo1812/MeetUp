@@ -11,37 +11,52 @@
 #include "SynchroImpl.hpp"
 
 
-TEST(PostgreSQL, RegAuth) {
-}
+TEST(PostgreSQL, Connection) {
+    PGConnection pg_con;
 
-TEST(PostgreSQL, GetId) {
-//  По аналогии с RegAuth
+    EXPECT_TRUE(pg_con != nullptr);
 }
 
 TEST(PostgreSQL, GetField) {
-//  По аналогии с RegAuth
+    DBRegAuthImpl reg_auth_db;
+
+    EXPECT_TRUE(reg_auth_db != nullptr);
+
+    std::string user_id = {"123"};
+    std::string password = {"GogozikPARSSS"};
+    std::string nickname = {"Gogozik"};
+
+    User user;
+
+    user.SetUserId(user_id);
+    user.SetPassword(password);
+    user.SetNickname(nickname);
+
+    EXPECT_TRUE(!reg_auth_db.Registration(user));
+    EXPECT_TRUE(!reg_auth_db.Authentication(user));
 }
 
-TEST(PostgreSQL, Data) {
-//  По аналогии с RegAuth
+
+TEST(PostgreSQL, DBUserData) {
+//  По аналогии с GetField
 }
 
-TEST(PostgreSQL, PrivateData) {
-//  По аналогии с RegAuth
+TEST(PostgreSQL, DBRegAuth) {
+//  По аналогии с GetField
 }
 
-TEST(PostgreSQL, Event) {
-//  По аналогии с RegAuth
+TEST(PostgreSQL, DBEvent) {
+//  По аналогии с GetField
 }
 
-TEST(PostgreSQL, Contact) {
-//  По аналогии с RegAuth
+TEST(PostgreSQL, DBContacts) {
+//  По аналогии с GetField
 }
 
-TEST(PostgreSQL, Group) {
-//  По аналогии с RegAuth
+TEST(PostgreSQL, DBGroup) {
+//  По аналогии с GetField
 }
 
-TEST(PostgreSQL, Synchro) {
-//  По аналогии с RegAuth
+TEST(PostgreSQL, DBSynchroClient) {
+//  По аналогии с GetField
 }
