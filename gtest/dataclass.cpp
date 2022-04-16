@@ -26,8 +26,8 @@ TEST(DATACLASS, User) {
     user.SetNickname(nickname);
 
     EXPECT_TRUE(user_id == user.GetUserId());
-    EXPECT_TRUE(user_id == user.GetPassword());
-    EXPECT_TRUE(user_id == user.GetNickname());
+    EXPECT_TRUE(password == user.GetPassword());
+    EXPECT_TRUE(nickname == user.GetNickname());
 }
 
 TEST(DATACLASS, Address) {
