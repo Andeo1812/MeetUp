@@ -21,7 +21,6 @@
 #include "ParserRegAuth.hpp"
 #include "ParserAddressData.hpp"
 #include "ParserGeneralData.hpp"
-#include "ParserPrivateData.hpp"
 #include "ParserPersonalData.hpp"
 #include "ParserMeetUp.hpp"
 
