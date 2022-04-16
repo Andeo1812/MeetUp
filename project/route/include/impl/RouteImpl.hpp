@@ -2,7 +2,7 @@
 
 #include "Route.hpp"
 
-class RouteImpl : Route {
+class RouteImpl: Route {
 public:
     std::string get_head(const std::string request_body) override;
 
