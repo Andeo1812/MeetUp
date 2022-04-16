@@ -16,6 +16,7 @@ INCLUDE_DIRECTORIES(parsing/include/virtual)
 
 INCLUDE_DIRECTORIES(database/PostgreSQL/include)
 INCLUDE_DIRECTORIES(database/include/impl)
+INCLUDE_DIRECTORIES(database/include/virtual)
 
 SET(SOURCE_LIST_SERVER
         main.cpp)
@@ -57,17 +58,13 @@ SET(SOURCE_LIST_PARSER_OBJECT
         context/src/User.cpp)
 
 SET(SOURCE_LIST_DATABASE
-        database/PostgreSQL/src/GetID.cpp
-        database/PostgreSQL/src/RegAuth.cpp
-        database/PostgreSQL/src/Contact.cpp
-        database/PostgreSQL/src/Event.cpp
-        database/PostgreSQL/src/Data/Address.cpp
-        database/PostgreSQL/src/Data/Personal.cpp
-        database/PostgreSQL/src/Data/Security.cpp
-        database/PostgreSQL/src/Data/General.cpp
-        database/PostgreSQL/src/Group/Base.cpp
-        database/PostgreSQL/src/Group/Management.cpp
-        database/PostgreSQL/src/SynchronizationClient.cpp
+        database/PostgreSQL/src/DBContactsImpl.cpp
+        database/PostgreSQL/src/DBEventImpl.cpp
+        database/PostgreSQL/src/DBGetFieldImpl.cpp
+        database/PostgreSQL/src/DBGroupImpl.cpp
+        database/PostgreSQL/src/DBRegAuthImpl.cpp
+        database/PostgreSQL/src/DBSynchroClientImpl.cpp
+        database/PostgreSQL/src/DBUserDataImpl.cpp
         database/PostgreSQL/src/PGConnection.cpp)
 
 

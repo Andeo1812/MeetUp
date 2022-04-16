@@ -3,9 +3,11 @@
 #include <string>
 #include <iostream>
 
-#include "libpq-fe.h"
+#include <libpq-fe.h>
 
-class PGConnection {
+#include "DBConnection.hpp"
+
+class PGConnection: public DBConnection {
     PGConnection() = default;
     ~PGConnection() = default;
 
