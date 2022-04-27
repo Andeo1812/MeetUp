@@ -2,30 +2,97 @@
 
 #include "Event.hpp"
 
-void Event::Print() const {
-    std::cout << "-------------------------------------------------------------------------" << std::endl;
-    std::cout << "Event" << std::endl;
-    std::cout << "event_id          :---: " << event_id << std::endl;
-    std::cout << "user_id           :---: " << user_id << std::endl;
-    std::cout << "event_name        :---: " << event_name << std::endl;
-    std::cout << "date              :---: " << date << std::endl;
-    std::cout << "description       :---: " << description << std::endl;
-    std::cout << "time_begin        :---: " << time_begin << std::endl;
-    std::cout << "time_end          :---: " << time_end << std::endl;
+bool Event::IsEmpty() const noexcept {
+    if (this->id.empty() && this->name.empty() &&
+        this->date.empty() && this->description.empty() &&
+        this->time_begin.empty() && this->time_end.empty() &&
+        this->user_id.empty()) {
+            return true;
+    }
+
+    return false;
 }
 
-bool Event::operator<(const Event &other) const {
-    if (date == other.date) {
-        if (time_begin == other.time_begin) {
-            if (time_end == other.time_end) {
-                if (event_name == other.event_name) {
+void Event::SetId(const std::string &id) noexcept {
+    this->id = id;
+}
+
+void Event::SetName(const std::string &name) noexcept {
+    this->name = name;
+}
+
+void Event::SetDate(const std::string &date) noexcept {
+    this->date = date;
+}
+
+void Event::SetDescription(const std::string &description) noexcept {
+    this->description = description;
+}
+
+void Event::SetTimeBegin(const std::string &time_begin) noexcept {
+    this->time_begin = time_begin;
+}
+
+void Event::SetTimeEnd(const std::string &time_end) noexcept {
+    this->time_end = time_end;
+}
+
+void Event::SetUserId(const std::string &user_id) noexcept {
+    this->user_id = user_id;
+}
+
+std::string Event::GetId() const noexcept {
+    return this->id;
+}
+
+std::string Event::GetName() const noexcept {
+    return this->name;
+}
+
+std::string Event::GetDate() const noexcept {
+    return this->date;
+}
+
+std::string Event::GetDescription() const noexcept {
+    return this->description;
+}
+
+std::string Event::GetTimeBegin() const noexcept {
+    return this->time_begin;
+}
+
+std::string Event::GetTimeEnd() const noexcept {
+    return this->time_end;
+}
+
+std::string Event::GetUserId() const noexcept {
+    return this->user_id;
+}
+
+void operator<<(std::ostream &os, const Event &it) noexcept {
+    os << "-------------------------------------------------------------------------" << std::endl;
+    os << "Event" << std::endl;
+    os << "event_id          :---: " << it.id << std::endl;
+    os << "user_id           :---: " << it.user_id << std::endl;
+    os << "event_name        :---: " << it.name << std::endl;
+    os << "date              :---: " << it.date << std::endl;
+    os << "description       :---: " << it.description << std::endl;
+    os << "time_begin        :---: " << it.time_begin << std::endl;
+    os << "time_end          :---: " << it.time_end << std::endl;
+}
+
+bool Event::operator<(const Event &other) const noexcept {
+    if (this->date == other.date) {
+        if (this->time_begin == other.time_begin) {
+            if (this->time_end == other.time_end) {
+                if (this->name == other.name) {
                     return description < other.description;
                 }
-                return event_name < other.event_name;
+                return this->name < other.name;
             }
-            return time_end < other.time_end;
+            return this->time_end < other.time_end;
         }
-        return time_begin < other.time_begin;
+        return this->time_begin < other.time_begin;
     }
-    return date < other.date;
+    return this->date < other.date;
 }

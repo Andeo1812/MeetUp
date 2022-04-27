@@ -4,36 +4,36 @@
 #include <set>
 
 class Event {
-    std::string event_id;
-    std::string event_name;
+    std::string id;
+    std::string name;
     std::string date;
     std::string description;
     std::string time_begin;
     std::string time_end;
     std::string user_id;
 public:
-    bool IsEmpty();
+    bool IsEmpty() const noexcept;
 
-    void SetEventId(const std::string &event_id);
-    void SetEventName(const std::string &event_name);
-    void SetDate(const std::string &date);
-    void SetDescription(const std::string &description);
-    void SetTimeBegin(const std::string &time_begin);
-    void SetTimeEnd(const std::string &time_end);
-    void SetUserId(const std::string &user_id);
+    void SetId(const std::string &id) noexcept;
+    void SetName(const std::string &name) noexcept;
+    void SetDate(const std::string &date) noexcept;
+    void SetDescription(const std::string &description) noexcept;
+    void SetTimeBegin(const std::string &time_begin) noexcept;
+    void SetTimeEnd(const std::string &time_end) noexcept;
+    void SetUserId(const std::string &user_id) noexcept;
 
-    std::string GetEventId();
-    std::string GetEventName();
-    std::string GetDate();
-    std::string GetDescription();
-    std::string GetTimeBegin();
-    std::string GetTimeEnd();
-    std::string GetUserId();
+    std::string GetId() const noexcept;
+    std::string GetName() const noexcept;
+    std::string GetDate() const noexcept;
+    std::string GetDescription() const noexcept;
+    std::string GetTimeBegin() const noexcept;
+    std::string GetTimeEnd() const noexcept;
+    std::string GetUserId() const noexcept;
 
     Event() = default;
     virtual ~Event() = default;
 
-    bool operator<(const Event &other) const;
+    bool operator<(const Event &other) const noexcept;
 
-    void Print() const;
+    friend void operator<<(std::ostream &os, const Event &it) noexcept;
 };

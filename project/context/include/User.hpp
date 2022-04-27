@@ -7,18 +7,18 @@ class User {
     std::string password;
     std::string nickname;
 public:
-    bool IsEmpty();
+    bool IsEmpty() const noexcept;
 
-    void SetUserId(const std::string &user_id);
-    void SetPassword(const std::string &password);
-    void SetNickname(const std::string &nickname);
+    void SetUserId(const std::string &user_id) noexcept;
+    void SetPassword(const std::string &password) noexcept;
+    void SetNickname(const std::string &nickname) noexcept;
 
-    std::string GetUserId() const;
-    std::string GetPassword() const;
-    std::string GetNickname() const;
+    std::string GetUserId() const noexcept;
+    std::string GetPassword() const noexcept;
+    std::string GetNickname() const noexcept;
 
     User() = default;
     virtual ~User() = default;
 
-    void Print() const;
+    friend void operator<<(std::ostream &os, const User &it) noexcept;
 };

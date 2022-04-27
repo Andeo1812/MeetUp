@@ -4,10 +4,10 @@
 
 bool AddressData::IsEmpty() const noexcept {
     if (this->user_id.empty() && this->building.empty() &&
-    this->housing.empty() && this->street.empty() &&
-    this->city.empty() && this->district.empty() &&
-    this->index.empty() && this->country.empty()) {
-        return true;
+        this->housing.empty() && this->street.empty() &&
+        this->city.empty() && this->district.empty() &&
+        this->index.empty() && this->country.empty()) {
+            return true;
     }
 
     return false;
@@ -44,6 +44,7 @@ void AddressData::SetCountry(const std::string &country) noexcept {
 std::string AddressData::GetUserId() const noexcept {
     return this->user_id;
 }
+
 std::string AddressData::GetBuilding() const noexcept {
     return this->building;
 }

@@ -15,7 +15,7 @@ set(Include_dir ${CMAKE_CURRENT_SOURCE_DIR}/include/virtual/
 file(GLOB INCLUDE_DIRS Include_dir)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
-target_include_directories(${PROJECT_NAME} PUBLIC Include_dir)
+target_include_directories(${PROJECT_NAME} PUBLIC ${Include_dir})
 target_link_libraries(${PROJECT_NAME} ${Context_lib_libs} ${Database_lib_libs})
 
 set(Handling_lib_libs ${PROJECT_NAME} PARENT_SCOPE)

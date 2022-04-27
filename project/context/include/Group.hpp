@@ -8,23 +8,26 @@ class Group {
     std::string title;
     std::string description;
     std::set<std::string> members;
+    std::string user_id;
 public:
-    bool IsEmpty();
+    bool IsEmpty() const noexcept;
 
-    void SetGroupId(const std::string &group_id);
-    void SetTitle(const std::string &title);
-    void SetDescription(const std::string &description);
-    void SetMembers(const std::set<std::string> &members);
+    void SetGroupId(const std::string &group_id) noexcept;
+    void SetTitle(const std::string &title) noexcept;
+    void SetDescription(const std::string &description) noexcept;
+    void SetMembers(const std::set<std::string> &members) noexcept;
+    void SetUserId(const std::string &user_id) noexcept;
 
-    std::string SetGroupId() const;
-    std::string SetTitle() const;
-    std::string SetDescription() const;
-    std::set<std::string> SetMembers() const;
+    std::string GetGroupId() const noexcept;
+    std::string GetTitle() const noexcept;
+    std::string GetDescription() const noexcept;
+    std::set<std::string> GetMembers() const noexcept;
+    std::string GetUserId() const noexcept;
 
     Group() = default;
     virtual ~Group() = default;
 
-    bool operator<(const Group &group) const;
+    bool operator<(const Group &group) const noexcept;
 
-    void Print() const;
+    friend void operator<<(std::ostream &os, const Group &it) noexcept;
 };

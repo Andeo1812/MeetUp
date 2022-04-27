@@ -10,24 +10,24 @@ class PersonalData {
     std::string date_birth;
     std::string phone_number;
 public:
-    bool IsEmpty();
+    bool IsEmpty() const noexcept;
 
-    void SetUserId(const std::string &user_id);
-    void SetName(const std::string &name);
-    void SetSurname(const std::string &surname);
-    void SetEmail(const std::string &email);
-    void SetDateBirth(const std::string &date_birth);
-    void SetPhoneNumber(const std::string &phone_number);
+    void SetUserId(const std::string &user_id) noexcept;
+    void SetName(const std::string &name) noexcept;
+    void SetSurname(const std::string &surname) noexcept;
+    void SetEmail(const std::string &email) noexcept;
+    void SetDateBirth(const std::string &date_birth) noexcept;
+    void SetPhoneNumber(const std::string &phone_number) noexcept;
 
-    std::string SetUserId() const;
-    std::string SetName() const;
-    std::string SetSurname() const;
-    std::string SetEmail() const;
-    std::string SetDateBirth() const;
-    std::string SetPhoneNumber() const;
+    std::string GetUserId() const noexcept;
+    std::string GetName() const noexcept;
+    std::string GetSurname() const noexcept;
+    std::string GetEmail() const noexcept;
+    std::string GetDateBirth() const noexcept;
+    std::string GetPhoneNumber() const noexcept;
 
     PersonalData() = default;
     virtual ~PersonalData() = default;
 
-    void Print() const;
+    friend void operator<<(std::ostream &os, const PersonalData &it) noexcept;
 };

@@ -4,36 +4,36 @@
 #include <set>
 
 class MeetUp {
-    std::string meetup_id;
-    std::string meetup_name;
+    std::string id;
+    std::string name;
     std::string date;
     std::string description;
     std::string time_begin;
     std::string time_end;
     std::string group_id;
 public:
-    bool IsEmpty();
+    bool IsEmpty() const noexcept;
 
-    void SetMeetUpId(const std::string &meetup_id);
-    void SetMeetUpName(const std::string &meetup_name);
-    void SetDate(const std::string &date);
-    void SetDescription(const std::string &description);
-    void SetTimeBegin(const std::string &time_begin);
-    void SetTimeEnd(const std::string &time_end);
-    void SetUserId(const std::string &user_id);
+    void SetId(const std::string &id) noexcept;
+    void SetName(const std::string &name) noexcept;
+    void SetDate(const std::string &date) noexcept;
+    void SetDescription(const std::string &description) noexcept;
+    void SetTimeBegin(const std::string &time_begin) noexcept;
+    void SetTimeEnd(const std::string &time_end) noexcept;
+    void SetGroupId(const std::string &group_id) noexcept;
 
-    std::string GetMeetUpId();
-    std::string GetMeetUpName();
-    std::string GetDate();
-    std::string GetDescription();
-    std::string GetTimeBegin();
-    std::string GetTimeEnd();
-    std::string GetUserId();
+    std::string GetId() const noexcept;
+    std::string GetName() const noexcept;
+    std::string GetDate() const noexcept;
+    std::string GetDescription() const noexcept;
+    std::string GetTimeBegin() const noexcept;
+    std::string GetTimeEnd() const noexcept;
+    std::string GetGroupId() const noexcept;
 
     MeetUp() = default;
     virtual ~MeetUp() = default;
 
-    bool operator<(const MeetUp &other) const;
+    bool operator<(const MeetUp &other)  const noexcept;
 
-    void Print() const;
+    friend void operator<<(std::ostream &os, const MeetUp &it) noexcept;
 };
