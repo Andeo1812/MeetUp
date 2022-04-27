@@ -20,5 +20,7 @@ public:
 
     virtual int RmMember(const std::string& user_nickname, const std::string& group_id) const = 0;
 
+    virtual std::string GetId(const Group& group) const = 0;
+
     virtual ~DBGroup() = default;
 };

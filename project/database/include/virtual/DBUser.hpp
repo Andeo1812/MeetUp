@@ -2,11 +2,15 @@
 
 #include "User.hpp"
 
-class DBRegAuth {
+class DBUser {
 public:
     virtual int Registration(const User& user) const = 0;
 
     virtual int Authentication(const User& user) const = 0;
 
-    virtual ~DBRegAuth() = default;
+    virtual std::string GetId(const User& user) const = 0;
+
+    virtual std::string GetNickname(const User& user) const = 0;
+
+    virtual ~DBUser() = default;
 };

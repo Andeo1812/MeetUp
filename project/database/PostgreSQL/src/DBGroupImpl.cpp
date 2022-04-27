@@ -14,4 +14,6 @@ Group GetMembers(const std::string& group_id) const override;
 int AddMember(const std::string& user_nickname, const std::string& group_id) const override;
 
 int RmMember(const std::string& user_nickname, const std::string& group_id) const override;
+
+ std::string GroupId(const Group& group) const override;
 */

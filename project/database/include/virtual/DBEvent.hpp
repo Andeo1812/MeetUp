@@ -10,5 +10,7 @@ public:
 
     virtual int Rm(const Event& event) const = 0;
 
+    virtual std::string GetId(const Event& event) const = 0;
+
     virtual ~DBEvent() = default;
 };

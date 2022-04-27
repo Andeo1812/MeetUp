@@ -18,5 +18,7 @@ public:
 
     int RmMember(const std::string& user_nickname, const std::string& group_id) const override;
 
+    std::string GetId(const Group& group) const override;
+
     ~DBGroupImpl() = default;
 };

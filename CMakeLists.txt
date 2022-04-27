@@ -4,8 +4,13 @@ PROJECT(HttpServer)
 
 ADD_SUBDIRECTORY(project)
 
-SET(CMAKE_CXX_STANDARD 17)
+option(DEBUG "no release" ON)
+option(RELEASE "in production" OFF)
 
-SET(FLAGS "-lpq")
+if (DEBUG)
+    set(CMAKE_CXX_STANDARD 20)
+    set(CMAKE_CXX_FLAGS "-g -O0 -lpq -fprofile-arcs -Wall -Wextra -Werror -Wpedantic -fprofile-arcs -ftest-coverage -Wlogical-op -Wredundant-decls -Wsign-conversion -Wcast-align -Wcast-qual -Wconversion -Wduplicated-branches -Wduplicated-cond -Wfloat-equal")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -coverage -lgcov")
+endif(DEBUG)
 
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${FLAGS}")
+#add_subdirectory(gtest)

@@ -12,28 +12,29 @@ class AddressData {
     std::string index;
     std::string country;
 public:
-    bool IsEmpty();
+    bool IsEmpty() const noexcept;
 
-    void SetUserId(const std::string &user_id);
-    void SetBuilding(const std::string &building);
-    void SetHousing(const std::string &housing);
-    void SetCity(const std::string &city);
-    void SetDistrict(const std::string &district);
-    void SetIndex(const std::string &index);
-    void SetCountry(const std::string &country);
+    void SetUserId(const std::string &user_id) noexcept;
+    void SetBuilding(const std::string &building) noexcept;
+    void SetHousing(const std::string &housing) noexcept;
+    void SetCity(const std::string &city) noexcept;
+    void SetDistrict(const std::string &district) noexcept;
+    void SetIndex(const std::string &index) noexcept;
+    void SetCountry(const std::string &country) noexcept;
 
-    std::string GetUserId() const;
-    std::string GetBuilding() const;
-    std::string GetHousing() const;
-    std::string GetCity() const;
-    std::string GetDistrict() const;
-    std::string GetIndex() const;
-    std::string GetCountry() const;
+    std::string GetUserId() const noexcept;
+    std::string GetBuilding() const noexcept;
+    std::string GetHousing() const noexcept;
+    std::string GetStreet() const noexcept;
+    std::string GetCity() const noexcept;
+    std::string GetDistrict() const noexcept;
+    std::string GetIndex() const noexcept;
+    std::string GetCountry() const noexcept;
 
     AddressData() = default;
     virtual ~AddressData() = default;
 
-    void Print() const;
+    friend void operator<<(std::ostream &os, const AddressData &it) noexcept;
 };
 
 
