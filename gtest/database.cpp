@@ -1,39 +1,37 @@
 #include <gtest/gtest.h>
 
-#include "RegAuthImpl.hpp"
-#include "GetIdImpl.hpp"
-#include "GetFieldImpl.hpp"
-#include "DataImpl.hpp"
-#include "PrivateDataImpl.hpp"
-#include "EventImpl.hpp"
-#include "ContactImpl.hpp"
-#include "GroupImpl.hpp"
-#include "SynchroImpl.hpp"
+#include "DBUserImpl.hpp"
+#include "DBUserDataImpl.hpp"
+#include "DBEventImpl.hpp"
+#include "DBContactsImpl.hpp"
+#include "DBGroupImpl.hpp"
+#include "DBSynchroClientImpl.hpp"
+#include "PGConnection.hpp"
 
 
 TEST(PostgreSQL, Connection) {
-    PGConnection pg_con;
-
-    EXPECT_TRUE(pg_con != nullptr);
+//    PGConnection pg_con;
+//
+//    EXPECT_TRUE(pg_con != nullptr);
 }
 
 TEST(PostgreSQL, GetField) {
-    DBRegAuthImpl reg_auth_db;
-
-    EXPECT_TRUE(reg_auth_db);
-
-    std::string user_id = {"123"};
-    std::string password = {"GogozikPARSSS"};
-    std::string nickname = {"Gogozik"};
-
-    User user;
-
-    user.SetUserId(user_id);
-    user.SetPassword(password);
-    user.SetNickname(nickname);
-
-    EXPECT_TRUE(!reg_auth_db.Registration(user));
-    EXPECT_TRUE(!reg_auth_db.Authentication(user));
+//    DBRegAuthImpl reg_auth_db;
+//
+//    EXPECT_TRUE(reg_auth_db);
+//
+//    std::string user_id = {"123"};
+//    std::string password = {"GogozikPARSSS"};
+//    std::string nickname = {"Gogozik"};
+//
+//    User user;
+//
+//    user.SetUserId(user_id);
+//    user.SetPassword(password);
+//    user.SetNickname(nickname);
+//
+//    EXPECT_TRUE(!reg_auth_db.Registration(user));
+//    EXPECT_TRUE(!reg_auth_db.Authentication(user));
 }
 
 

@@ -14,5 +14,5 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${Include_dir})
 target_link_libraries(${PROJECT_NAME} ${BOOST} ${CMAKE_THREAD_LIBS_INIT})
 
 set(Base_lib_libs ${PROJECT_NAME} PARENT_SCOPE)
-set(Base_lib_include ${INCLUDE_DIRS} PARENT_SCOPE)
+set(Base_lib_include ${Include_dir} PARENT_SCOPE)
 

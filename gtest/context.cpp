@@ -3,13 +3,13 @@
 #include <string>
 
 #include "User.hpp"
-#include "Address.hpp"
+#include "AddressData.hpp"
 #include "PersonalData.hpp"
 #include "GeneralData.hpp"
-#include "Events.hpp"
+#include "Event.hpp"
 #include "Contacts.hpp"
-#include "Groups.hpp"
-#include "MeetUps.hpp"
+#include "Group.hpp"
+#include "MeetUp.hpp"
 
 
 TEST(DATACLASS, User) {

@@ -1,11 +1,11 @@
 #include <gtest/gtest.h>
 
-#include "ParserRegAuth.hpp"
+#include "ParserUser.hpp"
 #include "ParserAddressData.hpp"
 #include "ParserPersonalData.hpp"
 #include "ParserGeneralData.hpp"
 #include "ParserEvent.hpp"
-#include "ParserUserContacts.hpp"
+#include "ParserContacts.hpp"
 #include "ParserGroup.hpp"
 #include "ParserMeetUp.hpp"
 
@@ -23,10 +23,10 @@ TEST(PARSING, RegAuth) {
 
     context = user;
 
-    context = parser.StrToObject(input);
+    context = parser.StrToObject(input_reg);
 
-    EXPECT_TRUE(key_nickname == context.GetPassword());
-    EXPECT_TRUE(key_nickname == context.GetNickname());
+    EXPECT_TRUE(key_nickname == context.user.GetPassword());
+    EXPECT_TRUE(key_nickname == context.user.GetNickname());
 }
 
 TEST(PARSING, Address) {

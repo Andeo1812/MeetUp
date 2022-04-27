@@ -18,7 +18,7 @@
 #include "ParserContacts.hpp"
 #include "ParserEvent.hpp"
 #include "ParserGroup.hpp"
-#include "ParserRegAuth.hpp"
+#include "ParserUser.hpp"
 #include "ParserAddressData.hpp"
 #include "ParserGeneralData.hpp"
 #include "ParserPersonalData.hpp"

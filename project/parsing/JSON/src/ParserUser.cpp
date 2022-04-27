@@ -1,6 +1,6 @@
 #include <json.hpp>
 
-#include <ParserRegAuth.hpp>
+#include <ParserUser.hpp>
 
 Context ParserRegAuth::StrToObject(const std::string& parser_str) const {
     Context res;
