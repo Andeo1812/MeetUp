@@ -6,7 +6,8 @@
 class Contacts {
     std::string user_id;
     std::set<std::string> contacts;
-public:
+
+ public:
     bool IsEmpty() const noexcept;
 
     void SetUserId(const std::string &user_id) noexcept;

@@ -3,7 +3,7 @@
 #include "DBGroup.hpp"
 
 class DBGroupImpl: public DBGroup {
-public:
+ public:
     int Create(const Group& group) const override;
 
     int ReWrite(const Group& group) const override;

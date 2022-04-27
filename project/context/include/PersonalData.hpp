@@ -9,7 +9,8 @@ class PersonalData {
     std::string email;
     std::string date_birth;
     std::string phone_number;
-public:
+
+ public:
     bool IsEmpty() const noexcept;
 
     void SetUserId(const std::string &user_id) noexcept;

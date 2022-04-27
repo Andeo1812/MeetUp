@@ -3,17 +3,16 @@
 #include "Handler.hpp"
 
 class AddEvent: public Handler {
-public:
+ public:
     Context process(const Context& request_body) const override;
 };
 
 class WriteEvent: public Handler {
-public:
+ public:
     Context process(const Context& request_body) const override;
 };
 
 class RmEvent: public Handler {
-public:
+ public:
     Context process(const Context& request_body) const override;
-
 };

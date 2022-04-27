@@ -9,7 +9,8 @@ class Group {
     std::string description;
     std::set<std::string> members;
     std::string user_id;
-public:
+
+ public:
     bool IsEmpty() const noexcept;
 
     void SetGroupId(const std::string &group_id) noexcept;

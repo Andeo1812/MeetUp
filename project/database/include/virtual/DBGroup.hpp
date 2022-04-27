@@ -5,7 +5,7 @@
 #include "Group.hpp"
 
 class DBGroup {
-public:
+ public:
     virtual int Create(const Group& group) const = 0;
 
     virtual int ReWrite(const Group& group) const = 0;

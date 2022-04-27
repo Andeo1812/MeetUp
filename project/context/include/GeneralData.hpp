@@ -8,7 +8,8 @@ class GeneralData {
     std::string tags;
     std::string description;
     std::string nickname;
-public:
+
+ public:
     bool IsEmpty() const noexcept;
 
     void SetUserId(const std::string &user_id) noexcept;

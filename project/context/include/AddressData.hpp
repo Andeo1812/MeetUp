@@ -11,7 +11,8 @@ class AddressData {
     std::string district;
     std::string index;
     std::string country;
-public:
+
+ public:
     bool IsEmpty() const noexcept;
 
     void SetUserId(const std::string &user_id) noexcept;
@@ -36,5 +37,3 @@ public:
 
     friend void operator<<(std::ostream &os, const AddressData &it) noexcept;
 };
-
-

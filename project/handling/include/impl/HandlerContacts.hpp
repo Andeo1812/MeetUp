@@ -3,11 +3,11 @@
 #include "Handler.hpp"
 
 class AddUserContacts: public Handler {
-public:
+ public:
     Context process(const Context& request_body) const override;
 };
 
 class RmUserContacts: public Handler {
-public:
+ public:
     Context process(const Context& request_body) const override;
 };

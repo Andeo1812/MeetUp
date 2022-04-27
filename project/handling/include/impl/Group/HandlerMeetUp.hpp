@@ -3,7 +3,7 @@
 #include "Handler.hpp"
 
 class GetMeetUps: public Handler {
-public:
+ public:
     Context process(const Context& request_body) const override;
 };
 

@@ -3,7 +3,7 @@
 #include "DBUser.hpp"
 
 class DBUserImpl: public DBUser {
-public:
+ public:
     int Registration(const User& user) const override;
 
     int Authentication(const User& user) const override;

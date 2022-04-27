@@ -6,7 +6,8 @@ class User {
     std::string user_id;
     std::string password;
     std::string nickname;
-public:
+
+ public:
     bool IsEmpty() const noexcept;
 
     void SetUserId(const std::string &user_id) noexcept;

@@ -3,12 +3,12 @@
 #include "Handler.hpp"
 
 class WriteGeneralData: public Handler {
-public:
+ public:
     Context process(const Context& request_body) const override;
 };
 
 class GetGeneralData: public Handler {
-public:
+ public:
     Context process(const Context& request_body) const override;
 };
 

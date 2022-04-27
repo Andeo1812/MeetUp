@@ -3,7 +3,7 @@
 #include "User.hpp"
 
 class DBUser {
-public:
+ public:
     virtual int Registration(const User& user) const = 0;
 
     virtual int Authentication(const User& user) const = 0;

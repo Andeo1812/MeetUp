@@ -3,7 +3,7 @@
 #include "Route.hpp"
 
 class RouteImpl: Route {
-public:
+ public:
     std::string get_head(const std::string request_body) override;
 
     std::string get_response(const std::string request_body) override;

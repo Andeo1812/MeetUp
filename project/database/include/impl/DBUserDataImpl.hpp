@@ -3,7 +3,7 @@
 #include "DBUserData.hpp"
 
 class DBUserDataImpl: public DBUserData {
-public:
+ public:
     int AddressDataReWrite(const AddressData& address_data) const override;
     AddressData GetAddressData(const std::string &user_id) const override;
 

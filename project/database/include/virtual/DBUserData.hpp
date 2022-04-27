@@ -7,7 +7,7 @@
 #include "GeneralData.hpp"
 
 class DBUserData {
-public:
+ public:
     virtual int AddressDataReWrite(const AddressData& address_data) const = 0;
     virtual AddressData GetAddressData(const std::string &user_id) const = 0;
 

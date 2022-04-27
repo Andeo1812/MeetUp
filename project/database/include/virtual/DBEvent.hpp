@@ -3,7 +3,7 @@
 #include "Event.hpp"
 
 class DBEvent {
-public:
+ public:
     virtual int Add(const Event& event) const = 0;
 
     virtual int Write(const Event& event) const = 0;

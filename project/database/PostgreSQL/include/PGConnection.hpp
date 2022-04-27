@@ -11,7 +11,7 @@ class PGConnection: public DBConnection {
     PGConnection() = default;
     ~PGConnection() = default;
 
-public:
+ public:
     static PGconn *GetConnection();
 
     static void CloseConnection();

@@ -7,7 +7,7 @@
 #include "Parser.hpp"
 
 class Route {
-public:
+ public:
     std::map <std::string, std::pair<Parser*, Handler*>> route_map;
 
     virtual std::string get_head(const std::string request_body) = 0;
@@ -16,4 +16,3 @@ public:
 
     virtual ~Route() = default;
 };
-

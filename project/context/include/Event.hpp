@@ -11,7 +11,8 @@ class Event {
     std::string time_begin;
     std::string time_end;
     std::string user_id;
-public:
+
+ public:
     bool IsEmpty() const noexcept;
 
     void SetId(const std::string &id) noexcept;
