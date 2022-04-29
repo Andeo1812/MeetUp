@@ -31,8 +31,8 @@
 #define RM_EVENT                         "delete_event"
 
 
-#define ADD_USER_CONTACTS                "add_friend"
-#define RM_USER_CONTACTS                 "delete_friend"
+#define ADD_USER_CONTACTS                "add_contact"
+#define RM_USER_CONTACTS                 "delete_contact"
 
 
 #define ADD_GROUP                        "create_group"

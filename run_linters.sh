@@ -23,6 +23,9 @@ function check_log() {
 
 main="project/main.cpp"
 
+Config_hpp="project/configs/*"
+Config_path_hpp="-I project/configs/"
+
 Context_hpp="project/context/include/*/*"
 Context_cpp="project/context/src/*"
 Context_path_hpp="-I project/context/include -I project/context/include/Data -I project/context/include/Group"
@@ -45,10 +48,10 @@ Routing_hpp="project/routing/include/impl/* project/routing/include/virtual/*"
 Routing_cpp="project/routing/src/*"
 Routing_path_hpp="-I project/routing/include/impl -I project/routing/include/virtual"
 
-Sum_hpp="${Context_hpp} ${Database_hpp} ${Parsing_hpp} ${Handling_hpp} ${Routing_hpp}"
+Sum_hpp="${Config_hpp} ${Context_hpp} ${Database_hpp} ${Parsing_hpp} ${Handling_hpp} ${Routing_hpp}"
 Sum_cpp="${main} ${Context_cpp} ${Database_cpp} ${Parsing_cpp} ${Handling_cpp} ${Routing_cpp}"
 
-Sum_path_hpp_base="${Context_path_hpp} ${Database_path_hpp} ${Handling_path_hpp} ${Routing_path_hpp}"
+Sum_path_hpp_base="${Config_path_hpp} ${Context_path_hpp} ${Database_path_hpp} ${Handling_path_hpp} ${Routing_path_hpp}"
 
 Sum_path_hpp="${Sum_path_hpp_base} ${Parsing_path_hpp}"
 Sum_path_hpp_without_lib="${Sum_path_hpp_base} ${Parsing_path_hpp_without_lib}"

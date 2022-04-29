@@ -24,7 +24,7 @@
 
 **_Response:_**
 ```c
-{"autorization":{"nickname":"Sasha","password":"123456asd64569898989"}}
+{"authentication":{"nickname":"Sasha","password":"123456asd64569898989"}}
 ```
 
 **_Answer:_**
@@ -92,7 +92,7 @@
 
 **_Response:_**
 ```c
-{"add_friend":{"id":"56","list_contacts":["Ibragim"]}}
+{"add_contact":{"id":"56","contacts":["Ibragim"]}}
 ```
 
 **_Answer:_**
@@ -108,7 +108,7 @@
 
 **_Response:_**
 ```c
-delete_friend: {"delete_friend":{"id":"56","list_contacts":["Ibragim"]}}
+delete_friend: {"delete_friend":{"id":"56","contacts":["Ibragim"]}}
 ```
 
 **_Answer:_**
@@ -226,7 +226,7 @@ delete_friend: {"delete_friend":{"id":"56","list_contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"get_events":[{"id":"56", "event_date":"yyyy-mm-dd"}]}
+{"get_events":[{"id":"56", "date":"yyyy-mm-dd"}]}
 ```
 
 **_Answer:_**

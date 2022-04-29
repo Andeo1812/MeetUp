@@ -11,7 +11,7 @@ Context ParserEvent::StrToObject(const std::string &parser_str) const {
 
     std::set <Event> events;
 
-    for (auto &element: value) {
+    for (auto &element : value) {
         Event event;
 
         if (element.contains("id")) {
@@ -83,7 +83,7 @@ std::string ParserEvent::ObjectToStr(const std::string type_response, const Cont
 
     nlohmann::json json_events;
 
-    for (auto &event: events) {
+    for (auto &event : events) {
         nlohmann::json json_event;
 
         if (!event.GetId().empty()) {
