@@ -2,14 +2,14 @@
 
 #include "Handler.hpp"
 
-class WritePersonalData: public Handler {
+class WritePersonalData : public Handler {
  public:
-    Context process(const Context& request_body) const override;
+    Context process(const Context &request_body) const override;
 };
 
-class GetPersonalData: public Handler {
+class GetPersonalData : public Handler {
  public:
-    Context process(const Context& request_body) const override;
+    Context process(const Context &request_body) const override;
 };
 
 

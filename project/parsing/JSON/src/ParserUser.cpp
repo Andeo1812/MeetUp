@@ -2,7 +2,7 @@
 
 #include "ParserUser.hpp"
 
-Context ParserUser::StrToObject(const std::string& parser_str) const {
+Context ParserUser::StrToObject(const std::string &parser_str) const {
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
     nlohmann::json::iterator it = j.begin();
@@ -30,7 +30,7 @@ Context ParserUser::StrToObject(const std::string& parser_str) const {
     return res;
 }
 
-std::string ParserUser::ObjectToStr(const std::string type_response, const Context& other) const {
+std::string ParserUser::ObjectToStr(const std::string type_response, const Context &other) const {
     nlohmann::json j;
 
     std::string res;

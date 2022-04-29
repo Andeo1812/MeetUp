@@ -2,9 +2,9 @@
 
 #include "Handler.hpp"
 
-class GetMeetUps: public Handler {
+class GetMeetUps : public Handler {
  public:
-    Context process(const Context& request_body) const override;
+    Context process(const Context &request_body) const override;
 };
 
 /*

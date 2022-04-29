@@ -2,17 +2,17 @@
 
 #include "Handler.hpp"
 
-class SynchroClientEvents: public Handler {
+class SynchroClientEvents : public Handler {
  public:
-    Context process(const Context& request_body) const override;
+    Context process(const Context &request_body) const override;
 };
 
-class SynchroClientContacts: public Handler {
+class SynchroClientContacts : public Handler {
  public:
-    Context process(const Context& request_body) const override;
+    Context process(const Context &request_body) const override;
 };
 
-class SynchroClientGroups: public Handler {
+class SynchroClientGroups : public Handler {
  public:
-    Context process(const Context& request_body) const override;
+    Context process(const Context &request_body) const override;
 };

@@ -6,7 +6,7 @@ bool Group::IsEmpty() const noexcept {
     if (this->group_id.empty() && this->title.empty() &&
         this->description.empty() && this->members.empty() &&
         this->user_id.empty()) {
-            return true;
+        return true;
     }
 
     return false;

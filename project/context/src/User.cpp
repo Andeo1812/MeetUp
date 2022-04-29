@@ -5,7 +5,7 @@
 bool User::IsEmpty() const noexcept {
     if (this->id.empty() && this->password.empty() &&
         this->nickname.empty()) {
-            return true;
+        return true;
     }
 
     return false;

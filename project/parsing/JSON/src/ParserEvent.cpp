@@ -9,7 +9,7 @@ Context ParserEvent::StrToObject(const std::string &parser_str) const {
 
     nlohmann::json value = j[it.key()];
 
-    std::set <Event> events;
+    std::set<Event> events;
 
     for (auto &element : value) {
         Event event;
@@ -71,7 +71,7 @@ std::string ParserEvent::ObjectToStr(const std::string type_response, const Cont
         return res;
     }
 
-    std::set <Event> events = other.GetEvents();
+    std::set<Event> events = other.GetEvents();
 
     if (events.empty()) {
         j[type_response] = "Not found events";

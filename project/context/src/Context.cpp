@@ -7,48 +7,48 @@ bool Context::IsEmpty() const noexcept {
         this->general_data.IsEmpty() && this->address_data.IsEmpty() &&
         this->events.empty() && this->groups.empty() &&
         this->meetups.empty() && this->contacts.IsEmpty()) {
-            return true;
+        return true;
     }
 
     return false;
 }
 
-Context& Context::operator=(const User other) noexcept {
+Context &Context::operator=(const User other) noexcept {
     this->user = other;
     return *this;
 }
 
-Context& Context::operator=(const PersonalData other) noexcept {
+Context &Context::operator=(const PersonalData other) noexcept {
     this->personal_data = other;
     return *this;
 }
 
-Context& Context::operator=(const AddressData other) noexcept {
+Context &Context::operator=(const AddressData other) noexcept {
     this->address_data = other;
     return *this;
 }
 
-Context& Context::operator=(const GeneralData other) noexcept {
+Context &Context::operator=(const GeneralData other) noexcept {
     this->general_data = other;
     return *this;
 }
 
-Context& Context::operator=(const std::set<Event> other) noexcept {
+Context &Context::operator=(const std::set<Event> other) noexcept {
     this->events = other;
     return *this;
 }
 
-Context& Context::operator=(const std::set<Group> other) noexcept {
+Context &Context::operator=(const std::set<Group> other) noexcept {
     this->groups = other;
     return *this;
 }
 
-Context& Context::operator=(const std::set<MeetUp> other) noexcept {
+Context &Context::operator=(const std::set<MeetUp> other) noexcept {
     this->meetups = other;
     return *this;
 }
 
-Context& Context::operator=(const Contacts other) noexcept {
+Context &Context::operator=(const Contacts other) noexcept {
     this->contacts = other;
     return *this;
 }

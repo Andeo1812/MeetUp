@@ -6,7 +6,7 @@ bool GeneralData::IsEmpty() const noexcept {
     if (this->user_id.empty() && this->status.empty() &&
         this->tags.empty() && this->description.empty() &&
         this->nickname.empty()) {
-            return true;
+        return true;
     }
 
     return false;

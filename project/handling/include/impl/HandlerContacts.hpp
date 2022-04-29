@@ -2,12 +2,12 @@
 
 #include "Handler.hpp"
 
-class AddUserContacts: public Handler {
+class AddUserContacts : public Handler {
  public:
-    Context process(const Context& request_body) const override;
+    Context process(const Context &request_body) const override;
 };
 
-class RmUserContacts: public Handler {
+class RmUserContacts : public Handler {
  public:
-    Context process(const Context& request_body) const override;
+    Context process(const Context &request_body) const override;
 };

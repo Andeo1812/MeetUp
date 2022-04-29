@@ -2,12 +2,12 @@
 
 #include "Handler.hpp"
 
-class Registration: public Handler {
+class Registration : public Handler {
  public:
-    Context process(const Context& request_body) const override;
+    Context process(const Context &request_body) const override;
 };
 
-class Authentication: public Handler {
+class Authentication : public Handler {
  public:
-    Context process(const Context& request_body) const override;
+    Context process(const Context &request_body) const override;
 };

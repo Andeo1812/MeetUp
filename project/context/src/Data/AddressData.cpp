@@ -7,7 +7,7 @@ bool AddressData::IsEmpty() const noexcept {
         this->housing.empty() && this->street.empty() &&
         this->city.empty() && this->district.empty() &&
         this->index.empty() && this->country.empty()) {
-            return true;
+        return true;
     }
 
     return false;

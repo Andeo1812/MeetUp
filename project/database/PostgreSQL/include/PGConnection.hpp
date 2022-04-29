@@ -7,7 +7,7 @@
 
 #include "DBConnection.hpp"
 
-class PGConnection: public DBConnection {
+class PGConnection : public DBConnection {
     PGConnection() = default;
     ~PGConnection() = default;
 

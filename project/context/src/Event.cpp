@@ -7,7 +7,7 @@ bool Event::IsEmpty() const noexcept {
         this->date.empty() && this->description.empty() &&
         this->time_begin.empty() && this->time_end.empty() &&
         this->user_id.empty()) {
-            return true;
+        return true;
     }
 
     return false;
