@@ -2,7 +2,9 @@ project(Context)
 
 file(GLOB SOURCES src/*.cpp)
 
-set(Include_dir ${CMAKE_CURRENT_SOURCE_DIR}/include/)
+set(Include_dir ${CMAKE_CURRENT_SOURCE_DIR}/include/
+                ${CMAKE_CURRENT_SOURCE_DIR}/include/Data/
+                ${CMAKE_CURRENT_SOURCE_DIR}/include/Group/)
 
 file(GLOB INCLUDE_DIRS Include_dir)
 

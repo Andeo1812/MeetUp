@@ -23,7 +23,7 @@ function check_log() {
 
 main="project/main.cpp"
 
-Context_hpp="project/context/include/*"
+Context_hpp="project/context/include/*/*"
 Context_cpp="project/context/src/*"
 Context_path_hpp="-I project/context/include"
 

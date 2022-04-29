@@ -26,8 +26,8 @@
 
 RouteImpl::RouteImpl() {
     //  Base            REQUEST                                        PARSER                     HANDLER
-    route_map.insert({REGISTRATION,           std::make_pair(new ParserRegAuth,        new Registration)});
-    route_map.insert({AUTHENTICATION,         std::make_pair(new ParserRegAuth,        new Authentication)});
+    route_map.insert({REGISTRATION,           std::make_pair(new ParserUser,        new Registration)});
+    route_map.insert({AUTHENTICATION,         std::make_pair(new ParserUser,        new Authentication)});
 }
 
 std::string RouteImpl::get_head(const std::string request_body) {

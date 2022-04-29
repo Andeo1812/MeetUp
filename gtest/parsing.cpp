@@ -15,7 +15,7 @@ TEST(PARSING, RegAuth) {
     std::string key_nickname = {"Sasha"};
     std::string key_password = {"123456asd64569898989"};
 
-    ParserRegAuth parser;
+    ParserUser parser;
 
     Context context;
 
@@ -25,8 +25,8 @@ TEST(PARSING, RegAuth) {
 
     context = parser.StrToObject(input_reg);
 
-    EXPECT_TRUE(key_nickname == context.user.GetPassword());
-    EXPECT_TRUE(key_nickname == context.user.GetNickname());
+    EXPECT_TRUE(key_nickname == context.GetUser().GetPassword());
+    EXPECT_TRUE(key_nickname == context.GetUser().GetNickname());
 }
 
 TEST(PARSING, Address) {

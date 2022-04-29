@@ -1,12 +1,12 @@
 #pragma once  //  NOLINT
 
-#include "AddressData.hpp"
+#include "Data/AddressData.hpp"
 #include "Contacts.hpp"
 #include "Event.hpp"
-#include "GeneralData.hpp"
-#include "Group.hpp"
-#include "MeetUp.hpp"
-#include "PersonalData.hpp"
+#include "Data/GeneralData.hpp"
+#include "Group/Group.hpp"
+#include "Group/MeetUp.hpp"
+#include "Data/PersonalData.hpp"
 #include "User.hpp"
 
 class Context {
@@ -39,8 +39,8 @@ class Context {
     GeneralData GetGeneralData() const noexcept;
     AddressData GetAddressData() const noexcept;
     std::set<Event> GetEvents() const noexcept;
-    std::set<Group>  GetGroups() const noexcept;
-    std::set<MeetUp>  GetMeetUp() const noexcept;
+    std::set<Group> GetGroups() const noexcept;
+    std::set<MeetUp> GetMeetUp() const noexcept;
     Contacts GetContacts() const noexcept;
     std::string GetError() const noexcept;
 
