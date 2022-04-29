@@ -4,6 +4,8 @@
 
 #include "Context.hpp"
 
+#include "APIKeys.hpp"
+
 #define GLOBAL_KEY_TEST_PARSER true
 
 class Parser {

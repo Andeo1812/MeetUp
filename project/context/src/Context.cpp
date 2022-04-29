@@ -13,7 +13,7 @@ bool Context::IsEmpty() const noexcept {
     return false;
 }
 
-Context& Context::operator=(const User other) noexcept{
+Context& Context::operator=(const User other) noexcept {
     this->user = other;
     return *this;
 }

@@ -14,3 +14,9 @@ file(GLOB SOURCES main.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_link_libraries(${PROJECT_NAME} ${Routing_lib_libs})
+
+set(Config_include ${CMAKE_CURRENT_SOURCE_DIR}/Configs/)
+
+set(Config ${Config_include} CACHE FILEPATH "" FORCE)
+
+message("Config = ${Config}")

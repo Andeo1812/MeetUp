@@ -25,7 +25,7 @@ main="project/main.cpp"
 
 Context_hpp="project/context/include/*/*"
 Context_cpp="project/context/src/*"
-Context_path_hpp="-I project/context/include"
+Context_path_hpp="-I project/context/include -I project/context/include/Data -I project/context/include/Group"
 
 Database_hpp="project/database/include/*/*"
 Database_cpp="project/database/PostgreSQL/src/*"

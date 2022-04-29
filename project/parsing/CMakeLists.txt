@@ -6,9 +6,7 @@ file(GLOB SOURCES JSON/src/*.cpp
                 JSON/src/Data/*.cpp
                 JSON/src/Group/*.cpp)
 
-set(Parser_lib ${CMAKE_CURRENT_SOURCE_DIR}/JSON/libs/single_include/nlohmann/)
-
-set(Include_dir ${Parser_lib}
+set(Include_dir ${Config}
                 ${CMAKE_CURRENT_SOURCE_DIR}/include/virtual/
                 ${CMAKE_CURRENT_SOURCE_DIR}/include/impl/
                 ${CMAKE_CURRENT_SOURCE_DIR}/include/impl/Data/

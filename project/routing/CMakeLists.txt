@@ -2,7 +2,8 @@ project(Routing)
 
 file(GLOB SOURCES src/*.cpp)
 
-set(Include_dir ${CMAKE_CURRENT_SOURCE_DIR}/include/virtual/
+set(Include_dir ${Config}
+                ${CMAKE_CURRENT_SOURCE_DIR}/include/virtual/
                 ${CMAKE_CURRENT_SOURCE_DIR}/include/impl/)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
