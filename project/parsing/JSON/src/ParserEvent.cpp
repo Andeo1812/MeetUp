@@ -7,7 +7,7 @@ Context ParserEvent::StrToObject(const std::string &parser_str) const {
 
     nlohmann::json::iterator it = j.begin();
 
-    nlohmann::json value = j[it.key()];
+    nlohmann::json value = j[j.begin().key()];
 
     std::set<Event> events;
 

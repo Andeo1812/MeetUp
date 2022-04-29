@@ -5,9 +5,7 @@
 Context ParserUser::StrToObject(const std::string &parser_str) const {
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
-    nlohmann::json::iterator it = j.begin();
-
-    nlohmann::json value = j[it.key()];
+    nlohmann::json value = j[j.begin().key()];
 
     User user;
 
