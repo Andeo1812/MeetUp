@@ -9,7 +9,7 @@ option(RELEASE "in production" OFF)
 
 if (DEBUG)
     set(CMAKE_CXX_STANDARD 20)
-    set(CMAKE_CXX_FLAGS "-g -O0 -libpqxx -fprofile-arcs -fprofile-arcs -ftest-coverage -Wlogical-op -Wredundant-decls -Wsign-conversion -Wcast-align -Wcast-qual -Wconversion -Wduplicated-branches -Wduplicated-cond -Wfloat-equal")
+    set(CMAKE_CXX_FLAGS "-g -O0 -fprofile-arcs -fprofile-arcs -ftest-coverage -Wlogical-op -Wredundant-decls -Wsign-conversion -Wcast-align -Wcast-qual -Wconversion -Wduplicated-branches -Wduplicated-cond -Wfloat-equal")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -coverage -lgcov")
 endif(DEBUG)
 

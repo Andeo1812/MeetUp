@@ -10,7 +10,6 @@
 #include "User.hpp"
 
 class Context {
- public:
     User                       user;
     PersonalData      personal_data;
     GeneralData        general_data;
@@ -19,19 +18,33 @@ class Context {
     std::set<Group>          groups;
     std::set<MeetUp>        meetups;
     Contacts               contacts;
-
     std::string               error;
+
+ public:
+    bool IsEmpty() const noexcept;
+
+    Context& operator=(const User other) noexcept;
+    Context& operator=(const PersonalData other) noexcept;
+    Context& operator=(const AddressData other) noexcept;
+    Context& operator=(const GeneralData other) noexcept;
+    Context& operator=(const std::set<Event> other) noexcept;
+    Context& operator=(const std::set<Group> other) noexcept;
+    Context& operator=(const std::set<MeetUp> other) noexcept;
+    Context& operator=(const Contacts other) noexcept;
+
+    void SetError(const std::string &error) noexcept;
+
+    User GetUser() const noexcept;
+    PersonalData GetPersonalData() const noexcept;
+    GeneralData GetGeneralData() const noexcept;
+    AddressData GetAddressData() const noexcept;
+    std::set<Event> GetEvents() const noexcept;
+    std::set<Group>  GetGroups() const noexcept;
+    std::set<MeetUp>  GetMeetUp() const noexcept;
+    Contacts GetContacts() const noexcept;
+    std::string GetError() const noexcept;
 
     Context() = default;
     Context(const Context& other) = default;
     ~Context() = default;
-
-    Context& operator=(const User other)                     { this->user = other;                return *this; }
-    Context& operator=(const PersonalData other)             { this->personal_data = other;       return *this; }
-    Context& operator=(const AddressData other)              { this->address_data = other;        return *this; }
-    Context& operator=(const GeneralData other)              { this->general_data = other;        return *this; }
-    Context& operator=(const std::set<Event> other)          { this->events = other;              return *this; }
-    Context& operator=(const std::set<Group> other)          { this->groups = other;              return *this; }
-    Context& operator=(const std::set<MeetUp> other)         { this->meetups = other;             return *this; }
-    Context& operator=(const Contacts other)                 { this->contacts = other;            return *this; }
 };
