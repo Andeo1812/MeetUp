@@ -1,6 +1,6 @@
 #include <nlohmann/json.hpp>
 
-#include <ParserEvent.hpp>
+#include "ParserEvent.hpp"
 
 Context ParserEvent::StrToObject(const std::string &parser_str) const {
     nlohmann::json j = nlohmann::json::parse(parser_str);

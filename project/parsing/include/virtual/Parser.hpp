@@ -6,8 +6,6 @@
 
 #include "APIKeys.hpp"
 
-#define GLOBAL_KEY_TEST_PARSER true
-
 class Parser {
  public:
     virtual Context StrToObject(const std::string& parser_str) const = 0;

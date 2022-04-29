@@ -13,7 +13,7 @@
 
 **_Answer:_**
 ```c
-{"registration":{"id":"56"}}
+{"registration":{"user_id":"56"}}
 ```
 
 Порядок работы:
@@ -29,7 +29,7 @@
 
 **_Answer:_**
 ```c
-{"authentication":{"id":"56"}}
+{"authentication":{"user_id":"56"}}
 ```
 
 Порядок работы:
@@ -47,7 +47,7 @@
 
 **_Answer:_**
 ```c
-{"add_event":{"id":"56"}}
+{"add_event":{"event_id":"56"}}
 ```
 
 Порядок работы:
@@ -58,7 +58,7 @@
 
 **_Response:_**
 ```c
-{"rewrite_event":[{"id":"56", "name":"breakfast","event_date":"01-06-2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"}]}
+{"rewrite_event":[{"event_id":"56", "name":"breakfast","event_date":"01-06-2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"}]}
 ```
 
 **_Answer:_**
@@ -74,7 +74,7 @@
 
 **_Response:_**
 ```c
-{"delete_event":[{"id":"56"}]}
+{"delete_event":[{"event_id":"56"}]}
 ```
 
 **_Answer:_**
@@ -92,7 +92,7 @@
 
 **_Response:_**
 ```c
-{"add_contact":{"id":"56","contacts":["Ibragim"]}}
+{"add_contact":{"user_id":"56","contacts":["Ibragim"]}}
 ```
 
 **_Answer:_**
@@ -108,7 +108,7 @@
 
 **_Response:_**
 ```c
-delete_friend: {"delete_friend":{"id":"56","contacts":["Ibragim"]}}
+delete_friend: {"delete_friend":{"user_id":"56","contacts":["Ibragim"]}}
 ```
 
 **_Answer:_**
@@ -131,7 +131,7 @@ delete_friend: {"delete_friend":{"id":"56","contacts":["Ibragim"]}}
 
 **_Answer:_**
 ```c
-{"create_group":{"id":"56"}}
+{"create_group":{"group_id":"56"}}
 ```
 
 Порядок работы:
@@ -142,7 +142,7 @@ delete_friend: {"delete_friend":{"id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"rewrite_group":{"id":"56","title":"Texnosrac", "description":"2132"}}
+{"rewrite_group":{"group_id":"56","title":"Texnosrac", "description":"2132"}}
 ```
 
 **_Answer:_**
@@ -158,7 +158,7 @@ delete_friend: {"delete_friend":{"id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"delete_group":{"id":"23"}}
+{"delete_group":{"group_id":"23"}}
 ```
 
 **_Answer:_**
@@ -174,7 +174,7 @@ delete_friend: {"delete_friend":{"id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"get_group_members":{"id":"56"}}
+{"get_group_members":{"group_id":"56"}}
 ```
 
 **_Answer:_**
@@ -192,7 +192,7 @@ delete_friend: {"delete_friend":{"id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"invite":{"id":"65", "members":["mars1234"]}}
+{"invite":{"group_id":"65", "members":["mars1234"]}}
 ```
 
 **_Answer:_**
@@ -208,7 +208,7 @@ delete_friend: {"delete_friend":{"id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"kick":{"id":"56", "members":["Sasha"]}}
+{"kick":{"id":"group_id", "members":["Sasha"]}}
 ```
 
 **_Answer:_**
@@ -226,7 +226,7 @@ delete_friend: {"delete_friend":{"id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"get_events":[{"id":"56", "date":"yyyy-mm-dd"}]}
+{"get_events":[{"user_id":"56", "date":"yyyy-mm-dd"}]}
 ```
 
 **_Answer:_**
@@ -242,7 +242,7 @@ delete_friend: {"delete_friend":{"id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"get_contacts":{"id":"56"}}
+{"get_contacts":{"user_id":"56"}}
 ```
 
 **_Answer:_**
@@ -263,7 +263,7 @@ delete_friend: {"delete_friend":{"id":"56","contacts":["Ibragim"]}}
 
 **_Answer:_**
 ```c
-{"get_groups":[{"id":"48","title":"111111111111111111"},{"group_id":"2","title":"group techno"},{"group_id":"4","title":"qqaa"},{"description":"213131313231231323131123","group_id":"1","title":"qqqqqqqqqq"},{"group_id":"3","title":"qwe1"},{"group_id":"11","title":"sdvsdv"}]}
+{"get_groups":[{"group_id":"48","title":"111111111111111111"},{"group_id":"2","title":"group techno"},{"group_id":"4","title":"qqaa"},{"description":"213131313231231323131123","group_id":"1","title":"qqqqqqqqqq"},{"group_id":"3","title":"qwe1"},{"group_id":"11","title":"sdvsdv"}]}
 ```
 
 Порядок работы:
@@ -276,7 +276,7 @@ delete_friend: {"delete_friend":{"id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"write_personal":{"id":"8", "first_name":"Bogdan", "surname":"Kazimirov", "age":"21", "phone_number":"+79017453550", "status":"asdas", "label":"1asd", "description":"MT11-72", "email":"bs@mt11.su"}}
+{"write_personal":{"user_id":"8", "first_name":"Bogdan", "surname":"Kazimirov", "age":"21", "phone_number":"+79017453550", "status":"asdas", "label":"1asd", "description":"MT11-72", "email":"bs@mt11.su"}}
 ```
 
 **_Answer:_**
@@ -292,12 +292,12 @@ delete_friend: {"delete_friend":{"id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"get_personal":{"id":"1"}}
+{"get_personal":{"user_id":"1"}}
 ```
 
 **_Answer:_**
 ```c
-{"get_personal":{"id":"1", "first_name":"Bogdan", "surname":"Kazimirov", "age":"21", "phone_number":"+79017453550", "status":"WTF?", "label": "null", "description":"MT11-72", "email":"bs@mt11.su"}}
+{"get_personal":{"user_id":"1", "first_name":"Bogdan", "surname":"Kazimirov", "age":"21", "phone_number":"+79017453550", "status":"WTF?", "label": "null", "description":"MT11-72", "email":"bs@mt11.su"}}
 ```
 
 Порядок работы:
@@ -310,7 +310,7 @@ delete_friend: {"delete_friend":{"id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"write_general":{"id":"8", "status":"asdas", "tags":"1asd", "description":"MT11-72"}}
+{"write_general":{"user_id":"8", "status":"asdas", "tags":"1asd", "description":"MT11-72"}}
 ```
 
 **_Answer:_**
@@ -326,12 +326,12 @@ delete_friend: {"delete_friend":{"id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"get_general":{"id":"1"}}
+{"get_general":{"user_id":"1"}}
 ```
 
 **_Answer:_**
 ```c
-{"get_general":{"id":"8", "status":"asdas", "label":"1asd", "description":"MT11-72"}}
+{"get_general":{"user_id":"8", "status":"asdas", "label":"1asd", "description":"MT11-72"}}
 ```
 
 Порядок работы:
@@ -344,7 +344,7 @@ delete_friend: {"delete_friend":{"id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"write_address":{"id":"1", "building":"1", "housing":"1", "street":"Bolshaya Voskresenskaya","city":"Krasnogorsk","district":"Krasnogorskiy","index":"143430", "country":"Russia"}}
+{"write_address":{"user_id":"1", "building":"1", "housing":"1", "street":"Bolshaya Voskresenskaya","city":"Krasnogorsk","district":"Krasnogorskiy","index":"143430", "country":"Russia"}}
 ```
 
 **_Answer:_**
@@ -360,12 +360,12 @@ delete_friend: {"delete_friend":{"id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"get_address":{"id":"1"}}
+{"get_address":{"user_id":"1"}}
 ```
 
 **_Answer:_**
 ```c
-{"get_address":{"id":"1", "building":"1", "housing":"1", "street":"Bolshaya Voskresenskaya","city":"Krasnogorsk","district":"Krasnogorskiy","index":"143430", "country":"Russia"}}
+{"get_address":{"user_id":"1", "building":"1", "housing":"1", "street":"Bolshaya Voskresenskaya","city":"Krasnogorsk","district":"Krasnogorskiy","index":"143430", "country":"Russia"}}
 ```
 
 Порядок работы:
@@ -378,7 +378,7 @@ delete_friend: {"delete_friend":{"id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"get_meetup":{"date":"2022-01-26", "id":"61"}}
+{"get_meetup":{"group_id":"61", "date":"2022-01-26"}}
 ```
 
 **_Answer:_**

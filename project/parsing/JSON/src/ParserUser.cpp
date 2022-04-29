@@ -1,6 +1,6 @@
 #include <nlohmann/json.hpp>
 
-#include <ParserUser.hpp>
+#include "ParserUser.hpp"
 
 Context ParserUser::StrToObject(const std::string& parser_str) const {
     nlohmann::json j = nlohmann::json::parse(parser_str);
@@ -11,7 +11,7 @@ Context ParserUser::StrToObject(const std::string& parser_str) const {
 
     User user;
 
-    if (value.contains("user_id")) {
+    if (value.contains("id")) {
         user.SetId(value["id"].get<std::string>());
     }
 

@@ -1,6 +1,6 @@
 project(Context)
 
-file(GLOB SOURCES src/*.cpp)
+file(GLOB SOURCES src/*.cpp src/Data/*.cpp src/Group/*.cpp)
 
 set(Include_dir ${CMAKE_CURRENT_SOURCE_DIR}/include/
                 ${CMAKE_CURRENT_SOURCE_DIR}/include/Data/

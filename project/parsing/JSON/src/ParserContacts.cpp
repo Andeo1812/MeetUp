@@ -1,6 +1,6 @@
 #include <nlohmann/json.hpp>
 
-#include <ParserContacts.hpp>
+#include "ParserContacts.hpp"
 
 Context ParserUserContacts::StrToObject(const std::string &parser_str) const {
     nlohmann::json j = nlohmann::json::parse(parser_str);
@@ -41,7 +41,7 @@ std::string ParserUserContacts::ObjectToStr(const std::string type_response, con
         if (other.GetError().empty()) {
             j[type_response] = "OK";
             res = j.dump();
-        } else  {
+        } else {
             j[type_response] = other.GetError();
             res = j.dump();
         }

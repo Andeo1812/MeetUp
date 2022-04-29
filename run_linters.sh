@@ -27,7 +27,7 @@ Config_hpp="project/configs/*"
 Config_path_hpp="-I project/configs/"
 
 Context_hpp="project/context/include/*/*"
-Context_cpp="project/context/src/*"
+Context_cpp="project/context/src/*/*"
 Context_path_hpp="-I project/context/include -I project/context/include/Data -I project/context/include/Group"
 
 Database_hpp="project/database/include/*/*"

@@ -25,6 +25,11 @@ void AddressData::SetHousing(const std::string &housing) noexcept {
     this->housing = housing;
 }
 
+void AddressData::SetStreet(const std::string &street) noexcept {
+    this->street = street;
+}
+
+
 void AddressData::SetCity(const std::string &city) noexcept {
     this->city = city;
 }
