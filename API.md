@@ -42,7 +42,7 @@
 
 **_Response:_**
 ```c
-{"add_event":[{"name":"breakfast","date":"01-06-2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00", "user_id":"56"}]}
+{"add_event":[{"event_name":"breakfast","event_date":"01-06-2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00", "user_id":"56"}]}
 ```
 
 **_Answer:_**
@@ -58,7 +58,7 @@
 
 **_Response:_**
 ```c
-{"rewrite_event":[{"event_id":"56", "name":"breakfast","event_date":"01-06-2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"}]}
+{"rewrite_event":[{"event_id":"56", "event_name":"breakfast","event_date":"01-06-2000", "description":"2132", "time_begin":"15:45", "time_end":"16:00"}]}
 ```
 
 **_Answer:_**

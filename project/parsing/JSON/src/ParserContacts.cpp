@@ -11,8 +11,8 @@ Context ParserUserContacts::StrToObject(const std::string &parser_str) const {
 
     Contacts contacts;
 
-    if (value.contains("id")) {
-        contacts.SetUserId(value["id"].get<std::string>());
+    if (value.contains("user_id")) {
+        contacts.SetUserId(value["user_id"].get<std::string>());
     }
 
     std::set<std::string> cnt;

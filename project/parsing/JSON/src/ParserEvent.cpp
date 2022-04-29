@@ -14,16 +14,16 @@ Context ParserEvent::StrToObject(const std::string &parser_str) const {
     for (auto &element : value) {
         Event event;
 
-        if (element.contains("id")) {
-            event.SetId(element["id"].get<std::string>());
+        if (element.contains("event_id")) {
+            event.SetId(element["event_id"].get<std::string>());
         }
 
-        if (element.contains("name")) {
-            event.SetName(element["name"].get<std::string>());
+        if (element.contains("event_name")) {
+            event.SetName(element["event_name"].get<std::string>());
         }
 
-        if (element.contains("date")) {
-            event.SetDate(element["date"].get<std::string>());
+        if (element.contains("event_date")) {
+            event.SetDate(element["event_date"].get<std::string>());
         }
 
         if (element.contains("description")) {
@@ -87,15 +87,15 @@ std::string ParserEvent::ObjectToStr(const std::string type_response, const Cont
         nlohmann::json json_event;
 
         if (!event.GetId().empty()) {
-            json_event["id"] = event.GetId();
+            json_event["event_id"] = event.GetId();
         }
 
         if (!event.GetName().empty()) {
-            json_event["name"] = event.GetName();
+            json_event["event_name"] = event.GetName();
         }
 
         if (!event.GetDate().empty()) {
-            json_event["date"] = event.GetDate();
+            json_event["event_date"] = event.GetDate();
         }
 
         if (!event.GetDescription().empty()) {
