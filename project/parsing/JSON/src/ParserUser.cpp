@@ -12,7 +12,7 @@ Context ParserUser::StrToObject(const std::string& parser_str) const {
     User user;
 
     if (value.contains("user_id")) {
-        user.SetUserId(value["user_id"].get<std::string>());
+        user.SetId(value["id"].get<std::string>());
     }
 
     if (value.contains("password")) {
@@ -47,8 +47,8 @@ std::string ParserUser::ObjectToStr(const std::string type_response, const Conte
 
     nlohmann::json value;
 
-    if (!user.GetUserId().empty()) {
-        value["user_id"] = user.GetUserId();
+    if (!user.GetId().empty()) {
+        value["id"] = user.GetId();
     }
 
     if (!user.GetPassword().empty()) {

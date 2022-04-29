@@ -13,7 +13,7 @@
 
 
 TEST(DATACLASS, User) {
-    std::string user_id = {"123"};
+    std::string id = {"123"};
     std::string password = {"GogozikPARSSS"};
     std::string nickname = {"Gogozik"};
 
@@ -21,11 +21,11 @@ TEST(DATACLASS, User) {
 
     EXPECT_TRUE(user.IsEmpty());
 
-    user.SetUserId(user_id);
+    user.SetId(id);
     user.SetPassword(password);
     user.SetNickname(nickname);
 
-    EXPECT_TRUE(user_id == user.GetUserId());
+    EXPECT_TRUE(id == user.GetId());
     EXPECT_TRUE(password == user.GetPassword());
     EXPECT_TRUE(nickname == user.GetNickname());
 }
