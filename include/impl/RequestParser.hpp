@@ -33,17 +33,17 @@ public:
             result_type result = Consume(req, *begin++);
 
             if (result == good || result == bad) {
-                std::cout << "in req:" << req.headers[0].name << req.headers[0].value
-                 << req.headers[1].name << req.headers[1].value <<
-                req.uri << req.method << req.http_version_major <<
-                req.http_version_minor << std::endl;
+                // std::cout << "in req:" << req.headers[0].name << req.headers[0].value
+                //  << req.headers[1].name << req.headers[1].value <<
+                // req.uri << req.method << req.http_version_major <<
+                // req.http_version_minor << std::endl;
                 return std::make_tuple(result, begin);
             }
 
         }
-        std::cout << "in req:" << req.headers.data() <<
-                req.uri << req.method << req.http_version_major <<
-                req.http_version_minor << std::endl;
+        // std::cout << "in req:" << req.headers.data() <<
+        //         req.uri << req.method << req.http_version_major <<
+        //         req.http_version_minor << std::endl;
         return std::make_tuple(indeterminate, begin);
     }
 

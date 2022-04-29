@@ -24,7 +24,7 @@ public:
     ClientConnection& operator=(const ClientConnection&) = delete;
 
     /// Construct a connection with the given socket.
-    explicit ClientConnection(boost::asio::ip::tcp::socket socket,
+    explicit ClientConnection(boost::asio::ip::tcp::socket&& socket,
         ConnectionClientManager& manager, RequestHandler& handler);
 
     /// Start the first asynchronous operation for the connection.

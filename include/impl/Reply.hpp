@@ -46,6 +46,16 @@ struct Reply {
 
     /// Get a stock reply.
     static Reply stock_reply(status_type status);
+
+    void print_rep() {
+        std::cout << "***REPLY***" << std::endl;
+        std::cout << "STATUS: " << status << std::endl;
+        for (auto &i : headers) {
+            std::cout << i.name << ": " << i.value << std::endl;
+        }
+        std::cout << "content: " << content << std::endl;
+
+    }
 };
 
 } // namespace AsyncServer
