@@ -82,17 +82,5 @@ void operator<<(std::ostream &os, const Event &it) noexcept {
 }
 
 bool Event::operator<(const Event &other) const noexcept {
-    if (this->date == other.date) {
-        if (this->time_begin == other.time_begin) {
-            if (this->time_end == other.time_end) {
-                if (this->name == other.name) {
-                    return description < other.description;
-                }
-                return this->name < other.name;
-            }
-            return this->time_end < other.time_end;
-        }
-        return this->time_begin < other.time_begin;
-    }
-    return this->date < other.date;
+    return this->id < other.id;
 }

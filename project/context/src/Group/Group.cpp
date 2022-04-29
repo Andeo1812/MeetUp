@@ -3,7 +3,7 @@
 #include "Group.hpp"
 
 bool Group::IsEmpty() const noexcept {
-    if (this->group_id.empty() && this->title.empty() &&
+    if (this->id.empty() && this->title.empty() &&
         this->description.empty() && this->members.empty() &&
         this->user_id.empty()) {
         return true;
@@ -12,8 +12,8 @@ bool Group::IsEmpty() const noexcept {
     return false;
 }
 
-void Group::SetGroupId(const std::string &group_id) noexcept {
-    this->group_id = group_id;
+void Group::SetId(const std::string &id) noexcept {
+    this->id = id;
 }
 
 void Group::SetTitle(const std::string &title) noexcept {
@@ -32,8 +32,8 @@ void Group::SetUserId(const std::string &user_id) noexcept {
     this->user_id = user_id;
 }
 
-std::string Group::GetGroupId() const noexcept {
-    return this->group_id;
+std::string Group::GetId() const noexcept {
+    return this->id;
 }
 
 std::string Group::GetTitle() const noexcept {
@@ -55,7 +55,7 @@ std::string Group::GetUserId() const noexcept {
 void operator<<(std::ostream &os, const Group &it) noexcept {
     os << "-------------------------------------------------------------------------" << std::endl;
     os << "Group" << std::endl;
-    os << "group_id         :---: " << it.group_id << std::endl;
+    os << "group_id         :---: " << it.id << std::endl;
     os << "title            :---: " << it.title << std::endl;
     os << "description      :---: " << it.description << std::endl;
     for (auto &member : it.members) {
@@ -64,8 +64,5 @@ void operator<<(std::ostream &os, const Group &it) noexcept {
 }
 
 bool Group::operator<(const Group &other) const noexcept {
-    if (title == other.title) {
-        return (members < other.members);
-    }
-    return (title < other.title);
+    return this->id < other.id;
 }

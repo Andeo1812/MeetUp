@@ -4,7 +4,7 @@
 #include <set>
 
 class Group {
-    std::string group_id;
+    std::string id;
     std::string title;
     std::string description;
     std::set<std::string> members;
@@ -13,13 +13,13 @@ class Group {
  public:
     bool IsEmpty() const noexcept;
 
-    void SetGroupId(const std::string &group_id) noexcept;
+    void SetId(const std::string &group_id) noexcept;
     void SetTitle(const std::string &title) noexcept;
     void SetDescription(const std::string &description) noexcept;
     void SetMembers(const std::set<std::string> &members) noexcept;
     void SetUserId(const std::string &user_id) noexcept;
 
-    std::string GetGroupId() const noexcept;
+    std::string GetId() const noexcept;
     std::string GetTitle() const noexcept;
     std::string GetDescription() const noexcept;
     std::set<std::string> GetMembers() const noexcept;

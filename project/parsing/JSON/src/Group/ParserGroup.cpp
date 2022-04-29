@@ -11,7 +11,7 @@ Context ParserGroup::StrToObject(const std::string &parser_str) const {
     Group group;
 
     if (value.contains("group_id")) {
-        group.SetGroupId(value["group_id"].get<std::string>());
+        group.SetId(value["group_id"].get<std::string>());
     }
 
     if (value.contains("title")) {
@@ -78,8 +78,8 @@ std::string ParserGroup::ObjectToStr(const std::string type_response, const Cont
     for (auto &group : groups) {
         nlohmann::json json_group;
 
-        if (!group.GetGroupId().empty()) {
-            json_group["group_id"] = group.GetGroupId();
+        if (!group.GetId().empty()) {
+            json_group["group_id"] = group.GetId();
         }
 
         if (!group.GetTitle().empty()) {
