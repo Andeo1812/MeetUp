@@ -1,7 +1,5 @@
 #include <gtest/gtest.h>
 
-#include <string>
-
 #include "User.hpp"
 #include "AddressData.hpp"
 #include "PersonalData.hpp"
@@ -12,7 +10,7 @@
 #include "MeetUp.hpp"
 
 
-TEST(DATACLASS, User) {
+TEST(CONTEXT, User) {
     std::string user_id = {"123"};
     std::string password = {"GogozikPARSSS"};
     std::string nickname = {"Gogozik"};
@@ -32,7 +30,7 @@ TEST(DATACLASS, User) {
     EXPECT_TRUE(!user.IsEmpty());
 }
 
-TEST(DATACLASS, AddressData) {
+TEST(CONTEXT, AddressData) {
     std::string user_id = {"123"};
     std::string building = {"13"};
     std::string housing = {"3"};
@@ -67,7 +65,7 @@ TEST(DATACLASS, AddressData) {
     EXPECT_TRUE(!address_data.IsEmpty());
 }
 
-TEST(DATACLASS, PersonalData) {
+TEST(CONTEXT, PersonalData) {
     std::string user_id = {"123"};
     std::string name = {"Alex"};
     std::string surname = {"Anofrikov"};
@@ -96,7 +94,7 @@ TEST(DATACLASS, PersonalData) {
     EXPECT_TRUE(!personal_data.IsEmpty());
 }
 
-TEST(DATACLASS, GeneralData) {
+TEST(CONTEXT, GeneralData) {
     std::string user_id = {"123"};
     std::string status = {"I free"};
     std::string tags = {"developer"};
@@ -122,7 +120,7 @@ TEST(DATACLASS, GeneralData) {
     EXPECT_TRUE(!general_data.IsEmpty());
 }
 
-TEST(DATACLASS, Events) {
+TEST(CONTEXT, Events) {
     std::string event_id = {"123"};
     std::string event_name = {"lunch"};
     std::string event_date = {"2022-01-01"};
@@ -174,7 +172,7 @@ TEST(DATACLASS, Events) {
     EXPECT_TRUE(event < event_2);
 }
 
-TEST(DATACLASS, Contacts) {
+TEST(CONTEXT, Contacts) {
     std::string user_id = {"123"};
     std::set<std::string> cnt = {"Ibragim", "Gogozik"};
 
@@ -191,7 +189,7 @@ TEST(DATACLASS, Contacts) {
     EXPECT_TRUE(!contacts.IsEmpty());
 }
 
-TEST(DATACLASS, Groups) {
+TEST(CONTEXT, Groups) {
     std::string group_id = {"123"};
     std::string title = {"TP"};
     std::string description = {"the best company"};
@@ -233,7 +231,7 @@ TEST(DATACLASS, Groups) {
     EXPECT_TRUE(group_2 < group);
 }
 
-TEST(DATACLASS, MeetUps) {
+TEST(CONTEXT, MeetUps) {
     std::string meetup_id = {"123"};
     std::string meetup_name = {"lunch"};
     std::string meetup_date = {"2022-01-01"};
