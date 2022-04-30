@@ -63,8 +63,8 @@ std::string ParserGroup::ObjectToStr(const std::string type_response, const Cont
         return res;
     }
 
-    if (other.GetError().empty()) {
-        j[type_response] = "Not found group";
+    if (!other.GetError().empty()) {
+        j[type_response] = other.GetError();
 
         res = j.dump();
 

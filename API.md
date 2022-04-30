@@ -276,7 +276,7 @@ delete_friend: {"delete_friend":{"user_id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"write_personal":{"user_id":"8", "first_name":"Bogdan", "surname":"Kazimirov", "date_birth":"21", "phone_number":"+79017453550", "status":"asdas", "tags":"1asd", "description":"MT11-72", "email":"bs@mt11.su"}}
+{"write_personal":{"user_id":"8", "name":"Bogdan", "surname":"Kazimirov", "date_birth":"21", "phone_number":"+79017453550", "email":"bs@mt11.su"}}
 ```
 
 **_Answer:_**
@@ -297,7 +297,7 @@ delete_friend: {"delete_friend":{"user_id":"56","contacts":["Ibragim"]}}
 
 **_Answer:_**
 ```c
-{"get_personal":{"user_id":"1", "first_name":"Bogdan", "surname":"Kazimirov", "date_birth":"21", "phone_number":"+79017453550", "status":"WTF?", "tags": "null", "description":"MT11-72", "email":"bs@mt11.su"}}
+{"get_personal":{"user_id":"1", "name":"Bogdan", "surname":"Kazimirov", "date_birth":"2000-01-01", "phone_number":"+79017453550", "email":"bs@mt11.su"}}
 ```
 
 Порядок работы:
@@ -310,7 +310,7 @@ delete_friend: {"delete_friend":{"user_id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"write_general":{"user_id":"8", "status":"asdas", "tags":"1asd", "description":"MT11-72"}}
+{"write_general":{"user_id":"8", "status":"asdas", "tags":"1asd", "description":"MT11-72", "nickname":"asdasd"}}
 ```
 
 **_Answer:_**
@@ -331,7 +331,7 @@ delete_friend: {"delete_friend":{"user_id":"56","contacts":["Ibragim"]}}
 
 **_Answer:_**
 ```c
-{"get_general":{"user_id":"8", "status":"asdas", "tags":"1asd", "description":"MT11-72"}}
+{"get_general":{"user_id":"8", "status":"asdas", "tags":"1asd", "description":"MT11-72", "nickname":"asdasd"}}
 ```
 
 Порядок работы:

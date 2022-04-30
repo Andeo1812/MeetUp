@@ -51,7 +51,7 @@ std::string ParserMeetUp::ObjectToStr(const std::string type_response, const Con
     std::string res;
 
     if (!other.GetError().empty()) {
-        j[type_response] = "Error get meetup";
+        j[type_response] = other.GetError();
 
         res = j.dump();
 
@@ -59,14 +59,6 @@ std::string ParserMeetUp::ObjectToStr(const std::string type_response, const Con
     }
 
     std::set<MeetUp> meetups = other.GetMeetUp();
-
-    if (meetups.empty()) {
-        j[type_response] = "Not found events";
-
-        res = j.dump();
-
-        return res;
-    }
 
     nlohmann::json json_meetups;
 

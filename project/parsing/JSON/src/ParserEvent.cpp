@@ -73,8 +73,8 @@ std::string ParserEvent::ObjectToStr(const std::string type_response, const Cont
 
     std::set<Event> events = other.GetEvents();
 
-    if (events.empty()) {
-        j[type_response] = "Not found events";
+    if (!other.GetError().empty()) {
+        j[type_response] = other.GetError();
 
         res = j.dump();
 

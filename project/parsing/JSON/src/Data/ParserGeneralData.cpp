@@ -25,6 +25,10 @@ Context ParserGeneralData::StrToObject(const std::string &parser_str) const {
         general_data.SetDescription(value["description"].get<std::string>());
     }
 
+    if (value.contains("nickname")) {
+        general_data.SetNickname(value["nickname"].get<std::string>());
+    }
+
     Context res;
 
     res = general_data;
@@ -73,11 +77,15 @@ std::string ParserGeneralData::ObjectToStr(const std::string type_response, cons
     }
 
     if (!general_data.GetTags().empty()) {
-        value["label"] = general_data.GetTags();
+        value["tags"] = general_data.GetTags();
     }
 
     if (!general_data.GetDescription().empty()) {
         value["description"] = general_data.GetDescription();
+    }
+
+    if (!general_data.GetNickname().empty()) {
+        value["nickname"] = general_data.GetNickname();
     }
 
     j[type_response] = value;
