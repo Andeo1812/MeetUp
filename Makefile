@@ -4,11 +4,18 @@ all: clean check build
 
 TARGET = HttpServer
 
-TEST_CONTEXT =
-TEST_PARSING =
-TEST_DATABASE =
-TEST_HANDLING=
-TEST_ROUTING =
+TEST_CONTEXT = ./build/tests/gtest_context
+TEST_PARSING = ./build/tests/gtest_parsing
+TEST_DATABASE = ./build/tests/gtest_database
+TEST_HANDLING = ./build/tests/gtest_handling
+TEST_ROUTING = ./build/tests/gtest_routing
+
+TARGET_COVERAGE = [456789]
+COVERAGE_CONTEXT = build/project/context/CMakeFiles/Context.dir/src
+COVERAGE_PARSING = ./build/tests/gtest_parsing
+COVERAGE_DATABASE = ./build/tests/gtest_database
+COVERAGE_HANDLING = ./build/tests/gtest_handling
+COVERAGE_ROUTING = ./build/tests/gtest_routing
 
 clean:
 	rm -rf build coverage-report valgrind.log test.log coverage.info
@@ -20,9 +27,6 @@ build:
 	./run_build.sh
 
 rebuild: clean build
-
-launch:
-	./build/project/$(TARGET) $(IP) $(PORT)
 
 test_context:
 	./run_build.sh
@@ -47,27 +51,27 @@ test_routing:
 coverage_test_context:
 	./run_build.sh
 	${TEST_CONTEXT}
-	./run_coverage.sh ${GTEST_DATACLASS_COVERAGE} ${TARGET_COVERAGE}
+	./run_coverage.sh ${COVERAGE_CONTEXT} ${TARGET_COVERAGE}
 
 coverage_test_parsing:
 	./run_build.sh
 	${TEST_PARSING}
-	./run_coverage.sh ${GTEST_PARSING_COVERAGE} ${TARGET_COVERAGE}
+	./run_coverage.sh ${COVERAGE_PARSING} ${TARGET_COVERAGE}
 
 coverage_test_database:
 	./run_build.sh
 	${TEST_DATABASE}
-	./run_coverage.sh ${GTEST_DATABASE_COVERAGE} ${TARGET_COVERAGE}
+	./run_coverage.sh ${COVERAGE_DATABASE} ${TARGET_COVERAGE}
 
 coverage_test_handing:
 	./run_build.sh
 	${TEST_HANDLING}
-	./run_coverage.sh ${GTEST_HANDLER_COVERAGE} ${TARGET_COVERAGE}
+	./run_coverage.sh ${COVERAGE_HANDLING} ${TARGET_COVERAGE}
 
 coverage_test_routing:
 	./run_build.sh
 	${TEST_ROUTING}
-	./run_coverage.sh ${GTEST_ROUTING_COVERAGE} ${TARGET_COVERAGE}
+	./run_coverage.sh ${COVERAGE_ROUTING} ${TARGET_COVERAGE}
 
 memtest_context:
 	./run_build.sh

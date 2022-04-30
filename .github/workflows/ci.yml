@@ -18,88 +18,17 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: build/HW-2
-  generate:
+  test_context:
     runs-on: ubuntu-latest
     container: andeo1812/gcc_check_gtest
     needs: [build]
     steps:
       - uses: actions/checkout@v2
-      - run: make generate
-  test_general:
-    runs-on: ubuntu-latest
-    container: andeo1812/gcc_check_gtest
-    needs: [generate]
-    steps:
-      - uses: actions/checkout@v2
-      - run: make test_general
-  coverage_tests_general:
+      - run: make test_context
+  test_parsing:
     runs-on: ubuntu-latest
     container: andeo1812/gcc_check_gtest
     needs: [test_general]
     steps:
       - uses: actions/checkout@v2
-      - run: make coverage_tests_general;
-  memtest_general:
-    runs-on: ubuntu-latest
-    container: andeo1812/gcc_check_gtest
-    needs: [coverage_tests_general]
-    steps:
-      - uses: actions/checkout@v2
-      - run: make memtest_general
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          path: valgrind.log
-  test_imperative:
-    runs-on: ubuntu-latest
-    container: andeo1812/gcc_check_gtest
-    needs: [ generate ]
-    steps:
-      - uses: actions/checkout@v2
-      - run: make test_imperative
-  coverage_tests_imperative:
-    runs-on: ubuntu-latest
-    container: andeo1812/gcc_check_gtest
-    needs: [ test_imperative ]
-    steps:
-      - uses: actions/checkout@v2
-      - run: make coverage_tests_imperative;
-  memtest_imperative:
-    runs-on: ubuntu-latest
-    container: andeo1812/gcc_check_gtest
-    needs: [ coverage_tests_imperative ]
-    steps:
-      - uses: actions/checkout@v2
-      - run: make memtest_imperative
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          path: valgrind.log
-  test_multi:
-    runs-on: ubuntu-latest
-    container: andeo1812/gcc_check_gtest
-    needs: [ generate ]
-    steps:
-      - uses: actions/checkout@v2
-      - run: make test_multi
-  coverage_tests_multi:
-    runs-on: ubuntu-latest
-    container: andeo1812/gcc_check_gtest
-    needs: [ test_multi ]
-    steps:
-      - uses: actions/checkout@v2
-      - run: make coverage_tests_multi;
-  memtest_multi:
-    runs-on: ubuntu-latest
-    container: andeo1812/gcc_check_gtest
-    needs: [ coverage_tests_multi ]
-    steps:
-      - uses: actions/checkout@v2
-      - run: make memtest_multi
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          path: valgrind.log
+      - run: make test_parsing;
