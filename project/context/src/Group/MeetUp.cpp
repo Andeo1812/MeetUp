@@ -69,7 +69,7 @@ std::string MeetUp::GetGroupId() const noexcept {
     return this->group_id;
 }
 
-void operator<<(std::ostream &os, const MeetUp &it) noexcept {
+std::ostream& operator<<(std::ostream &os, const MeetUp &it) noexcept {
     os << "-------------------------------------------------------------------------" << std::endl;
     os << "MeetUp" << std::endl;
     os << "user_id           :---: " << it.id << std::endl;
@@ -78,20 +78,22 @@ void operator<<(std::ostream &os, const MeetUp &it) noexcept {
     os << "description       :---: " << it.description << std::endl;
     os << "time_begin        :---: " << it.time_begin << std::endl;
     os << "time_end          :---: " << it.time_end << std::endl;
+
+    return os;
 }
 
 bool MeetUp::operator<(const MeetUp &other) const noexcept {
-    if (this->date == other.date) {
-        if (this->time_begin == other.time_begin) {
-            if (this->time_end == other.time_end) {
-                if (this->name == other.name) {
-                    return this->description < other.description;
-                }
-                return this->name < other.name;
-            }
-            return this->time_end < other.time_end;
-        }
-        return this->time_begin < other.time_begin;
+    if (!this->id.empty()) {
+        return this->id < other.id;
     }
-    return this->date < other.date;
+
+    return this->name < other.name;
+}
+
+bool MeetUp::operator==(const MeetUp &other) const noexcept {
+    if (!this->id.empty()) {
+        return this->id == other.id;
+    }
+
+    return this->name == other.name;
 }

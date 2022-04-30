@@ -19,5 +19,5 @@ class Contacts {
     Contacts() = default;
     virtual ~Contacts() = default;
 
-    friend void operator<<(std::ostream &os, const Contacts &it) noexcept;
+    friend std::ostream&  operator<<(std::ostream &os, const Contacts &it) noexcept;
 };

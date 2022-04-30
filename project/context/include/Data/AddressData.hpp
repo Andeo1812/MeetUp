@@ -36,5 +36,5 @@ class AddressData {
     AddressData() = default;
     virtual ~AddressData() = default;
 
-    friend void operator<<(std::ostream &os, const AddressData &it) noexcept;
+    friend std::ostream&  operator<<(std::ostream &os, const AddressData &it) noexcept;
 };

@@ -69,7 +69,7 @@ std::string Event::GetUserId() const noexcept {
     return this->user_id;
 }
 
-void operator<<(std::ostream &os, const Event &it) noexcept {
+std::ostream& operator<<(std::ostream &os, const Event &it) noexcept {
     os << "-------------------------------------------------------------------------" << std::endl;
     os << "Event" << std::endl;
     os << "event_id          :---: " << it.id << std::endl;
@@ -79,8 +79,18 @@ void operator<<(std::ostream &os, const Event &it) noexcept {
     os << "description       :---: " << it.description << std::endl;
     os << "time_begin        :---: " << it.time_begin << std::endl;
     os << "time_end          :---: " << it.time_end << std::endl;
+
+    return os;
 }
 
 bool Event::operator<(const Event &other) const noexcept {
-    return this->id < other.id;
+    if (!this->id.empty()) {
+        return this->id < other.id;
+    }
+
+    return this->name < other.name;
+}
+
+bool Event::operator==(const Event &other) const noexcept {
+    return this->id == other.id;
 }

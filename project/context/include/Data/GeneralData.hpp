@@ -27,7 +27,7 @@ class GeneralData {
     GeneralData() = default;
     virtual ~GeneralData() = default;
 
-    friend void operator<<(std::ostream &os, const GeneralData &it) noexcept;
+    friend std::ostream&  operator<<(std::ostream &os, const GeneralData &it) noexcept;
 };
 
 

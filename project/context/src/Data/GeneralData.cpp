@@ -52,7 +52,7 @@ std::string GeneralData::GetNickname() const noexcept {
     return this->nickname;
 }
 
-void operator<<(std::ostream &os, const GeneralData &it) noexcept {
+std::ostream&  operator<<(std::ostream &os, const GeneralData &it) noexcept {
     os << "-------------------------------------------------------------------------" << std::endl;
     os << "General Data" << std::endl;
     os << "user_id          :---: " << it.user_id << std::endl;
@@ -60,4 +60,6 @@ void operator<<(std::ostream &os, const GeneralData &it) noexcept {
     os << "label            :---: " << it.tags << std::endl;
     os << "description      :---: " << it.description << std::endl;
     os << "nickname         :---: " << it.nickname << std::endl;
+
+    return os;
 }

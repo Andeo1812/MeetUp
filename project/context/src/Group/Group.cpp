@@ -52,7 +52,7 @@ std::string Group::GetUserId() const noexcept {
     return this->user_id;
 }
 
-void operator<<(std::ostream &os, const Group &it) noexcept {
+std::ostream&  operator<<(std::ostream &os, const Group &it) noexcept {
     os << "-------------------------------------------------------------------------" << std::endl;
     os << "Group" << std::endl;
     os << "group_id         :---: " << it.id << std::endl;
@@ -61,8 +61,22 @@ void operator<<(std::ostream &os, const Group &it) noexcept {
     for (auto &member : it.members) {
         os << "member           :---: " << member << std::endl;
     }
+
+    return os;
 }
 
 bool Group::operator<(const Group &other) const noexcept {
-    return this->id < other.id;
+    if (!this->id.empty()) {
+        return this->id < other.id;
+    }
+
+    return this->title < other.title;
+}
+
+bool Group::operator==(const Group &other) const noexcept {
+    if (!this->id.empty()) {
+        return this->id == other.id;
+    }
+
+    return this->title == other.title;
 }

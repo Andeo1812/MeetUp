@@ -30,5 +30,7 @@ class Group {
 
     bool operator<(const Group &group) const noexcept;
 
-    friend void operator<<(std::ostream &os, const Group &it) noexcept;
+    bool operator==(const Group &group) const noexcept;
+
+    friend std::ostream&  operator<<(std::ostream &os, const Group &it) noexcept;
 };

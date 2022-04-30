@@ -26,11 +26,13 @@ std::set<std::string> Contacts::GetContacts() const noexcept {
     return this->contacts;
 }
 
-void operator<<(std::ostream &os, const Contacts &it) noexcept {
+std::ostream&  operator<<(std::ostream &os, const Contacts &it) noexcept {
     os << "-------------------------------------------------------------------------" << std::endl;
     os << "Contacts" << std::endl;
     os << "user_id          :---: " << it.user_id << std::endl;
     for (auto &contact: it.contacts) {
         os << "contacts :---:         " << contact << std::endl;
     }
+
+    return os;
 }

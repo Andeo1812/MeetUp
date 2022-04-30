@@ -30,5 +30,5 @@ class PersonalData {
     PersonalData() = default;
     virtual ~PersonalData() = default;
 
-    friend void operator<<(std::ostream &os, const PersonalData &it) noexcept;
+    friend std::ostream&  operator<<(std::ostream &os, const PersonalData &it) noexcept;
 };

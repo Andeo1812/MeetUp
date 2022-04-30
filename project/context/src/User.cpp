@@ -35,10 +35,12 @@ std::string User::GetNickname() const noexcept {
     return this->nickname;
 }
 
-void operator<<(std::ostream &os, const User &it) noexcept {
+std::ostream&  operator<<(std::ostream &os, const User &it) noexcept {
     os << "-------------------------------------------------------------------------" << std::endl;
     os << "User" << std::endl;
     os << "user_id           :---: " << it.id << std::endl;
     os << "password          :---: " << it.password << std::endl;
     os << "nickname          :---: " << it.nickname << std::endl;
+
+    return os;
 }

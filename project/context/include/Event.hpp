@@ -36,5 +36,7 @@ class Event {
 
     bool operator<(const Event &other) const noexcept;
 
-    friend void operator<<(std::ostream &os, const Event &it) noexcept;
+    bool operator==(const Event &other) const noexcept;
+
+    friend std::ostream& operator<<(std::ostream &os, const Event &it) noexcept;
 };

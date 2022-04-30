@@ -78,7 +78,7 @@ std::string AddressData::GetCountry() const noexcept {
     return this->country;
 }
 
-void operator<<(std::ostream &os, const AddressData &it) noexcept {
+std::ostream&  operator<<(std::ostream &os, const AddressData &it) noexcept {
     os << "-------------------------------------------------------------------------" << std::endl;
     os << "Address Data" << std::endl;
     os << "user_id          :---: " << it.user_id << std::endl;
@@ -89,4 +89,6 @@ void operator<<(std::ostream &os, const AddressData &it) noexcept {
     os << "district         :---: " << it.district << std::endl;
     os << "index            :---: " << it.index << std::endl;
     os << "country          :---: " << it.country << std::endl;
+
+    return os;
 }

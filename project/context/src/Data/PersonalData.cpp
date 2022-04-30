@@ -60,7 +60,7 @@ std::string PersonalData::GetPhoneNumber() const noexcept {
     return this->phone_number;
 }
 
-void operator<<(std::ostream &os, const PersonalData &it) noexcept {
+std::ostream& operator<<(std::ostream &os, const PersonalData &it) noexcept {
     os << "-------------------------------------------------------------------------" << std::endl;
     os << "Personal Data" << std::endl;
     os << "user_id          :---: " << it.user_id << std::endl;
@@ -69,4 +69,6 @@ void operator<<(std::ostream &os, const PersonalData &it) noexcept {
     os << "surname          :---: " << it.surname << std::endl;
     os << "age              :---: " << it.date_birth << std::endl;
     os << "phone_number     :---: " << it.phone_number << std::endl;
+
+    return os;;
 }

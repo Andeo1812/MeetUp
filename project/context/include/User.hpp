@@ -21,5 +21,5 @@ class User {
     User() = default;
     virtual ~User() = default;
 
-    friend void operator<<(std::ostream &os, const User &it) noexcept;
+    friend std::ostream&  operator<<(std::ostream &os, const User &it) noexcept;
 };

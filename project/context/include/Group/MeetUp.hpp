@@ -36,5 +36,7 @@ class MeetUp {
 
     bool operator<(const MeetUp &other)  const noexcept;
 
-    friend void operator<<(std::ostream &os, const MeetUp &it) noexcept;
+    bool operator==(const MeetUp &other) const noexcept;
+
+    friend std::ostream&  operator<<(std::ostream &os, const MeetUp &it) noexcept;
 };
