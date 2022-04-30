@@ -126,7 +126,7 @@ delete_friend: {"delete_friend":{"user_id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"create_group":{"title":"Texnosrac", "description":"2132", "members":["Ibragim"]}}
+{"create_group":[{"description":"2132", "members":["Ibragim"], "title":"Texno"}]}
 ```
 
 **_Answer:_**
@@ -142,7 +142,7 @@ delete_friend: {"delete_friend":{"user_id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"rewrite_group":{"group_id":"56","title":"Texnosrac", "description":"2132"}}
+{"rewrite_group":[{"description":"2132", "members":["Ibragim"], "title":"Texno"}]}
 ```
 
 **_Answer:_**
@@ -158,7 +158,7 @@ delete_friend: {"delete_friend":{"user_id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"delete_group":{"group_id":"23"}}
+{"delete_group":[{"group_id":"23"}]}
 ```
 
 **_Answer:_**
@@ -174,7 +174,7 @@ delete_friend: {"delete_friend":{"user_id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"get_group_members":{"group_id":"56"}}
+{"get_group_members":[{"group_id":"56"}]}
 ```
 
 **_Answer:_**
@@ -192,7 +192,7 @@ delete_friend: {"delete_friend":{"user_id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"invite":{"group_id":"65", "members":["mars1234"]}}
+{"invite":[{"group_id":"65", "members":["mars1234"]}]}
 ```
 
 **_Answer:_**
@@ -208,7 +208,7 @@ delete_friend: {"delete_friend":{"user_id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"kick":{"id":"group_id", "members":["Sasha"]}}
+{"kick":[{"id":"group_id", "members":["Sasha"]}]}
 ```
 
 **_Answer:_**

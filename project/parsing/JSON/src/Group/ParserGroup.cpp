@@ -1,10 +1,9 @@
 #include <nlohmann/json.hpp>
 
-#include <ParserGroup.hpp>
+#include "ParserGroup.hpp"
 
 Context ParserGroup::StrToObject(const std::string &parser_str) const {
     nlohmann::json j = nlohmann::json::parse(parser_str);
-
 
     nlohmann::json value = j[j.begin().key()];
 
@@ -50,23 +49,17 @@ std::string ParserGroup::ObjectToStr(const std::string type_response, const Cont
 
     std::string res;
 
-    if (type_response == WRITE_GROUP || type_response == RM_GROUP || type_response == ADD_USER ||
-        type_response == RM_USER) {
-        if (other.GetError().empty()) {
-            j[type_response] = "OK";
+    if (!other.GetError().empty()) {
+        j[type_response] = other.GetError();
 
-            res = j.dump();
-        } else {
-            j[type_response] = other.GetError();
-
-            res = j.dump();
-        }
+        res = j.dump();
 
         return res;
     }
 
-    if (!other.GetError().empty()) {
-        j[type_response] = other.GetError();
+    if (type_response == WRITE_GROUP || type_response == RM_GROUP || type_response == ADD_USER ||
+        type_response == RM_USER) {
+        j[type_response] = "OK";
 
         res = j.dump();
 

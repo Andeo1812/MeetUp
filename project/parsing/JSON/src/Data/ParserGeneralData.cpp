@@ -1,6 +1,6 @@
 #include <nlohmann/json.hpp>
 
-#include <ParserGeneralData.hpp>
+#include "ParserGeneralData.hpp"
 
 Context ParserGeneralData::StrToObject(const std::string &parser_str) const {
     nlohmann::json j = nlohmann::json::parse(parser_str);
@@ -41,20 +41,6 @@ std::string ParserGeneralData::ObjectToStr(const std::string type_response, cons
 
     std::string res;
 
-    if (type_response == WRITE_GENERAL_DATA) {
-        if (other.GetError().empty()) {
-            j[type_response] = "OK";
-
-            res = j.dump();
-        } else {
-            j[type_response] = other.GetError();
-
-            res = j.dump();
-        }
-
-        return res;
-    }
-
     if (!other.GetError().empty()) {
         j[type_response] = other.GetError();
 
@@ -63,6 +49,13 @@ std::string ParserGeneralData::ObjectToStr(const std::string type_response, cons
         return res;
     }
 
+    if (type_response == WRITE_GENERAL_DATA) {
+        j[type_response] = "OK";
+
+        res = j.dump();
+
+        return res;
+    }
 
     GeneralData general_data = other.GetGeneralData();
 

@@ -53,22 +53,16 @@ std::string ParserAddressData::ObjectToStr(const std::string type_response, cons
 
     std::string res;
 
-    if (type_response == WRITE_ADDRESS) {
-        if (other.GetError().empty()) {
-            j[type_response] = "OK";
+    if (!other.GetError().empty()) {
+        j[type_response] = other.GetError();
 
-            res = j.dump();
-        } else  {
-            j[type_response] = other.GetError();
-
-            res = j.dump();
-        }
+        res = j.dump();
 
         return res;
     }
 
-    if (!other.GetError().empty()) {
-        j[type_response] = other.GetError();
+    if (type_response == WRITE_ADDRESS) {
+        j[type_response] = "OK";
 
         res = j.dump();
 

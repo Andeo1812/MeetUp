@@ -35,21 +35,6 @@ std::string ParserUserContacts::ObjectToStr(const std::string type_response, con
 
     std::string res;
 
-    if (type_response == ADD_USER_CONTACTS || type_response == RM_USER_CONTACTS) {
-        if (other.GetError().empty()) {
-            j[type_response] = "OK";
-
-            res = j.dump();
-        } else {
-            j[type_response] = other.GetError();
-
-            res = j.dump();
-        }
-        return res;
-    }
-
-    Contacts contacts = other.GetContacts();
-
     if (!other.GetError().empty()) {
         j[type_response] = other.GetError();
 
@@ -57,6 +42,16 @@ std::string ParserUserContacts::ObjectToStr(const std::string type_response, con
 
         return res;
     }
+
+    if (type_response == ADD_USER_CONTACTS || type_response == RM_USER_CONTACTS) {
+        j[type_response] = "OK";
+
+        res = j.dump();
+
+        return res;
+    }
+
+    Contacts contacts = other.GetContacts();
 
     j[type_response] = contacts.GetContacts();
 

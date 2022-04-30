@@ -1,6 +1,6 @@
 #include <nlohmann/json.hpp>
 
-#include <ParserPersonalData.hpp>
+#include "ParserPersonalData.hpp"
 
 Context ParserPersonalData::StrToObject(const std::string &parser_str) const {
     nlohmann::json j = nlohmann::json::parse(parser_str);
@@ -44,24 +44,19 @@ std::string ParserPersonalData::ObjectToStr(const std::string type_response, con
 
     std::string res;
 
+    if (!other.GetError().empty()) {
+        j[type_response] = other.GetError();
+
+        res = j.dump();
+
+        return res;
+    }
+
     if (type_response == WRITE_PERSONAL_DATA) {
         if (other.GetError().empty()) {
             j[type_response] = "OK";
 
             res = j.dump();
-        } else {
-            j[type_response] = other.GetError();
-
-            res = j.dump();
-        }
-
-        return res;
-    }
-
-    if (!other.GetError().empty()) {
-        j[type_response] = other.GetError();
-
-        res = j.dump();
 
         return res;
     }
