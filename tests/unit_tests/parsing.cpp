@@ -245,5 +245,63 @@ TEST(PARSING, Groups) {
 }
 
 TEST(PARSING, MeetUps) {
-//  По аналогии с RegAuth
+    std::string input = {"{\"add_event\":[{\"description\":\"dfhsdftjsftksft\","
+                         "\"event_date\":\"01-06-2000\","
+                         "\"event_name\":\"123\","
+                         "\"time_begin\":\"15:45\","
+                         "\"time_end\":\"16:45\","
+                         "\"user_id\":\"56\"},"
+                         "{\"description\":\"2132\","
+                         "\"event_date\":\"01-06-2000\","
+                         "\"event_name\":\"Lancj\","
+                         "\"time_begin\":\"11:45\","
+                         "\"time_end\":\"14:00\","
+                         "\"user_id\":\"56\"}]}"};
+    std::string type_request = {"add_event"};
+
+    ParserEvent parser;
+
+    Context context;
+
+    std::set<Event> events;
+
+    Event event_1;
+
+    event_1.SetName("123");
+    event_1.SetDate("01-06-2000");
+    event_1.SetDescription("dfhsdftjsftksft");
+    event_1.SetTimeBegin("15:45");
+    event_1.SetTimeEnd("16:45");
+    event_1.SetUserId("56");
+
+    events.insert(event_1);
+
+    Event event_2;
+
+    event_2.SetName("Lancj");
+    event_2.SetDate("01-06-2000");
+    event_2.SetDescription("2132");
+    event_2.SetTimeBegin("11:45");
+    event_2.SetTimeEnd("14:00");
+    event_2.SetUserId("56");
+
+    events.insert(event_2);
+
+    context = parser.StrToObject(input);
+
+    EXPECT_EQ("56", context.GetEvents().begin()->GetUserId());
+    EXPECT_EQ("56", context.GetEvents().begin()++->GetUserId());
+    EXPECT_EQ(events, context.GetEvents());
+
+    std::string response = parser.ObjectToStr(type_request, context);
+
+    EXPECT_EQ(response, input);
+
+    context.SetError("Test error");
+
+    std::string expected_response_error = {"{\"add_event\":\"Test error\"}"};
+
+    std::string response_error = parser.ObjectToStr(type_request, context);
+
+    EXPECT_EQ(response_error, expected_response_error);
 }
