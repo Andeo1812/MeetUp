@@ -4,9 +4,11 @@ all: clean check build
 
 TARGET = HttpServer
 
-IP = 127.0.0.1
-
-PORT = 8080
+TEST_CONTEXT =
+TEST_PARSING =
+TEST_DATABASE =
+TEST_HANDLING=
+TEST_ROUTING =
 
 clean:
 	rm -rf build coverage-report valgrind.log test.log coverage.info
@@ -22,9 +24,9 @@ rebuild: clean build
 launch:
 	./build/project/$(TARGET) $(IP) $(PORT)
 
-test_dataclass:
+test_context:
 	./run_build.sh
-	${TEST_DATACLASS}
+	${TEST_CONTEXT}
 
 test_parsing:
 	./run_build.sh
@@ -34,17 +36,17 @@ test_database:
 	./run_build.sh
 	${TEST_DATABASE}
 
-test_handler:
+test_handling:
 	./run_build.sh
-	${TEST_HANDLER}
+	${TEST_HANDLING}
 
 test_routing:
 	./run_build.sh
 	${TEST_ROUTING}
 
-coverage_test_dataclass:
+coverage_test_context:
 	./run_build.sh
-	${TEST_DATACLASS}
+	${TEST_CONTEXT}
 	./run_coverage.sh ${GTEST_DATACLASS_COVERAGE} ${TARGET_COVERAGE}
 
 coverage_test_parsing:
@@ -57,9 +59,9 @@ coverage_test_database:
 	${TEST_DATABASE}
 	./run_coverage.sh ${GTEST_DATABASE_COVERAGE} ${TARGET_COVERAGE}
 
-coverage_test_handler:
+coverage_test_handing:
 	./run_build.sh
-	${TEST_HANDLER}
+	${TEST_HANDLING}
 	./run_coverage.sh ${GTEST_HANDLER_COVERAGE} ${TARGET_COVERAGE}
 
 coverage_test_routing:
@@ -67,23 +69,21 @@ coverage_test_routing:
 	${TEST_ROUTING}
 	./run_coverage.sh ${GTEST_ROUTING_COVERAGE} ${TARGET_COVERAGE}
 
-memtest_dataclass:
+memtest_context:
 	./run_build.sh
-	./run_memtest.sh ${TEST_DATACLASS}
+	./run_memtest.sh ${TEST_CONTEXT}
 
 memtest_parsing:
 	./run_build.sh
-	${TEST_PARSING}
 	./run_memtest.sh ${TEST_PARSING}
 
 memtest_database:
 	./run_build.sh
-	${TEST_DATABASE}
 	./run_memtest.sh ${TEST_DATABASE}
 
-memtest_handler:
+memtest_handling:
 	./run_build.sh
-	./run_memtest.sh ${TEST_HANDLER}
+	./run_memtest.sh ${TEST_HANDLING}
 
 memtest_routing:
 	./run_build.sh

@@ -53,10 +53,9 @@ std::string ParserPersonalData::ObjectToStr(const std::string type_response, con
     }
 
     if (type_response == WRITE_PERSONAL_DATA) {
-        if (other.GetError().empty()) {
-            j[type_response] = "OK";
+        j[type_response] = "OK";
 
-            res = j.dump();
+        res = j.dump();
 
         return res;
     }

@@ -2,3 +2,6 @@
 /cmake-build-*
 /.idea
 .vscode/
+coverage.info
+coverage-report/
+test.log
