@@ -9,8 +9,8 @@ Context ParserAddressData::StrToObject(const std::string& parser_str) const {
 
     AddressData address_data;
 
-    if (value.contains("id")) {
-        address_data.SetUserId(value["id"].get<std::string>());
+    if (value.contains("user_id")) {
+        address_data.SetUserId(value["user_id"].get<std::string>());
     }
 
     if (value.contains("building")) {

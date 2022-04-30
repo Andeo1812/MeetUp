@@ -344,7 +344,7 @@ delete_friend: {"delete_friend":{"user_id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"write_address":{"user_id":"1", "building":"1", "housing":"1", "street":"Bolshaya Voskresenskaya","city":"Krasnogorsk","district":"Krasnogorskiy","index":"143430", "country":"Russia"}}
+{"write_address":{"user_id":"1", "building":"2", "housing":"3", "street":"Bolshaya Voskresenskaya","city":"Krasnogorsk","district":"Krasnogorskiy","index":"143430", "country":"Russia"}}
 ```
 
 **_Answer:_**
