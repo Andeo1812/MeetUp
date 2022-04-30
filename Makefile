@@ -11,7 +11,8 @@ TEST_HANDLING = ./build/tests/gtest_handling
 TEST_ROUTING = ./build/tests/gtest_routing
 
 TARGET_COVERAGE = [456789]
-COVERAGE_CONTEXT = build/tests/CMakeFiles/gtest_context.dir/unit_tests
+COVERAGE_CONTEXT = build/project/context/CMakeFiles/Context.dir/src
+COVERAGE_CONTEXT_1 = build/tests/CMakeFiles/gtest_context.dir/unit_tests
 COVERAGE_PARSING = build/tests/CMakeFiles/gtest_parsing.dir/unit_tests
 COVERAGE_DATABASE = build/tests/CMakeFiles/gtest_database.dir/unit_tests
 COVERAGE_HANDLING = build/tests/CMakeFiles/gtest_handling.dir/unit_tests
