@@ -176,7 +176,7 @@ TEST(DATACLASS, Events) {
 
 TEST(DATACLASS, Contacts) {
     std::string user_id = {"123"};
-    std::set<std::string> cnt = {"Ibragim","Gogozik"};
+    std::set<std::string> cnt = {"Ibragim", "Gogozik"};
 
     Contacts contacts;
 

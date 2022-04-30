@@ -3,7 +3,7 @@ find_package(GTest REQUIRED)
 
 project(gtest_context)
 
-file(GLOB SOURCES context.cpp)
+file(GLOB SOURCES unit_tests/context.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${Context_lib_include})
@@ -12,7 +12,7 @@ target_link_libraries(${PROJECT_NAME} ${Context_lib_libs} ${GTEST_BOTH_LIBRARIES
 
 project(gtest_parsing)
 
-file(GLOB SOURCES parsing.cpp)
+file(GLOB SOURCES unit_tests/parsing.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${Context_lib_include})
@@ -24,7 +24,7 @@ target_link_libraries(${PROJECT_NAME} ${Parsing_lib_libs} ${GTEST_BOTH_LIBRARIES
 
 project(gtest_database)
 
-file(GLOB SOURCES database.cpp)
+file(GLOB SOURCES unit_tests/database.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${Context_lib_include})
@@ -36,7 +36,7 @@ target_link_libraries(${PROJECT_NAME} ${Database_lib_libs} ${GTEST_BOTH_LIBRARIE
 
 project(gtest_handling)
 
-file(GLOB SOURCES handler.cpp)
+file(GLOB SOURCES unit_tests/handler.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${Context_lib_include})
@@ -48,7 +48,7 @@ target_link_libraries(${PROJECT_NAME} ${Handling_lib_libs} ${GTEST_BOTH_LIBRARIE
 
 project(gtest_routing)
 
-file(GLOB SOURCES routing.cpp)
+file(GLOB SOURCES unit_tests/routing.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${Context_lib_include})

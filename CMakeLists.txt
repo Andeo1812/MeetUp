@@ -15,7 +15,7 @@ endif(DEBUG)
 
 ADD_SUBDIRECTORY(project)
 
-add_subdirectory(gtest)
+add_subdirectory(tests)
 
 message("Base_lib_libs = ${Base_lib_libs}")
 message("Base_lib_include = ${Base_lib_include}")
