@@ -28,7 +28,7 @@ jobs:
   test_parsing:
     runs-on: ubuntu-latest
     container: andeo1812/gcc_check_gtest
-    needs: [test_general]
+    needs: [test_context]
     steps:
       - uses: actions/checkout@v2
       - run: make test_parsing;
