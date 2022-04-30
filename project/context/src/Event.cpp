@@ -73,12 +73,12 @@ std::ostream& operator<<(std::ostream &os, const Event &it) noexcept {
     os << "-------------------------------------------------------------------------" << std::endl;
     os << "Event" << std::endl;
     os << "event_id          :---: " << it.id << std::endl;
-    os << "user_id           :---: " << it.user_id << std::endl;
     os << "event_name        :---: " << it.name << std::endl;
     os << "date              :---: " << it.date << std::endl;
     os << "description       :---: " << it.description << std::endl;
     os << "time_begin        :---: " << it.time_begin << std::endl;
     os << "time_end          :---: " << it.time_end << std::endl;
+    os << "user_id           :---: " << it.user_id << std::endl;
 
     return os;
 }

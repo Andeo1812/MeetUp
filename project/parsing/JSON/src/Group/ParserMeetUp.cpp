@@ -1,68 +1,49 @@
 #include <nlohmann/json.hpp>
 
-#include <ParserMeetUp.hpp>
+#include "ParserMeetUp.hpp"
 
 Context ParserMeetUp::StrToObject(const std::string &parser_str) const {
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
     nlohmann::json value = j[j.begin().key()];
 
-    MeetUp meetup;
+    std::set<MeetUp> meetups;
 
-    Group group;
+    for (auto &element : value) {
+        MeetUp meetup;
 
-    if (value.contains("group_id")) {
-        meetup.SetGroupId(value["group_id"].get<std::string>());
-    }
-
-    std::set<std::string> members;
-    if (value.contains("members")) {
-        for (auto &element_in : value["members"]) {
-            members.insert(element_in.get<std::string>());
+        if (element.contains("meetup_id")) {
+            meetup.SetId(element["meetup_id"].get<std::string>());
         }
-    }
 
-    if (value.contains("meetup_id")) {
-        meetup.SetId(value["meetup_id"].get<std::string>());
-    }
+        if (element.contains("meetup_name")) {
+            meetup.SetName(element["meetup_name"].get<std::string>());
+        }
 
-    if (value.contains("meetup_name")) {
-        meetup.SetName(value["meetup_date"].get<std::string>());
-    }
+        if (element.contains("meetup_date")) {
+            meetup.SetDate(element["meetup_date"].get<std::string>());
+        }
 
-    if (value.contains("meetup_date")) {
-        meetup.SetDate(value["meetup_date"].get<std::string>());
-    }
+        if (element.contains("description")) {
+            meetup.SetDescription(element["description"].get<std::string>());
+        }
 
-    if (value.contains("description")) {
-        meetup.SetDescription(value["description"].get<std::string>());
-    }
+        if (element.contains("time_begin")) {
+            meetup.SetTimeBegin(element["time_begin"].get<std::string>());
+        }
 
-    if (value.contains("time_begin")) {
-        meetup.SetTimeBegin(value["time_begin"].get<std::string>());
-    }
+        if (element.contains("time_end")) {
+            meetup.SetTimeEnd(element["time_end"].get<std::string>());
+        }
 
-    if (value.contains("time_end")) {
-        meetup.SetTimeEnd(value["time_end"].get<std::string>());
-    }
+        if (element.contains("group_id")) {
+            meetup.SetGroupId(element["group_id"].get<std::string>());
+        }
 
-    if (value.contains("group_id")) {
-        meetup.SetGroupId(value["group_id"].get<std::string>());
+        meetups.insert(meetup);
     }
 
     Context res;
-
-    group.SetMembers(members);
-
-    std::set<Group> groups;
-
-    groups.insert(group);
-
-    res = groups;
-
-    std::set<MeetUp> meetups;
-
-    meetups.insert(meetup);
 
     res = meetups;
 
@@ -86,40 +67,38 @@ std::string ParserMeetUp::ObjectToStr(const std::string type_response, const Con
 
     nlohmann::json json_meetups;
 
-    if (!meetups.empty()) {
-        for (auto &meetup : meetups) {
-            nlohmann::json json_meetup;
+    for (auto &meetup : meetups) {
+        nlohmann::json json_meetup;
 
-            if (!meetup.GetId().empty()) {
-                json_meetup["meetup_id"] = meetup.GetId();
-            }
-
-            if (!meetup.GetName().empty()) {
-                json_meetup["meetup_name"] = meetup.GetName();
-            }
-
-            if (!meetup.GetTimeBegin().empty()) {
-                json_meetup["time_begin"] = meetup.GetTimeBegin();
-            }
-
-            if (!meetup.GetTimeEnd().empty()) {
-                json_meetup["time_end"] = meetup.GetTimeEnd();
-            }
-
-            if (!meetup.GetDescription().empty()) {
-                json_meetup["description"] = meetup.GetDescription();
-            }
-
-            if (!meetup.GetDate().empty()) {
-                json_meetup["meetup_date"] = meetup.GetDate();
-            }
-
-            if (!meetup.GetGroupId().empty()) {
-                json_meetup["group_id"] = meetup.GetGroupId();
-            }
-
-            json_meetups.push_back(json_meetup);
+        if (!meetup.GetId().empty()) {
+            json_meetup["meetup_id"] = meetup.GetId();
         }
+
+        if (!meetup.GetName().empty()) {
+            json_meetup["meetup_name"] = meetup.GetName();
+        }
+
+        if (!meetup.GetTimeBegin().empty()) {
+            json_meetup["time_begin"] = meetup.GetTimeBegin();
+        }
+
+        if (!meetup.GetTimeEnd().empty()) {
+            json_meetup["time_end"] = meetup.GetTimeEnd();
+        }
+
+        if (!meetup.GetDescription().empty()) {
+            json_meetup["description"] = meetup.GetDescription();
+        }
+
+        if (!meetup.GetDate().empty()) {
+            json_meetup["meetup_date"] = meetup.GetDate();
+        }
+
+        if (!meetup.GetGroupId().empty()) {
+            json_meetup["group_id"] = meetup.GetGroupId();
+        }
+
+        json_meetups.push_back(json_meetup);
     }
 
     j[type_response] = json_meetups;

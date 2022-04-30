@@ -378,7 +378,7 @@ delete_friend: {"delete_friend":{"user_id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"get_meetup":{"group_id":"61", "date":"2022-01-26"}}
+{"get_meetup":[{"group_id":"61", "date":"2022-01-26"}]}
 ```
 
 **_Answer:_**

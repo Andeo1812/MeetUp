@@ -194,8 +194,6 @@ TEST(PARSING, Events) {
 
     context = parser.StrToObject(input);
 
-    EXPECT_EQ("56", context.GetEvents().begin()->GetUserId());
-    EXPECT_EQ("56", context.GetEvents().begin()++->GetUserId());
     EXPECT_EQ(events, context.GetEvents());
 
     std::string response = parser.ObjectToStr(type_request, context);
@@ -241,57 +239,101 @@ TEST(PARSING, UserContacts) {
 }
 
 TEST(PARSING, Groups) {
-//  По аналогии с RegAuth
-}
+    std::string input = {"{\"create_group\":[{\"description\":\"2132\","
+                         "\"members\":[\"Ibragim\",\"Sultan\"],"
+                         "\"title\":\"Texno\"},"
+                         "{\"description\":\"121252\","
+                         "\"members\":[\"Gaib\"],"
+                         "\"title\":\"Texno231\"}]}"};
+    std::string type_request = {"create_group"};
+    std::set<std::string> members_1 = {"Ibragim", "Sultan"};
+    std::set<std::string> members_2 = {"Gaib"};
 
-TEST(PARSING, MeetUps) {
-    std::string input = {"{\"add_event\":[{\"description\":\"dfhsdftjsftksft\","
-                         "\"event_date\":\"01-06-2000\","
-                         "\"event_name\":\"123\","
-                         "\"time_begin\":\"15:45\","
-                         "\"time_end\":\"16:45\","
-                         "\"user_id\":\"56\"},"
-                         "{\"description\":\"2132\","
-                         "\"event_date\":\"01-06-2000\","
-                         "\"event_name\":\"Lancj\","
-                         "\"time_begin\":\"11:45\","
-                         "\"time_end\":\"14:00\","
-                         "\"user_id\":\"56\"}]}"};
-    std::string type_request = {"add_event"};
+    std::set<Group> groups;
 
-    ParserEvent parser;
+    Group group_1;
+
+    group_1.SetTitle("Texno");
+    group_1.SetDescription("2132");
+    group_1.SetMembers(members_1);
+
+    groups.insert(group_1);
+
+    Group group_2;
+
+    group_2.SetTitle("Texno231");
+    group_2.SetDescription("121252");
+    group_2.SetMembers(members_2);
+
+    groups.insert(group_2);
+
+    ParserGroup parser;
 
     Context context;
 
-    std::set<Event> events;
+    context = parser.StrToObject(input);
 
-    Event event_1;
+    EXPECT_EQ(groups, context.GetGroups());
 
-    event_1.SetName("123");
-    event_1.SetDate("01-06-2000");
-    event_1.SetDescription("dfhsdftjsftksft");
-    event_1.SetTimeBegin("15:45");
-    event_1.SetTimeEnd("16:45");
-    event_1.SetUserId("56");
+    std::string response = parser.ObjectToStr(type_request, context);
 
-    events.insert(event_1);
+    EXPECT_EQ(input, response);
 
-    Event event_2;
+    context.SetError("Test error");
 
-    event_2.SetName("Lancj");
-    event_2.SetDate("01-06-2000");
-    event_2.SetDescription("2132");
-    event_2.SetTimeBegin("11:45");
-    event_2.SetTimeEnd("14:00");
-    event_2.SetUserId("56");
+    std::string expected_response_error = {"{\"create_group\":\"Test error\"}"};
 
-    events.insert(event_2);
+    std::string response_error = parser.ObjectToStr(type_request, context);
+
+    EXPECT_EQ(response_error, expected_response_error);
+}
+
+TEST(PARSING, MeetUps) {
+    std::string input = {"{\"get_meetup\":[{\"description\":\"dfhsdftjsftksft\","
+                         "\"group_id\":\"56\","
+                         "\"meetup_date\":\"01-06-2000\","
+                         "\"meetup_name\":\"123\","
+                         "\"time_begin\":\"15:45\","
+                         "\"time_end\":\"16:45\"},"
+                         "{\"description\":\"2132\","
+                         "\"group_id\":\"56\","
+                         "\"meetup_date\":\"01-06-2000\","
+                         "\"meetup_name\":\"Lancj\","
+                         "\"time_begin\":\"11:45\","
+                         "\"time_end\":\"14:00\"}]}"};
+    std::string type_request = {"get_meetup"};
+
+    ParserMeetUp parser;
+
+    Context context;
+
+    std::set<MeetUp> meetups;
+
+    MeetUp meetup_1;
+
+    meetup_1.SetName("123");
+    meetup_1.SetDate("01-06-2000");
+    meetup_1.SetDescription("dfhsdftjsftksft");
+    meetup_1.SetTimeBegin("15:45");
+    meetup_1.SetTimeEnd("16:45");
+    meetup_1.SetGroupId("56");
+
+    meetups.insert(meetup_1);
+
+    MeetUp meetup_2;
+
+    meetup_2.SetName("Lancj");
+    meetup_2.SetDate("01-06-2000");
+    meetup_2.SetDescription("2132");
+    meetup_2.SetTimeBegin("11:45");
+    meetup_2.SetTimeEnd("14:00");
+    meetup_2.SetGroupId("56");
+
+    meetups.insert(meetup_2);
 
     context = parser.StrToObject(input);
 
-    EXPECT_EQ("56", context.GetEvents().begin()->GetUserId());
-    EXPECT_EQ("56", context.GetEvents().begin()++->GetUserId());
-    EXPECT_EQ(events, context.GetEvents());
+    EXPECT_EQ(meetups, context.GetMeetUp());
 
     std::string response = parser.ObjectToStr(type_request, context);
 
@@ -299,7 +341,7 @@ TEST(PARSING, MeetUps) {
 
     context.SetError("Test error");
 
-    std::string expected_response_error = {"{\"add_event\":\"Test error\"}"};
+    std::string expected_response_error = {"{\"get_meetup\":\"Test error\"}"};
 
     std::string response_error = parser.ObjectToStr(type_request, context);
 

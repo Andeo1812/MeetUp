@@ -5,8 +5,6 @@
 Context ParserEvent::StrToObject(const std::string &parser_str) const {
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
-    nlohmann::json::iterator it = j.begin();
-
     nlohmann::json value = j[j.begin().key()];
 
     std::set<Event> events;
@@ -71,8 +69,6 @@ std::string ParserEvent::ObjectToStr(const std::string type_response, const Cont
         return res;
     }
 
-    std::set<Event> events = other.GetEvents();
-
     if (!other.GetError().empty()) {
         j[type_response] = other.GetError();
 
@@ -80,6 +76,8 @@ std::string ParserEvent::ObjectToStr(const std::string type_response, const Cont
 
         return res;
     }
+
+    std::set<Event> events = other.GetEvents();
 
     nlohmann::json json_events;
 

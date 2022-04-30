@@ -72,12 +72,13 @@ std::string MeetUp::GetGroupId() const noexcept {
 std::ostream& operator<<(std::ostream &os, const MeetUp &it) noexcept {
     os << "-------------------------------------------------------------------------" << std::endl;
     os << "MeetUp" << std::endl;
-    os << "user_id           :---: " << it.id << std::endl;
+    os << "meetup_id         :---: " << it.id << std::endl;
     os << "meetup_name       :---: " << it.name << std::endl;
     os << "date              :---: " << it.date << std::endl;
     os << "description       :---: " << it.description << std::endl;
     os << "time_begin        :---: " << it.time_begin << std::endl;
     os << "time_end          :---: " << it.time_end << std::endl;
+    os << "group_id          :---: " << it.group_id << std::endl;
 
     return os;
 }

@@ -8,33 +8,35 @@ Context ParserGroup::StrToObject(const std::string &parser_str) const {
 
     nlohmann::json value = j[j.begin().key()];
 
-    Group group;
-
-    if (value.contains("group_id")) {
-        group.SetId(value["group_id"].get<std::string>());
-    }
-
-    if (value.contains("title")) {
-        group.SetTitle(value["title"].get<std::string>());
-    }
-
-    if (value.contains("description")) {
-        group.SetDescription(value["description"].get<std::string>());
-    }
-
-    std::set<std::string> members;
-
-    if (value.contains("members")) {
-        for (auto &element_in : value["members"]) {
-            members.insert(element_in.get<std::string>());
-        }
-    }
-
-    group.SetMembers(members);
-
     std::set<Group> groups;
 
-    groups.insert(group);
+    for (auto &element : value) {
+        Group group;
+
+        if (element.contains("group_id")) {
+            group.SetId(element["group_id"].get<std::string>());
+        }
+
+        if (element.contains("title")) {
+            group.SetTitle(element["title"].get<std::string>());
+        }
+
+        if (element.contains("description")) {
+            group.SetDescription(element["description"].get<std::string>());
+        }
+
+        std::set<std::string> members;
+
+        if (element.contains("members")) {
+            for (auto &element_in : element["members"]) {
+                members.insert(element_in.get<std::string>());
+            }
+        }
+
+        group.SetMembers(members);
+
+        groups.insert(group);
+    }
 
     Context res;
 
