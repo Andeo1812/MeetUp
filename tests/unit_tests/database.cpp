@@ -1,21 +1,21 @@
 #include <gtest/gtest.h>
 
-#include "DBUserImpl.hpp"
-#include "DBUserDataImpl.hpp"
-#include "DBEventImpl.hpp"
-#include "DBContactsImpl.hpp"
-#include "DBGroupImpl.hpp"
-#include "DBSynchroClientImpl.hpp"
-#include "PGConnection.hpp"
+//#include "DBUserImpl.hpp"
+//#include "DBUserDataImpl.hpp"
+//#include "DBEventImpl.hpp"
+//#include "DBContactsImpl.hpp"
+//#include "DBGroupImpl.hpp"
+//#include "DBSynchroClientImpl.hpp"
+//#include "PGConnection.hpp"
 
 
-TEST(PostgreSQL, Connection) {
+//TEST(PostgreSQL, Connection) {
 //    PGConnection pg_con;
 //
 //    EXPECT_TRUE(pg_con != nullptr);
-}
-
-TEST(PostgreSQL, GetField) {
+//}
+//
+//TEST(PostgreSQL, GetField) {
 //    DBRegAuthImpl reg_auth_db;
 //
 //    EXPECT_TRUE(reg_auth_db);
@@ -32,29 +32,29 @@ TEST(PostgreSQL, GetField) {
 //
 //    EXPECT_TRUE(!reg_auth_db.Registration(user));
 //    EXPECT_TRUE(!reg_auth_db.Authentication(user));
-}
-
-
-TEST(PostgreSQL, DBUserData) {
-//  По аналогии с GetField
-}
-
-TEST(PostgreSQL, DBRegAuth) {
-//  По аналогии с GetField
-}
-
-TEST(PostgreSQL, DBEvent) {
-//  По аналогии с GetField
-}
-
-TEST(PostgreSQL, DBContacts) {
-//  По аналогии с GetField
-}
-
-TEST(PostgreSQL, DBGroup) {
-//  По аналогии с GetField
-}
-
-TEST(PostgreSQL, DBSynchroClient) {
-//  По аналогии с GetField
-}
+//}
+//
+//
+//TEST(PostgreSQL, DBUserData) {
+//
+//}
+//
+//TEST(PostgreSQL, DBRegAuth) {
+//
+//}
+//
+//TEST(PostgreSQL, DBEvent) {
+//
+//}
+//
+//TEST(PostgreSQL, DBContacts) {
+//
+//}
+//
+//TEST(PostgreSQL, DBGroup) {
+//
+//}
+//
+//TEST(PostgreSQL, DBSynchroClient) {
+//
+//}

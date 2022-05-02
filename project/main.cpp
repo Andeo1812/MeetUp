@@ -1,16 +1,25 @@
 #include <iostream>
 
-#define EXPECTED_ARG "2 arguments expected: ip and port"
+#include "PGConnection.hpp"
 
-#define ERR_ARG -1
+int main(int argc, const char *argv[]) {
+    std::cout << "Starting server..." << std::endl;
 
-int main(int argc, const char * argv[]) {
-    if (argc != 3) {
-        fprintf(stderr, EXPECTED_ARG);
-        return ERR_ARG;
+    PGConnection coon;
+
+    std::string sql = "SELECT * FROM user_m";
+
+    pqxx::nontransaction N(coon.GetConnection().operator*());
+
+    pqxx::result R(N.exec(sql));
+
+    for (pqxx::result::const_iterator c = R.begin(); c != R.end(); ++c) {
+        std::cout << "ID = " << c[0].as<std::string>() << std::endl;
+        std::cout << "Nickname = " << c[1].as<std::string>() << std::endl;
+        std::cout << "Password = " << c[2].as<std::string>() << std::endl;
     }
 
-    std::cout << "Starting server..." << std::endl;
+    std::cout << coon.GetConnection().operator*().is_open() << std::endl;
 
     return EXIT_SUCCESS;
 }
