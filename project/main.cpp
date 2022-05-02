@@ -9,9 +9,9 @@ int main(int argc, const char *argv[]) {
 
     std::string sql = "SELECT * FROM user_m";
 
-    pqxx::nontransaction N(coon.GetConnection().operator*());
+    pqxx::work w(coon.GetConnection().operator*());
 
-    pqxx::result R(N.exec(sql));
+    pqxx::result R(w.exec(sql));
 
     for (pqxx::result::const_iterator c = R.begin(); c != R.end(); ++c) {
         std::cout << "ID = " << c[0].as<std::string>() << std::endl;
