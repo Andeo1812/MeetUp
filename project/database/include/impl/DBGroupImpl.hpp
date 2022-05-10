@@ -20,5 +20,6 @@ class DBGroupImpl : public DBGroup {
 
     std::string GetId(const Group &group) const override;
 
+    DBGroupImpl() = default;
     ~DBGroupImpl() = default;
 };

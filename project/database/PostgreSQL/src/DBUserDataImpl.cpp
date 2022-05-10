@@ -1,15 +1,32 @@
 #include "DBUserDataImpl.hpp"
 
-/*
-int AddressDataReWrite(const AddressData& address_data) const override;
-AddressData GetAddressData(const std::string &user_id) const override;
+int DBUserDataImpl::AddressDataReWrite(const AddressData& address_data) const {
+    return EXIT_SUCCESS;
+}
+AddressData DBUserDataImpl::GetAddressData(const std::string &user_id) const {
+    AddressData res;
+    return res;
+}
 
-int PersonalDataReWrite(const PersonalData& personal_data) const override;
-PersonalData GetPersonalData(const std::string &user_id) const override;
+int DBUserDataImpl::PersonalDataReWrite(const PersonalData& personal_data) const {
+    return EXIT_SUCCESS;
+}
+PersonalData DBUserDataImpl::GetPersonalData(const std::string &user_id) const {
+    PersonalData res;
+    return res;
+}
 
-int GeneralDataReWrite(const GeneralData& general_data) const override;
-GeneralData GetGeneralData(const std::string &user_id) const override;
+int DBUserDataImpl::GeneralDataReWrite(const GeneralData& general_data) const {
+    return EXIT_SUCCESS;
+}
+GeneralData DBUserDataImpl::GetGeneralData(const std::string &user_id) const {
+    GeneralData res;
+    return res;
+}
 
-int ReWritePassword(const std::string &user_id) const override;
-int ReWriteNickname(const std::string &user_id) const override;
- */
+int DBUserDataImpl::ReWritePassword(const std::string &user_id) const {
+    return EXIT_SUCCESS;
+}
+int DBUserDataImpl::ReWriteNickname(const std::string &user_id) const {
+    return EXIT_SUCCESS;
+}

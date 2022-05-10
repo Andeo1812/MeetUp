@@ -10,7 +10,6 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${Context_lib_include})
 target_link_libraries(${PROJECT_NAME} ${Context_lib_libs} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
-
 project(gtest_parsing)
 
 file(GLOB SOURCES unit_tests/parsing.cpp)

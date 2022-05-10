@@ -8,5 +8,6 @@ class DBContactsImpl : public DBContacts {
 
     int Delete(const std::string &user_id, const std::string &user_id_friend) const override;
 
+    DBContactsImpl() = default;
     ~DBContactsImpl() = default;
 };

@@ -12,5 +12,6 @@ class DBEventImpl : public DBEvent {
 
     std::string GetId(const Event &event) const override;
 
+    DBEventImpl() = default;
     ~DBEventImpl() = default;
 };

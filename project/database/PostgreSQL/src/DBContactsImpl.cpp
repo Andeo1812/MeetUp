@@ -1,7 +1,10 @@
 #include "DBContactsImpl.hpp"
 
-/*
-int Add(const std::string& user_id, const std::string& user_id_friend) const override;
+int DBContactsImpl::Add(const std::string& user_id, const std::string& user_id_friend) const {
+    return EXIT_SUCCESS;
+}
 
-int Delete(const std::string& user_id, const std::string& user_id_friend) const override;
- */
+int DBContactsImpl::Delete(const std::string& user_id, const std::string& user_id_friend) const {
+    return EXIT_SUCCESS;
+}
+

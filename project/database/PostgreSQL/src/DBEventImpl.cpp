@@ -1,11 +1,18 @@
 #include "DBEventImpl.hpp"
 
-/*
-int Add(const Event& event) const override;
+int DBEventImpl::Add(const Event& event) const {
+    return EXIT_SUCCESS;
+}
 
-int Write(const Event& event) const override;
+int DBEventImpl::Write(const Event& event) const {
+    return EXIT_SUCCESS;
+}
 
-int Rm(const Event& event) const override;
+int DBEventImpl::Rm(const Event& event) const {
+    return EXIT_SUCCESS;
+}
 
-  std::string EventId(const Event& event) const override;
-*/
+std::string DBEventImpl::GetId(const Event& event) const {
+    std::string res;
+    return res;
+}

@@ -12,5 +12,6 @@ class DBUserImpl : public DBUser {
 
     std::string GetNickname(const User &user) const override;
 
+    DBUserImpl() = default;
     ~DBUserImpl() = default;
 };

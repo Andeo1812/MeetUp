@@ -1,19 +1,35 @@
 #include "DBGroupImpl.hpp"
 
-/*
-int Create(const Group& group) const override;
+int DBGroupImpl::Create(const Group& group) const {
+    return EXIT_SUCCESS;
+}
 
-int ReWrite(const Group& group) const override;
+int DBGroupImpl::ReWrite(const Group& group) const {
+    return EXIT_SUCCESS;
+}
 
-int DeleteAllMembers(const std::string& group_id) const override;
+int DBGroupImpl::DeleteAllMembers(const std::string& group_id) const {
+    return EXIT_SUCCESS;
+}
 
-int Delete(const std::string& group_id) const override;
+int DBGroupImpl::Delete(const std::string& group_id) const {
+    return EXIT_SUCCESS;
+}
 
-Group GetMembers(const std::string& group_id) const override;
+Group DBGroupImpl::GetMembers(const std::string& group_id) const {
+    Group res;
+    return res;
+}
 
-int AddMember(const std::string& user_nickname, const std::string& group_id) const override;
+int DBGroupImpl::AddMember(const std::string& user_nickname, const std::string& group_id) const {
+    return EXIT_SUCCESS;
+}
 
-int RmMember(const std::string& user_nickname, const std::string& group_id) const override;
+int DBGroupImpl::RmMember(const std::string& user_nickname, const std::string& group_id) const {
+    return EXIT_SUCCESS;
+}
 
- std::string GroupId(const Group& group) const override;
-*/
+std::string DBGroupImpl::GetId(const Group& group) const {
+    std::string res;
+    return res;
+}

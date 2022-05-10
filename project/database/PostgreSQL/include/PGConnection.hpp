@@ -17,30 +17,7 @@ class PGConnection : public DBConnection {
 
 public:
     PGConnection();
-    ~PGConnection() = default;
+    ~PGConnection();
 
-    std::shared_ptr<pqxx::connection> GetConnection();
-
-    void CloseConnection();
+    pqxx::connection &GetConnection();
 };
-
-std::string PGConnection::LoadConfig(const std::string &path) const {
-    std::string config;
-
-    std::ifstream in(path);
-    if (in.is_open()) {
-        getline(in, config);
-    }
-
-    in.close();
-
-    return config;
-}
-
-PGConnection::PGConnection() {
-    this->connect = std::make_shared<pqxx::connection>(LoadConfig(path_config));
-}
-
-std::shared_ptr<pqxx::connection> PGConnection::GetConnection() {
-    return this->connect;
-}

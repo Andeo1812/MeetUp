@@ -1,15 +1,17 @@
 #include <iostream>
 
-#include "PGConnection.hpp"
+#include "DBManagerPG.hpp"
 
 int main(int argc, const char *argv[]) {
     std::cout << "Starting server..." << std::endl;
 
-    PGConnection coon;
+    DBManagerPG db_manager;
 
     std::string sql = "SELECT * FROM user_m";
 
-    pqxx::work w(coon.GetConnection().operator*());
+    pqxx::connection &con = db_manager.GetFreeConnection()->GetConnection();
+
+    pqxx::work w(con);
 
     pqxx::result R(w.exec(sql));
 
@@ -19,7 +21,7 @@ int main(int argc, const char *argv[]) {
         std::cout << "Password = " << c[2].as<std::string>() << std::endl;
     }
 
-    std::cout << coon.GetConnection().operator*().is_open() << std::endl;
+    std::cout << con.is_open() << std::endl;
 
     return EXIT_SUCCESS;
 }

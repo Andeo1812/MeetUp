@@ -16,5 +16,6 @@ class DBUserDataImpl : public DBUserData {
     int ReWritePassword(const std::string &user_id) const override;
     int ReWriteNickname(const std::string &user_id) const override;
 
+    DBUserDataImpl() = default;
     ~DBUserDataImpl() = default;
 };

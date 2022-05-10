@@ -2,6 +2,7 @@
 
 #include "DBSynchroClient.hpp"
 
+
 class DBSynchroClientImpl : public DBSynchroClient {
  public:
     std::set<std::string> Contacts(const std::string &user_id, const size_t count) const override;
@@ -10,5 +11,6 @@ class DBSynchroClientImpl : public DBSynchroClient {
 
     std::set<Group> Groups(const std::string &user_id, const size_t count) const override;
 
+    DBSynchroClientImpl() = default;
     ~DBSynchroClientImpl() = default;
 };
