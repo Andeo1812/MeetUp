@@ -2,23 +2,27 @@
 
 #include "DBManagerPG.hpp"
 
+DBManagerPG db_manager;
+
 int main(int argc, const char *argv[]) {
     std::cout << "Starting server..." << std::endl;
 
-    DBManagerPG db_manager;
+    std::cout << db_manager.Size() << std::endl;
 
     std::string sql = "SELECT * FROM user_m";
 
-    pqxx::connection &con = db_manager.GetFreeConnection()->GetConnection();
+    auto &con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection()->GetConnection();
+
+    std::cout << db_manager.Size() << std::endl;
 
     pqxx::work w(con);
 
     pqxx::result R(w.exec(sql));
 
-    for (pqxx::result::const_iterator c = R.begin(); c != R.end(); ++c) {
-        std::cout << "ID = " << c[0].as<std::string>() << std::endl;
-        std::cout << "Nickname = " << c[1].as<std::string>() << std::endl;
-        std::cout << "Password = " << c[2].as<std::string>() << std::endl;
+    for (auto row : R) {
+        std::cout << "ID = " << row[0].as<std::string>() << std::endl;
+        std::cout << "Nickname = " << row[1].as<std::string>() << std::endl;
+        std::cout << "Password = " << row[2].as<std::string>() << std::endl;
     }
 
     std::cout << con.is_open() << std::endl;

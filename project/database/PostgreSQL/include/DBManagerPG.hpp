@@ -14,10 +14,9 @@
 //  LIMIT from ElephantSQL.com(source DB)
 const size_t MAX_COUNT_FREE_DB_VERSION = 3;
 
-
 class DBManagerPG {
-    std::queue<PGConnection*> connection_pool;
- public:
+    std::queue<PGConnection *> connection_pool;
+public:
     DBUserImpl User;
     DBUserDataImpl UserData;
     DBEventImpl Event;
@@ -27,29 +26,38 @@ class DBManagerPG {
 
     PGConnection *GetFreeConnection();
 
+    void InsertConnection(PGConnection *connection);
+
+    size_t Size() const noexcept;
+
     DBManagerPG();
 
     ~DBManagerPG() = default;
 };
 
-DBManagerPG::DBManagerPG() {
-    //  size_t numCPU = sysconf(_SC_NPROCESSORS_ONLN);
-
-    size_t numCPU = MAX_COUNT_FREE_DB_VERSION;
-
-    for (size_t i = 0; i < numCPU; ++i) {
-        this->connection_pool.push(new PGConnection);
-    }
-}
-
-PGConnection *DBManagerPG::GetFreeConnection() {
-    while (this->connection_pool.empty()) {
-        sleep(1);
+template<typename T>
+class Singleton {
+private:
+    T data;
+public:
+    static Singleton &GetInstance() {
+        static Singleton _instance;
+        return _instance;
     }
 
-    PGConnection *res = this->connection_pool.front();
+    T &GetData() {
+        return data;
+    }
 
-    this->connection_pool.pop();
+private:
+    Singleton() = default;
 
-    return res;
-}
+    Singleton(const Singleton &s) {}
+
+    Singleton &operator=(Singleton &s) {
+        return s;
+    }
+
+    ~Singleton() {}
+};
+
