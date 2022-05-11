@@ -1,7 +1,5 @@
 #include "PGConnection.hpp"
 
-#include "iostream"
-
 std::string PGConnection::LoadConfig(const std::string &path) const {
     std::string config;
 
@@ -9,8 +7,6 @@ std::string PGConnection::LoadConfig(const std::string &path) const {
     if (in.is_open()) {
         getline(in, config);
     }
-
-    std::cout << path << std::endl;
 
     in.close();
 

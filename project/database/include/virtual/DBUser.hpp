@@ -4,7 +4,7 @@
 
 class DBUser {
  public:
-    virtual int Registration(const User &user) const = 0;
+    virtual std::string Registration(const User &user) const = 0;
 
     virtual int Authentication(const User &user) const = 0;
 

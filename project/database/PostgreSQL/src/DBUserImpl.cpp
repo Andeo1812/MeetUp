@@ -1,30 +1,31 @@
+#include <iostream>
+
 #include "DBUserImpl.hpp"
 #include "DBManagerPG.hpp"
 
-#include <iostream>
+std::string DBUserImpl::Registration(const User &user) const {
+    auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
 
-int DBUserImpl::Registration(const User &user) const {
-    std::cout << Singleton<DBManagerPG>::GetInstance().GetData().Size() << std::endl;
+    std::string SQL = "INSERT INTO user_m (nickname,password) "
+                      "VALUES ('" + user.GetNickname() + "','" + user.GetPassword() + "' ) RETURNING user_id;";
 
-    auto &con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection()->GetConnection();
+    std::string new_user_id;
 
-    std::string sql = "SELECT * FROM user_m";
+    try {
+        pqxx::work work(con->GetConnection());
 
-    std::cout << Singleton<DBManagerPG>::GetInstance().GetData().Size() << std::endl;
+        pqxx::result result(work.exec(SQL));
 
-    pqxx::work w(con);
+        new_user_id = result.begin()["user_id"].as<std::string>();
 
-    pqxx::result R(w.exec(sql));
-
-    for (auto row : R) {
-        std::cout << "ID = " << row[0].as<std::string>() << std::endl;
-        std::cout << "Nickname = " << row[1].as<std::string>() << std::endl;
-        std::cout << "Password = " << row[2].as<std::string>() << std::endl;
+        work.commit();
+    } catch (const std::exception &e) {
+        std::cout << e.what() << std::endl;
     }
 
-    std::cout << con.is_open() << std::endl;
+    Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
 
-    return EXIT_SUCCESS;
+    return new_user_id;
 }
 
 int DBUserImpl::Authentication(const User &user) const {

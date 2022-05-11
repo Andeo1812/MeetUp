@@ -4,7 +4,7 @@
 
 class DBUserImpl : public DBUser {
  public:
-    int Registration(const User &user) const override;
+    std::string Registration(const User &user) const override;
 
     int Authentication(const User &user) const override;
 

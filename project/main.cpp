@@ -7,6 +7,9 @@ int main(int argc, const char *argv[]) {
 
     User user;
 
+    user.SetNickname("GOGA111111111");
+    user.SetPassword("GOGAGOAGAGA");
+
     Singleton<DBManagerPG>::GetInstance().GetData().User.Registration(user);
 
     return EXIT_SUCCESS;
