@@ -2,7 +2,7 @@
 #include "DBManagerPG.hpp"
 
 int DBUserImpl::Registration(const User &user) const {
-    auto connection = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
+    //  auto &con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection()->GetConnection();
 
     return EXIT_SUCCESS;
 }

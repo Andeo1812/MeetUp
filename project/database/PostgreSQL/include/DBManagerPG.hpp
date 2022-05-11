@@ -1,6 +1,7 @@
 #pragma once  //  NOLINT
 
 #include <queue>
+#include <string>
 #include <unistd.h>
 
 #include "PGConnection.hpp"

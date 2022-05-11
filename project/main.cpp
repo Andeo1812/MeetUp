@@ -2,18 +2,16 @@
 
 #include "DBManagerPG.hpp"
 
-DBManagerPG db_manager;
-
 int main(int argc, const char *argv[]) {
     std::cout << "Starting server..." << std::endl;
 
-    std::cout << db_manager.Size() << std::endl;
-
-    std::string sql = "SELECT * FROM user_m";
+    std::cout << Singleton<DBManagerPG>::GetInstance().GetData().Size() << std::endl;
 
     auto &con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection()->GetConnection();
 
-    std::cout << db_manager.Size() << std::endl;
+    std::string sql = "SELECT * FROM user_m";
+
+    std::cout << Singleton<DBManagerPG>::GetInstance().GetData().Size() << std::endl;
 
     pqxx::work w(con);
 
