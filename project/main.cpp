@@ -7,10 +7,13 @@ int main(int argc, const char *argv[]) {
 
     User user;
 
-    user.SetNickname("GOGA111111111");
-    user.SetPassword("GOGAGOAGAGA");
+    user.SetNickname("qqqqqqqqqqqqq");
+    user.SetPassword("qqqqqqqqqqqqq");
+    user.SetId("29");
 
-    Singleton<DBManagerPG>::GetInstance().GetData().User.Registration(user);
+    std::string res = Singleton<DBManagerPG>::GetInstance().GetData().User.GetNickname(user);
+
+    std::cout << res << std::endl;
 
     return EXIT_SUCCESS;
 }

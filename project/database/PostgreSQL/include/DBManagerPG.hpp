@@ -15,6 +15,10 @@
 //  LIMIT from ElephantSQL.com(source DB)
 const size_t MAX_COUNT_FREE_DB_VERSION = 3;
 
+const int ERR_AUTHENTICATION = -1;
+
+static enum result_sql {SUCCESS = 0, NOT_AUTHENTICATION, ERROR_AUTHENTICATION, DEL} RESULT;
+
 class DBManagerPG {
     std::queue<PGConnection *> connection_pool;
 public:
