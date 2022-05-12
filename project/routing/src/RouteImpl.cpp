@@ -26,8 +26,8 @@
 
 RouteImpl::RouteImpl() {
     //  Base            REQUEST                                        PARSER                     HANDLER
-    route_map.insert({REGISTRATION,           std::make_pair(new ParserUser,        new Registration)});
-    route_map.insert({AUTHENTICATION,         std::make_pair(new ParserUser,        new Authentication)});
+    route_map.insert({REGISTRATION,           Node(new ParserUser,        new Registration)});
+    route_map.insert({AUTHENTICATION,         Node(new ParserUser,        new Authentication)});
 }
 
 std::string RouteImpl::get_head(const std::string request_body) {
@@ -51,9 +51,9 @@ std::string RouteImpl::get_response(const std::string request_body) {
 
     Context buf;
 
-    buf = needed_node->second.first->StrToObject(request_body);
-    buf = needed_node->second.second->process(buf);
-    res = needed_node->second.first->ObjectToStr(type_request, buf);
+    buf = needed_node->second.parser->StrToObject(request_body);
+    buf = needed_node->second.handler->process(buf);
+    res = needed_node->second.parser->ObjectToStr(type_request, buf);
 
     return res;
 }

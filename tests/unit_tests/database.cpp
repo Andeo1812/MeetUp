@@ -203,7 +203,3 @@ TEST(PostgreSQL, DBGroup) {
     Singleton<DBManagerPG>::GetInstance().GetData().User.Rm(user_1);
     Singleton<DBManagerPG>::GetInstance().GetData().User.Rm(user_2);
 }
-
-TEST(PostgreSQL, DBSynchroClient) {
-
-}

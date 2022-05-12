@@ -6,9 +6,16 @@
 
 #include "Parser.hpp"
 
+struct Node {
+    const Parser *parser;
+    const Handler *handler;
+
+    Node(const Parser *parser, const Handler *handler) : parser(parser), handler(handler) {};
+};
+
 class Route {
  public:
-    std::map<std::string, std::pair<Parser *, Handler *>> route_map;
+    std::map<std::string, Node> route_map;
 
     virtual std::string get_head(const std::string request_body) = 0;
 

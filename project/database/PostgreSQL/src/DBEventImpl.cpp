@@ -77,5 +77,41 @@ int DBEventImpl::GetId(const Event &event, std::string &event_id) const {
 }
 
 int DBEventImpl::GetSet(const std::string &user_id, std::set<Event> &events, const std::string &date) const {
-    return EXIT_SUCCESS;
+    auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
+
+    std::string SQL = "SELECT * FROM event_m WHERE event_date = '" + date + "'";
+
+    int res = SUCCESS;
+
+    try {
+        pqxx::work work(con->GetConnection());
+
+        pqxx::result result(work.exec(SQL));
+
+        if (!result.empty()) {
+            for(auto row : result) {
+                Event event;
+
+                event.SetId(row["event_id"].as<std::string>());
+                event.SetName(row["event_name"].as<std::string>());
+                event.SetTimeBegin(row["time_begin"].as<std::string>());
+                event.SetTimeEnd(row["time_end"].as<std::string>());
+                event.SetDescription(row["description"].as<std::string>());
+
+                events.insert(event);
+            }
+        } else {
+            res = NOT_GET_SET_EVENTS;
+        }
+
+        work.commit();
+    } catch (const std::exception &e) {
+        std::cout << e.what() << std::endl;
+
+        res = ERROR_GET_SET_EVENTS;
+    }
+
+    Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
+
+    return res;
 }
