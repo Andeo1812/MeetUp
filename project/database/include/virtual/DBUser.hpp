@@ -4,13 +4,15 @@
 
 class DBUser {
  public:
-    virtual std::string Registration(const User &user) const = 0;
+    virtual int Registration(const User &user, std::string &new_user_id) const = 0;
 
     virtual int Authentication(const User &user) const = 0;
 
-    virtual std::string GetId(const User &user) const = 0;
+    virtual int GetId(const User &user, std::string &user_id) const = 0;
 
-    virtual std::string GetNickname(const User &user) const = 0;
+    virtual int GetNickname(const User &user, std::string &nickname) const = 0;
+
+    virtual int Rm(const User &user) const;
 
     virtual ~DBUser() = default;
 };

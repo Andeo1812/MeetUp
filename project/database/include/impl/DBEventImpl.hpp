@@ -4,7 +4,7 @@
 
 class DBEventImpl : public DBEvent {
  public:
-    int Add(const Event &event) const override;
+    std::string Add(const Event &event) const override;
 
     int Write(const Event &event) const override;
 

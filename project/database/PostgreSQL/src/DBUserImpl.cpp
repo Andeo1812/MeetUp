@@ -3,29 +3,35 @@
 #include "DBUserImpl.hpp"
 #include "DBManagerPG.hpp"
 
-std::string DBUserImpl::Registration(const User &user) const {
+int DBUserImpl::Registration(const User &user, std::string &new_user_id) const {
     auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "INSERT INTO user_m (nickname,password) "
                       "VALUES ('" + user.GetNickname() + "','" + user.GetPassword() + "' ) RETURNING user_id;";
 
-    std::string new_user_id;
+    int res = SUCCESS;
 
     try {
         pqxx::work work(con->GetConnection());
 
         pqxx::result result(work.exec(SQL));
 
-        new_user_id = result.begin()["user_id"].as<std::string>();
+        if (!result.empty()) {
+            new_user_id = result.begin()["user_id"].as<std::string>();
+        } else {
+            res = NOT_REGISTRATION;
+        }
 
         work.commit();
     } catch (const std::exception &e) {
         std::cout << e.what() << std::endl;
+
+        res = ERROR_REGISTRATION;
     }
 
     Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
 
-    return new_user_id;
+    return res;
 }
 
 int DBUserImpl::Authentication(const User &user) const {
@@ -33,7 +39,7 @@ int DBUserImpl::Authentication(const User &user) const {
 
     std::string SQL = "SELECT user_id FROM user_m WHERE password = '" + user.GetPassword() + "' and nickname = '" + user.GetNickname() + "'";
 
-    int res = 0;
+    int res = SUCCESS;
 
     try {
         pqxx::work work(con->GetConnection());
@@ -42,8 +48,6 @@ int DBUserImpl::Authentication(const User &user) const {
 
         if (result.empty()) {
             res = NOT_AUTHENTICATION;
-        } else {
-            res = SUCCESS;
         }
 
         work.commit();
@@ -58,12 +62,12 @@ int DBUserImpl::Authentication(const User &user) const {
     return res;
 }
 
-std::string DBUserImpl::GetId(const User &user) const {
+int DBUserImpl::GetId(const User &user, std::string &user_id) const {
     auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "SELECT user_id FROM user_m WHERE password = '" + user.GetPassword() + "' and nickname = '" + user.GetNickname() + "'";
 
-    std::string user_id;
+    int res = SUCCESS;
 
     try {
         pqxx::work work(con->GetConnection());
@@ -72,24 +76,28 @@ std::string DBUserImpl::GetId(const User &user) const {
 
         if (!result.empty()) {
             user_id = result.begin()["user_id"].as<std::string>();
+        } else {
+            res = NOT_GET_USER_ID;
         }
 
         work.commit();
     } catch (const std::exception &e) {
         std::cout << e.what() << std::endl;
+
+        res = ERROR_GET_USER_ID
     }
 
     Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
 
-    return user_id;
+    return res;
 }
 
-std::string DBUserImpl::GetNickname(const User &user) const {
+int DBUserImpl::GetNickname(const User &user, std::string &nickname) const {
     auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "SELECT nickname FROM user_m WHERE user_id = '" + user.GetId() + "'";
 
-    std::string nickname;
+    int res = SUCCESS;
 
     try {
         pqxx::work work(con->GetConnection());
@@ -98,14 +106,46 @@ std::string DBUserImpl::GetNickname(const User &user) const {
 
         if (!result.empty()) {
             nickname = result.begin()["nickname"].as<std::string>();
+        } else {
+            res = NOT_GET_USER_NICKNAME;
         }
 
         work.commit();
     } catch (const std::exception &e) {
         std::cout << e.what() << std::endl;
+
+        res = ERROR_GET_USER_NICKNAME;
     }
 
     Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
 
-    return nickname;
+    return res;
+}
+
+int DBUserImpl::Rm(const User &user) const {
+    auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
+
+    std::string SQL = "DELETE FROM user_m WHERE user_id = '" + user.GetId() + "'";
+
+    int res = SUCCESS;
+
+    try {
+        pqxx::work work(con->GetConnection());
+
+        pqxx::result result(work.exec(SQL));
+
+        if (result.empty()) {
+            res = NOT_DELETE_USER;
+        }
+
+        work.commit();
+    } catch (const std::exception &e) {
+        std::cout << e.what() << std::endl;
+
+        res = ERROR_DELETE_USER;
+    }
+
+    Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
+
+    return res;
 }
