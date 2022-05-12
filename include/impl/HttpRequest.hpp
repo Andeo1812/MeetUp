@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include "Header.hpp"
+#include <iostream>
 
 namespace http {
 namespace AsyncServer {

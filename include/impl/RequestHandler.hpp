@@ -13,16 +13,20 @@ struct Reply;
 struct HttpRequest;
 
 /// The common handler for all incoming requests.
-class RequestHandler : public Handler {
+class
+RequestHandler : public Handler {
 public:
     RequestHandler(const RequestHandler&) = delete;
     RequestHandler& operator=(const RequestHandler&) = delete;
-
+    // boost::asio::streambuf a;
     /// Construct with a directory containing files to be served.
     explicit RequestHandler(const std::string& doc_root);
 
+    // RouteImpl route;
+
     /// Handle a request and produce a reply.
     void handle_request(const HttpRequest& req, Reply& rep);
+
 
 private:
     /// The directory containing the files to be served.

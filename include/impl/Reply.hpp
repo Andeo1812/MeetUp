@@ -8,6 +8,8 @@
 #include <boost/asio.hpp>
 #include "Header.hpp"
 
+#include <iostream>
+
 namespace http {
 namespace AsyncServer {
 

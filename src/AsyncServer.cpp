@@ -2,6 +2,7 @@
 #include "AsyncServer.hpp"
 #include <signal.h>
 #include <utility>
+#include <iostream>
 
 namespace http {
 namespace AsyncServer {
@@ -17,9 +18,7 @@ AsyncServer::AsyncServer(const std::string& address, const std::string& port,
     // provided all registration for the specified signal is made through Asio.
     signals_.add(SIGINT);
     signals_.add(SIGTERM);
-#if defined(SIGQUIT)
     signals_.add(SIGQUIT);
-#endif // defined(SIGQUIT)
 
     do_await_stop();
 
@@ -39,6 +38,7 @@ void AsyncServer::run() {
     // have finished. While the server is running, there is always at least one
     // asynchronous operation outstanding: the asynchronous accept call waiting
     // for new incoming connections.
+    // io_context_.dispatch();
     io_context_.run();
 }
 
@@ -52,21 +52,36 @@ void AsyncServer::do_accept() {
             }
 
             if (!ec) {
-                connection_manager_.open_connection(std::make_shared<ClientConnection>(
+                connection_manager_.open_connection(std::make_shared<ClientConnection>(io_context_,
                     std::move(socket), connection_manager_, request_handler_));
             }
 
             do_accept();
-            // TODO : Replace recursion
         });
 }
 
 void AsyncServer::do_await_stop() {
     signals_.async_wait(
-        [this](boost::system::error_code /*ec*/, int /*signo*/) {
+        [this](boost::system::error_code ec, int signo) {
             // The server is stopped by cancelling all outstanding asynchronous
             // operations. Once all operations have finished the io_context::run()
             // call will exit.
+            if (signo == SIGINT) {
+                std::cout << "GET SIGINT " << signo << std::endl;
+            }
+
+            if (signo == SIGTERM) {
+                std::cout << "GET SIGTERM " << signo << std::endl;
+            }
+
+            if (signo == SIGQUIT) {
+                std::cout << "GET SIGQUIT " << signo << std::endl;
+
+                std::cout << "*DO LOGIC*" << std::endl;
+                do_await_stop();
+                return;
+            }
+
             acceptor_.close();
             connection_manager_.stop_all();
         });

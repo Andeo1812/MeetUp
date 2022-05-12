@@ -1,17 +1,26 @@
 
 
-#include "RequestHandler.hpp"
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <functional>
+
+#include "RequestHandler.hpp"
 #include "MimeTypes.hpp"
 #include "Reply.hpp"
 #include "HttpRequest.hpp"
 
 #include <iostream>
+#include <cctype>
 
 namespace http {
 namespace AsyncServer {
+
+// std::string get_response(std::string in) {
+//     std::string out;
+//     std::for_each(in.begin(), in.end(), [&out](unsigned char c){out.push_back(c-32);});
+//     return out;
+// }
 
 RequestHandler::RequestHandler(const std::string& doc_root) : doc_root_(doc_root) {}
 
@@ -19,13 +28,21 @@ void RequestHandler::handle_request(const HttpRequest& req, Reply& rep) {
     std::cout << "in Heandler_req:" << std::endl;
     req.print_req();
 
+    // sleep(4);
+    // async_await();
+    std::string response;
+    // io_context_.post(std::bind(get_response, "azaza"));
+    // io_context_->post([&response](std::string& in) {
+    //     response = get_response(in);
+    // });
+    // std::string reply_js = route.getresponse(req.body);
+
     // Decode url to path.
     std::string request_path;
     if (!url_decode(req.uri, request_path)) {
         rep = Reply::stock_reply(Reply::bad_request);
         return;
     }
-
     // Request path must be absolute and not contain "..".
     if (request_path.empty() || request_path[0] != '/'
         || request_path.find("..") != std::string::npos) {
@@ -48,6 +65,7 @@ void RequestHandler::handle_request(const HttpRequest& req, Reply& rep) {
 
     // Open the file to send back.
     std::string full_path = doc_root_ + request_path;
+    std::cout << "full_path - " << full_path << std::endl;
     std::ifstream is(full_path.c_str(), std::ios::in | std::ios::binary);
     if (!is) {
         rep = Reply::stock_reply(Reply::not_found);

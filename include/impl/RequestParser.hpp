@@ -51,17 +51,11 @@ private:
     /// Handle the next character of input.
     result_type Consume(HttpRequest& req, char input);
 
-    /// Check if a byte is an HTTP character.
-    static bool IsChar(int c);
-
-    /// Check if a byte is an HTTP control character.
-    static bool IsCtl(int c);
+    static bool IsSymbol(int c);
 
     /// Check if a byte is defined as an HTTP tspecial character.
     static bool IsTspecial(int c);
 
-    /// Check if a byte is a digit.
-    static bool IsDigit(int c);
 
     /// The current state of the parser.
     enum State {

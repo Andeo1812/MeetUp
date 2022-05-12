@@ -24,7 +24,7 @@ public:
     ClientConnection& operator=(const ClientConnection&) = delete;
 
     /// Construct a connection with the given socket.
-    explicit ClientConnection(boost::asio::ip::tcp::socket&& socket,
+    explicit ClientConnection(boost::asio::io_context& io_context, boost::asio::ip::tcp::socket&& socket,
         ConnectionClientManager& manager, RequestHandler& handler);
 
     /// Start the first asynchronous operation for the connection.
@@ -37,6 +37,10 @@ private:
     /// Perform an asynchronous read operation.
     void do_read();
 
+    /// Perform an asynchronous handle operation.
+    void do_handle();
+    boost::asio::steady_timer timer;
+    void async_get(std::string str, boost::asio::steady_timer* timer);
     /// Perform an asynchronous write operation.
     void do_write();
 

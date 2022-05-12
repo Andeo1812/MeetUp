@@ -2,6 +2,8 @@
 
 #include "RequestParser.hpp"
 #include "HttpRequest.hpp"
+
+#include <cctype>
 #include <iostream>
 
 namespace http {
@@ -17,7 +19,7 @@ RequestParser::result_type RequestParser::Consume(HttpRequest& req, char input) 
     // std::cout << input << std::endl;
     switch (state_) {
     case method_start:
-        if (!IsChar(input) || IsCtl(input) || IsTspecial(input)) {
+        if (!IsSymbol(input) || std::iscntrl(input) || IsTspecial(input)) {
             return bad;
         } else {
             state_ = method;
@@ -28,7 +30,7 @@ RequestParser::result_type RequestParser::Consume(HttpRequest& req, char input) 
         if (input == ' ') {
             state_ = uri;
             return indeterminate;
-        } else if (!IsChar(input) || IsCtl(input) || IsTspecial(input)) {
+        } else if (!IsSymbol(input) || std::iscntrl(input) || IsTspecial(input)) {
             return bad;
         } else {
             req.method.push_back(input);
@@ -38,7 +40,7 @@ RequestParser::result_type RequestParser::Consume(HttpRequest& req, char input) 
         if (input == ' ') {
             state_ = http_version_h;
             return indeterminate;
-        } else if (IsCtl(input)) {
+        } else if (std::iscntrl(input)) {
             return bad;
         } else {
             req.uri.push_back(input);
@@ -82,7 +84,7 @@ RequestParser::result_type RequestParser::Consume(HttpRequest& req, char input) 
             return bad;
         }
     case http_version_major_start:
-        if (IsDigit(input)) {
+        if (std::isdigit(input)) {
             req.http_version_major = req.http_version_major * 10 + input - '0';
             state_ = http_version_major;
             return indeterminate;
@@ -93,14 +95,14 @@ RequestParser::result_type RequestParser::Consume(HttpRequest& req, char input) 
         if (input == '.') {
             state_ = http_version_minor_start;
             return indeterminate;
-        } else if (IsDigit(input)) {
+        } else if (std::isdigit(input)) {
             req.http_version_major = req.http_version_major * 10 + input - '0';
             return indeterminate;
         } else {
             return bad;
         }
     case http_version_minor_start:
-        if (IsDigit(input)) {
+        if (std::isdigit(input)) {
             req.http_version_minor = req.http_version_minor * 10 + input - '0';
             state_ = http_version_minor;
             return indeterminate;
@@ -112,7 +114,7 @@ RequestParser::result_type RequestParser::Consume(HttpRequest& req, char input) 
             state_ = expecting_newline_1;
             return indeterminate;
         }
-        else if (IsDigit(input)) {
+        else if (std::isdigit(input)) {
             req.http_version_minor = req.http_version_minor * 10 + input - '0';
             return indeterminate;
         } else {
@@ -132,7 +134,7 @@ RequestParser::result_type RequestParser::Consume(HttpRequest& req, char input) 
         } else if (!req.headers.empty() && (input == ' ' || input == '\t')) {
             state_ = header_lws;
             return indeterminate;
-        } else if (!IsChar(input) || IsCtl(input) || IsTspecial(input)) {
+        } else if (!IsSymbol(input) || std::iscntrl(input) || IsTspecial(input)) {
             return bad;
         } else {
             req.headers.push_back(Header());
@@ -146,7 +148,7 @@ RequestParser::result_type RequestParser::Consume(HttpRequest& req, char input) 
             return indeterminate;
         } else if (input == ' ' || input == '\t') {
             return indeterminate;
-        } else if (IsCtl(input)) {
+        } else if (std::iscntrl(input)) {
             return bad;
         }
         else {
@@ -158,7 +160,7 @@ RequestParser::result_type RequestParser::Consume(HttpRequest& req, char input) 
         if (input == ':') {
             state_ = space_before_header_value;
             return indeterminate;
-        } else if (!IsChar(input) || IsCtl(input) || IsTspecial(input)) {
+        } else if (!IsSymbol(input) || std::iscntrl(input) || IsTspecial(input)) {
             return bad;
         }
         else {
@@ -176,7 +178,7 @@ RequestParser::result_type RequestParser::Consume(HttpRequest& req, char input) 
         if (input == '\r') {
             state_ = expecting_newline_2;
             return indeterminate;
-        } else if (IsCtl(input)) {
+        } else if (std::iscntrl(input)) {
             return bad;
         } else {
             req.headers.back().value.push_back(input);
@@ -196,13 +198,10 @@ RequestParser::result_type RequestParser::Consume(HttpRequest& req, char input) 
     }
 }
 
-bool RequestParser::IsChar(int c) {
+bool RequestParser::IsSymbol(int c) {
     return c >= 0 && c <= 127;
 }
 
-bool RequestParser::IsCtl(int c) {
-    return (c >= 0 && c <= 31) || (c == 127);
-}
 
 bool RequestParser::IsTspecial(int c) {
     switch (c) {
@@ -216,9 +215,6 @@ bool RequestParser::IsTspecial(int c) {
     }
 }
 
-bool RequestParser::IsDigit(int c) {
-    return c >= '0' && c <= '9';
-}
 
 } // namespace AsyncServer
 } // namespace http

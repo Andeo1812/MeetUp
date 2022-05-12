@@ -20,7 +20,9 @@ public:
     virtual void stop() = 0;
 
 protected:
-    virtual void do_read() = 0 ;
+    virtual void do_read() = 0;
+
+    // virtual void do_handle() = 0;
 
     virtual void do_write() = 0;
 
