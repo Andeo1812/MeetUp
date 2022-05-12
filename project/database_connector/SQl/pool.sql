@@ -9,18 +9,23 @@ CREATE TABLE user_m
 
 CREATE TABLE personal_data 
 (
-	first_name varchar(63),
-	last_name varchar(63),
+	name varchar(63),
+    surname varchar(63),
 	email varchar(63),
-	age int,
+	date_birth data,
 	phone_number varchar(20),
-	status varchar(31),
-	label varchar(31),
-	description varchar(127),
-	fk_data_user bigint REFERENCES user_m(user_id) NOT NULL
+	fk_user_id bigint REFERENCES user_m(user_id) NOT NULL
 );
 
-CREATE TABLE user_address
+CREATE TABLE general_data
+(
+	status varchar(31),
+	description varchar(127),
+	tags varchar (511),
+	fk_user_id bigint REFERENCES user_m(user_id) NOT NULL
+)
+
+CREATE TABLE address_data
 (
 	building varchar(63),
 	housing varchar(63),
@@ -32,7 +37,7 @@ CREATE TABLE user_address
 	fk_address_user bigint REFERENCES user_m(user_id) NOT NULL
 );
 
-CREATE TABLE event_m
+CREATE TABLE event
 (
     event_id bigserial PRIMARY KEY,
     event_date date NOT NULL,
@@ -46,19 +51,32 @@ CREATE TABLE event_m
 CREATE TABLE contacts
 (
 	fk_user_id bigint REFERENCES user_m(user_id) NOT NULL,
-	fk_friend_id bigint REFERENCES user_m(user_id) NOT NULL
+	fk_contact_id bigint REFERENCES user_m(user_id) NOT NULL
 );
 
-CREATE TABLE group_m
+CREATE TABLE group
 (
     group_id bigserial PRIMARY KEY NOT NULL,
     title varchar(63) NOT NULL,
-    description varchar(127)
+    description varchar(127),
 );
+
+CREATE TABLE group_admins
+(
+    fk_group_id bigint REFERENCES group(group_id) NOT NULL,
+    fk_user_id bigint REFERENCES user_m(user_id) NOT NULL
+);
+
+CREATE TABLE group_moderators
+(
+    fk_group_id bigint REFERENCES group(group_id) NOT NULL,
+    fk_user_id bigint REFERENCES user_m(user_id) NOT NULL
+);
+
 
 CREATE TABLE group_members
 (
-    fk_group_id bigint REFERENCES group_m(group_id) NOT NULL,
+    fk_group_id bigint REFERENCES group(group_id) NOT NULL,
     fk_user_id bigint REFERENCES user_m(user_id) NOT NULL
 );
 
@@ -69,8 +87,16 @@ CREATE TABLE meetup
     time_begin varchar(12) NOT NULL,
     time_end varchar(12) NOT NULL,
     description varchar(127),
-    fk_group_id bigint REFERENCES group_m(group_id) NOT NULL   
+    fk_group_id bigint REFERENCES group(group_id) NOT NULL   
 );
+
+CREATE TABLE token
+(
+	date_create date,
+	date_end date,
+	token_data varchar(63),
+	fk_user_id bigint REFERENCES user_m(user_id) NOT NULL,
+)
 
 --  Удаление таблиц
 
