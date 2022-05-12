@@ -12,7 +12,7 @@ CREATE TABLE personal_data
 	name varchar(63),
     surname varchar(63),
 	email varchar(63),
-	date_birth data,
+	date_birth date,
 	phone_number varchar(20),
 	fk_user_id bigint REFERENCES user_m(user_id) NOT NULL
 );
@@ -23,7 +23,7 @@ CREATE TABLE general_data
 	description varchar(127),
 	tags varchar (511),
 	fk_user_id bigint REFERENCES user_m(user_id) NOT NULL
-)
+);
 
 CREATE TABLE address_data
 (
@@ -34,7 +34,7 @@ CREATE TABLE address_data
 	district varchar(63),
 	index varchar(63),
 	country varchar(63),
-	fk_address_user bigint REFERENCES user_m(user_id) NOT NULL
+	fk_user_id bigint REFERENCES user_m(user_id) NOT NULL
 );
 
 CREATE TABLE event
@@ -54,29 +54,29 @@ CREATE TABLE contacts
 	fk_contact_id bigint REFERENCES user_m(user_id) NOT NULL
 );
 
-CREATE TABLE group
+CREATE TABLE group_m
 (
     group_id bigserial PRIMARY KEY NOT NULL,
     title varchar(63) NOT NULL,
-    description varchar(127),
+    description varchar(127)
 );
 
 CREATE TABLE group_admins
 (
-    fk_group_id bigint REFERENCES group(group_id) NOT NULL,
+    fk_group_id bigint REFERENCES group_m(group_id) NOT NULL,
     fk_user_id bigint REFERENCES user_m(user_id) NOT NULL
 );
 
 CREATE TABLE group_moderators
 (
-    fk_group_id bigint REFERENCES group(group_id) NOT NULL,
+    fk_group_id bigint REFERENCES group_m(group_id) NOT NULL,
     fk_user_id bigint REFERENCES user_m(user_id) NOT NULL
 );
 
 
 CREATE TABLE group_members
 (
-    fk_group_id bigint REFERENCES group(group_id) NOT NULL,
+    fk_group_id bigint REFERENCES group_m(group_id) NOT NULL,
     fk_user_id bigint REFERENCES user_m(user_id) NOT NULL
 );
 
@@ -87,7 +87,7 @@ CREATE TABLE meetup
     time_begin varchar(12) NOT NULL,
     time_end varchar(12) NOT NULL,
     description varchar(127),
-    fk_group_id bigint REFERENCES group(group_id) NOT NULL   
+    fk_group_id bigint REFERENCES group_m(group_id) NOT NULL   
 );
 
 CREATE TABLE token
@@ -95,26 +95,34 @@ CREATE TABLE token
 	date_create date,
 	date_end date,
 	token_data varchar(63),
-	fk_user_id bigint REFERENCES user_m(user_id) NOT NULL,
-)
+	fk_user_id bigint REFERENCES user_m(user_id) NOT NULL
+);
 
 --  Удаление таблиц
 
 drop table personal_data;
 
-drop table user_address;
+drop table general_data;
 
-drop table event_m;
+drop table address_data;
+
+drop table event;
 
 drop table contacts;
 
-drop table group_members;
+drop table group_admins;
 
-drop table user_m;
+drop table group_moderators;
+
+drop table group_members;
 
 drop table meetup;
 
 drop table group_m;
+
+drop table token;
+
+drop table user_m;
 
 --  Примеры запросов
 
