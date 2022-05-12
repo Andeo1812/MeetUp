@@ -41,7 +41,7 @@ int DBGroupImpl::ReWrite(const Group &group) const {
 int DBGroupImpl::DeleteAllMembers(const std::string &group_id) const {
     auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
 
-    std::string SQL = "DELETE FROM group_members WHERE group_id = '" + group_id + "'";
+    std::string SQL = "DELETE FROM group_members WHERE fk_group_id = '" + group_id + "'";
 
     int res = SUCCESS;
 
@@ -69,7 +69,7 @@ int DBGroupImpl::DeleteAllMembers(const std::string &group_id) const {
 int DBGroupImpl::Delete(const std::string &group_id) const {
     auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
 
-    std::string SQL = "DELETE FROM group_m WHERE fk_group_id = '" + group_id + "'";
+    std::string SQL = "DELETE FROM group_m WHERE group_id = '" + group_id + "'";
 
     int res = SUCCESS;
 
@@ -113,7 +113,7 @@ int DBGroupImpl::AddMember(const User &user, const std::string &group_id) const 
     }
 
     std::string SQL = "INSERT INTO group_members (fk_group_id,fk_user_id) "
-          "VALUES ('" + group_id + "','" + user_id + "' ) RETURNING user_id;";
+          "VALUES ('" + group_id + "','" + user_id + "' );";
 
     int res = SUCCESS;
 
