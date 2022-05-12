@@ -30,8 +30,6 @@ TEST(PostgreSQL, DBManager) {
     EXPECT_EQ(Singleton<DBManagerPG>::GetInstance().GetData().Size(), numCPU);
 }
 
-std::string new_user_id;
-
 TEST(PostgreSQL, DBUser) {
     std::string password = {"TEST_DEV100"};
     std::string nickname = {"TEST_DEV100"};
@@ -40,36 +38,42 @@ TEST(PostgreSQL, DBUser) {
     user.SetPassword(password);
     user.SetNickname(nickname);
 
-    int res = Singleton<DBManagerPG>::GetInstance().GetData().User.Registration(user, new_user_id);
+    std::string new_user_id;
+
+    int res_reg = Singleton<DBManagerPG>::GetInstance().GetData().User.Registration(user, new_user_id);
     user.SetId(new_user_id);
 
-    EXPECT_EQ(res, SUCCESS);
+    EXPECT_EQ(res_reg, SUCCESS);
 
-    res = Singleton<DBManagerPG>::GetInstance().GetData().User.Authentication(user);
+    int res_auth = Singleton<DBManagerPG>::GetInstance().GetData().User.Authentication(user);
 
-    EXPECT_EQ(res, SUCCESS);
+    EXPECT_EQ(res_auth, SUCCESS);
 
     User user_not_exist;
     user_not_exist.SetPassword({"user_not_exist"});
     user_not_exist.SetNickname({"user_not_exist"});
 
-    res = Singleton<DBManagerPG>::GetInstance().GetData().User.Authentication(user_not_exist);
+    int res_wrong_auth = Singleton<DBManagerPG>::GetInstance().GetData().User.Authentication(user_not_exist);
 
-    EXPECT_EQ(res, NOT_AUTHENTICATION);
+    EXPECT_EQ(res_wrong_auth, NOT_AUTHENTICATION);
 
     std::string user_id;
 
-    res = Singleton<DBManagerPG>::GetInstance().GetData().User.GetId(user, user_id);
+    int res_get_id = Singleton<DBManagerPG>::GetInstance().GetData().User.GetId(user, user_id);
 
-    EXPECT_EQ(res, SUCCESS);
+    EXPECT_EQ(res_get_id, SUCCESS);
     EXPECT_EQ(user_id, user.GetId());
 
     std::string get_nickname;
 
-    res = Singleton<DBManagerPG>::GetInstance().GetData().User.GetNickname(user, get_nickname);
+    int res_get_nickname = Singleton<DBManagerPG>::GetInstance().GetData().User.GetNickname(user, get_nickname);
 
-    EXPECT_EQ(res, SUCCESS);
+    EXPECT_EQ(res_get_nickname, SUCCESS);
     EXPECT_EQ(nickname, user.GetNickname());
+
+    int res_rm_user = Singleton<DBManagerPG>::GetInstance().GetData().User.Rm(user);
+
+    EXPECT_EQ(res_rm_user, SUCCESS);
 }
 
 
@@ -90,6 +94,19 @@ TEST(PostgreSQL, DBEvent) {
     event.SetTimeBegin(time_begin);
     event.SetTimeEnd(time_end);
     event.SetDescription(description);
+
+    std::string password = {"TEST_DEV100"};
+    std::string nickname = {"TEST_DEV100"};
+
+    User user;
+    user.SetPassword(password);
+    user.SetNickname(nickname);
+
+    std::string new_user_id;
+
+    Singleton<DBManagerPG>::GetInstance().GetData().User.Registration(user, new_user_id);
+    user.SetId(new_user_id);
+
     event.SetUserId(new_user_id);
 
     std::string new_event_id;
@@ -103,10 +120,45 @@ TEST(PostgreSQL, DBEvent) {
     int res_rm = Singleton<DBManagerPG>::GetInstance().GetData().Event.Rm(event);
 
     EXPECT_EQ(res_rm, SUCCESS);
+
+    Singleton<DBManagerPG>::GetInstance().GetData().User.Rm(user);
 }
 
 TEST(PostgreSQL, DBContacts) {
+    std::string password_1 = {"TEST_DEV100"};
+    std::string nickname_1 = {"TEST_DEV100"};
 
+    User user_1;
+    user_1.SetPassword(password_1);
+    user_1.SetNickname(nickname_1);
+
+    std::string new_user_id_1;
+
+    Singleton<DBManagerPG>::GetInstance().GetData().User.Registration(user_1, new_user_id_1);
+    user_1.SetId(new_user_id_1);
+
+    std::string password_2 = {"TEST_DEV200"};
+    std::string nickname_2 = {"TEST_DEV200"};
+
+    User user_2;
+    user_2.SetPassword(password_2);
+    user_2.SetNickname(nickname_2);
+
+    std::string new_user_id_2;
+
+    Singleton<DBManagerPG>::GetInstance().GetData().User.Registration(user_2, new_user_id_2);
+    user_2.SetId(new_user_id_2);
+
+    int res_add_contact = Singleton<DBManagerPG>::GetInstance().GetData().Contacts.Add(user_1.GetId(), user_2.GetId());
+
+    EXPECT_EQ(res_add_contact, SUCCESS);
+
+    int res_delete_contact = Singleton<DBManagerPG>::GetInstance().GetData().Contacts.Delete(user_1.GetId(), user_2.GetId());
+
+    EXPECT_EQ(res_delete_contact, SUCCESS);
+
+    Singleton<DBManagerPG>::GetInstance().GetData().User.Rm(user_1);
+    Singleton<DBManagerPG>::GetInstance().GetData().User.Rm(user_2);
 }
 
 TEST(PostgreSQL, DBGroup) {
@@ -115,13 +167,4 @@ TEST(PostgreSQL, DBGroup) {
 
 TEST(PostgreSQL, DBSynchroClient) {
 
-}
-
-TEST(PostgreSQL, EndTesting) {
-    User user;
-
-    user.SetId(new_user_id);
-    int res_rm = Singleton<DBManagerPG>::GetInstance().GetData().User.Rm(user);
-
-    EXPECT_EQ(res_rm, SUCCESS);
 }

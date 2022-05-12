@@ -29,7 +29,11 @@ static enum result_delete_user {NOT_DELETE_USER = 20, ERROR_DELETE_USER} GET_USE
 
 static enum result_add_event {NOT_ADD_EVENT = 0, ERROR_ADD_EVENT} GET_ADD_EVENT;
 
-static enum result_rm_event {NOT_RM_EVENT = 5, ERROR_RM_EVENT} GET_RM_EVENT;
+static enum result_rm_event {NOT_RM_EVENT = 5, ERROR_RM_EVENT} RM_EVENT;
+
+static enum result_add_contact {NOT_ADD_CONTACT = 5, ERROR_ADD_CONTACT} ADD_CONTACT;
+
+static enum result_delete_contact  {NOT_DELETE_CONTACT = 10, ERROR_DELETE_CONTACT} DELETE_CONTACT;
 
 class DBManagerPG {
     std::queue<PGConnection *> connection_pool;
