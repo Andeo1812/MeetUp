@@ -4,7 +4,7 @@
 
 class DBGroupImpl : public DBGroup {
  public:
-    int Create(const Group &group) const override;
+    int Create(const Group &group, std::string &group_id) const override;
 
     int ReWrite(const Group &group) const override;
 
@@ -12,13 +12,13 @@ class DBGroupImpl : public DBGroup {
 
     int Delete(const std::string &group_id) const override;
 
-    Group GetMembers(const std::string &group_id) const override;
+    int GetMembers(const std::string &group_id, Group &group) const override;
 
-    int AddMember(const std::string &user_nickname, const std::string &group_id) const override;
+    int AddMember(const User &user, const std::string &group_id) const override;
 
-    int RmMember(const std::string &user_nickname, const std::string &group_id) const override;
+    int RmMember(const User &user, const std::string &group_id) const override;
 
-    std::string GetId(const Group &group) const override;
+    int GetId(const Group &group, std::string &group_id) const override;
 
     DBGroupImpl() = default;
     ~DBGroupImpl() = default;

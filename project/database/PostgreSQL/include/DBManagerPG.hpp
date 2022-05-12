@@ -35,6 +35,16 @@ static enum result_add_contact {NOT_ADD_CONTACT = 5, ERROR_ADD_CONTACT} ADD_CONT
 
 static enum result_delete_contact  {NOT_DELETE_CONTACT = 10, ERROR_DELETE_CONTACT} DELETE_CONTACT;
 
+static enum result_create_group {NOT_CREATE_GROUP = 5, ERROR_CREATE_GROUP} CREATE_CONTACT;
+
+static enum result_add_group_member  {NOT_ADD_GROUP_MEMBER = 10, ERROR_ADD_GROUP_MEMBER} ADD_GROUP_MEMBER;
+
+static enum result_rm_group_member  {NOT_RM_GROUP_MEMBER = 10, ERROR_RM_GROUP_MEMBER} RM_GROUP_MEMBER;
+
+static enum result_delete_group_all_member  {NOT_DELETE_GROUP_ALL_MEMBER = 10, ERROR_DELETE_GROUP_ALL_MEMBER} DELETE_GROUP_ALL_MEMBER;
+
+static enum result_delete_group  {NOT_DELETE_GROUP = 10, ERROR_DELETE_GROUP} DELETE_GROUP;
+
 class DBManagerPG {
     std::queue<PGConnection *> connection_pool;
 public:

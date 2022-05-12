@@ -31,12 +31,9 @@ TEST(PostgreSQL, DBManager) {
 }
 
 TEST(PostgreSQL, DBUser) {
-    std::string password = {"TEST_DEV100"};
-    std::string nickname = {"TEST_DEV100"};
-
     User user;
-    user.SetPassword(password);
-    user.SetNickname(nickname);
+    user.SetPassword("TEST_DEV100");
+    user.SetNickname("TEST_DEV100");
 
     std::string new_user_id;
 
@@ -69,7 +66,7 @@ TEST(PostgreSQL, DBUser) {
     int res_get_nickname = Singleton<DBManagerPG>::GetInstance().GetData().User.GetNickname(user, get_nickname);
 
     EXPECT_EQ(res_get_nickname, SUCCESS);
-    EXPECT_EQ(nickname, user.GetNickname());
+    EXPECT_EQ(get_nickname, user.GetNickname());
 
     int res_rm_user = Singleton<DBManagerPG>::GetInstance().GetData().User.Rm(user);
 
@@ -95,12 +92,9 @@ TEST(PostgreSQL, DBEvent) {
     event.SetTimeEnd(time_end);
     event.SetDescription(description);
 
-    std::string password = {"TEST_DEV100"};
-    std::string nickname = {"TEST_DEV100"};
-
     User user;
-    user.SetPassword(password);
-    user.SetNickname(nickname);
+    user.SetPassword("TEST_DEV100");
+    user.SetNickname("TEST_DEV100");
 
     std::string new_user_id;
 
@@ -125,24 +119,18 @@ TEST(PostgreSQL, DBEvent) {
 }
 
 TEST(PostgreSQL, DBContacts) {
-    std::string password_1 = {"TEST_DEV100"};
-    std::string nickname_1 = {"TEST_DEV100"};
-
     User user_1;
-    user_1.SetPassword(password_1);
-    user_1.SetNickname(nickname_1);
+    user_1.SetPassword("TEST_DEV100");
+    user_1.SetNickname("TEST_DEV100");
 
     std::string new_user_id_1;
 
     Singleton<DBManagerPG>::GetInstance().GetData().User.Registration(user_1, new_user_id_1);
     user_1.SetId(new_user_id_1);
 
-    std::string password_2 = {"TEST_DEV200"};
-    std::string nickname_2 = {"TEST_DEV200"};
-
     User user_2;
-    user_2.SetPassword(password_2);
-    user_2.SetNickname(nickname_2);
+    user_2.SetPassword("TEST_DEV200");
+    user_2.SetNickname("TEST_DEV200");
 
     std::string new_user_id_2;
 
@@ -162,7 +150,60 @@ TEST(PostgreSQL, DBContacts) {
 }
 
 TEST(PostgreSQL, DBGroup) {
+    User user_1;
+    user_1.SetPassword("TEST_DEV100");
+    user_1.SetNickname("TEST_DEV100");
 
+    std::string new_user_id_1;
+
+    Singleton<DBManagerPG>::GetInstance().GetData().User.Registration(user_1, new_user_id_1);
+    user_1.SetId(new_user_id_1);
+
+    User user_2;
+    user_2.SetPassword("TEST_DEV200");
+    user_2.SetNickname("TEST_DEV200");
+
+    std::string new_user_id_2;
+
+    Singleton<DBManagerPG>::GetInstance().GetData().User.Registration(user_2, new_user_id_2);
+    user_2.SetId(new_user_id_2);
+
+    Group group;
+
+    group.SetTitle("Test");
+    group.SetDescription("Test");
+    group.SetUserId(user_1.GetId());
+
+
+    std::string group_id;
+
+    int res_create_group = Singleton<DBManagerPG>::GetInstance().GetData().Group.Create(group, group_id);
+    group.SetId(group_id);
+
+    EXPECT_EQ(res_create_group, SUCCESS);
+
+    int res_add_member_owner = Singleton<DBManagerPG>::GetInstance().GetData().Group.AddMember(user_1, group_id);
+
+    EXPECT_EQ(res_add_member_owner, SUCCESS);
+
+    int res_add_member_1 = Singleton<DBManagerPG>::GetInstance().GetData().Group.AddMember(user_2, group_id);
+
+    EXPECT_EQ(res_add_member_1, SUCCESS);
+
+    int res_rm_member_1 = Singleton<DBManagerPG>::GetInstance().GetData().Group.RmMember(user_2, group_id);
+
+    EXPECT_EQ(res_rm_member_1, SUCCESS);
+
+    int res_delete_all_members = Singleton<DBManagerPG>::GetInstance().GetData().Group.DeleteAllMembers(group_id);
+
+    EXPECT_EQ(res_delete_all_members, SUCCESS);
+
+    int res_delete_group = Singleton<DBManagerPG>::GetInstance().GetData().Group.Delete(group_id);
+
+    EXPECT_EQ(res_delete_group, SUCCESS);
+
+    Singleton<DBManagerPG>::GetInstance().GetData().User.Rm(user_1);
+    Singleton<DBManagerPG>::GetInstance().GetData().User.Rm(user_2);
 }
 
 TEST(PostgreSQL, DBSynchroClient) {

@@ -65,7 +65,7 @@ int DBUserImpl::Authentication(const User &user) const {
 int DBUserImpl::GetId(const User &user, std::string &user_id) const {
     auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
 
-    std::string SQL = "SELECT user_id FROM user_m WHERE password = '" + user.GetPassword() + "' and nickname = '" + user.GetNickname() + "'";
+    std::string SQL = "SELECT user_id FROM user_m WHERE  nickname = '" + user.GetNickname() + "'";
 
     int res = SUCCESS;
 
