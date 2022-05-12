@@ -10,7 +10,6 @@
 #include "DBEventImpl.hpp"
 #include "DBContactsImpl.hpp"
 #include "DBGroupImpl.hpp"
-#include "DBSynchroClientImpl.hpp"
 
 //  LIMIT from ElephantSQL.com(source DB)
 const size_t MAX_COUNT_FREE_DB_VERSION = 2;
@@ -25,7 +24,6 @@ public:
     DBEventImpl Event;
     DBContactsImpl Contacts;
     DBGroupImpl Group;
-    DBSynchroClientImpl SynchroClient;
 
     PGConnection *GetFreeConnection();
 

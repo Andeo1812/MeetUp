@@ -16,6 +16,8 @@ class DBEventImpl : public DBEvent {
 
     int GetId(const Event &event, std::string &event_id) const override;
 
+    int GetSet(const std::string &user_id, std::set<Event> &events, const std::string &date) const override;
+
     DBEventImpl() = default;
     ~DBEventImpl() = default;
 };

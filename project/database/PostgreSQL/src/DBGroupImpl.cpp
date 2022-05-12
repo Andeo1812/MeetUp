@@ -180,3 +180,7 @@ int DBGroupImpl::GetId(const Group &group, std::string &group_id) const {
     std::string res;
     return EXIT_SUCCESS;
 }
+
+int DBGroupImpl::GetSet(const std::string &user_id, std::set<Group> &groups, const size_t count, const size_t page) const {
+    return EXIT_SUCCESS;
+}

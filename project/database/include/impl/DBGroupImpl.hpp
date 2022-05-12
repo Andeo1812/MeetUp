@@ -30,6 +30,8 @@ class DBGroupImpl : public DBGroup {
 
     int GetId(const Group &group, std::string &group_id) const override;
 
+    int GetSet(const std::string &user_id, std::set<Group> &groups, const size_t count, const size_t page) const override;
+
     DBGroupImpl() = default;
     ~DBGroupImpl() = default;
 };

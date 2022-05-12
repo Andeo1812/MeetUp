@@ -9,8 +9,6 @@
 #include "DBEventImpl.hpp"
 #include "DBContactsImpl.hpp"
 #include "DBGroupImpl.hpp"
-#include "DBSynchroClientImpl.hpp"
-
 
 TEST(PostgreSQL, DBManager) {
     Singleton<DBManagerPG>::GetInstance();

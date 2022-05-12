@@ -75,3 +75,7 @@ int DBEventImpl::GetId(const Event &event, std::string &event_id) const {
     int res;
     return res;
 }
+
+int DBEventImpl::GetSet(const std::string &user_id, std::set<Event> &events, const std::string &date) const {
+    return EXIT_SUCCESS;
+}

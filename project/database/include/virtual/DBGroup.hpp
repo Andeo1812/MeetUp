@@ -1,6 +1,7 @@
 #pragma once  //  NOLINT
 
 #include <string>
+#include <set>
 
 #include "Group.hpp"
 #include "User.hpp"
@@ -22,6 +23,8 @@ class DBGroup {
     virtual int RmMember(const User &user, const std::string &group_id) const = 0;
 
     virtual int GetId(const Group &group, std::string &group_id) const = 0;
+
+    virtual int GetSet(const std::string &user_id, std::set<Group> &groups, const size_t count, const size_t page) const = 0;
 
     virtual ~DBGroup() = default;
 };
