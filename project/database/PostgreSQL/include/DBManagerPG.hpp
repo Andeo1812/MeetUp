@@ -13,16 +13,23 @@
 #include "DBSynchroClientImpl.hpp"
 
 //  LIMIT from ElephantSQL.com(source DB)
-const size_t MAX_COUNT_FREE_DB_VERSION = 3;
+const size_t MAX_COUNT_FREE_DB_VERSION = 2;
 
-const int ERR_AUTHENTICATION = -1;
+static enum result_sql {SUCCESS = 0} RESULT;
 
-static enum result_sql {SUCCESS = 0,
-        NOT_REGISTRATION, ERROR_REGISTRATION,
-        NOT_AUTHENTICATION, ERROR_AUTHENTICATION,
-        NOT_GET_USER_ID, ERROR_GET_USER_ID,
-        NOT_GET_USER_NICKNAME, ERROR_GET_USER_NICKNAME,
-        NOT_DELETE_USER, ERROR_DELETE_USER} RESULT;
+static enum result_registration {NOT_REGISTRATION = 0, ERROR_REGISTRATION} REG;
+
+static enum result_authentication {NOT_AUTHENTICATION = 5, ERROR_AUTHENTICATION} AUTH;
+
+static enum result_get_user_id {NOT_GET_USER_ID = 10, ERROR_GET_USER_ID} GET_USER_ID;
+
+static enum result_get_user_nickname {NOT_GET_USER_NICKNAME = 15, ERROR_GET_USER_NICKNAME} GET_NICKNAME;
+
+static enum result_delete_user {NOT_DELETE_USER = 20, ERROR_DELETE_USER} GET_USER_DELETE;
+
+static enum result_add_event {NOT_ADD_EVENT = 0, ERROR_ADD_EVENT} GET_ADD_EVENT;
+
+static enum result_rm_event {NOT_RM_EVENT = 5, ERROR_RM_EVENT} GET_RM_EVENT;
 
 class DBManagerPG {
     std::queue<PGConnection *> connection_pool;

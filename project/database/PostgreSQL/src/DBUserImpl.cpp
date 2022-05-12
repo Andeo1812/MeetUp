@@ -84,7 +84,7 @@ int DBUserImpl::GetId(const User &user, std::string &user_id) const {
     } catch (const std::exception &e) {
         std::cout << e.what() << std::endl;
 
-        res = ERROR_GET_USER_ID
+        res = ERROR_GET_USER_ID;
     }
 
     Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
@@ -134,7 +134,7 @@ int DBUserImpl::Rm(const User &user) const {
 
         pqxx::result result(work.exec(SQL));
 
-        if (result.empty()) {
+        if (!result.empty()) {
             res = NOT_DELETE_USER;
         }
 

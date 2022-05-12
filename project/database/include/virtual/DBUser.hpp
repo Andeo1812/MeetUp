@@ -12,7 +12,7 @@ class DBUser {
 
     virtual int GetNickname(const User &user, std::string &nickname) const = 0;
 
-    virtual int Rm(const User &user) const;
+    virtual int Rm(const User &user) const = 0;
 
     virtual ~DBUser() = default;
 };

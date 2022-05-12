@@ -92,10 +92,17 @@ TEST(PostgreSQL, DBEvent) {
     event.SetDescription(description);
     event.SetUserId(new_user_id);
 
-    std::string new_event_id = Singleton<DBManagerPG>::GetInstance().GetData().Event.Add(event);
+    std::string new_event_id;
+
+    int res_add = Singleton<DBManagerPG>::GetInstance().GetData().Event.Add(event, new_event_id);
     event.SetId(new_event_id);
 
     EXPECT_TRUE(!new_event_id.empty());
+    EXPECT_EQ(res_add, SUCCESS);
+
+    int res_rm = Singleton<DBManagerPG>::GetInstance().GetData().Event.Rm(event);
+
+    EXPECT_EQ(res_rm, SUCCESS);
 }
 
 TEST(PostgreSQL, DBContacts) {
@@ -108,4 +115,13 @@ TEST(PostgreSQL, DBGroup) {
 
 TEST(PostgreSQL, DBSynchroClient) {
 
+}
+
+TEST(PostgreSQL, EndTesting) {
+    User user;
+
+    user.SetId(new_user_id);
+    int res_rm = Singleton<DBManagerPG>::GetInstance().GetData().User.Rm(user);
+
+    EXPECT_EQ(res_rm, SUCCESS);
 }
