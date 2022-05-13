@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <pqxx/pqxx>
 
-#include "DBConnection.hpp"
+#include "DBConnectionImpl.hpp"
 #include "DBUserImpl.hpp"
 #include "DBUserDataImpl.hpp"
 #include "DBEventImpl.hpp"
@@ -15,17 +15,15 @@
 //  LIMIT from ElephantSQL.com(source DB)
 const size_t MAX_COUNT_FREE_DB_VERSION = 2;
 
-static enum result_sql {SUCCESS = 0} RESULT;
-
 template<typename T, class ClassConnection = DBConnection<T>>
 class DBManager {
     std::queue<ClassConnection *> connection_pool;
 public:
-    DBUserImpl User;
-    DBUserDataImpl UserData;
-    DBEventImpl Event;
+    DBUserImpl<ClassConnection> User;
+    DBUserDataImplDefinition<ClassConnection> UserData;
+    DBEventImpl<ClassConnection> Event;
     DBContactsImpl<ClassConnection> Contacts;
-    DBGroupImpl Group;
+    DBGroupImplDefinition<ClassConnection> Group;
 
     ClassConnection *GetFreeConnection();
 
@@ -64,4 +62,4 @@ private:
     ~Singleton() {}
 };
 
-#include "DBManagerImpl.hpp"
+#include "../../PostgreSQL/DBManagerImpl.hpp"

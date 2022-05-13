@@ -12,18 +12,21 @@ static enum result_get_user_nickname {NOT_GET_USER_NICKNAME = 15, ERROR_GET_USER
 
 static enum result_delete_user {NOT_DELETE_USER = 20, ERROR_DELETE_USER} GET_USER_DELETE;
 
-class DBUserImpl : public DBUser {
+template<class ClassConnection>
+class DBUserImpl : public DBUser<ClassConnection> {
  public:
-    int Registration(const User &user, std::string &new_user_id) const override;
+    int Registration(const User &user, std::string &new_user_id, ClassConnection *connection) const override;
 
-    int Authentication(const User &user) const override;
+    int Authentication(const User &user, ClassConnection *connection) const override;
 
-    int GetId(const User &user, std::string &user_id) const override;
+    int GetId(const User &user, std::string &user_id, ClassConnection *connection) const override;
 
-    int GetNickname(const User &user, std::string &nickname) const override;
+    int GetNickname(const User &user, std::string &nickname, ClassConnection *connection) const override;
 
-    int Rm(const User &user) const override;
+    int Rm(const User &user, ClassConnection *connection) const override;
 
     DBUserImpl() = default;
     ~DBUserImpl() = default;
 };
+
+#include "DBUserImplDefinition.hpp"

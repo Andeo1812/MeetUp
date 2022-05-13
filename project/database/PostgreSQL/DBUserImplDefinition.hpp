@@ -1,18 +1,19 @@
+#pragma once  //  NOLINT
+
 #include <iostream>
 
 #include "DBUserImpl.hpp"
 #include "DBManager.hpp"
 
-int DBUserImpl::Registration(const User &user, std::string &new_user_id) const {
-    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
-
+template<class ClassConnection>
+int DBUserImpl<ClassConnection>::Registration(const User &user, std::string &new_user_id, ClassConnection *connection) const {
     std::string SQL = "INSERT INTO user_m (nickname,password) "
                       "VALUES ('" + user.GetNickname() + "','" + user.GetPassword() + "' ) RETURNING user_id;";
 
-    int res = SUCCESS;
+    int res = EXIT_SUCCESS;
 
     try {
-        pqxx::work work(con->GetConnection());
+        pqxx::work work(connection->GetConnection());
 
         pqxx::result result(work.exec(SQL));
 
@@ -29,20 +30,17 @@ int DBUserImpl::Registration(const User &user, std::string &new_user_id) const {
         res = ERROR_REGISTRATION;
     }
 
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
-
     return res;
 }
 
-int DBUserImpl::Authentication(const User &user) const {
-    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
-
+template<class ClassConnection>
+int DBUserImpl<ClassConnection>::Authentication(const User &user, ClassConnection *connection) const {
     std::string SQL = "SELECT user_id FROM user_m WHERE password = '" + user.GetPassword() + "' and nickname = '" + user.GetNickname() + "'";
 
-    int res = SUCCESS;
+    int res = EXIT_SUCCESS;
 
     try {
-        pqxx::work work(con->GetConnection());
+        pqxx::work work(connection->GetConnection());
 
         pqxx::result result(work.exec(SQL));
 
@@ -57,20 +55,17 @@ int DBUserImpl::Authentication(const User &user) const {
         res = ERROR_AUTHENTICATION;
     }
 
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
-
     return res;
 }
 
-int DBUserImpl::GetId(const User &user, std::string &user_id) const {
-    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
-
+template<class ClassConnection>
+int DBUserImpl<ClassConnection>::GetId(const User &user, std::string &user_id, ClassConnection *connection) const {
     std::string SQL = "SELECT user_id FROM user_m WHERE  nickname = '" + user.GetNickname() + "'";
 
-    int res = SUCCESS;
+    int res = EXIT_SUCCESS;
 
     try {
-        pqxx::work work(con->GetConnection());
+        pqxx::work work(connection->GetConnection());
 
         pqxx::result result(work.exec(SQL));
 
@@ -87,20 +82,17 @@ int DBUserImpl::GetId(const User &user, std::string &user_id) const {
         res = ERROR_GET_USER_ID;
     }
 
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
-
     return res;
 }
 
-int DBUserImpl::GetNickname(const User &user, std::string &nickname) const {
-    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
-
+template<class ClassConnection>
+int DBUserImpl<ClassConnection>::GetNickname(const User &user, std::string &nickname, ClassConnection *connection) const {
     std::string SQL = "SELECT nickname FROM user_m WHERE user_id = '" + user.GetId() + "'";
 
-    int res = SUCCESS;
+    int res = EXIT_SUCCESS;
 
     try {
-        pqxx::work work(con->GetConnection());
+        pqxx::work work(connection->GetConnection());
 
         pqxx::result result(work.exec(SQL));
 
@@ -117,20 +109,17 @@ int DBUserImpl::GetNickname(const User &user, std::string &nickname) const {
         res = ERROR_GET_USER_NICKNAME;
     }
 
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
-
     return res;
 }
 
-int DBUserImpl::Rm(const User &user) const {
-    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
-
+template<class ClassConnection>
+int DBUserImpl<ClassConnection>::Rm(const User &user, ClassConnection *connection) const {
     std::string SQL = "DELETE FROM user_m WHERE user_id = '" + user.GetId() + "'";
 
-    int res = SUCCESS;
+    int res = EXIT_SUCCESS;
 
     try {
-        pqxx::work work(con->GetConnection());
+        pqxx::work work(connection->GetConnection());
 
         pqxx::result result(work.exec(SQL));
 
@@ -144,8 +133,6 @@ int DBUserImpl::Rm(const User &user) const {
 
         res = ERROR_DELETE_USER;
     }
-
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
 
     return res;
 }

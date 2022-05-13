@@ -1,11 +1,12 @@
+#pragma once  //  NOLINT
+
 #include <iostream>
 
 #include "DBEventImpl.hpp"
 #include "DBManager.hpp"
 
-int DBEventImpl::Add(const Event &event, std::string *new_event_id) const {
-    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
-
+template<class ClassConnection>
+int DBEventImpl<ClassConnection>::Add(const Event &event, std::string *new_event_id, ClassConnection *connection) const {
     std::string SQL = "INSERT INTO event (event_name,event_date,time_begin,time_end,description,fk_user_id) "
                       "VALUES ('" + event.GetName() + "','"
                       + event.GetDate() + "','"
@@ -14,10 +15,10 @@ int DBEventImpl::Add(const Event &event, std::string *new_event_id) const {
                       + event.GetDescription() + "','"
                       + event.GetUserId() + "' ) RETURNING event_id;";
 
-    int res = SUCCESS;
+    int res = EXIT_SUCCESS;
 
     try {
-        pqxx::work work(con->GetConnection());
+        pqxx::work work(connection->GetConnection());
 
         pqxx::result result(work.exec(SQL));
 
@@ -34,24 +35,22 @@ int DBEventImpl::Add(const Event &event, std::string *new_event_id) const {
         res = ERROR_ADD_EVENT;
     }
 
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
-
     return res;
 }
 
-int DBEventImpl::Write(const Event &event) const {
+template<class ClassConnection>
+int DBEventImpl<ClassConnection>::Write(const Event &event, ClassConnection *connection) const {
     return EXIT_SUCCESS;
 }
 
-int DBEventImpl::Rm(const Event &event) const {
-    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
-
+template<class ClassConnection>
+int DBEventImpl<ClassConnection>::Rm(const Event &event, ClassConnection *connection) const {
     std::string SQL = "DELETE FROM event WHERE event_id = '" + event.GetId() + "'";
 
-    int res = SUCCESS;
+    int res = EXIT_SUCCESS;
 
     try {
-        pqxx::work work(con->GetConnection());
+        pqxx::work work(connection->GetConnection());
 
         pqxx::result result(work.exec(SQL));
 
@@ -66,25 +65,23 @@ int DBEventImpl::Rm(const Event &event) const {
         res = ERROR_RM_EVENT;
     }
 
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
-
     return res;
 }
 
-int DBEventImpl::GetId(const Event &event, std::string *event_id) const {
+template<class ClassConnection>
+int DBEventImpl<ClassConnection>::GetId(const Event &event, std::string *event_id, ClassConnection *connection)  const {
     int res;
     return res;
 }
 
-int DBEventImpl::GetSet(const std::string &user_id, std::set<Event> *events, const std::string &date) const {
-    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
-
+template<class ClassConnection>
+int DBEventImpl<ClassConnection>::GetSet(const std::string &user_id, std::set<Event> *events, const std::string &date, ClassConnection *connection) const {
     std::string SQL = "SELECT * FROM event WHERE event_date = '" + date + "' ORDER BY DESK time_begin";
 
-    int res = SUCCESS;
+    int res = EXIT_SUCCESS;
 
     try {
-        pqxx::work work(con->GetConnection());
+        pqxx::work work(connection->GetConnection());
 
         pqxx::result result(work.exec(SQL));
 
@@ -110,8 +107,6 @@ int DBEventImpl::GetSet(const std::string &user_id, std::set<Event> *events, con
 
         res = ERROR_GET_SET_EVENTS;
     }
-
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
 
     return res;
 }

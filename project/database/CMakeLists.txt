@@ -1,13 +1,13 @@
 project(Database)
 
-file(GLOB SOURCES PostgreSQL/src/*.cpp)
+file(GLOB SOURCES PostgreSQL/*.cpp)
 file(GLOB INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include/impl/)
 file(GLOB INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include/virtual/)
-file(GLOB INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/PostgreSQL/include/)
+file(GLOB INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/PostgreSQL/)
 
 set(Include_dir ${CMAKE_CURRENT_SOURCE_DIR}/include/impl/
         ${CMAKE_CURRENT_SOURCE_DIR}/include/virtual/
-        ${CMAKE_CURRENT_SOURCE_DIR}/PostgreSQL/include/)
+        ${CMAKE_CURRENT_SOURCE_DIR}/PostgreSQL/)
 
 file(GLOB INCLUDE_DIRS Include_dir)
 

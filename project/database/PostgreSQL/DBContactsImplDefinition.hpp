@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-#include "DBManager.hpp"
 #include "DBContactsImpl.hpp"
+#include "DBManager.hpp"
 
 template<class ClassConnection>
 int DBContactsImpl<ClassConnection>::Add(const std::string &user_id, const std::string &user_id_contact, ClassConnection *connection) const {
