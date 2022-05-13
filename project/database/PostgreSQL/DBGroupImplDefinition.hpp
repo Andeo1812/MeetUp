@@ -153,5 +153,35 @@ int DBGroupImplDefinition<ClassConnection>::GetId(const Group &group, std::strin
 
 template<class ClassConnection>
 int DBGroupImplDefinition<ClassConnection>::GetSet(const std::string &user_id, std::set<Group> *groups, const size_t &left, const size_t &right, ClassConnection *connection) const {
-    return EXIT_SUCCESS;
+    std::string SQL = "SELECT fk_group_id, title, description FROM group_members LEFT JOIN group_m ON fk_group_id = group_id WHERE fk_user_id = " + user_id + " ORDER BY fk_group_id DESC OFFSET " + std::to_string(left) + " ROWS FETCH NEXT " + std::to_string(right - left) + " ROWS ONLY";
+
+    int res = EXIT_SUCCESS;
+
+    try {
+        pqxx::work work(connection->GetConnection());
+
+        pqxx::result result(work.exec(SQL));
+
+        if (!result.empty()) {
+            for (auto row : result) {
+                Group group;
+
+                group.SetTitle(row["title"].as<std::string>());
+                group.SetDescription(row["description"].as<std::string>());
+                group.SetId(row["fk_group_id"].as<std::string>());
+
+                groups->insert(group);
+            }
+        } else {
+            res = NOT_GET_SET_CONTACT;
+        }
+
+        work.commit();
+    } catch (const std::exception &e) {
+        std::cout << e.what() << std::endl;
+
+        res = ERROR_GET_SET_CONTACT;
+    }
+
+    return res;
 }
