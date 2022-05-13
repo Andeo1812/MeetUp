@@ -28,6 +28,7 @@ void ClientConnection::stop() {
     socket_.close();
 }
 
+//Modulate back-end's work
 std::tuple<int, std::string> get_response(std::string in) {
     std::string out;
     srand(time(NULL));
@@ -59,9 +60,8 @@ void ClientConnection::async_get(std::string str, boost::asio::steady_timer* tim
 
 }
 
-
 void ClientConnection::do_handle() {
-    timer.async_wait(boost::bind(&ClientConnection::async_get, this, "azaza", &timer));
+    timer.async_wait(boost::bind(&ClientConnection::async_get, this, "send_this_string_to_back_end_and_wait_the_response", &timer));
 }
 
 void ClientConnection::do_read() {
@@ -93,11 +93,11 @@ void ClientConnection::do_read() {
 
 void ClientConnection::do_write() {
     auto self(shared_from_this());
-    reply_.print_rep(); // print into console
+    reply_.print_rep();
+
     boost::asio::async_write(socket_, reply_.to_buffers(),
         [this, self](boost::system::error_code ec, std::size_t) {
             if (!ec) {
-                // Initiate graceful connection closure.
                 boost::system::error_code ignored_ec;
                 socket_.shutdown(boost::asio::ip::tcp::socket::shutdown_both, ignored_ec);
             }

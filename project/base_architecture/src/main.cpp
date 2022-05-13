@@ -28,7 +28,6 @@ int main(int argc, char* argv[]) {
             return 1;
         }
 
-        // Initialise the server.
         http::AsyncServer::AsyncServer s(argv[1], argv[2], argv[3]);
 
         // Run the server until stopped.

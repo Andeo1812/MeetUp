@@ -8,7 +8,11 @@
 #include "RequestHandler.hpp"
 #include "Server.hpp"
 
+#include <fstream>
+
 TEST(http::AsyncServer::AsyncServer, TestRequestServIntInvalidRequest) {
+    std::string host_name = "127.0.0.1 8000";
+    std::string test_file = "InvalidRequest.txt";
 
     std:string request(
     "GET / HTTP/1.1\r\n
@@ -16,27 +20,25 @@ TEST(http::AsyncServer::AsyncServer, TestRequestServIntInvalidRequest) {
     User-Agent: curl/7.68.0\r\n
     Accept: */*\r\n
     \r\n");
+// echo -en "POST / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[\"a\" : \"b\"]}\r\n" | ncat  127.0.0.1 8000
+    std::string s = "echo -en \"POST / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[a : b]}\r\n\" | ncat  127.0.0.1 8000 > InvalidRequest.txt";
+    system(s.c_str());
 
+    std::ifstream fin1(test_file);
+    std::ifstream fin2("InvalidRequest.gold");
+    ASSERT_TRUE(fin1);
+    ASSERT_TRUE(fin2);
 
-    std::string expected_method = "GET";
-    std::string expected_uri = "/";
-    int expected_http_version_major = 1;
-    int expected_http_version_minor = 1;
-    std::vector<Header> expected_headers;
+    char ch1, ch2;
+    bool result = true;
+    while (fin1.get(ch1) && fin2.get(ch2)) {
+        if (ch1 != ch2) {
+            result = false;
+            break;
+        }
+    }
+    ASSERT_EQ(result, true);
 
-    Header expected_header { "Host" , "127.0.0.1:8000" }
-    expected_headers.push_back(expected_header);
-
-    expected_header.name = "User-Agent";
-    expected_header.value = "curl/7.68.0";
-    expected_headers.push_back(expected_header);
-
-    expected_header.name = "Accept";
-    expected_header.value = "*/*";
-    expected_headers.push_back(expected_header);
-
-
-    //run
 
     EXPECT_EQ(expected_method, request.method);
     EXPECT_EQ(expected_uri, request.uri);

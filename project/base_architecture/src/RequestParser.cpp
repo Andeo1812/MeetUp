@@ -207,32 +207,11 @@ RequestParser::result_type RequestParser::Consume(HttpRequest& req, char input) 
             std::cout << "return bad;" << std::endl;
             return bad;
         } else {
-            // if (req.content.empty()) {
-            //     std::cout << "--------------req.content.empty()-----" << std::endl;
-            // } else {
-            //     std::cout << "-cont-> " << req.content;
-            // }
             req.content.push_back(input);
             return indeterminate;
         }
     case expecting_newline_4:
         return (input == '\n') ? good : bad;
-    //     if (input == '\n') {
-    //         state_ = expecting_last_r;
-    //         return indeterminate;
-    //     } else {
-    //         return bad;
-    //     }
-    // case expecting_last_r:
-    //     if (input == '\r') {
-    //         state_ = expecting_last_n;
-    //         return indeterminate;
-    //     } else {
-    //         return bad;
-    //     }
-    // case expecting_last_n:
-    //     std::cout << "SUCCESS PASRING" << req.content << std::endl;
-    //     return (input == '\n') ? good : bad;
     default:
         std::cout << "DEFAULT" << std::endl;
         return bad;

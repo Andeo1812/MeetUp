@@ -13,7 +13,6 @@ struct HttpRequest;
 /// Parser for incoming requests.
 class RequestParser {
 public:
-    /// Construct ready to parse the request method.
     RequestParser();
 
     /// Reset to initial parser state.
@@ -24,8 +23,7 @@ public:
 
     /// Parse some data. The enum return value is good when a complete request has
     /// been parsed, bad if the data is invalid, indeterminate when more data is
-    /// required. The InputIterator return value indicates how much of the input
-    /// has been consumed.
+    /// required.
     template <typename InputIterator>
     std::tuple<result_type, InputIterator> parse(HttpRequest& req,
         InputIterator begin, InputIterator end) {
@@ -33,17 +31,10 @@ public:
             result_type result = Consume(req, *begin++);
 
             if (result == good || result == bad) {
-                // std::cout << "in req:" << req.headers[0].name << req.headers[0].value
-                //  << req.headers[1].name << req.headers[1].value <<
-                // req.uri << req.method << req.http_version_major <<
-                // req.http_version_minor << std::endl;
                 return std::make_tuple(result, begin);
             }
 
         }
-        // std::cout << "in req:" << req.headers.data() <<
-        //         req.uri << req.method << req.http_version_major <<
-        //         req.http_version_minor << std::endl;
         return std::make_tuple(indeterminate, begin);
     }
 
@@ -53,9 +44,7 @@ private:
 
     static bool IsSymbol(int c);
 
-    /// Check if a byte is defined as an HTTP tspecial character.
     static bool IsTspecial(int c);
-
 
     /// The current state of the parser.
     enum State {
@@ -81,8 +70,6 @@ private:
         expecting_newline_3,
         content_value,
         expecting_newline_4,
-        expecting_last_r,
-        expecting_last_n,
     } state_;
 };
 

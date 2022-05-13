@@ -18,7 +18,6 @@ RequestHandler : public Handler {
 public:
     RequestHandler(const RequestHandler&) = delete;
     RequestHandler& operator=(const RequestHandler&) = delete;
-    // boost::asio::streambuf a;
     /// Construct with a directory containing files to be served.
     explicit RequestHandler(const std::string& doc_root);
 
@@ -32,8 +31,7 @@ private:
     /// The directory containing the files to be served.
     std::string doc_root_;
 
-    /// Perform URL-decoding on a string. Returns false if the encoding was
-    /// invalid.
+    /// Perform URL-decoding on a string. Returns false if the encoding was invalid.
     static bool url_decode(const std::string& in, std::string& out);
 };
 
