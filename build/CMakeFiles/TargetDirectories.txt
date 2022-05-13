@@ -1,3 +1,0 @@
-/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/build/CMakeFiles/rebuild_cache.dir
-/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/build/CMakeFiles/edit_cache.dir
-/media/ivan/6A0CEC5E0CEC26B3/uchyoba/TexnoPark/Osnova/C-C++/MeetUp_Official/build/CMakeFiles/server.dir
