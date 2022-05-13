@@ -1,3 +1,5 @@
+#pragma once  //  NOLINT
+
 #include <unistd.h>
 
 #include "DBManager.hpp"

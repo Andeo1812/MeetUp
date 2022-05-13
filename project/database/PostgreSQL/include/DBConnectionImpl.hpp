@@ -1,3 +1,5 @@
+#pragma once  //  NOLINT
+
 #include "DBConnection.hpp"
 
 template<typename Connection>

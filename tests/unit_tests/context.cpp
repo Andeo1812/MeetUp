@@ -9,8 +9,6 @@
 #include "Group.hpp"
 #include "MeetUp.hpp"
 
-
-
 TEST(CONTEXT, User) {
     std::string user_id = {"123"};
     std::string password = {"GogozikPARSSS"};

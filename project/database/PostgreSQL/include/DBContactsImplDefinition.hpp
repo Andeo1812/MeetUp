@@ -1,18 +1,19 @@
+#pragma once  //  NOLINT
+
 #include <iostream>
 
-#include "DBContactsImpl.hpp"
 #include "DBManager.hpp"
+#include "DBContactsImpl.hpp"
 
-int DBContactsImpl::Add(const std::string &user_id, const std::string &user_id_contact) const {
-    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
-
+template<class ClassConnection>
+int DBContactsImpl<ClassConnection>::Add(const std::string &user_id, const std::string &user_id_contact, ClassConnection *connection) const {
     std::string SQL = "INSERT INTO contacts (fk_user_id,fk_contact_id) "
                       "VALUES ('" + user_id + "','" + user_id_contact + "' ) ;";
 
-    int res = SUCCESS;
+    int res = EXIT_SUCCESS;
 
     try {
-        pqxx::work work(con->GetConnection());
+        pqxx::work work(connection->GetConnection());
 
         pqxx::result result(work.exec(SQL));
 
@@ -27,9 +28,7 @@ int DBContactsImpl::Add(const std::string &user_id, const std::string &user_id_c
         res = ERROR_ADD_CONTACT;
     }
 
-    if (res != SUCCESS) {
-        Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
-
+    if (res != EXIT_SUCCESS) {
         return res;
     }
 
@@ -37,7 +36,7 @@ int DBContactsImpl::Add(const std::string &user_id, const std::string &user_id_c
                       "VALUES ('" + user_id_contact + "','" + user_id + "' ) ;";
 
     try {
-        pqxx::work work(con->GetConnection());
+        pqxx::work work(connection->GetConnection());
 
         pqxx::result result(work.exec(SQL));
 
@@ -52,21 +51,18 @@ int DBContactsImpl::Add(const std::string &user_id, const std::string &user_id_c
         res = ERROR_ADD_CONTACT;
     }
 
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
-
     return res;
 }
 
-int DBContactsImpl::Rm(const std::string &user_id, const std::string &user_id_contact) const {
-    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
-
+template<class ClassConnection>
+int DBContactsImpl<ClassConnection>::Rm(const std::string &user_id, const std::string &user_id_contact, ClassConnection *connection) const {
     std::string SQL = "DELETE FROM contacts WHERE fk_user_id = '" + user_id + "' and fk_contact_id = '" + user_id_contact + "'";
 
 
-    int res = SUCCESS;
+    int res = EXIT_SUCCESS;
 
     try {
-        pqxx::work work(con->GetConnection());
+        pqxx::work work(connection->GetConnection());
 
         pqxx::result result(work.exec(SQL));
 
@@ -81,16 +77,14 @@ int DBContactsImpl::Rm(const std::string &user_id, const std::string &user_id_co
         res = ERROR_RM_CONTACT;
     }
 
-    if (res != SUCCESS) {
-        Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
-
+    if (res != EXIT_SUCCESS) {
         return res;
     }
 
     SQL = "DELETE FROM contacts WHERE fk_user_id = '" + user_id_contact + "' and fk_contact_id = '" + user_id + "'";
 
     try {
-        pqxx::work work(con->GetConnection());
+        pqxx::work work(connection->GetConnection());
 
         pqxx::result result(work.exec(SQL));
 
@@ -105,20 +99,17 @@ int DBContactsImpl::Rm(const std::string &user_id, const std::string &user_id_co
         res = ERROR_RM_CONTACT;
     }
 
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
-
     return res;
 }
 
-int DBContactsImpl::GetSet(const std::string &user_id, std::set<std::string> *contacts, const size_t &left, const size_t &right) const {
-    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
-
+template<class ClassConnection>
+int DBContactsImpl<ClassConnection>::GetSet(const std::string &user_id, std::set<std::string> *contacts, const size_t &left, const size_t &right, ClassConnection *connection) const {
     std::string SQL = "SELECT fk_contact_id FROM contacts WHERE fk_user_id = " + user_id + " ORDER BY fk_contact_id DESC OFFSET " + std::to_string(left) + " ROWS FETCH NEXT " + std::to_string(right - left) + " ROWS ONLY";
 
-    int res = SUCCESS;
+    int res = EXIT_SUCCESS;
 
     try {
-        pqxx::work work(con->GetConnection());
+        pqxx::work work(connection->GetConnection());
 
         pqxx::result result(work.exec(SQL));
 
@@ -137,10 +128,5 @@ int DBContactsImpl::GetSet(const std::string &user_id, std::set<std::string> *co
         res = ERROR_GET_SET_CONTACT;
     }
 
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
-
     return res;
 }
-
-//  std::string SQL = "SELECT fk_contact_id FROM contact WHERE event_date = '" + date + "' BETWEEN left and right ORDER BY event_id DESK";
-

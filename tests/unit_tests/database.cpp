@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 
 #include <unistd.h>
-#include <random>
 
 #include "DBManager.hpp"
 #include "DBUserImpl.hpp"
@@ -144,11 +143,13 @@ TEST(PostgreSQL, DBContacts) {
     Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.Registration(user_2, new_user_id_3);
     user_3.SetId(new_user_id_3);
 
-    int res_add_contact_1 = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().Contacts.Add(user_1.GetId(), user_2.GetId());
+    auto conn = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
+
+    int res_add_contact_1 = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().Contacts.Add(user_1.GetId(), user_2.GetId(), conn);
 
     EXPECT_EQ(res_add_contact_1, SUCCESS);
 
-    int res_add_contact_2 = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().Contacts.Add(user_1.GetId(), user_3.GetId());
+    int res_add_contact_2 = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().Contacts.Add(user_1.GetId(), user_3.GetId(), conn);
 
     EXPECT_EQ(res_add_contact_2, SUCCESS);
 
@@ -156,16 +157,19 @@ TEST(PostgreSQL, DBContacts) {
 
     std::set<std::string> contacts_exp = {user_3.GetId(), user_2.GetId()};
 
-    int res_get_set = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().Contacts.GetSet(user_1.GetId(), &contacts_get, 0, 3);
+    size_t left = 0;
+    size_t right = 3;
+
+    int res_get_set = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().Contacts.GetSet(user_1.GetId(), &contacts_get, left, right, conn);
 
     EXPECT_EQ(res_get_set, SUCCESS);
     EXPECT_EQ(contacts_get, contacts_exp);
 
-    int res_delete_contact_1 = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().Contacts.Rm(user_1.GetId(), user_2.GetId());
+    int res_delete_contact_1 = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().Contacts.Rm(user_1.GetId(), user_2.GetId(), conn);
 
     EXPECT_EQ(res_delete_contact_1, SUCCESS);
 
-    int res_delete_contact_2 = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().Contacts.Rm(user_1.GetId(), user_3.GetId());
+    int res_delete_contact_2 = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().Contacts.Rm(user_1.GetId(), user_3.GetId(), conn);
 
     EXPECT_EQ(res_delete_contact_2, SUCCESS);
 

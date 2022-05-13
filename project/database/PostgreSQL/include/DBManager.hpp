@@ -24,7 +24,7 @@ public:
     DBUserImpl User;
     DBUserDataImpl UserData;
     DBEventImpl Event;
-    DBContactsImpl Contacts;
+    DBContactsImpl<ClassConnection> Contacts;
     DBGroupImpl Group;
 
     ClassConnection *GetFreeConnection();
