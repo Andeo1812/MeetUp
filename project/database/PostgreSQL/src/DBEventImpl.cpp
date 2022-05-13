@@ -3,7 +3,7 @@
 #include "DBEventImpl.hpp"
 #include "DBManagerPG.hpp"
 
-int DBEventImpl::Add(const Event &event, std::string &new_event_id) const {
+int DBEventImpl::Add(const Event &event, std::string *new_event_id) const {
     auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "INSERT INTO event (event_name,event_date,time_begin,time_end,description,fk_user_id) "
@@ -22,7 +22,7 @@ int DBEventImpl::Add(const Event &event, std::string &new_event_id) const {
         pqxx::result result(work.exec(SQL));
 
         if (!result.empty()) {
-            new_event_id = result.begin()["event_id"].as<std::string>();
+            *new_event_id = result.begin()["event_id"].as<std::string>();
         } else {
             res = NOT_ADD_EVENT;
         }
@@ -71,12 +71,12 @@ int DBEventImpl::Rm(const Event &event) const {
     return res;
 }
 
-int DBEventImpl::GetId(const Event &event, std::string &event_id) const {
+int DBEventImpl::GetId(const Event &event, std::string *event_id) const {
     int res;
     return res;
 }
 
-int DBEventImpl::GetSet(const std::string &user_id, std::set<Event> &events, const std::string &date) const {
+int DBEventImpl::GetSet(const std::string &user_id, std::set<Event> *events, const std::string &date) const {
     auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "SELECT * FROM event WHERE event_date = '" + date + "' ORDER BY DESK time_begin";
@@ -89,7 +89,7 @@ int DBEventImpl::GetSet(const std::string &user_id, std::set<Event> &events, con
         pqxx::result result(work.exec(SQL));
 
         if (!result.empty()) {
-            for(auto row : result) {
+            for (auto row : result) {
                 Event event;
 
                 event.SetId(row["event_id"].as<std::string>());
@@ -98,7 +98,7 @@ int DBEventImpl::GetSet(const std::string &user_id, std::set<Event> &events, con
                 event.SetTimeEnd(row["time_end"].as<std::string>());
                 event.SetDescription(row["description"].as<std::string>());
 
-                events.insert(event);
+                events->insert(event);
             }
         } else {
             res = NOT_GET_SET_EVENTS;
@@ -115,5 +115,3 @@ int DBEventImpl::GetSet(const std::string &user_id, std::set<Event> &events, con
 
     return res;
 }
-
-//  std::string SQL = "SELECT fk_contact_id FROM contact WHERE event_date = '" + date + "' BETWEEN left and right ORDER BY event_id DESK";

@@ -8,11 +8,11 @@ Context ParserGroup::StrToObject(const std::string &parser_str) const {
     Context res;
 
     if (j.contains("left")) {
-        res.SetLeftBorder(j["left"].get<std::string>());
+        res.SetLeftBorder(j["left"].get<size_t>());
     }
 
     if (j.contains("right")) {
-        res.SetRightBorder(j["right"].get<std::string>());
+        res.SetRightBorder(j["right"].get<size_t>());
     }
 
     nlohmann::json value = j[j.begin().key()];
@@ -100,11 +100,11 @@ std::string ParserGroup::ObjectToStr(const std::string type_response, const Cont
         json_groups.push_back(json_group);
     }
 
-    if (!other.GetLeftBorder().empty()) {
+    if (other.GetLeftBorder()) {
         j["keft"] = other.GetLeftBorder();
     }
 
-    if (!other.GetRightBorder().empty()) {
+    if (other.GetRightBorder()) {
         j["right"] = other.GetRightBorder();
     }
 

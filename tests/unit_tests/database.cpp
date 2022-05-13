@@ -103,7 +103,7 @@ TEST(PostgreSQL, DBEvent) {
 
     std::string new_event_id;
 
-    int res_add = Singleton<DBManagerPG>::GetInstance().GetData().Event.Add(event, new_event_id);
+    int res_add = Singleton<DBManagerPG>::GetInstance().GetData().Event.Add(event, &new_event_id);
     event.SetId(new_event_id);
 
     EXPECT_TRUE(!new_event_id.empty());
@@ -135,16 +135,43 @@ TEST(PostgreSQL, DBContacts) {
     Singleton<DBManagerPG>::GetInstance().GetData().User.Registration(user_2, new_user_id_2);
     user_2.SetId(new_user_id_2);
 
-    int res_add_contact = Singleton<DBManagerPG>::GetInstance().GetData().Contacts.Add(user_1.GetId(), user_2.GetId());
+    User user_3;
+    user_3.SetPassword("TEST_DEV300");
+    user_3.SetNickname("TEST_DEV300");
 
-    EXPECT_EQ(res_add_contact, SUCCESS);
+    std::string new_user_id_3;
 
-    int res_delete_contact = Singleton<DBManagerPG>::GetInstance().GetData().Contacts.Rm(user_1.GetId(), user_2.GetId());
+    Singleton<DBManagerPG>::GetInstance().GetData().User.Registration(user_2, new_user_id_3);
+    user_3.SetId(new_user_id_3);
 
-    EXPECT_EQ(res_delete_contact, SUCCESS);
+    int res_add_contact_1 = Singleton<DBManagerPG>::GetInstance().GetData().Contacts.Add(user_1.GetId(), user_2.GetId());
+
+    EXPECT_EQ(res_add_contact_1, SUCCESS);
+
+    int res_add_contact_2 = Singleton<DBManagerPG>::GetInstance().GetData().Contacts.Add(user_1.GetId(), user_3.GetId());
+
+    EXPECT_EQ(res_add_contact_2, SUCCESS);
+
+    std::set<std::string> contacts_get;
+
+    std::set<std::string> contacts_exp = {user_3.GetId(), user_2.GetId()};
+
+    int res_get_set = Singleton<DBManagerPG>::GetInstance().GetData().Contacts.GetSet(user_1.GetId(), &contacts_get, 0, 3);
+
+    EXPECT_EQ(res_get_set, SUCCESS);
+    EXPECT_EQ(contacts_get, contacts_exp);
+
+    int res_delete_contact_1 = Singleton<DBManagerPG>::GetInstance().GetData().Contacts.Rm(user_1.GetId(), user_2.GetId());
+
+    EXPECT_EQ(res_delete_contact_1, SUCCESS);
+
+    int res_delete_contact_2 = Singleton<DBManagerPG>::GetInstance().GetData().Contacts.Rm(user_1.GetId(), user_3.GetId());
+
+    EXPECT_EQ(res_delete_contact_2, SUCCESS);
 
     Singleton<DBManagerPG>::GetInstance().GetData().User.Rm(user_1);
     Singleton<DBManagerPG>::GetInstance().GetData().User.Rm(user_2);
+    Singleton<DBManagerPG>::GetInstance().GetData().User.Rm(user_3);
 }
 
 TEST(PostgreSQL, DBGroup) {
@@ -175,7 +202,7 @@ TEST(PostgreSQL, DBGroup) {
 
     std::string group_id;
 
-    int res_create_group = Singleton<DBManagerPG>::GetInstance().GetData().Group.Create(group, group_id);
+    int res_create_group = Singleton<DBManagerPG>::GetInstance().GetData().Group.Create(group, &group_id);
     group.SetId(group_id);
 
     EXPECT_EQ(res_create_group, SUCCESS);

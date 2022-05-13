@@ -110,10 +110,10 @@ int DBContactsImpl::Rm(const std::string &user_id, const std::string &user_id_co
     return res;
 }
 
-int DBContactsImpl::GetSet(const std::string &user_id, std::set<std::string> &contacts, const size_t left, const size_t right) const {
+int DBContactsImpl::GetSet(const std::string &user_id, std::set<std::string> *contacts, const size_t &left, const size_t &right) const {
     auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
 
-    std::string SQL = "SELECT fk_contact_id FROM event WHERE fr_user_id = '" + user_id + "' ORDER BY DESK time_begin";
+    std::string SQL = "SELECT fk_contact_id FROM contacts WHERE fk_user_id = " + user_id + " ORDER BY fk_contact_id DESC OFFSET " + std::to_string(left) + " ROWS FETCH NEXT " + std::to_string(right - left) + " ROWS ONLY";
 
     int res = SUCCESS;
 
@@ -123,8 +123,8 @@ int DBContactsImpl::GetSet(const std::string &user_id, std::set<std::string> &co
         pqxx::result result(work.exec(SQL));
 
         if (!result.empty()) {
-            for(auto row : result) {
-                contacts.insert(row["fk_contact_id"].as<std::string>());
+            for (auto row : result) {
+                contacts->insert(row["fk_contact_id"].as<std::string>());
             }
         } else {
             res = NOT_GET_SET_CONTACT;
@@ -141,4 +141,6 @@ int DBContactsImpl::GetSet(const std::string &user_id, std::set<std::string> &co
 
     return res;
 }
+
+//  std::string SQL = "SELECT fk_contact_id FROM contact WHERE event_date = '" + date + "' BETWEEN left and right ORDER BY event_id DESK";
 

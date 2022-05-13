@@ -57,11 +57,11 @@ void Context::SetError(const std::string &error) noexcept {
     this->error = error;
 }
 
-void Context::SetLeftBorder(const std::string &left) noexcept {
+void Context::SetLeftBorder(const size_t &left) noexcept {
     this->left = left;
 }
 
-void Context::SetRightBorder(const std::string &right) noexcept {
+void Context::SetRightBorder(const size_t &right) noexcept {
     this->right = right;
 }
 
@@ -106,10 +106,10 @@ std::string Context::GetError() const noexcept {
     return this->error;
 }
 
-std::string Context::GetLeftBorder() const noexcept {
+size_t Context::GetLeftBorder() const noexcept {
     return this->left;
 }
 
-std::string Context::GetRightBorder() const noexcept {
+size_t Context::GetRightBorder() const noexcept {
     return this->right;
 }

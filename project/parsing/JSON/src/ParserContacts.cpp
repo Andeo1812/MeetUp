@@ -8,11 +8,11 @@ Context ParserUserContacts::StrToObject(const std::string &parser_str) const {
     Context res;
 
     if (j.contains("left")) {
-        res.SetLeftBorder(j["left"].get<std::string>());
+        res.SetLeftBorder(j["left"].get<size_t>());
     }
 
     if (j.contains("right")) {
-        res.SetRightBorder(j["right"].get<std::string>());
+        res.SetRightBorder(j["right"].get<size_t>());
     }
 
     nlohmann::json value = j[j.begin().key()];
@@ -61,11 +61,11 @@ std::string ParserUserContacts::ObjectToStr(const std::string type_response, con
 
     Contacts contacts = other.GetContacts();
 
-    if (!other.GetLeftBorder().empty()) {
-        j["keft"] = other.GetLeftBorder();
+    if (other.GetLeftBorder()) {
+        j["left"] = other.GetLeftBorder();
     }
 
-    if (!other.GetRightBorder().empty()) {
+    if (other.GetRightBorder()) {
         j["right"] = other.GetRightBorder();
     }
 

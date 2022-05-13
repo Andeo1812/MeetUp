@@ -222,8 +222,8 @@ TEST(PARSING, UserContacts) {
 
     EXPECT_EQ("56", context.GetContacts().GetUserId());
     EXPECT_EQ(contacts, context.GetContacts().GetContacts());
-    EXPECT_EQ("5", context.GetLeftBorder());
-    EXPECT_EQ("10", context.GetRightBorder());
+    EXPECT_EQ(5, context.GetLeftBorder());
+    EXPECT_EQ(10, context.GetRightBorder());
 
     std::string response = parser.ObjectToStr(type_request, context);
 
@@ -293,8 +293,8 @@ TEST(PARSING, Groups) {
 
     context = parser.StrToObject(input_get);
 
-    EXPECT_EQ("5", context.GetLeftBorder());
-    EXPECT_EQ("10", context.GetRightBorder());
+    EXPECT_EQ(5, context.GetLeftBorder());
+    EXPECT_EQ(10, context.GetRightBorder());
 }
 
 TEST(PARSING, MeetUps) {

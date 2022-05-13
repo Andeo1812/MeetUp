@@ -14,7 +14,7 @@ static enum result_delete_group  {NOT_RM_GROUP = 10, ERROR_RM_GROUP} DELETE_GROU
 
 class DBGroupImpl : public DBGroup {
  public:
-    int Create(const Group &group, std::string &group_id) const override;
+    int Create(const Group &group, std::string *group_id) const override;
 
     int ReWrite(const Group &group) const override;
 
@@ -22,15 +22,15 @@ class DBGroupImpl : public DBGroup {
 
     int Rm(const std::string &group_id) const override;
 
-    int GetMembers(const std::string &group_id, Group &group) const override;
+    int GetMembers(const std::string &group_id, Group *group) const override;
 
     int AddMember(const User &user, const std::string &group_id) const override;
 
     int RmMember(const User &user, const std::string &group_id) const override;
 
-    int GetId(const Group &group, std::string &group_id) const override;
+    int GetId(const Group &group, std::string *group_id) const override;
 
-    int GetSet(const std::string &user_id, std::set<Group> &groups, const size_t count, const size_t page) const override;
+    int GetSet(const std::string &user_id, std::set<Group> *groups, const size_t &left, const size_t &right) const override;
 
     DBGroupImpl() = default;
     ~DBGroupImpl() = default;

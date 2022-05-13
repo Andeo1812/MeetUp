@@ -3,7 +3,7 @@
 #include "DBGroupImpl.hpp"
 #include "DBManagerPG.hpp"
 
-int DBGroupImpl::Create(const Group &group, std::string &group_id) const {
+int DBGroupImpl::Create(const Group &group, std::string *group_id) const {
     auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "INSERT INTO group_m (title,description) "
@@ -17,7 +17,7 @@ int DBGroupImpl::Create(const Group &group, std::string &group_id) const {
         pqxx::result result(work.exec(SQL));
 
         if (!result.empty()) {
-            group_id = result.begin()["group_id"].as<std::string>();
+            *group_id = result.begin()["group_id"].as<std::string>();
         } else {
             res = NOT_CREATE_GROUP;
         }
@@ -94,7 +94,7 @@ int DBGroupImpl::Rm(const std::string &group_id) const {
     return res;
 }
 
-int DBGroupImpl::GetMembers(const std::string &group_id, Group &group) const {
+int DBGroupImpl::GetMembers(const std::string &group_id, Group *group) const {
     Group res;
     return EXIT_SUCCESS;
 }
@@ -176,11 +176,11 @@ int DBGroupImpl::RmMember(const User &user, const std::string &group_id) const {
     return res;
 }
 
-int DBGroupImpl::GetId(const Group &group, std::string &group_id) const {
+int DBGroupImpl::GetId(const Group &group, std::string *group_id) const {
     std::string res;
     return EXIT_SUCCESS;
 }
 
-int DBGroupImpl::GetSet(const std::string &user_id, std::set<Group> &groups, const size_t count, const size_t page) const {
+int DBGroupImpl::GetSet(const std::string &user_id, std::set<Group> *groups, const size_t &left, const size_t &right) const {
     return EXIT_SUCCESS;
 }

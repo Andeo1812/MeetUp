@@ -25,7 +25,7 @@ PGConnection *DBManagerPG::GetFreeConnection() {
 }
 
 void DBManagerPG::InsertConnection(PGConnection *connection) {
-   this->connection_pool.push(connection);
+    this->connection_pool.push(connection);
 }
 
 size_t DBManagerPG::Size() const noexcept {
