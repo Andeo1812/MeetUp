@@ -243,7 +243,7 @@ TEST(PostgreSQL, DBGroup) {
     std::set<Group> expected_groups;
 
     group_1.SetUserId({});
-    group_2.SetUserId(group_id_1);
+    group_2.SetUserId({});
     group_1.SetId(group_id_1);
     group_2.SetId(group_id_2);
 
