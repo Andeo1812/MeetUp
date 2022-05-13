@@ -5,6 +5,16 @@
 Context ParserUserContacts::StrToObject(const std::string &parser_str) const {
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
+    Context res;
+
+    if (j.contains("page")) {
+        res.SetPage(j["page"].get<std::string>());
+    }
+
+    if (j.contains("count_one_page")) {
+        res.SetCountOnePage(j["count_one_page"].get<std::string>());
+    }
+
     nlohmann::json value = j[j.begin().key()];
 
     Contacts contacts;
@@ -22,8 +32,6 @@ Context ParserUserContacts::StrToObject(const std::string &parser_str) const {
     }
 
     contacts.SetContacts(cnt);
-
-    Context res;
 
     res = contacts;
 
@@ -52,6 +60,14 @@ std::string ParserUserContacts::ObjectToStr(const std::string type_response, con
     }
 
     Contacts contacts = other.GetContacts();
+
+    if (!other.GetPage().empty()) {
+        j["page"] = other.GetPage();
+    }
+
+    if (!other.GetCountOnePage().empty()) {
+        j["count_one_page"] = other.GetCountOnePage();
+    }
 
     j[type_response] = contacts.GetContacts();
 

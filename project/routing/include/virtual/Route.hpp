@@ -1,6 +1,7 @@
 #pragma once  //  NOLINT
 
 #include <map>
+#include <queue>
 
 #include "Handler.hpp"
 
@@ -15,6 +16,8 @@ struct Node {
 
 class Route {
  public:
+    std::queue<std::string> tasks;
+
     std::map<std::string, Node> route_map;
 
     virtual std::string get_head(const std::string request_body) = 0;

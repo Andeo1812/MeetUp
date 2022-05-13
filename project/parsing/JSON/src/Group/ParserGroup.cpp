@@ -5,6 +5,16 @@
 Context ParserGroup::StrToObject(const std::string &parser_str) const {
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
+    Context res;
+
+    if (j.contains("page")) {
+        res.SetPage(j["page"].get<std::string>());
+    }
+
+    if (j.contains("count_one_page")) {
+        res.SetCountOnePage(j["count_one_page"].get<std::string>());
+    }
+
     nlohmann::json value = j[j.begin().key()];
 
     std::set<Group> groups;
@@ -37,8 +47,6 @@ Context ParserGroup::StrToObject(const std::string &parser_str) const {
         groups.insert(group);
     }
 
-    Context res;
-
     res = groups;
 
     return res;
@@ -57,8 +65,8 @@ std::string ParserGroup::ObjectToStr(const std::string type_response, const Cont
         return res;
     }
 
-    if (type_response == WRITE_GROUP || type_response == RM_GROUP || type_response == ADD_USER ||
-        type_response == RM_USER) {
+    if (type_response == WRITE_GROUP || type_response == RM_GROUP || type_response == ADD_USER_GROUP ||
+        type_response == RM_USER_GROUP) {
         j[type_response] = "OK";
 
         res = j.dump();
@@ -90,6 +98,14 @@ std::string ParserGroup::ObjectToStr(const std::string type_response, const Cont
         }
 
         json_groups.push_back(json_group);
+    }
+
+    if (!other.GetPage().empty()) {
+        j["page"] = other.GetPage();
+    }
+
+    if (!other.GetCountOnePage().empty()) {
+        j["count_one_page"] = other.GetCountOnePage();
     }
 
     j[type_response] = json_groups;

@@ -26,8 +26,17 @@
 
 RouteImpl::RouteImpl() {
     //  Base            REQUEST                                        PARSER                     HANDLER
-    route_map.insert({REGISTRATION,           Node(new ParserUser,        new Registration)});
-    route_map.insert({AUTHENTICATION,         Node(new ParserUser,        new Authentication)});
+    route_map.insert({REGISTRATION,           Node(new ParserUser,         new Registration)});
+    route_map.insert({AUTHENTICATION,         Node(new ParserUser,         new Authentication)});
+    route_map.insert({ADD_EVENT,              Node(new ParserEvent,        new AddEvent)});
+    route_map.insert({RM_EVENT,               Node(new ParserEvent,        new RmEvent)});
+    route_map.insert({ADD_USER_GROUP,         Node(new ParserUserContacts, new AddUserContacts)});
+    route_map.insert({RM_USER_GROUP,          Node(new ParserUserContacts, new RmUserContacts)});
+    route_map.insert({ADD_GROUP,              Node(new ParserGroup,        new AddGroup)});
+    route_map.insert({ADD_USER_GROUP,         Node(new ParserGroup,        new AddUserGroup)});
+    route_map.insert({RM_USER_GROUP,          Node(new ParserGroup,        new RmUserGroup)});
+    route_map.insert({RM_GROUP,               Node(new ParserGroup,        new RmGroup)});
+    route_map.insert({GET_MEETUP,             Node(new ParserMeetUp,       new GetMeetUps)});
 }
 
 std::string RouteImpl::get_head(const std::string request_body) {

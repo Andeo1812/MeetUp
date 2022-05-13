@@ -24,12 +24,12 @@ class GetGroupMembers : public Handler {
 };
 
 
-class AddUser : public Handler {
+class AddUserGroup : public Handler {
  public:
     Context process(const Context &request_body) const override;
 };
 
-class RmUser : public Handler {
+class RmUserGroup : public Handler {
  public:
     Context process(const Context &request_body) const override;
 };

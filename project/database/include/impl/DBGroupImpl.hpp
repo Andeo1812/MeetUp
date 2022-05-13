@@ -8,9 +8,9 @@ static enum result_add_group_member  {NOT_ADD_GROUP_MEMBER = 10, ERROR_ADD_GROUP
 
 static enum result_rm_group_member  {NOT_RM_GROUP_MEMBER = 10, ERROR_RM_GROUP_MEMBER} RM_GROUP_MEMBER;
 
-static enum result_delete_group_all_member  {NOT_DELETE_GROUP_ALL_MEMBER = 10, ERROR_DELETE_GROUP_ALL_MEMBER} DELETE_GROUP_ALL_MEMBER;
+static enum result_delete_group_all_member  {NOT_RM_GROUP_ALL_MEMBER = 10, ERROR_RM_GROUP_ALL_MEMBER} DELETE_GROUP_ALL_MEMBER;
 
-static enum result_delete_group  {NOT_DELETE_GROUP = 10, ERROR_DELETE_GROUP} DELETE_GROUP;
+static enum result_delete_group  {NOT_RM_GROUP = 10, ERROR_RM_GROUP} DELETE_GROUP;
 
 class DBGroupImpl : public DBGroup {
  public:
@@ -18,9 +18,9 @@ class DBGroupImpl : public DBGroup {
 
     int ReWrite(const Group &group) const override;
 
-    int DeleteAllMembers(const std::string &group_id) const override;
+    int RmAllMembers(const std::string &group_id) const override;
 
-    int Delete(const std::string &group_id) const override;
+    int Rm(const std::string &group_id) const override;
 
     int GetMembers(const std::string &group_id, Group &group) const override;
 

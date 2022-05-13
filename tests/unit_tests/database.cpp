@@ -139,7 +139,7 @@ TEST(PostgreSQL, DBContacts) {
 
     EXPECT_EQ(res_add_contact, SUCCESS);
 
-    int res_delete_contact = Singleton<DBManagerPG>::GetInstance().GetData().Contacts.Delete(user_1.GetId(), user_2.GetId());
+    int res_delete_contact = Singleton<DBManagerPG>::GetInstance().GetData().Contacts.Rm(user_1.GetId(), user_2.GetId());
 
     EXPECT_EQ(res_delete_contact, SUCCESS);
 
@@ -192,11 +192,11 @@ TEST(PostgreSQL, DBGroup) {
 
     EXPECT_EQ(res_rm_member_1, SUCCESS);
 
-    int res_delete_all_members = Singleton<DBManagerPG>::GetInstance().GetData().Group.DeleteAllMembers(group_id);
+    int res_delete_all_members = Singleton<DBManagerPG>::GetInstance().GetData().Group.RmAllMembers(group_id);
 
     EXPECT_EQ(res_delete_all_members, SUCCESS);
 
-    int res_delete_group = Singleton<DBManagerPG>::GetInstance().GetData().Group.Delete(group_id);
+    int res_delete_group = Singleton<DBManagerPG>::GetInstance().GetData().Group.Rm(group_id);
 
     EXPECT_EQ(res_delete_group, SUCCESS);
 

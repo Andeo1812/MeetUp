@@ -57,6 +57,14 @@ void Context::SetError(const std::string &error) noexcept {
     this->error = error;
 }
 
+void Context::SetPage(const std::string &page) noexcept {
+    this->page = page;
+}
+
+void Context::SetCountOnePage(const std::string &count_one_page) noexcept {
+    this->count_one_page = count_one_page;
+}
+
 User Context::GetUser() const noexcept {
     return this->user;
 }
@@ -96,4 +104,12 @@ Contacts Context::GetContacts() const noexcept {
 
 std::string Context::GetError() const noexcept {
     return this->error;
+}
+
+std::string Context::GetPage() const noexcept {
+    return this->page;
+}
+
+std::string Context::GetCountOnePage() const noexcept {
+    return this->count_one_page;
 }

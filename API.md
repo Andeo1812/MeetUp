@@ -74,17 +74,33 @@
 
 **_Response:_**
 ```c
-{"delete_event":[{"event_id":"56"}]}
+{"rm_event":[{"event_id":"56"}]}
 ```
 
 **_Answer:_**
 ```c
-{"delete_event":"OK"}
+{"rm_event":"OK"}
 ```
 
 Порядок работы:
 
 Изменяет **уже существующее** мероприятие в базе. Все поля обязательны (на текущий момент).
+
+### `Get events`
+
+**_Response:_**
+```c
+{"get_events":[{"user_id":"56", "date":"yyyy-mm-dd"}]}
+```
+
+**_Answer:_**
+```c
+{"get_events":[{"description":"breakfast", "time_begin":"10:00", "time_end":"10:45"}, {"description":"lansh", "time_begin":"19:00", "time_end":"20:00"}]}
+```
+
+Порядок работы:
+
+Отдает все мероприятия пользователя по его id по дате за день.
 
 ## 3. Contacts
 
@@ -108,17 +124,33 @@
 
 **_Response:_**
 ```c
-delete_friend: {"delete_friend":{"user_id":"56","contacts":["Ibragim"]}}
+{"rm_contact":{"user_id":"56","contacts":["Ibragim"]}}
 ```
 
 **_Answer:_**
 ```c
-{"delete_friend":"OK"}
+{"rm_contact":"OK"}
 ```
 
 Порядок работы:
 
 По нику удаляем друга к пользователю. Операция двунаправленная.
+
+### `Get contacts`
+
+**_Response:_**
+```c
+{"page":"5","count":"5","get_contacts":{"user_id":"56"}}
+```
+
+**_Answer:_**
+```c
+{"page":"5","count":"5","get_contacts":["Misha","Maxim"]}
+```
+
+Порядок работы:
+
+Отдает все контанкты юзера по его id.
 
 ## 4. Group. Base
 
@@ -158,12 +190,12 @@ delete_friend: {"delete_friend":{"user_id":"56","contacts":["Ibragim"]}}
 
 **_Response:_**
 ```c
-{"delete_group":[{"group_id":"23"}]}
+{"rm_group":[{"group_id":"23"}]}
 ```
 
 **_Answer:_**
 ```c
-{"delete_group":"OK"}
+{"rm_group":"OK"}
 ```
 
 Порядок работы:
@@ -185,6 +217,22 @@ delete_friend: {"delete_friend":{"user_id":"56","contacts":["Ibragim"]}}
 Порядок работы:
 
 По id отдает всех участников группы.
+
+### `Get groups`
+
+**_Response:_**
+```c
+{"get_groups":[{"user_id":"32"}],"page":"5","count":"5"}
+```
+
+**_Answer:_**
+```c
+{"page":"5","count":"5","get_groups":[{"group_id":"48","title":"111111111111111111"},{"group_id":"2","title":"group techno"},{"group_id":"4","title":"qqaa"},{"description":"213131313231231323131123","group_id":"1","title":"qqqqqqqqqq"},{"group_id":"3","title":"qwe1"},{"group_id":"11","title":"sdvsdv"}]}
+```
+
+Порядок работы:
+
+Отдает все данных всех групп пользователя по его нику.
 
 ## 5. Group. Management
 
@@ -220,57 +268,7 @@ delete_friend: {"delete_friend":{"user_id":"56","contacts":["Ibragim"]}}
 
 По нику удалить (на данный момент работаем над ролями).
 
-## 6. Synchronization
-
-### `Get events`
-
-**_Response:_**
-```c
-{"get_events":[{"user_id":"56", "date":"yyyy-mm-dd"}]}
-```
-
-**_Answer:_**
-```c
-{"get_events":[{"description":"breakfast", "time_begin":"10:00", "time_end":"10:45"}, {"description":"lansh", "time_begin":"19:00", "time_end":"20:00"}]}
-```
-
-Порядок работы:
-
-Отдает все мероприятия пользователя по его id по дате за день.
-
-### `Get contacts`
-
-**_Response:_**
-```c
-{"get_contacts":{"user_id":"56"}}
-```
-
-**_Answer:_**
-```c
-{"get_contacts":["Misha","Maxim"]}
-```
-
-Порядок работы:
-
-Отдает все контанкты юзера по его id.
-
-### `Get groups`
-
-**_Response:_**
-```c
-{"get_groups":{"members":["Sasha"]}}
-```
-
-**_Answer:_**
-```c
-{"get_groups":[{"group_id":"48","title":"111111111111111111"},{"group_id":"2","title":"group techno"},{"group_id":"4","title":"qqaa"},{"description":"213131313231231323131123","group_id":"1","title":"qqqqqqqqqq"},{"group_id":"3","title":"qwe1"},{"group_id":"11","title":"sdvsdv"}]}
-```
-
-Порядок работы:
-
-Отдает все данных всех групп пользователя по его нику.
-
-## 7. Personal data
+## 6. Personal data
 
 ### `Write personal`
 

@@ -38,7 +38,7 @@ int DBGroupImpl::ReWrite(const Group &group) const {
     return EXIT_SUCCESS;
 }
 
-int DBGroupImpl::DeleteAllMembers(const std::string &group_id) const {
+int DBGroupImpl::RmAllMembers(const std::string &group_id) const {
     auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "DELETE FROM group_members WHERE fk_group_id = '" + group_id + "'";
@@ -51,14 +51,14 @@ int DBGroupImpl::DeleteAllMembers(const std::string &group_id) const {
         pqxx::result result(work.exec(SQL));
 
         if (!result.empty()) {
-            res = NOT_DELETE_GROUP_ALL_MEMBER;
+            res = NOT_RM_GROUP_ALL_MEMBER;
         }
 
         work.commit();
     } catch (const std::exception &e) {
         std::cout << e.what() << std::endl;
 
-        res = ERROR_DELETE_GROUP_ALL_MEMBER;
+        res = ERROR_RM_GROUP_ALL_MEMBER;
     }
 
     Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
@@ -66,7 +66,7 @@ int DBGroupImpl::DeleteAllMembers(const std::string &group_id) const {
     return res;
 }
 
-int DBGroupImpl::Delete(const std::string &group_id) const {
+int DBGroupImpl::Rm(const std::string &group_id) const {
     auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "DELETE FROM group_m WHERE group_id = '" + group_id + "'";
@@ -79,14 +79,14 @@ int DBGroupImpl::Delete(const std::string &group_id) const {
         pqxx::result result(work.exec(SQL));
 
         if (!result.empty()) {
-            res = NOT_DELETE_GROUP;
+            res = NOT_RM_GROUP;
         }
 
         work.commit();
     } catch (const std::exception &e) {
         std::cout << e.what() << std::endl;
 
-        res = ERROR_DELETE_GROUP;
+        res = ERROR_RM_GROUP;
     }
 
     Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);

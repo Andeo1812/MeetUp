@@ -28,21 +28,21 @@
 
 #define ADD_EVENT                        "add_event"
 #define WRITE_EVENT                      "rewrite_event"
-#define RM_EVENT                         "delete_event"
+#define RM_EVENT                         "rm_event"
 
 
 #define ADD_USER_CONTACTS                "add_contact"
-#define RM_USER_CONTACTS                 "delete_contact"
+#define RM_USER_CONTACTS                 "rm_contact"
 
 
 #define ADD_GROUP                        "create_group"
 #define WRITE_GROUP                      "rewrite_group"
-#define RM_GROUP                         "delete_group"
+#define RM_GROUP                         "rm_group"
 
 #define GET_MEMBERS                      "get_group_members"
 
-#define ADD_USER                         "invite"
-#define RM_USER                          "kick"
+#define ADD_USER_GROUP                    "invite"
+#define RM_USER_GROUP                     "kick"
 
 
 #define GET_MEETUP                        "get_meetup"

@@ -12,9 +12,9 @@ class DBGroup {
 
     virtual int ReWrite(const Group &group) const = 0;
 
-    virtual int DeleteAllMembers(const std::string &group_id) const = 0;
+    virtual int RmAllMembers(const std::string &group_id) const = 0;
 
-    virtual int Delete(const std::string &group_id) const = 0;
+    virtual int Rm(const std::string &group_id) const = 0;
 
     virtual int GetMembers(const std::string &group_id, Group &group) const = 0;
 

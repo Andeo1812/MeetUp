@@ -57,7 +57,7 @@ int DBContactsImpl::Add(const std::string &user_id, const std::string &user_id_f
     return res;
 }
 
-int DBContactsImpl::Delete(const std::string &user_id, const std::string &user_id_friend) const {
+int DBContactsImpl::Rm(const std::string &user_id, const std::string &user_id_friend) const {
     auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "DELETE FROM contacts WHERE fk_user_id = '" + user_id + "' and fk_friend_id = '" + user_id_friend + "'";
@@ -71,14 +71,14 @@ int DBContactsImpl::Delete(const std::string &user_id, const std::string &user_i
         pqxx::result result(work.exec(SQL));
 
         if (!result.empty()) {
-            res = NOT_DELETE_CONTACT;
+            res = NOT_RM_CONTACT;
         }
 
         work.commit();
     } catch (const std::exception &e) {
         std::cout << e.what() << std::endl;
 
-        res = ERROR_DELETE_CONTACT;
+        res = ERROR_RM_CONTACT;
     }
 
     if (res != SUCCESS) {
@@ -95,14 +95,14 @@ int DBContactsImpl::Delete(const std::string &user_id, const std::string &user_i
         pqxx::result result(work.exec(SQL));
 
         if (!result.empty()) {
-            res = NOT_DELETE_CONTACT;
+            res = NOT_RM_CONTACT;
         }
 
         work.commit();
     } catch (const std::exception &e) {
         std::cout << e.what() << std::endl;
 
-        res = ERROR_DELETE_CONTACT;
+        res = ERROR_RM_CONTACT;
     }
 
     Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
