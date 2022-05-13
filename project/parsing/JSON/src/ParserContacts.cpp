@@ -1,5 +1,7 @@
 #include <nlohmann/json.hpp>
 
+#include <iostream>
+
 #include "ParserContacts.hpp"
 
 Context ParserUserContacts::StrToObject(const std::string &parser_str) const {

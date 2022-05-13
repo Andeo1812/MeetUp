@@ -57,11 +57,11 @@ void Context::SetError(const std::string &error) noexcept {
     this->error = error;
 }
 
-void Context::SetLeftBorder(const size_t &left) noexcept {
+void Context::SetLeftBorder(const size_t left) noexcept {
     this->left = left;
 }
 
-void Context::SetRightBorder(const size_t &right) noexcept {
+void Context::SetRightBorder(const size_t right) noexcept {
     this->right = right;
 }
 

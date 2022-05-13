@@ -101,7 +101,7 @@ std::string ParserGroup::ObjectToStr(const std::string type_response, const Cont
     }
 
     if (other.GetLeftBorder()) {
-        j["keft"] = other.GetLeftBorder();
+        j["left"] = other.GetLeftBorder();
     }
 
     if (other.GetRightBorder()) {

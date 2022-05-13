@@ -34,8 +34,8 @@ class Context {
     Context& operator=(const std::set<MeetUp> other) noexcept;
     Context& operator=(const Contacts other) noexcept;
 
-    void SetLeftBorder(const size_t &left) noexcept;
-    void SetRightBorder(const size_t &right) noexcept;
+    void SetLeftBorder(const size_t left) noexcept;
+    void SetRightBorder(const size_t right) noexcept;
     void SetError(const std::string &error) noexcept;
 
     User GetUser() const noexcept;
@@ -50,7 +50,7 @@ class Context {
     size_t GetLeftBorder() const noexcept;
     size_t GetRightBorder() const noexcept;
 
-    Context() = default;
+    Context() : left(0), right(0) {};
     Context(const Context& other) = default;
     ~Context() = default;
 };
