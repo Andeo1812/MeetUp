@@ -1,10 +1,10 @@
 #include <iostream>
 
 #include "DBUserImpl.hpp"
-#include "DBManagerPG.hpp"
+#include "DBManager.hpp"
 
 int DBUserImpl::Registration(const User &user, std::string &new_user_id) const {
-    auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
+    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "INSERT INTO user_m (nickname,password) "
                       "VALUES ('" + user.GetNickname() + "','" + user.GetPassword() + "' ) RETURNING user_id;";
@@ -29,13 +29,13 @@ int DBUserImpl::Registration(const User &user, std::string &new_user_id) const {
         res = ERROR_REGISTRATION;
     }
 
-    Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
 
     return res;
 }
 
 int DBUserImpl::Authentication(const User &user) const {
-    auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
+    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "SELECT user_id FROM user_m WHERE password = '" + user.GetPassword() + "' and nickname = '" + user.GetNickname() + "'";
 
@@ -57,13 +57,13 @@ int DBUserImpl::Authentication(const User &user) const {
         res = ERROR_AUTHENTICATION;
     }
 
-    Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
 
     return res;
 }
 
 int DBUserImpl::GetId(const User &user, std::string &user_id) const {
-    auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
+    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "SELECT user_id FROM user_m WHERE  nickname = '" + user.GetNickname() + "'";
 
@@ -87,13 +87,13 @@ int DBUserImpl::GetId(const User &user, std::string &user_id) const {
         res = ERROR_GET_USER_ID;
     }
 
-    Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
 
     return res;
 }
 
 int DBUserImpl::GetNickname(const User &user, std::string &nickname) const {
-    auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
+    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "SELECT nickname FROM user_m WHERE user_id = '" + user.GetId() + "'";
 
@@ -117,13 +117,13 @@ int DBUserImpl::GetNickname(const User &user, std::string &nickname) const {
         res = ERROR_GET_USER_NICKNAME;
     }
 
-    Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
 
     return res;
 }
 
 int DBUserImpl::Rm(const User &user) const {
-    auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
+    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "DELETE FROM user_m WHERE user_id = '" + user.GetId() + "'";
 
@@ -145,7 +145,7 @@ int DBUserImpl::Rm(const User &user) const {
         res = ERROR_DELETE_USER;
     }
 
-    Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
 
     return res;
 }

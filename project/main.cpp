@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "DBManagerPG.hpp"
+#include "DBManager.hpp"
 
 int main(int argc, const char *argv[]) {
     std::cout << "Starting server..." << std::endl;

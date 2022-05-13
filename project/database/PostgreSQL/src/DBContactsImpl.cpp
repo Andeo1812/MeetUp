@@ -1,10 +1,10 @@
 #include <iostream>
 
 #include "DBContactsImpl.hpp"
-#include "DBManagerPG.hpp"
+#include "DBManager.hpp"
 
 int DBContactsImpl::Add(const std::string &user_id, const std::string &user_id_contact) const {
-    auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
+    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "INSERT INTO contacts (fk_user_id,fk_contact_id) "
                       "VALUES ('" + user_id + "','" + user_id_contact + "' ) ;";
@@ -28,7 +28,7 @@ int DBContactsImpl::Add(const std::string &user_id, const std::string &user_id_c
     }
 
     if (res != SUCCESS) {
-        Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
+        Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
 
         return res;
     }
@@ -52,13 +52,13 @@ int DBContactsImpl::Add(const std::string &user_id, const std::string &user_id_c
         res = ERROR_ADD_CONTACT;
     }
 
-    Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
 
     return res;
 }
 
 int DBContactsImpl::Rm(const std::string &user_id, const std::string &user_id_contact) const {
-    auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
+    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "DELETE FROM contacts WHERE fk_user_id = '" + user_id + "' and fk_contact_id = '" + user_id_contact + "'";
 
@@ -82,7 +82,7 @@ int DBContactsImpl::Rm(const std::string &user_id, const std::string &user_id_co
     }
 
     if (res != SUCCESS) {
-        Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
+        Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
 
         return res;
     }
@@ -105,13 +105,13 @@ int DBContactsImpl::Rm(const std::string &user_id, const std::string &user_id_co
         res = ERROR_RM_CONTACT;
     }
 
-    Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
 
     return res;
 }
 
 int DBContactsImpl::GetSet(const std::string &user_id, std::set<std::string> *contacts, const size_t &left, const size_t &right) const {
-    auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
+    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "SELECT fk_contact_id FROM contacts WHERE fk_user_id = " + user_id + " ORDER BY fk_contact_id DESC OFFSET " + std::to_string(left) + " ROWS FETCH NEXT " + std::to_string(right - left) + " ROWS ONLY";
 
@@ -137,7 +137,7 @@ int DBContactsImpl::GetSet(const std::string &user_id, std::set<std::string> *co
         res = ERROR_GET_SET_CONTACT;
     }
 
-    Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
 
     return res;
 }

@@ -3,8 +3,9 @@
 #include <queue>
 #include <string>
 #include <unistd.h>
+#include <pqxx/pqxx>
 
-#include "PGConnection.hpp"
+#include "DBConnection.hpp"
 #include "DBUserImpl.hpp"
 #include "DBUserDataImpl.hpp"
 #include "DBEventImpl.hpp"
@@ -16,8 +17,9 @@ const size_t MAX_COUNT_FREE_DB_VERSION = 2;
 
 static enum result_sql {SUCCESS = 0} RESULT;
 
-class DBManagerPG {
-    std::queue<PGConnection *> connection_pool;
+template<typename T, class ClassConnection = DBConnection<T>>
+class DBManager {
+    std::queue<ClassConnection *> connection_pool;
 public:
     DBUserImpl User;
     DBUserDataImpl UserData;
@@ -25,28 +27,28 @@ public:
     DBContactsImpl Contacts;
     DBGroupImpl Group;
 
-    PGConnection *GetFreeConnection();
+    ClassConnection *GetFreeConnection();
 
-    void InsertConnection(PGConnection *connection);
+    void InsertConnection(ClassConnection *connection);
 
     size_t Size() const noexcept;
 
-    DBManagerPG();
+    DBManager();
 
-    ~DBManagerPG() = default;
+    ~DBManager() = default;
 };
 
-template<typename T>
+template<typename Class>
 class Singleton {
 private:
-    T data;
+    Class data;
 public:
     static Singleton &GetInstance() {
         static Singleton _instance;
         return _instance;
     }
 
-    T &GetData() {
+    Class &GetData() {
         return data;
     }
 
@@ -62,3 +64,4 @@ private:
     ~Singleton() {}
 };
 
+#include "DBManagerImpl.hpp"

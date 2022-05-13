@@ -1,6 +1,7 @@
 #pragma once  //  NOLINT
 
 #include "DBContacts.hpp"
+#include <DBConnection.hpp>
 
 static enum result_add_contact {NOT_ADD_CONTACT = 5, ERROR_ADD_CONTACT} ADD_CONTACT;
 

@@ -1,10 +1,10 @@
 #include <iostream>
 
 #include "DBGroupImpl.hpp"
-#include "DBManagerPG.hpp"
+#include "DBManager.hpp"
 
 int DBGroupImpl::Create(const Group &group, std::string *group_id) const {
-    auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
+    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "INSERT INTO group_m (title,description) "
                       "VALUES ('" + group.GetTitle() + "','" + group.GetDescription() + "' ) RETURNING group_id;";
@@ -29,7 +29,7 @@ int DBGroupImpl::Create(const Group &group, std::string *group_id) const {
         res = ERROR_CREATE_GROUP;
     }
 
-    Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
 
     return res;
 }
@@ -39,7 +39,7 @@ int DBGroupImpl::ReWrite(const Group &group) const {
 }
 
 int DBGroupImpl::RmAllMembers(const std::string &group_id) const {
-    auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
+    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "DELETE FROM group_members WHERE fk_group_id = '" + group_id + "'";
 
@@ -61,13 +61,13 @@ int DBGroupImpl::RmAllMembers(const std::string &group_id) const {
         res = ERROR_RM_GROUP_ALL_MEMBER;
     }
 
-    Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
 
     return res;
 }
 
 int DBGroupImpl::Rm(const std::string &group_id) const {
-    auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
+    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
 
     std::string SQL = "DELETE FROM group_m WHERE group_id = '" + group_id + "'";
 
@@ -89,7 +89,7 @@ int DBGroupImpl::Rm(const std::string &group_id) const {
         res = ERROR_RM_GROUP;
     }
 
-    Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
 
     return res;
 }
@@ -100,7 +100,7 @@ int DBGroupImpl::GetMembers(const std::string &group_id, Group *group) const {
 }
 
 int DBGroupImpl::AddMember(const User &user, const std::string &group_id) const {
-    auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
+    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
 
     std::string user_id;
 
@@ -109,7 +109,7 @@ int DBGroupImpl::AddMember(const User &user, const std::string &group_id) const 
     } else {
         std::string user_id;
 
-        Singleton<DBManagerPG>::GetInstance().GetData().User.GetId(user, user_id);
+        Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.GetId(user, user_id);
     }
 
     std::string SQL = "INSERT INTO group_members (fk_group_id,fk_user_id) "
@@ -133,13 +133,13 @@ int DBGroupImpl::AddMember(const User &user, const std::string &group_id) const 
         res = ERROR_ADD_GROUP_MEMBER;
     }
 
-    Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
 
     return res;
 }
 
 int DBGroupImpl::RmMember(const User &user, const std::string &group_id) const {
-    auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
+    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
 
     std::string user_id;
 
@@ -148,7 +148,7 @@ int DBGroupImpl::RmMember(const User &user, const std::string &group_id) const {
     } else {
         std::string user_id;
 
-        Singleton<DBManagerPG>::GetInstance().GetData().User.GetId(user, user_id);
+        Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.GetId(user, user_id);
     }
 
     std::string SQL = "DELETE FROM group_members WHERE fk_user_id = '" + user_id + "'";
@@ -171,7 +171,7 @@ int DBGroupImpl::RmMember(const User &user, const std::string &group_id) const {
         res = ERROR_RM_GROUP_MEMBER;
     }
 
-    Singleton<DBManagerPG>::GetInstance().GetData().InsertConnection(con);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
 
     return res;
 }
