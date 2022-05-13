@@ -6,7 +6,7 @@
 int DBEventImpl::Add(const Event &event, std::string &new_event_id) const {
     auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
 
-    std::string SQL = "INSERT INTO event_m (event_name,event_date,time_begin,time_end,description,fk_user_id) "
+    std::string SQL = "INSERT INTO event (event_name,event_date,time_begin,time_end,description,fk_user_id) "
                       "VALUES ('" + event.GetName() + "','"
                       + event.GetDate() + "','"
                       + event.GetTimeBegin() + "','"
@@ -46,7 +46,7 @@ int DBEventImpl::Write(const Event &event) const {
 int DBEventImpl::Rm(const Event &event) const {
     auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
 
-    std::string SQL = "DELETE FROM event_m WHERE event_id = '" + event.GetId() + "'";
+    std::string SQL = "DELETE FROM event WHERE event_id = '" + event.GetId() + "'";
 
     int res = SUCCESS;
 
@@ -79,7 +79,7 @@ int DBEventImpl::GetId(const Event &event, std::string &event_id) const {
 int DBEventImpl::GetSet(const std::string &user_id, std::set<Event> &events, const std::string &date) const {
     auto con = Singleton<DBManagerPG>::GetInstance().GetData().GetFreeConnection();
 
-    std::string SQL = "SELECT * FROM event_m WHERE event_date = '" + date + "'";
+    std::string SQL = "SELECT * FROM event WHERE event_date = '" + date + "' ORDER BY DESK time_begin";
 
     int res = SUCCESS;
 
@@ -115,3 +115,5 @@ int DBEventImpl::GetSet(const std::string &user_id, std::set<Event> &events, con
 
     return res;
 }
+
+//  std::string SQL = "SELECT fk_contact_id FROM contact WHERE event_date = '" + date + "' BETWEEN left and right ORDER BY event_id DESK";

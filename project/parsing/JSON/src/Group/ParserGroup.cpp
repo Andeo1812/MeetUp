@@ -7,12 +7,12 @@ Context ParserGroup::StrToObject(const std::string &parser_str) const {
 
     Context res;
 
-    if (j.contains("page")) {
-        res.SetPage(j["page"].get<std::string>());
+    if (j.contains("left")) {
+        res.SetLeftBorder(j["left"].get<std::string>());
     }
 
-    if (j.contains("count_one_page")) {
-        res.SetCountOnePage(j["count_one_page"].get<std::string>());
+    if (j.contains("right")) {
+        res.SetRightBorder(j["right"].get<std::string>());
     }
 
     nlohmann::json value = j[j.begin().key()];
@@ -100,12 +100,12 @@ std::string ParserGroup::ObjectToStr(const std::string type_response, const Cont
         json_groups.push_back(json_group);
     }
 
-    if (!other.GetPage().empty()) {
-        j["page"] = other.GetPage();
+    if (!other.GetLeftBorder().empty()) {
+        j["keft"] = other.GetLeftBorder();
     }
 
-    if (!other.GetCountOnePage().empty()) {
-        j["count_one_page"] = other.GetCountOnePage();
+    if (!other.GetRightBorder().empty()) {
+        j["right"] = other.GetRightBorder();
     }
 
     j[type_response] = json_groups;

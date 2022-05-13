@@ -140,12 +140,12 @@
 
 **_Response:_**
 ```c
-{"page":"5","count":"5","get_contacts":{"user_id":"56"}}
+{"left":"5","right":"10","get_contacts":{"user_id":"56"}}
 ```
 
 **_Answer:_**
 ```c
-{"page":"5","count":"5","get_contacts":["Misha","Maxim"]}
+{"left":"5","right":"10","get_contacts":["Misha","Maxim"]}
 ```
 
 Порядок работы:
@@ -222,12 +222,12 @@
 
 **_Response:_**
 ```c
-{"get_groups":[{"user_id":"32"}],"page":"5","count":"5"}
+{"get_groups":[{"user_id":"32"}],"page"left"5","right":"10"}
 ```
 
 **_Answer:_**
 ```c
-{"page":"5","count":"5","get_groups":[{"group_id":"48","title":"111111111111111111"},{"group_id":"2","title":"group techno"},{"group_id":"4","title":"qqaa"},{"description":"213131313231231323131123","group_id":"1","title":"qqqqqqqqqq"},{"group_id":"3","title":"qwe1"},{"group_id":"11","title":"sdvsdv"}]}
+{"left":"5","right":"10","get_groups":[{"group_id":"48","title":"111111111111111111"},{"group_id":"2","title":"group techno"},{"group_id":"4","title":"qqaa"},{"description":"213131313231231323131123","group_id":"1","title":"qqqqqqqqqq"},{"group_id":"3","title":"qwe1"},{"group_id":"11","title":"sdvsdv"}]}
 ```
 
 Порядок работы:

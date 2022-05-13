@@ -18,8 +18,8 @@ class Context {
     std::set<Group>          groups;
     std::set<MeetUp>        meetups;
     Contacts               contacts;
-    std::string                page;
-    std::string      count_one_page;
+    std::string                left;
+    std::string               right;
     std::string               error;
 
  public:
@@ -34,8 +34,8 @@ class Context {
     Context& operator=(const std::set<MeetUp> other) noexcept;
     Context& operator=(const Contacts other) noexcept;
 
-    void SetPage(const std::string &page) noexcept;
-    void SetCountOnePage(const std::string &count_one_page) noexcept;
+    void SetLeftBorder(const std::string &left) noexcept;
+    void SetRightBorder(const std::string &right) noexcept;
     void SetError(const std::string &error) noexcept;
 
     User GetUser() const noexcept;
@@ -47,8 +47,8 @@ class Context {
     std::set<MeetUp> GetMeetUp() const noexcept;
     Contacts GetContacts() const noexcept;
     std::string GetError() const noexcept;
-    std::string GetPage() const noexcept;
-    std::string GetCountOnePage() const noexcept;
+    std::string GetLeftBorder() const noexcept;
+    std::string GetRightBorder() const noexcept;
 
     Context() = default;
     Context(const Context& other) = default;

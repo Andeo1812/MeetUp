@@ -210,7 +210,7 @@ TEST(PARSING, Events) {
 }
 
 TEST(PARSING, UserContacts) {
-    std::string input = {"{\"page\":\"5\",\"count_one_page\":\"4\",\"add_contact\":{\"user_id\":\"56\",\"contacts\":[\"Ibragim\", \"Ahper\"]}}"};
+    std::string input = {"{\"left\":\"5\",\"right\":\"10\",\"add_contact\":{\"user_id\":\"56\",\"contacts\":[\"Ibragim\", \"Ahper\"]}}"};
     std::string type_request = {"add_contact"};
     std::set<std::string> contacts = {"Ibragim", "Ahper"};
 
@@ -222,8 +222,8 @@ TEST(PARSING, UserContacts) {
 
     EXPECT_EQ("56", context.GetContacts().GetUserId());
     EXPECT_EQ(contacts, context.GetContacts().GetContacts());
-    EXPECT_EQ("5", context.GetPage());
-    EXPECT_EQ("4", context.GetCountOnePage());
+    EXPECT_EQ("5", context.GetLeftBorder());
+    EXPECT_EQ("10", context.GetRightBorder());
 
     std::string response = parser.ObjectToStr(type_request, context);
 
@@ -289,12 +289,12 @@ TEST(PARSING, Groups) {
 
     EXPECT_EQ(response_error, expected_response_error);
 
-    std::string input_get = {"{\"get_groups\":[{\"user_id\":\"654\"}],\"page\":\"5\",\"count_one_page\":\"4\"}"};
+    std::string input_get = {"{\"get_groups\":[{\"user_id\":\"654\"}],\"left\":\"5\",\"right\":\"10\"}"};
 
     context = parser.StrToObject(input_get);
 
-    EXPECT_EQ("5", context.GetPage());
-    EXPECT_EQ("4", context.GetCountOnePage());
+    EXPECT_EQ("5", context.GetLeftBorder());
+    EXPECT_EQ("10", context.GetRightBorder());
 }
 
 TEST(PARSING, MeetUps) {
