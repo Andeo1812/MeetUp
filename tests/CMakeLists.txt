@@ -11,8 +11,8 @@ file(GLOB SOURCES *.cpp)
 
 set(SOURCES
     TestAsynhGetSeq.cpp
-    TestClientConnetion.cpp
-    TestClientConnetion.cpp)
+    TestInvalidRequest.cpp
+    TestGoodRequest.cpp)
 
 find_package(GTest REQUIRED)
 
