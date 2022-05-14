@@ -5,10 +5,10 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+
 #include <boost/asio.hpp>
 #include "Header.hpp"
-
-#include <iostream>
 
 namespace http {
 namespace AsyncServer {

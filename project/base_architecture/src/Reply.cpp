@@ -1,7 +1,7 @@
 
+#include <string>
 
 #include "Reply.hpp"
-#include <string>
 
 namespace http {
 namespace AsyncServer {

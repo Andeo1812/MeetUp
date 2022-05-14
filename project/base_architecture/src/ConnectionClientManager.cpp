@@ -1,5 +1,4 @@
 
-
 #include "ConnectionClientManager.hpp"
 
 namespace http {

@@ -1,12 +1,13 @@
 
 #include <boost/bind/bind.hpp>
-#include "ClientConnection.hpp"
 #include <utility>
 #include <vector>
+#include <iostream>
+
+#include "ClientConnection.hpp"
 #include "ConnectionClientManager.hpp"
 #include "RequestHandler.hpp"
 
-#include <iostream>
 
 #define WAIT 0
 #define READY 1
@@ -42,7 +43,6 @@ std::tuple<int, std::string> get_response(std::string in) {
 }
 
 void ClientConnection::async_get(std::string str, boost::asio::steady_timer* timer) {
-    auto self(shared_from_this());
     std::string response;
     int status_handle;
     std::tie(status_handle, response) = get_response(str);
@@ -61,7 +61,8 @@ void ClientConnection::async_get(std::string str, boost::asio::steady_timer* tim
 }
 
 void ClientConnection::do_handle() {
-    timer.async_wait(boost::bind(&ClientConnection::async_get, this, "send_this_string_to_back_end_and_wait_the_response", &timer));
+    timer.async_wait(boost::bind(&ClientConnection::async_get, this,
+            "send_this_string_to_back_end_and_wait_the_response", &timer));
 }
 
 void ClientConnection::do_read() {

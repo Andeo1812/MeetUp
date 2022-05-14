@@ -1,10 +1,9 @@
 
+#include <cctype>
+#include <iostream>
 
 #include "RequestParser.hpp"
 #include "HttpRequest.hpp"
-
-#include <cctype>
-#include <iostream>
 
 namespace http {
 namespace AsyncServer {

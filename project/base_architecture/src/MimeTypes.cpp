@@ -1,5 +1,4 @@
 
-
 #include "MimeTypes.hpp"
 
 namespace http {

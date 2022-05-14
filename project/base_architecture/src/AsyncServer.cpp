@@ -1,8 +1,9 @@
 
-#include "AsyncServer.hpp"
 #include <signal.h>
 #include <utility>
 #include <iostream>
+
+#include "AsyncServer.hpp"
 
 namespace http {
 namespace AsyncServer {

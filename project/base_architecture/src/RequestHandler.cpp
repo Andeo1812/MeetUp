@@ -1,17 +1,15 @@
 
-
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <functional>
+#include <iostream>
+#include <cctype>
 
 #include "RequestHandler.hpp"
 #include "MimeTypes.hpp"
 #include "Reply.hpp"
 #include "HttpRequest.hpp"
-
-#include <iostream>
-#include <cctype>
 
 namespace http {
 namespace AsyncServer {
