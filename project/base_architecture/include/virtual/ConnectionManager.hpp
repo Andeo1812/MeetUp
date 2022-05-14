@@ -17,6 +17,7 @@ public:
 
     ConnectionManager() = default;
 
+protected:
     /// Add the specified connection to the manager and start it.
     virtual void open_connection(connection_ptr c) = 0;
 
