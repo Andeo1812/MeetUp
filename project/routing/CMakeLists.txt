@@ -1,8 +1,9 @@
 project(Routing)
 
-file(GLOB SOURCES src/*.cpp)
+file(GLOB SOURCES definition/*.cpp)
 
 set(Include_dir ${Config}
+                ${CMAKE_CURRENT_SOURCE_DIR}/definition/
                 ${CMAKE_CURRENT_SOURCE_DIR}/include/virtual/
                 ${CMAKE_CURRENT_SOURCE_DIR}/include/impl/)
 

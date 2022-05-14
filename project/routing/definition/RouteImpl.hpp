@@ -24,6 +24,7 @@
 #include "ParserPersonalData.hpp"
 #include "ParserMeetUp.hpp"
 
+template<class ClassDBManager>
 RouteImpl::RouteImpl() {
     //  Base            REQUEST                                        PARSER                     HANDLER
     route_map.insert({REGISTRATION,           Node(new ParserUser,         new Registration)});

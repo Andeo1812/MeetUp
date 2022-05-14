@@ -2,27 +2,47 @@
 
 #include <map>
 #include <queue>
+#include <thread>
 
 #include "Handler.hpp"
 
 #include "Parser.hpp"
 
-struct Node {
+struct NodeMap {
     const Parser *parser;
     const Handler *handler;
 
-    Node(const Parser *parser, const Handler *handler) : parser(parser), handler(handler) {};
+    NodeMap(const Parser *parser, const Handler *handler) : parser(parser), handler(handler) {};
 };
 
+struct NodeResponse {
+    const std::string request;
+    const std::string response;
+
+    NodeResponse(const std::string &request, const Handler *handler) : request(request) {};
+};
+
+template<class ClassDBManager>
 class Route {
- public:
+ protected:
     std::queue<std::string> tasks;
 
-    std::map<std::string, Node> route_map;
+    std::map<std::string, NodeMap> route_map;
 
-    virtual std::string get_head(const std::string request_body) = 0;
+    const ClassDBManager db_manager;
 
-    virtual std::string get_response(const std::string request_body) = 0;
+    std::vector<std::thread> workers;
+
+    std::queue<std::string> responses;
+
+ public:
+    virtual void InsertTask(const std::string &task) = 0;
+
+    virtual std::string GetHeadRequest(const std::string &request_body) const = 0;
+
+    virtual std::string HandlingTask(const std::string &request_body) const = 0;
+
+    virtual std::string GetResTask(const std::string &request_body) = 0;
 
     virtual ~Route() = default;
 };

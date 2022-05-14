@@ -2,11 +2,16 @@
 
 #include "Route.hpp"
 
-class RouteImpl : Route {
+typename<class ClassDBManager>
+class RouteImpl : protected Route<ClassDBManager> {
  public:
-    std::string get_head(const std::string request_body) override;
+    void InsertTask(const std::string &task) override;
 
-    std::string get_response(const std::string request_body) override;
+    std::string GetHeadRequest(const std::string &request_body) const override;
+
+    std::string HandlingTask(const std::string &request_body) const override;
+
+    std::string GetResTask(const std::string &request_body) override;
 
     RouteImpl();
     RouteImpl(const RouteImpl &other) = default;
