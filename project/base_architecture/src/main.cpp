@@ -13,8 +13,8 @@ int main(int argc, char* argv[]) {
         // curl -d 'SIMPLE JSON {["a" : "b"]}\\r\\n' POST /1.txt 127.0.0.1:8000 --verbose
         // curl -X POST -F 'name=andreyex' -F 'email=andreyex@example.ru' -I 127.0.0.1:8000
         // curl -H 'Content-Type: application/json' --data '{"param1":"test1","param2":"test2"}' 127.0.0.1:8000
-        // echo -en "POST / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[\"a\" : \"b\"]}\r\n" | ncat  127.0.0.1 8000
-        // echo -en "GET /1.txt HTTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[\"a\" : \"b\"]}\r\n" | ncat  127.0.0.1 8000
+        // echo "POST / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[\"a\" : \"b\"]}\r\n" | ncat  127.0.0.1 8000
+        // echo "GET /1.txt HTTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[\"a\" : \"b\"]}\r\n" | ncat  127.0.0.1 8000
         // *CONTENT BODY*:{["a" : "b"]}
         // telnet http://x.x.x.x yyyy
         // GET /service=test&par=1&par=2&val=1 HTTP/1.1

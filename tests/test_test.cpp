@@ -6,17 +6,15 @@
 int main() {
     // system("./int.sh");
     std::string host_name = "127.0.0.1 8000";
-    std::string test_file = "InvalidRequest.txt";
+    std::string test_file = "GoodRequest.txt";
 
-    std::string command = "echo 'POST / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[\"a\" : \"b\"]}' | ncat "
+    std::string command = "echo 'GET /1.txt HTTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[\"a\" : \"b\"]}\r\n' | ncat "
         + host_name + " > " + test_file;
 
-    std::string rm_comm = "rm -f " + test_file;
-    system(rm_comm.c_str());
     system(command.c_str());
 
-    std::ifstream fin1("InvalidRequest.txt");
-    std::ifstream fin2("InvalidRequest.gold");
+    std::ifstream fin1(test_file);
+    std::ifstream fin2("GoodRequest_3.gold");
     assert(fin1);
     assert(fin2);
 

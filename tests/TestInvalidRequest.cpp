@@ -1,14 +1,14 @@
 #include <gtest/gtest.h>
 
-#include "AsyncServer.hpp"
-#include <boost/asio.hpp>
 #include <string>
+#include <fstream>
+#include <boost/asio.hpp>
+
+#include "AsyncServer.hpp"
 #include "ClientConnection.hpp"
 #include "ConnectionClientManager.hpp"
 #include "RequestHandler.hpp"
 #include "Server.hpp"
-
-#include <fstream>
 
 TEST(true_request, TestRequestServIntInvalidRequest) {
     std::string host_name = "127.0.0.1 8000";
@@ -61,6 +61,7 @@ TEST(case_1, TestRequestServIntInvalidRequest) {
     }
     ASSERT_EQ(result, true);
 }
+
 TEST(case_2, TestRequestServIntInvalidRequest) {
     std::string host_name = "127.0.0.1 8000";
     std::string test_file = "InvalidRequest.txt";
@@ -86,6 +87,7 @@ TEST(case_2, TestRequestServIntInvalidRequest) {
     }
     ASSERT_EQ(result, true);
 }
+
 TEST(case_3, TestRequestServIntInvalidRequest) {
     std::string host_name = "127.0.0.1 8000";
     std::string test_file = "InvalidRequest.txt";
@@ -111,6 +113,7 @@ TEST(case_3, TestRequestServIntInvalidRequest) {
     }
     ASSERT_EQ(result, true);
 }
+
 TEST(case_4, TestRequestServIntInvalidRequest) {
     std::string host_name = "127.0.0.1 8000";
     std::string test_file = "InvalidRequest.txt";
@@ -136,6 +139,7 @@ TEST(case_4, TestRequestServIntInvalidRequest) {
     }
     ASSERT_EQ(result, true);
 }
+
 TEST(case_5, TestRequestServIntInvalidRequest) {
     std::string host_name = "127.0.0.1 8000";
     std::string test_file = "InvalidRequest.txt";
@@ -161,6 +165,7 @@ TEST(case_5, TestRequestServIntInvalidRequest) {
     }
     ASSERT_EQ(result, true);
 }
+
 TEST(case_6, TestRequestServIntInvalidRequest) {
     std::string host_name = "127.0.0.1 8000";
     std::string test_file = "InvalidRequest.txt";
@@ -186,6 +191,7 @@ TEST(case_6, TestRequestServIntInvalidRequest) {
     }
     ASSERT_EQ(result, true);
 }
+
 TEST(case_7, TestRequestServIntInvalidRequest) {
     std::string host_name = "127.0.0.1 8000";
     std::string test_file = "InvalidRequest.txt";

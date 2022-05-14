@@ -77,7 +77,6 @@ void ClientConnection::do_read() {
                                                     buffer_.data() + bytes_transferred);
 
                 if (result == RequestParser::good) {
-                    std::cout << "@ ";
                     request_.print_req();
                     do_handle();
                 } else if (result == RequestParser::bad) {

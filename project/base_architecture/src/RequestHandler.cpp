@@ -17,9 +17,6 @@ namespace AsyncServer {
 RequestHandler::RequestHandler(const std::string& doc_root) : doc_root_(doc_root) {}
 
 void RequestHandler::handle_request(const HttpRequest& req, Reply& rep) {
-    std::cout << "in Heandler_req:" << std::endl;
-    req.print_req();
-
     // test logic for debugging
     std::string request_path;
     if (!url_decode(req.uri, request_path)) {
