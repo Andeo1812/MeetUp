@@ -24,17 +24,6 @@ struct NodeResponse {
 
 template<class ClassDBManager>
 class Route {
- protected:
-    std::queue<std::string> tasks;
-
-    std::map<std::string, NodeMap> route_map;
-
-    const ClassDBManager db_manager;
-
-    std::vector<std::thread> workers;
-
-    std::queue<std::string> responses;
-
  public:
     virtual void InsertTask(const std::string &task) = 0;
 

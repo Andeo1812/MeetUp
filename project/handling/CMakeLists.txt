@@ -5,7 +5,7 @@ file(GLOB SOURCES src/*.cpp
                 src/Group/Base/*.cpp
                 src/Group/MeetUp/*.cpp
                 src/Group/MeetUp/SupportMeetUp/src/*.cpp
-                /Group/User/*.cpp)
+                src/Group/User/*.cpp)
 
 set(Include_dir ${CMAKE_CURRENT_SOURCE_DIR}/include/virtual/
                 ${CMAKE_CURRENT_SOURCE_DIR}/include/impl/
