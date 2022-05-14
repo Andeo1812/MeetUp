@@ -4,7 +4,6 @@
 
 template<class ClassDBManager>
 class RouteImpl : public Route<ClassDBManager> {
- public:
     std::queue<std::string> tasks;
 
     std::map<std::string, NodeMap> route_map;
@@ -15,6 +14,7 @@ class RouteImpl : public Route<ClassDBManager> {
 
     std::queue<NodeResponse> responses;
 
+ public:
     void InsertTask(const std::string &task) override;
 
     std::string GetHeadRequest(const std::string &request_body) const override;
