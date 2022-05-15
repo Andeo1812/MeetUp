@@ -1,48 +1,39 @@
 #pragma once  //  NOLINT
 
 //  RouteMapKeys
-#define REGISTRATION                     "registration"
-#define AUTHENTICATION                   "authentication"
+const std::string REGISTRATION = {"registration"};
+const std::string AUTHENTICATION = {"authentication"};
 
+const std::string GET_EVENTS = {"get_events"};
+const std::string GET_CONTACTS = {"get_contacts"};
+const std::string GET_GROUPS = {"get_groups"};
 
-#define GET_EVENTS                       "get_events"
-#define GET_CONTACTS                     "get_contacts"
-#define GET_GROUPS                       "get_groups"
+const std::string WRITE_GENERAL_DATA = {"write_general"};
+const std::string GET_GENERAL_DATA = {"get_general"};
 
+const std::string WRITE_PASSWORD = {"rewrite_password"};
+const std::string WRITE_NICKNAME = {"rewrite_nickname"};
 
-#define WRITE_GENERAL_DATA               "write_general"
-#define GET_GENERAL_DATA                 "get_general"
+const std::string WRITE_PERSONAL_DATA = {"write_personal"};
+const std::string GET_PERSONAL_DATA = {"get_personal"};
 
+const std::string WRITE_ADDRESS = {"write_address"};
+const std::string GET_ADDRESS = {"get_address"};
 
-#define WRITE_PASSWORD                   "rewrite_password"
-#define WRITE_NICKNAME                   "rewrite_nickname"
+const std::string ADD_EVENT = {"add_event"};
+const std::string WRITE_EVENT = {"rewrite_event"};
+const std::string RM_EVENT = {"rm_event"};
 
+const std::string ADD_USER_CONTACTS = {"add_contact"};
+const std::string RM_USER_CONTACTS = {"rm_contact"};
 
-#define WRITE_PERSONAL_DATA              "write_personal"
-#define GET_PERSONAL_DATA                "get_personal"
+const std::string ADD_GROUP = {"create_group"};
+const std::string WRITE_GROUP = {"rewrite_group"};
+const std::string RM_GROUP = {"rm_group"};
 
+const std::string GET_MEMBERS = {"get_group_members"};
 
-#define WRITE_ADDRESS                    "write_address"
-#define GET_ADDRESS                      "get_address"
+const std::string ADD_USER_GROUP = {"invite"};
+const std::string RM_USER_GROUP = {"kick"};
 
-
-#define ADD_EVENT                        "add_event"
-#define WRITE_EVENT                      "rewrite_event"
-#define RM_EVENT                         "rm_event"
-
-
-#define ADD_USER_CONTACTS                "add_contact"
-#define RM_USER_CONTACTS                 "rm_contact"
-
-
-#define ADD_GROUP                        "create_group"
-#define WRITE_GROUP                      "rewrite_group"
-#define RM_GROUP                         "rm_group"
-
-#define GET_MEMBERS                      "get_group_members"
-
-#define ADD_USER_GROUP                    "invite"
-#define RM_USER_GROUP                     "kick"
-
-
-#define GET_MEETUP                        "get_meetup"
+const std::string GET_MEETUP = {"get_meetup"};

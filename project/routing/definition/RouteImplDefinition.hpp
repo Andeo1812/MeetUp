@@ -1,5 +1,7 @@
 #pragma once  //  NOLINT
 
+#include <memory>
+
 #include "RouteImpl.hpp"
 
 #include "APIKeys.hpp"
@@ -29,17 +31,17 @@
 template<class ClassDBManager>
 RouteImpl<ClassDBManager>::RouteImpl() {
     //  Base            REQUEST                                        PARSER                     HANDLER
-    route_map.insert({REGISTRATION,           NodeMap(new ParserUser,         new Registration)});
-    route_map.insert({AUTHENTICATION,         NodeMap(new ParserUser,         new Authentication)});
-    route_map.insert({ADD_EVENT,              NodeMap(new ParserEvent,        new AddEvent)});
-    route_map.insert({RM_EVENT,               NodeMap(new ParserEvent,        new RmEvent)});
-    route_map.insert({ADD_USER_GROUP,         NodeMap(new ParserUserContacts, new AddUserContacts)});
-    route_map.insert({RM_USER_GROUP,          NodeMap(new ParserUserContacts, new RmUserContacts)});
-    route_map.insert({ADD_GROUP,              NodeMap(new ParserGroup,        new AddGroup)});
-    route_map.insert({ADD_USER_GROUP,         NodeMap(new ParserGroup,        new AddUserGroup)});
-    route_map.insert({RM_USER_GROUP,          NodeMap(new ParserGroup,        new RmUserGroup)});
-    route_map.insert({RM_GROUP,               NodeMap(new ParserGroup,        new RmGroup)});
-    route_map.insert({GET_MEETUP,             NodeMap(new ParserMeetUp,       new GetMeetUps)});
+    route_map.insert({REGISTRATION,           NodeMap(new const ParserUser,         new const Authentication)});
+    route_map.insert({AUTHENTICATION,         NodeMap(new const ParserUser,         new const Authentication)});
+    route_map.insert({ADD_EVENT,              NodeMap(new const ParserEvent,        new const AddEvent)});
+    route_map.insert({RM_EVENT,               NodeMap(new const ParserEvent,        new const RmEvent)});
+    route_map.insert({ADD_USER_GROUP,         NodeMap(new const ParserUserContacts, new const AddUserContacts)});
+    route_map.insert({RM_USER_GROUP,          NodeMap(new const ParserUserContacts, new const RmUserContacts)});
+    route_map.insert({ADD_GROUP,              NodeMap(new const ParserGroup,        new const AddGroup)});
+    route_map.insert({ADD_USER_GROUP,         NodeMap(new const ParserGroup,        new const AddUserGroup)});
+    route_map.insert({RM_USER_GROUP,          NodeMap(new const ParserGroup,        new const RmUserGroup)});
+    route_map.insert({RM_GROUP,               NodeMap(new const ParserGroup,        new const RmGroup)});
+    route_map.insert({GET_MEETUP,             NodeMap(new const ParserMeetUp,       new const GetMeetUps)});
 }
 
 template<class ClassDBManager>
