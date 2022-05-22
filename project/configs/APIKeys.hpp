@@ -1,39 +1,39 @@
 #pragma once  //  NOLINT
 
 //  RouteMapKeys
-const std::string REGISTRATION = {"registration"};
-const std::string AUTHENTICATION = {"authentication"};
+const char REGISTRATION[] = {"registration"};
+const char AUTHENTICATION[] = {"authentication"};
 
-const std::string GET_EVENTS = {"get_events"};
-const std::string GET_CONTACTS = {"get_contacts"};
-const std::string GET_GROUPS = {"get_groups"};
+const char GET_EVENTS[] = {"get_events"};
+const char GET_CONTACTS[] = {"get_contacts"};
+const char GET_GROUPS[] = {"get_groups"};
 
-const std::string WRITE_GENERAL_DATA = {"write_general"};
-const std::string GET_GENERAL_DATA = {"get_general"};
+const char WRITE_GENERAL_DATA[] = {"write_general"};
+const char GET_GENERAL_DATA[] = {"get_general"};
 
-const std::string WRITE_PASSWORD = {"rewrite_password"};
-const std::string WRITE_NICKNAME = {"rewrite_nickname"};
+const char WRITE_PASSWORD[] = {"rewrite_password"};
+const char WRITE_NICKNAME[] = {"rewrite_nickname"};
 
-const std::string WRITE_PERSONAL_DATA = {"write_personal"};
-const std::string GET_PERSONAL_DATA = {"get_personal"};
+const char WRITE_PERSONAL_DATA[] = {"write_personal"};
+const char GET_PERSONAL_DATA[] = {"get_personal"};
 
-const std::string WRITE_ADDRESS = {"write_address"};
-const std::string GET_ADDRESS = {"get_address"};
+const char WRITE_ADDRESS[] = {"write_address"};
+const char GET_ADDRESS[] = {"get_address"};
 
-const std::string ADD_EVENT = {"add_event"};
-const std::string WRITE_EVENT = {"rewrite_event"};
-const std::string RM_EVENT = {"rm_event"};
+const char ADD_EVENT[] = {"add_event"};
+const char WRITE_EVENT[] = {"rewrite_event"};
+const char RM_EVENT[] = {"rm_event"};
 
-const std::string ADD_USER_CONTACTS = {"add_contact"};
-const std::string RM_USER_CONTACTS = {"rm_contact"};
+const char ADD_USER_CONTACTS[] = {"add_contact"};
+const char RM_USER_CONTACTS[] = {"rm_contact"};
 
-const std::string ADD_GROUP = {"create_group"};
-const std::string WRITE_GROUP = {"rewrite_group"};
-const std::string RM_GROUP = {"rm_group"};
+const char ADD_GROUP[] = {"create_group"};
+const char WRITE_GROUP[] = {"rewrite_group"};
+const char RM_GROUP[] = {"rm_group"};
 
-const std::string GET_MEMBERS = {"get_group_members"};
+const char GET_MEMBERS[] = {"get_group_members"};
 
-const std::string ADD_USER_GROUP = {"invite"};
-const std::string RM_USER_GROUP = {"kick"};
+const char ADD_USER_GROUP[] = {"invite"};
+const char RM_USER_GROUP[] = {"kick"};
 
-const std::string GET_MEETUP = {"get_meetup"};
+const char GET_MEETUP[] = {"get_meetup"};

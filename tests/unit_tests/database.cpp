@@ -34,7 +34,7 @@ TEST(PostgreSQL, DBUser) {
 
     std::string new_user_id;
 
-    int res_reg = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.Registration(user, new_user_id, conn);
+    int res_reg = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.Registration(user, &new_user_id, conn);
     user.SetId(new_user_id);
     EXPECT_EQ(res_reg, EXIT_SUCCESS);
 
@@ -50,13 +50,13 @@ TEST(PostgreSQL, DBUser) {
 
     std::string user_id;
 
-    int res_get_id = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.GetId(user, user_id, conn);
+    int res_get_id = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.GetId(user, &user_id, conn);
     EXPECT_EQ(res_get_id, EXIT_SUCCESS);
     EXPECT_EQ(user_id, user.GetId());
 
     std::string get_nickname;
 
-    int res_get_nickname = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.GetNickname(user, get_nickname, conn);
+    int res_get_nickname = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.GetNickname(user, &get_nickname, conn);
     EXPECT_EQ(res_get_nickname, EXIT_SUCCESS);
     EXPECT_EQ(get_nickname, user.GetNickname());
 
@@ -67,9 +67,9 @@ TEST(PostgreSQL, DBUser) {
 }
 
 
-TEST(PostgreSQL, DBUserData) {
-
-}
+//    TEST(PostgreSQL, DBUserData) {
+//
+//    }
 
 TEST(PostgreSQL, DBEvent) {
     auto conn = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
@@ -93,7 +93,7 @@ TEST(PostgreSQL, DBEvent) {
 
     std::string new_user_id;
 
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.Registration(user, new_user_id, conn);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.Registration(user, &new_user_id, conn);
     user.SetId(new_user_id);
 
     event.SetUserId(new_user_id);
@@ -122,7 +122,7 @@ TEST(PostgreSQL, DBContacts) {
 
     std::string new_user_id_1;
 
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.Registration(user_1, new_user_id_1, conn);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.Registration(user_1, &new_user_id_1, conn);
     user_1.SetId(new_user_id_1);
 
     User user_2;
@@ -131,7 +131,7 @@ TEST(PostgreSQL, DBContacts) {
 
     std::string new_user_id_2;
 
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.Registration(user_2, new_user_id_2, conn);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.Registration(user_2, &new_user_id_2, conn);
     user_2.SetId(new_user_id_2);
 
     User user_3;
@@ -140,7 +140,7 @@ TEST(PostgreSQL, DBContacts) {
 
     std::string new_user_id_3;
 
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.Registration(user_2, new_user_id_3, conn);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.Registration(user_2, &new_user_id_3, conn);
     user_3.SetId(new_user_id_3);
 
     int res_add_contact_1 = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().Contacts.Add(user_1.GetId(), user_2.GetId(), conn);
@@ -182,7 +182,7 @@ TEST(PostgreSQL, DBGroup) {
 
     std::string new_user_id_1;
 
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.Registration(user_1, new_user_id_1, conn);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.Registration(user_1, &new_user_id_1, conn);
     user_1.SetId(new_user_id_1);
 
     User user_2;
@@ -191,7 +191,7 @@ TEST(PostgreSQL, DBGroup) {
 
     std::string new_user_id_2;
 
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.Registration(user_2, new_user_id_2, conn);
+    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().User.Registration(user_2, &new_user_id_2, conn);
     user_2.SetId(new_user_id_2);
 
     Group group_1;

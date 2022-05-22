@@ -33,8 +33,7 @@ Context_cpp="project/context/src/*/*"
 Context_path_hpp="-I project/context/include -I project/context/include/Data -I project/context/include/Group"
 
 Database_hpp="project/database/include/*/*"
-Database_cpp="project/database/PostgreSQL/src/*.cpp"
-Database_path_hpp="-I project/database/include/virtual -I project/database/include/impl -I project/database/PostgreSQL/include"
+Database_path_hpp="-I project/database/include/virtual -I project/database/include/impl -I project/database/PostgreSQL"
 
 Parsing_hpp="project/parsing/include/impl/*.hpp project/parsing/include/impl/Data/*.hpp project/parsing/include/impl/Group/*.hpp project/parsing/include/virtual/*.hpp"
 Parsing_cpp="project/parsing/JSON/src/*.cpp project/parsing/JSON/src/Data/*.cpp project/parsing/JSON/src/Group/*.cpp"
@@ -45,11 +44,10 @@ Handling_cpp="project/handling/src/*.cpp project/handling/src/Data/*.cpp project
 Handling_path_hpp="-I project/handling/include/impl -I project/handling/include/impl/Data -I project/handling/include/impl/Group -I project/handling/include/virtual -I project/handling/src/Group/MeetUp/SupportMeetUp/include"
 
 Routing_hpp="project/routing/include/impl/*.hpp project/routing/include/virtual/*.hpp"
-Routing_cpp="project/routing/src/*.cpp"
-Routing_path_hpp="-I project/routing/include/impl -I project/routing/include/virtual"
+Routing_path_hpp="-I project/routing/include/impl -I project/routing/include/virtual -I project/routing/definition"
 
 Sum_hpp="${Config_hpp} ${Context_hpp} ${Database_hpp} ${Parsing_hpp} ${Handling_hpp} ${Routing_hpp}"
-Sum_cpp="${main} ${Context_cpp} ${Database_cpp} ${Parsing_cpp} ${Handling_cpp} ${Routing_cpp} ${Tests_cpp}"
+Sum_cpp="${main} ${Context_cpp} ${Parsing_cpp} ${Handling_cpp} ${Tests_cpp}"
 
 Sum_path_hpp="${Config_path_hpp} ${Context_path_hpp} ${Database_path_hpp} ${Handling_path_hpp} ${Routing_path_hpp} ${Parsing_path_hpp}"
 

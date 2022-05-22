@@ -4,7 +4,7 @@
 #include <memory>
 #include <fstream>
 
-const std::string path_config = {"project/configs/Database.txt"};
+const char path_config[] = {"project/configs/Database.txt"};
 
 template<typename Connection>
 class DBConnection {
@@ -12,7 +12,7 @@ class DBConnection {
 
     std::string LoadConfig(const std::string &path) const;
 
-public:
+ public:
     DBConnection();
     ~DBConnection();
 

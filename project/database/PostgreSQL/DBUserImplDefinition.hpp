@@ -6,7 +6,7 @@
 #include "DBManager.hpp"
 
 template<class ClassConnection>
-int DBUserImpl<ClassConnection>::Registration(const User &user, std::string &new_user_id, ClassConnection *connection) const {
+int DBUserImpl<ClassConnection>::Registration(const User &user, std::string *new_user_id, ClassConnection *connection) const {
     std::string SQL = "INSERT INTO user_m (nickname,password) "
                       "VALUES ('" + user.GetNickname() + "','" + user.GetPassword() + "' ) RETURNING user_id;";
 
@@ -18,7 +18,7 @@ int DBUserImpl<ClassConnection>::Registration(const User &user, std::string &new
         pqxx::result result(work.exec(SQL));
 
         if (!result.empty()) {
-            new_user_id = result.begin()["user_id"].as<std::string>();
+            *new_user_id = result.begin()["user_id"].as<std::string>();
         } else {
             res = NOT_REGISTRATION;
         }
@@ -59,7 +59,7 @@ int DBUserImpl<ClassConnection>::Authentication(const User &user, ClassConnectio
 }
 
 template<class ClassConnection>
-int DBUserImpl<ClassConnection>::GetId(const User &user, std::string &user_id, ClassConnection *connection) const {
+int DBUserImpl<ClassConnection>::GetId(const User &user, std::string *user_id, ClassConnection *connection) const {
     std::string SQL = "SELECT user_id FROM user_m WHERE  nickname = '" + user.GetNickname() + "'";
 
     int res = EXIT_SUCCESS;
@@ -70,7 +70,7 @@ int DBUserImpl<ClassConnection>::GetId(const User &user, std::string &user_id, C
         pqxx::result result(work.exec(SQL));
 
         if (!result.empty()) {
-            user_id = result.begin()["user_id"].as<std::string>();
+            *user_id = result.begin()["user_id"].as<std::string>();
         } else {
             res = NOT_GET_USER_ID;
         }
@@ -86,7 +86,7 @@ int DBUserImpl<ClassConnection>::GetId(const User &user, std::string &user_id, C
 }
 
 template<class ClassConnection>
-int DBUserImpl<ClassConnection>::GetNickname(const User &user, std::string &nickname, ClassConnection *connection) const {
+int DBUserImpl<ClassConnection>::GetNickname(const User &user, std::string *nickname, ClassConnection *connection) const {
     std::string SQL = "SELECT nickname FROM user_m WHERE user_id = '" + user.GetId() + "'";
 
     int res = EXIT_SUCCESS;
@@ -97,7 +97,7 @@ int DBUserImpl<ClassConnection>::GetNickname(const User &user, std::string &nick
         pqxx::result result(work.exec(SQL));
 
         if (!result.empty()) {
-            nickname = result.begin()["nickname"].as<std::string>();
+            *nickname = result.begin()["nickname"].as<std::string>();
         } else {
             res = NOT_GET_USER_NICKNAME;
         }

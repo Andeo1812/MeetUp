@@ -275,8 +275,6 @@ TEST(PARSING, Groups) {
 
     context = parser.StrToObject(input);
 
-    std::cout << context.GetLeftBorder() << " " << context.GetRightBorder() << std::endl;
-
     EXPECT_EQ(groups, context.GetGroups());
 
     std::string response = parser.ObjectToStr(type_request, context);

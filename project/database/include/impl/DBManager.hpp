@@ -18,7 +18,8 @@ const size_t MAX_COUNT_FREE_DB_VERSION = 2;
 template<typename T, class ClassConnection = DBConnection<T>>
 class DBManager {
     std::queue<ClassConnection *> connection_pool;
-public:
+
+ public:
     DBUserImpl<ClassConnection> User;
     DBUserDataImplDefinition<ClassConnection> UserData;
     DBEventImpl<ClassConnection> Event;
@@ -38,9 +39,10 @@ public:
 
 template<typename Class>
 class Singleton {
-private:
+ private:
     Class data;
-public:
+
+ public:
     static Singleton &GetInstance() {
         static Singleton _instance;
         return _instance;
@@ -50,16 +52,16 @@ public:
         return data;
     }
 
-private:
+ private:
     Singleton() = default;
 
     Singleton(const Singleton &s) {}
 
-    Singleton &operator=(Singleton &s) {
+    Singleton &operator=(const Singleton &s) {
         return s;
     }
 
     ~Singleton() {}
 };
 
-#include "../../PostgreSQL/DBManagerImpl.hpp"
+#include "DBManagerImpl.hpp"

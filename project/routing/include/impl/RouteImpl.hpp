@@ -3,21 +3,21 @@
 #include "Route.hpp"
 
 #include <queue>
-#include <thread>
+#include <thread>  //  NOLINT
 #include <vector>
 
 struct NodeMap {
     std::unique_ptr<const Parser> parser;
     std::unique_ptr<const Handler> handler;
 
-    NodeMap(const Parser *parser, const Handler *handler) : parser(parser), handler(handler) {};
+    NodeMap(const Parser *parser, const Handler *handler) : parser(parser), handler(handler) {}
 };
 
 struct NodeResponse {
     const std::string request;
     std::string response;
 
-    NodeResponse(const std::string &request) : request(request) {};
+    explicit NodeResponse(const std::string &request) : request(request) {}
 };
 
 
@@ -48,4 +48,3 @@ class RouteImpl : public Route<ClassDBManager> {
 };
 
 #include "RouteImplDefinition.hpp"
-
