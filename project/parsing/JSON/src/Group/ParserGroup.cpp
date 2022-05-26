@@ -7,13 +7,8 @@ Context ParserGroup::StrToObject(const std::string &parser_str) const {
 
     Context res;
 
-    if (j.contains("left")) {
-        res.SetLeftBorder(j["left"].get<size_t>());
-    }
-
-    if (j.contains("right")) {
-        res.SetRightBorder(j["right"].get<size_t>());
-    }
+    get_data<size_t>(&Context::SetLeftBorder,     &res, j, "left");
+    get_data<size_t>(&Context::SetRightBorder,    &res, j, "right");
 
     nlohmann::json value = j[j.begin().key()];
 
@@ -22,17 +17,9 @@ Context ParserGroup::StrToObject(const std::string &parser_str) const {
     for (auto &element : value) {
         Group group;
 
-        if (element.contains("group_id")) {
-            group.SetId(element["group_id"].get<std::string>());
-        }
-
-        if (element.contains("title")) {
-            group.SetTitle(element["title"].get<std::string>());
-        }
-
-        if (element.contains("description")) {
-            group.SetDescription(element["description"].get<std::string>());
-        }
+        get_data<std::string>(&Group::SetId,             &group, element, "group_id");
+        get_data<std::string>(&Group::SetTitle,          &group, element, "title");
+        get_data<std::string>(&Group::SetDescription,    &group, element, "description");
 
         std::set<std::string> members;
 

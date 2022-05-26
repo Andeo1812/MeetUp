@@ -2,20 +2,6 @@
 
 #include "ParserAddressData.hpp"
 
-auto FillInfo = [](auto *set_method, auto *object, auto *value) -> void {
-    if (!value->empty()) {
-        object->set_method(value);
-    }
-};
-
-typedef void (AddressData::*FooMethodPtr)(const std::string&) noexcept;
-
-void FillInfoOO(FooMethodPtr fun1, AddressData *object, std::string value) {
-    if (!value.empty()) {
-        (object->*fun1)(value);
-    }
-};
-
 Context ParserAddressData::StrToObject(const std::string& parser_str) const {
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
@@ -23,40 +9,14 @@ Context ParserAddressData::StrToObject(const std::string& parser_str) const {
 
     AddressData address_data;
 
-    //  FillInfo(&AddressData::SetUserId, address_data, value["user_id"].get<std::string>());
-    FillInfoOO(&AddressData::SetUserId, &address_data, value["user_id"].get<std::string>());
-
-//    if (value.contains("user_id")) {
-//        address_data.SetUserId(value["user_id"].get<std::string>());
-//    }
-
-    if (value.contains("building")) {
-        address_data.SetBuilding(value["building"].get<std::string>());
-    }
-
-    if (value.contains("housing")) {
-        address_data.SetHousing(value["housing"].get<std::string>());
-    }
-
-    if (value.contains("street")) {
-        address_data.SetStreet(value["street"].get<std::string>());
-    }
-
-    if (value.contains("city")) {
-        address_data.SetCity(value["city"].get<std::string>());
-    }
-
-    if (value.contains("district")) {
-        address_data.SetDistrict(value["district"].get<std::string>());
-    }
-
-    if (value.contains("index")) {
-        address_data.SetIndex(value["index"].get<std::string>());
-    }
-
-    if (value.contains("country")) {
-        address_data.SetCountry(value["country"].get<std::string>());
-    }
+    get_data<std::string>(&AddressData::SetUserId,   &address_data, value, "user_id");
+    get_data<std::string>(&AddressData::SetBuilding, &address_data, value, "building");
+    get_data<std::string>(&AddressData::SetHousing,  &address_data, value, "housing");
+    get_data<std::string>(&AddressData::SetStreet,   &address_data, value, "street");
+    get_data<std::string>(&AddressData::SetCity,     &address_data, value, "city");
+    get_data<std::string>(&AddressData::SetDistrict, &address_data, value, "district");
+    get_data<std::string>(&AddressData::SetIndex,    &address_data, value, "index");
+    get_data<std::string>(&AddressData::SetCountry,  &address_data, value, "country");
 
     return address_data;
 }

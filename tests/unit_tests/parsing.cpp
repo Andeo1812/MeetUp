@@ -39,7 +39,6 @@ TEST(PARSING, User) {
 TEST(PARSING, AddressData) {
     std::string input = {"{\"write_address\":{\"user_id\":\"1\", "
                          "\"building\":\"2\", "
-                         "\"housing\":\"3\", "
                          "\"street\":\"Bolshaya Voskresenskaya\", "
                          "\"city\":\"Krasnogorsk\", "
                          "\"district\": \"Krasnogorskiy\", "
@@ -53,9 +52,11 @@ TEST(PARSING, AddressData) {
 
     context = parser.StrToObject(input);
 
+    std::string null;
+
     EXPECT_EQ("1", context.GetAddressData().GetUserId());
     EXPECT_EQ("2", context.GetAddressData().GetBuilding());
-    EXPECT_EQ("3", context.GetAddressData().GetHousing());
+    EXPECT_EQ(null, context.GetAddressData().GetHousing());
     EXPECT_EQ("Bolshaya Voskresenskaya", context.GetAddressData().GetStreet());
     EXPECT_EQ("Krasnogorsk", context.GetAddressData().GetCity());
     EXPECT_EQ("Krasnogorskiy", context.GetAddressData().GetDistrict());

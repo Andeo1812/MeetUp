@@ -9,31 +9,16 @@ Context ParserPersonalData::StrToObject(const std::string &parser_str) const {
 
     PersonalData personal_data;
 
-    if (value.contains("user_id")) {
-        personal_data.SetUserId(value["user_id"].get<std::string>());
-    }
+    get_data<std::string>(&PersonalData::SetUserId,      &personal_data, value, "user_id");
+    get_data<std::string>(&PersonalData::SetName,        &personal_data, value, "name");
+    get_data<std::string>(&PersonalData::SetSurname,     &personal_data, value, "surname");
+    get_data<std::string>(&PersonalData::SetDateBirth,   &personal_data, value, "date_birth");
+    get_data<std::string>(&PersonalData::SetEmail,       &personal_data, value, "email");
+    get_data<std::string>(&PersonalData::SetPhoneNumber, &personal_data, value, "phone_number");
 
-    if (value.contains("name")) {
-        personal_data.SetName(value["name"].get<std::string>());
-    }
+    Context res = personal_data;
 
-    if (value.contains("surname")) {
-        personal_data.SetSurname(value["surname"].get<std::string>());
-    }
-
-    if (value.contains("date_birth")) {
-        personal_data.SetDateBirth(value["date_birth"].get<std::string>());
-    }
-
-    if (value.contains("email")) {
-        personal_data.SetEmail(value["email"].get<std::string>());
-    }
-
-    if (value.contains("phone_number")) {
-        personal_data.SetPhoneNumber(value["phone_number"].get<std::string>());
-    }
-
-    return personal_data;
+    return res;
 }
 
 std::string ParserPersonalData::ObjectToStr(const std::string type_response, const Context &other) const {

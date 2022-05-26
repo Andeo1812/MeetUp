@@ -58,7 +58,6 @@ template<class ClassConnection>
 int DBContactsImpl<ClassConnection>::Rm(const std::string &user_id, const std::string &user_id_contact, ClassConnection *connection) const {
     std::string SQL = "DELETE FROM contacts WHERE fk_user_id = '" + user_id + "' and fk_contact_id = '" + user_id_contact + "'";
 
-
     int res = EXIT_SUCCESS;
 
     try {

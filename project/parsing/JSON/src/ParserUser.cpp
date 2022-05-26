@@ -9,17 +9,9 @@ Context ParserUser::StrToObject(const std::string &parser_str) const {
 
     User user;
 
-    if (value.contains("user_id")) {
-        user.SetId(value["user_id"].get<std::string>());
-    }
-
-    if (value.contains("password")) {
-        user.SetPassword(value["password"].get<std::string>());
-    }
-
-    if (value.contains("nickname")) {
-        user.SetNickname(value["nickname"].get<std::string>());
-    }
+    get_data<std::string>(&User::SetId,        &user, value, "user_id");
+    get_data<std::string>(&User::SetPassword,  &user, value, "password");
+    get_data<std::string>(&User::SetNickname,  &user, value, "nickname");
 
     return user;
 }

@@ -9,26 +9,15 @@ Context ParserGeneralData::StrToObject(const std::string &parser_str) const {
 
     GeneralData general_data;
 
-    if (value.contains("user_id")) {
-        general_data.SetUserId(value["user_id"].get<std::string>());
-    }
+    get_data<std::string>(&GeneralData::SetUserId,        &general_data, value, "user_id");
+    get_data<std::string>(&GeneralData::SetStatus,        &general_data, value, "status");
+    get_data<std::string>(&GeneralData::SetTags,          &general_data, value, "tags");
+    get_data<std::string>(&GeneralData::SetDescription,   &general_data, value, "description");
+    get_data<std::string>(&GeneralData::SetNickname,      &general_data, value, "nickname");
 
-    if (value.contains("status")) {
-        general_data.SetStatus(value["status"].get<std::string>());
-    }
+    Context res = general_data;
 
-    if (value.contains("tags")) {
-        general_data.SetTags(value["tags"].get<std::string>());
-    }
-
-    if (value.contains("description")) {
-        general_data.SetDescription(value["description"].get<std::string>());
-    }
-
-    if (value.contains("nickname")) {
-        general_data.SetNickname(value["nickname"].get<std::string>());
-    }
-    return general_data;
+    return res;
 }
 
 std::string ParserGeneralData::ObjectToStr(const std::string type_response, const Context &other) const {

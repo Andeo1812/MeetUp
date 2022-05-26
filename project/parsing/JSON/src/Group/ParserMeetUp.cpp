@@ -12,33 +12,13 @@ Context ParserMeetUp::StrToObject(const std::string &parser_str) const {
     for (auto &element : value) {
         MeetUp meetup;
 
-        if (element.contains("meetup_id")) {
-            meetup.SetId(element["meetup_id"].get<std::string>());
-        }
-
-        if (element.contains("meetup_name")) {
-            meetup.SetName(element["meetup_name"].get<std::string>());
-        }
-
-        if (element.contains("meetup_date")) {
-            meetup.SetDate(element["meetup_date"].get<std::string>());
-        }
-
-        if (element.contains("description")) {
-            meetup.SetDescription(element["description"].get<std::string>());
-        }
-
-        if (element.contains("time_begin")) {
-            meetup.SetTimeBegin(element["time_begin"].get<std::string>());
-        }
-
-        if (element.contains("time_end")) {
-            meetup.SetTimeEnd(element["time_end"].get<std::string>());
-        }
-
-        if (element.contains("group_id")) {
-            meetup.SetGroupId(element["group_id"].get<std::string>());
-        }
+        get_data<std::string>(&MeetUp::SetId,           &meetup, element, "meetup_id");
+        get_data<std::string>(&MeetUp::SetName,         &meetup, element, "meetup_name");
+        get_data<std::string>(&MeetUp::SetDate,         &meetup, element, "meetup_date");
+        get_data<std::string>(&MeetUp::SetDescription,  &meetup, element, "description");
+        get_data<std::string>(&MeetUp::SetTimeBegin,    &meetup, element, "time_begin");
+        get_data<std::string>(&MeetUp::SetTimeEnd,      &meetup, element, "time_end");
+        get_data<std::string>(&MeetUp::SetGroupId,      &meetup, element, "group_id");
 
         meetups.insert(meetup);
     }

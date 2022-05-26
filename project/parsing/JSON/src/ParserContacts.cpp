@@ -9,21 +9,14 @@ Context ParserUserContacts::StrToObject(const std::string &parser_str) const {
 
     Context res;
 
-    if (j.contains("left")) {
-        res.SetLeftBorder(j["left"].get<size_t>());
-    }
-
-    if (j.contains("right")) {
-        res.SetRightBorder(j["right"].get<size_t>());
-    }
+    get_data<size_t>(&Context::SetLeftBorder,     &res, j, "left");
+    get_data<size_t>(&Context::SetRightBorder,    &res, j, "right");
 
     nlohmann::json value = j[j.begin().key()];
 
     Contacts contacts;
 
-    if (value.contains("user_id")) {
-        contacts.SetUserId(value["user_id"].get<std::string>());
-    }
+    get_data<std::string>(&Contacts::SetUserId, &contacts, value, "user_id");
 
     std::set<std::string> cnt;
 

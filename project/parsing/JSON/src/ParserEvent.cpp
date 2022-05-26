@@ -12,33 +12,13 @@ Context ParserEvent::StrToObject(const std::string &parser_str) const {
     for (auto &element : value) {
         Event event;
 
-        if (element.contains("event_id")) {
-            event.SetId(element["event_id"].get<std::string>());
-        }
-
-        if (element.contains("event_name")) {
-            event.SetName(element["event_name"].get<std::string>());
-        }
-
-        if (element.contains("event_date")) {
-            event.SetDate(element["event_date"].get<std::string>());
-        }
-
-        if (element.contains("description")) {
-            event.SetDescription(element["description"].get<std::string>());
-        }
-
-        if (element.contains("time_begin")) {
-            event.SetTimeBegin(element["time_begin"].get<std::string>());
-        }
-
-        if (element.contains("time_end")) {
-            event.SetTimeEnd(element["time_end"].get<std::string>());
-        }
-
-        if (element.contains("user_id")) {
-            event.SetUserId(element["user_id"].get<std::string>());
-        }
+        get_data<std::string>(&Event::SetId,           &event, element, "event_id");
+        get_data<std::string>(&Event::SetName,         &event, element, "event_name");
+        get_data<std::string>(&Event::SetDate,         &event, element, "event_date");
+        get_data<std::string>(&Event::SetDescription,  &event, element, "description");
+        get_data<std::string>(&Event::SetTimeBegin,    &event, element, "time_begin");
+        get_data<std::string>(&Event::SetTimeEnd,      &event, element, "time_end");
+        get_data<std::string>(&Event::SetUserId,       &event, element, "user_id");
 
         events.insert(event);
     }
