@@ -33,17 +33,9 @@ std::string ParserUser::ObjectToStr(const std::string type_response, const Conte
 
     nlohmann::json value;
 
-    if (!user.GetId().empty()) {
-        value["user_id"] = user.GetId();
-    }
-
-    if (!user.GetPassword().empty()) {
-        value["password"] = user.GetPassword();
-    }
-
-    if (!user.GetNickname().empty()) {
-        value["nickname"] = user.GetNickname();
-    }
+    get_json(&User::GetId,        user, &value, "user_id");
+    get_json(&User::GetPassword,  user, &value, "password");
+    get_json(&User::GetNickname,  user, &value, "nickname");
 
     j[type_response] = value;
 

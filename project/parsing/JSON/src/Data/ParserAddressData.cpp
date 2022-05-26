@@ -46,37 +46,14 @@ std::string ParserAddressData::ObjectToStr(const std::string type_response, cons
 
     nlohmann::json value;
 
-    if (!address_data.GetUserId().empty()) {
-        value["user_id"] = address_data.GetUserId();
-    }
-
-    if (!address_data.GetBuilding().empty()) {
-        value["building"] = address_data.GetBuilding();
-    }
-
-    if (!address_data.GetHousing().empty()) {
-        value["housing"] = address_data.GetHousing();
-    }
-
-    if (!address_data.GetStreet().empty()) {
-        value["street"] = address_data.GetStreet();
-    }
-
-    if (!address_data.GetCity().empty()) {
-        value["city"] = address_data.GetCity();
-    }
-
-    if (!address_data.GetDistrict().empty()) {
-        value["district"] = address_data.GetDistrict();
-    }
-
-    if (!address_data.GetIndex().empty()) {
-        value["index"] = address_data.GetIndex();
-    }
-
-    if (!address_data.GetCountry().empty()) {
-        value["country"] = address_data.GetCountry();
-    }
+    get_json(&AddressData::GetUserId,   address_data, &value, "user_id");
+    get_json(&AddressData::GetBuilding, address_data, &value, "building");
+    get_json(&AddressData::GetHousing,  address_data, &value, "housing");
+    get_json(&AddressData::GetStreet,   address_data, &value, "street");
+    get_json(&AddressData::GetCity,     address_data, &value, "city");
+    get_json(&AddressData::GetDistrict, address_data, &value, "district");
+    get_json(&AddressData::GetIndex,    address_data, &value, "index");
+    get_json(&AddressData::GetCountry,  address_data, &value, "country");
 
     j[type_response] = value;
 

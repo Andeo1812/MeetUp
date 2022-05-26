@@ -68,17 +68,10 @@ std::string ParserGroup::ObjectToStr(const std::string type_response, const Cont
     for (auto &group : groups) {
         nlohmann::json json_group;
 
-        if (!group.GetId().empty()) {
-            json_group["group_id"] = group.GetId();
-        }
+        get_json(&Group::GetUserId,      group, &json_group, "group_id");
+        get_json(&Group::GetTitle,       group, &json_group, "title");
+        get_json(&Group::GetDescription, group, &json_group, "description");
 
-        if (!group.GetTitle().empty()) {
-            json_group["title"] = group.GetTitle();
-        }
-
-        if (!group.GetDescription().empty()) {
-            json_group["description"] = group.GetDescription();
-        }
 
         if (!(group.GetMembers().empty())) {
             json_group["members"] = group.GetMembers();

@@ -46,29 +46,12 @@ std::string ParserPersonalData::ObjectToStr(const std::string type_response, con
 
     nlohmann::json value;
 
-    if (!personal_data.GetUserId().empty()) {
-        value["user_id"] = personal_data.GetUserId();
-    }
-
-    if (!personal_data.GetName().empty()) {
-        value["name"] = personal_data.GetName();
-    }
-
-    if (!personal_data.GetSurname().empty()) {
-        value["surname"] = personal_data.GetSurname();
-    }
-
-    if (!personal_data.GetEmail().empty()) {
-        value["email"] = personal_data.GetEmail();
-    }
-
-    if (!personal_data.GetDateBirth().empty()) {
-        value["date_birth"] = personal_data.GetDateBirth();
-    }
-
-    if (!personal_data.GetPhoneNumber().empty()) {
-        value["phone_number"] = personal_data.GetPhoneNumber();
-    }
+    get_json(&PersonalData::GetUserId,        personal_data, &value, "user_id");
+    get_json(&PersonalData::GetName,          personal_data, &value, "status");
+    get_json(&PersonalData::GetSurname,       personal_data, &value, "name");
+    get_json(&PersonalData::GetEmail,         personal_data, &value, "email");
+    get_json(&PersonalData::GetDateBirth,     personal_data, &value, "date_birth");
+    get_json(&PersonalData::GetPhoneNumber,   personal_data, &value, "phone_number");
 
     j[type_response] = value;
 

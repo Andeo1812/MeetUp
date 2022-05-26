@@ -45,25 +45,11 @@ std::string ParserGeneralData::ObjectToStr(const std::string type_response, cons
 
     nlohmann::json value;
 
-    if (!general_data.GetUserId().empty()) {
-        value["user_id"] = general_data.GetUserId();
-    }
-
-    if (!general_data.GetStatus().empty()) {
-        value["status"] = general_data.GetStatus();
-    }
-
-    if (!general_data.GetTags().empty()) {
-        value["tags"] = general_data.GetTags();
-    }
-
-    if (!general_data.GetDescription().empty()) {
-        value["description"] = general_data.GetDescription();
-    }
-
-    if (!general_data.GetNickname().empty()) {
-        value["nickname"] = general_data.GetNickname();
-    }
+    get_json(&GeneralData::GetUserId,       general_data, &value, "user_id");
+    get_json(&GeneralData::GetStatus,       general_data, &value, "status");
+    get_json(&GeneralData::GetTags,         general_data, &value, "tags");
+    get_json(&GeneralData::GetDescription,  general_data, &value, "description");
+    get_json(&GeneralData::GetNickname,     general_data, &value, "nickname");
 
     j[type_response] = value;
 
