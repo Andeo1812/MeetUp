@@ -2,6 +2,20 @@
 
 #include "ParserAddressData.hpp"
 
+auto FillInfo = [](auto *set_method, auto *object, auto *value) -> void {
+    if (!value->empty()) {
+        object->set_method(value);
+    }
+};
+
+typedef void (AddressData::*FooMethodPtr)(const std::string&) noexcept;
+
+void FillInfoOO(FooMethodPtr fun1, AddressData *object, std::string value) {
+    if (!value.empty()) {
+        (object->*fun1)(value);
+    }
+};
+
 Context ParserAddressData::StrToObject(const std::string& parser_str) const {
     nlohmann::json j = nlohmann::json::parse(parser_str);
 
@@ -9,9 +23,12 @@ Context ParserAddressData::StrToObject(const std::string& parser_str) const {
 
     AddressData address_data;
 
-    if (value.contains("user_id")) {
-        address_data.SetUserId(value["user_id"].get<std::string>());
-    }
+    //  FillInfo(&AddressData::SetUserId, address_data, value["user_id"].get<std::string>());
+    FillInfoOO(&AddressData::SetUserId, &address_data, value["user_id"].get<std::string>());
+
+//    if (value.contains("user_id")) {
+//        address_data.SetUserId(value["user_id"].get<std::string>());
+//    }
 
     if (value.contains("building")) {
         address_data.SetBuilding(value["building"].get<std::string>());

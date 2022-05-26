@@ -1,6 +1,7 @@
 #pragma once  //  NOLINT
 
 #include <string>
+#include <functional>
 
 #include "Context.hpp"
 

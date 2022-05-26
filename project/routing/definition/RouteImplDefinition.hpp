@@ -31,7 +31,7 @@
 template<class ClassDBManager>
 RouteImpl<ClassDBManager>::RouteImpl() {
     //  Base            REQUEST                                        PARSER                     HANDLER
-    route_map.insert({REGISTRATION,           NodeMap(new const ParserUser,         new const Authentication)});
+    route_map.insert({REGISTRATION,           NodeMap(new const ParserUser,         new const Registration)});
     route_map.insert({AUTHENTICATION,         NodeMap(new const ParserUser,         new const Authentication)});
     route_map.insert({ADD_EVENT,              NodeMap(new const ParserEvent,        new const AddEvent)});
     route_map.insert({RM_EVENT,               NodeMap(new const ParserEvent,        new const RmEvent)});
