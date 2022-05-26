@@ -28,12 +28,7 @@ Context ParserGeneralData::StrToObject(const std::string &parser_str) const {
     if (value.contains("nickname")) {
         general_data.SetNickname(value["nickname"].get<std::string>());
     }
-
-    Context res;
-
-    res = general_data;
-
-    return res;
+    return general_data;
 }
 
 std::string ParserGeneralData::ObjectToStr(const std::string type_response, const Context &other) const {

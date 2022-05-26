@@ -29,14 +29,11 @@ Context ParserPersonalData::StrToObject(const std::string &parser_str) const {
         personal_data.SetEmail(value["email"].get<std::string>());
     }
 
-    if (value.contains("phone_number"))
+    if (value.contains("phone_number")) {
         personal_data.SetPhoneNumber(value["phone_number"].get<std::string>());
+    }
 
-    Context res;
-
-    res = personal_data;
-
-    return res;
+    return personal_data;
 }
 
 std::string ParserPersonalData::ObjectToStr(const std::string type_response, const Context &other) const {

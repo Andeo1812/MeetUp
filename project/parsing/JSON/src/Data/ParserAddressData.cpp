@@ -41,11 +41,7 @@ Context ParserAddressData::StrToObject(const std::string& parser_str) const {
         address_data.SetCountry(value["country"].get<std::string>());
     }
 
-    Context res;
-
-    res = address_data;
-
-    return res;
+    return address_data;
 }
 
 std::string ParserAddressData::ObjectToStr(const std::string type_response, const Context& other) const {

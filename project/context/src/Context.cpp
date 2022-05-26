@@ -109,3 +109,36 @@ size_t Context::GetLeftBorder() const noexcept {
 size_t Context::GetRightBorder() const noexcept {
     return this->right;
 }
+
+Context::Context(const User& other) noexcept : Context::Context() {
+    *this = other;
+}
+
+Context::Context(const PersonalData& other) noexcept : Context::Context() {
+    *this = other;
+}
+
+Context::Context(const GeneralData& other) noexcept : Context::Context() {
+    *this = other;
+}
+
+Context::Context(const AddressData& other) noexcept : Context::Context() {
+    *this = other;
+}
+
+Context::Context(const std::set<Event>& other) noexcept : Context::Context() {
+    *this = other;
+}
+
+Context::Context(const std::set<Group>& other) noexcept : Context::Context() {
+    *this = other;
+}
+
+Context::Context(const std::set<MeetUp>& other) noexcept : Context::Context() {
+    *this = other;
+}
+
+Context::Context(const Contacts& other) noexcept : Context::Context() {
+    *this = other;
+}
+

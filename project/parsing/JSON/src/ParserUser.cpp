@@ -21,11 +21,7 @@ Context ParserUser::StrToObject(const std::string &parser_str) const {
         user.SetNickname(value["nickname"].get<std::string>());
     }
 
-    Context res;
-
-    res = user;
-
-    return res;
+    return user;
 }
 
 std::string ParserUser::ObjectToStr(const std::string type_response, const Context &other) const {

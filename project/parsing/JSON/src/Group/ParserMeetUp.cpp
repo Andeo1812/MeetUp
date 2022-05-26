@@ -43,11 +43,7 @@ Context ParserMeetUp::StrToObject(const std::string &parser_str) const {
         meetups.insert(meetup);
     }
 
-    Context res;
-
-    res = meetups;
-
-    return res;
+    return meetups;
 }
 
 std::string ParserMeetUp::ObjectToStr(const std::string type_response, const Context &other) const {

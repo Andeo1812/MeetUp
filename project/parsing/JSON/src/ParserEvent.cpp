@@ -43,11 +43,7 @@ Context ParserEvent::StrToObject(const std::string &parser_str) const {
         events.insert(event);
     }
 
-    Context res;
-
-    res = events;
-
-    return res;
+    return events;
 }
 
 std::string ParserEvent::ObjectToStr(const std::string type_response, const Context &other) const {

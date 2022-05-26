@@ -50,7 +50,15 @@ class Context {
     size_t GetLeftBorder() const noexcept;
     size_t GetRightBorder() const noexcept;
 
-    Context() : left(0), right(0) {};
+    Context() : left(0), right(0) {} ;
     Context(const Context& other) = default;
+    Context(const User& other) noexcept;
+    Context(const PersonalData& other) noexcept;
+    Context(const AddressData& other) noexcept;
+    Context(const GeneralData& other) noexcept;
+    Context(const std::set<Event>& other) noexcept;
+    Context(const std::set<Group>& other) noexcept;
+    Context(const std::set<MeetUp>& other) noexcept;
+    Context(const Contacts& other) noexcept;
     ~Context() = default;
 };
