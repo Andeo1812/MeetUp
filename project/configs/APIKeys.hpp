@@ -1,39 +1,39 @@
 #pragma once  //  NOLINT
 
 //  RouteMapKeys
-const char REGISTRATION[] = {"registration"};
-const char AUTHENTICATION[] = {"authentication"};
+constexpr std::string_view REGISTRATION = {"registration"};
+constexpr std::string_view AUTHENTICATION = {"authentication"};
 
-const char GET_EVENTS[] = {"get_events"};
-const char GET_CONTACTS[] = {"get_contacts"};
-const char GET_GROUPS[] = {"get_groups"};
+constexpr std::string_view GET_EVENTS = {"get_events"};
+constexpr std::string_view GET_CONTACTS = {"get_contacts"};
+constexpr std::string_view GET_GROUPS = {"get_groups"};
 
-const char WRITE_GENERAL_DATA[] = {"write_general"};
-const char GET_GENERAL_DATA[] = {"get_general"};
+constexpr std::string_view WRITE_GENERAL_DATA = {"write_general"};
+constexpr std::string_view GET_GENERAL_DATA = {"get_general"};
 
-const char WRITE_PASSWORD[] = {"rewrite_password"};
-const char WRITE_NICKNAME[] = {"rewrite_nickname"};
+constexpr std::string_view WRITE_PASSWORD = {"rewrite_password"};
+constexpr std::string_view WRITE_NICKNAME = {"rewrite_nickname"};
 
-const char WRITE_PERSONAL_DATA[] = {"write_personal"};
-const char GET_PERSONAL_DATA[] = {"get_personal"};
+constexpr std::string_view WRITE_PERSONAL_DATA = {"write_personal"};
+constexpr std::string_view GET_PERSONAL_DATA = {"get_personal"};
 
-const char WRITE_ADDRESS[] = {"write_address"};
-const char GET_ADDRESS[] = {"get_address"};
+constexpr std::string_view WRITE_ADDRESS = {"write_address"};
+constexpr std::string_view GET_ADDRESS = {"get_address"};
 
-const char ADD_EVENT[] = {"add_event"};
-const char WRITE_EVENT[] = {"rewrite_event"};
-const char RM_EVENT[] = {"rm_event"};
+constexpr std::string_view ADD_EVENT = {"add_event"};
+constexpr std::string_view WRITE_EVENT = {"rewrite_event"};
+constexpr std::string_view RM_EVENT = {"rm_event"};
 
-const char ADD_USER_CONTACTS[] = {"add_contact"};
-const char RM_USER_CONTACTS[] = {"rm_contact"};
+constexpr std::string_view ADD_USER_CONTACTS = {"add_contact"};
+constexpr std::string_view RM_USER_CONTACTS = {"rm_contact"};
 
-const char ADD_GROUP[] = {"create_group"};
-const char WRITE_GROUP[] = {"rewrite_group"};
-const char RM_GROUP[] = {"rm_group"};
+constexpr std::string_view ADD_GROUP = {"create_group"};
+constexpr std::string_view WRITE_GROUP = {"rewrite_group"};
+constexpr std::string_view RM_GROUP = {"rm_group"};
 
-const char GET_MEMBERS[] = {"get_group_members"};
+constexpr std::string_view GET_MEMBERS = {"get_group_members"};
 
-const char ADD_USER_GROUP[] = {"invite"};
-const char RM_USER_GROUP[] = {"kick"};
+constexpr std::string_view ADD_USER_GROUP = {"invite"};
+constexpr std::string_view RM_USER_GROUP = {"kick"};
 
-const char GET_MEETUP[] = {"get_meetup"};
+constexpr std::string_view GET_MEETUP = {"get_meetup"};

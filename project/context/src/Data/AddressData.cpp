@@ -3,14 +3,10 @@
 #include "AddressData.hpp"
 
 bool AddressData::IsEmpty() const noexcept {
-    if (this->user_id.empty() && this->building.empty() &&
-        this->housing.empty() && this->street.empty() &&
-        this->city.empty() && this->district.empty() &&
-        this->index.empty() && this->country.empty()) {
-        return true;
-    }
-
-    return false;
+    return this->user_id.empty() && this->building.empty() &&
+           this->housing.empty() && this->street.empty() &&
+           this->city.empty() && this->district.empty() &&
+           this->index.empty() && this->country.empty();
 }
 
 void AddressData::SetUserId(const std::string &user_id) noexcept {

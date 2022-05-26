@@ -3,12 +3,8 @@
 #include "User.hpp"
 
 bool User::IsEmpty() const noexcept {
-    if (this->id.empty() && this->password.empty() &&
-        this->nickname.empty()) {
-        return true;
-    }
-
-    return false;
+    return this->id.empty() && this->password.empty() &&
+           this->nickname.empty();
 }
 
 void User::SetId(const std::string &id) noexcept {

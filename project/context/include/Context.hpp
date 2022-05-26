@@ -25,18 +25,18 @@ class Context {
  public:
     bool IsEmpty() const noexcept;
 
-    Context& operator=(const User other) noexcept;
-    Context& operator=(const PersonalData other) noexcept;
-    Context& operator=(const AddressData other) noexcept;
-    Context& operator=(const GeneralData other) noexcept;
-    Context& operator=(const std::set<Event> other) noexcept;
-    Context& operator=(const std::set<Group> other) noexcept;
-    Context& operator=(const std::set<MeetUp> other) noexcept;
-    Context& operator=(const Contacts other) noexcept;
+    Context& operator=(const User& other) noexcept;
+    Context& operator=(const PersonalData& other) noexcept;
+    Context& operator=(const AddressData& other) noexcept;
+    Context& operator=(const GeneralData& other) noexcept;
+    Context& operator=(const std::set<Event>& other) noexcept;
+    Context& operator=(const std::set<Group>& other) noexcept;
+    Context& operator=(const std::set<MeetUp>& other) noexcept;
+    Context& operator=(const Contacts& other) noexcept;
 
     void SetLeftBorder(const size_t left) noexcept;
     void SetRightBorder(const size_t right) noexcept;
-    void SetError(const std::string &error) noexcept;
+    void SetError(const std::string& error) noexcept;
 
     User GetUser() const noexcept;
     PersonalData GetPersonalData() const noexcept;

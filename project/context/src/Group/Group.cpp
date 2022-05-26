@@ -3,13 +3,9 @@
 #include "Group.hpp"
 
 bool Group::IsEmpty() const noexcept {
-    if (this->id.empty() && this->title.empty() &&
-        this->description.empty() && this->members.empty() &&
-        this->user_id.empty()) {
-        return true;
-    }
-
-    return false;
+    return this->id.empty() && this->title.empty() &&
+           this->description.empty() && this->members.empty() &&
+           this->user_id.empty();
 }
 
 void Group::SetId(const std::string &id) noexcept {

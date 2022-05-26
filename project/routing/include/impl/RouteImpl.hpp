@@ -25,7 +25,7 @@ template<class ClassDBManager>
 class RouteImpl : public Route<ClassDBManager> {
     std::queue<std::string> tasks;
 
-    std::map<const std::string, NodeMap> route_map;
+    std::map<const std::string_view, NodeMap> route_map;
 
     const ClassDBManager db_manager;
 

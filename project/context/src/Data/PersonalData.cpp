@@ -3,13 +3,9 @@
 #include "PersonalData.hpp"
 
 bool PersonalData::IsEmpty() const noexcept {
-    if (this->user_id.empty() && this->name.empty() &&
-        this->surname.empty() && this->email.empty() &&
-        this->date_birth.empty() && this->phone_number.empty()) {
-        return true;
-    }
-
-    return false;
+    return this->user_id.empty() && this->name.empty() &&
+           this->surname.empty() && this->email.empty() &&
+           this->date_birth.empty() && this->phone_number.empty();
 }
 
 void PersonalData::SetUserId(const std::string &user_id) noexcept {

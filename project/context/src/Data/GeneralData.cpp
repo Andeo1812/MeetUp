@@ -3,13 +3,9 @@
 #include "GeneralData.hpp"
 
 bool GeneralData::IsEmpty() const noexcept {
-    if (this->user_id.empty() && this->status.empty() &&
-        this->tags.empty() && this->description.empty() &&
-        this->nickname.empty()) {
-        return true;
-    }
-
-    return false;
+    return this->user_id.empty() && this->status.empty() &&
+           this->tags.empty() && this->description.empty() &&
+           this->nickname.empty();
 }
 
 void GeneralData::SetUserId(const std::string &user_id) noexcept {

@@ -3,11 +3,7 @@
 #include "Contacts.hpp"
 
 bool Contacts::IsEmpty() const noexcept {
-    if (this->user_id.empty() && this->contacts.empty()) {
-        return true;
-    }
-
-    return false;
+    return this->user_id.empty() && this->contacts.empty();
 }
 
 void Contacts::SetUserId(const std::string &user_id) noexcept {

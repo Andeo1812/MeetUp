@@ -3,14 +3,10 @@
 #include "MeetUp.hpp"
 
 bool MeetUp::IsEmpty() const noexcept {
-    if (this->id.empty() && this->name.empty() &&
-        this->date.empty() && this->description.empty() &&
-        this->time_begin.empty() && this->time_end.empty() &&
-        this->group_id.empty()) {
-        return true;
-    }
-
-    return false;
+    return this->id.empty() && this->name.empty() &&
+           this->date.empty() && this->description.empty() &&
+           this->time_begin.empty() && this->time_end.empty() &&
+           this->group_id.empty();
 }
 
 void MeetUp::SetId(const std::string &id) noexcept {

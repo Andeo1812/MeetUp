@@ -3,14 +3,10 @@
 #include "Event.hpp"
 
 bool Event::IsEmpty() const noexcept {
-    if (this->id.empty() && this->name.empty() &&
-        this->date.empty() && this->description.empty() &&
-        this->time_begin.empty() && this->time_end.empty() &&
-        this->user_id.empty()) {
-        return true;
-    }
-
-    return false;
+    return this->id.empty() && this->name.empty() &&
+           this->date.empty() && this->description.empty() &&
+           this->time_begin.empty() && this->time_end.empty() &&
+           this->user_id.empty();
 }
 
 void Event::SetId(const std::string &id) noexcept {
