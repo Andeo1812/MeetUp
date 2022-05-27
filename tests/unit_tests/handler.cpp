@@ -27,100 +27,120 @@ TEST(HANDLERS, Registration) {
     context = reg_handler(context, &db_worker);
 
     EXPECT_TRUE(!context.IsEmpty());
+
+    EXPECT_TRUE(context.AccessError().empty());
 }
 
 TEST(HANDLERS, Authorization) {
-//  По аналогии с Registration
+    AllDBMethods<pqxx::connection> db_methods;
+    DBWorker<pqxx::connection> db_worker(db_methods);
+
+    User user;
+
+    user.SetPassword({"password"});
+    user.SetNickname({"Gogozik"});
+
+    Context context;
+
+    context = user;
+
+    Authentication<pqxx::connection> reg_handler;
+
+    context = reg_handler(context, &db_worker);
+
+    EXPECT_TRUE(context.IsEmpty());
+
+    EXPECT_TRUE(context.AccessError().empty());
 }
 
-TEST(HANDLERS, WriteAddressData) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, GetAddressData) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, WritePersonalData) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, GetPersonalData) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, WriteGeneralData) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, GetGeneralData) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, WritePassword) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, GetNickname) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, AddEvent) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, WriteEvent) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, RmEvent) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, AddUserContact) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, RmUserContact) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, CreateGroup) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, WriteGroup) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, RmGroup) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, GetGroupMembers) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, AddUserGroup) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, RmUserGroup) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, GetMeetUp) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, SynchroClientEvents) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, SynchroClientContacts) {
-//  По аналогии с Registration
-}
-
-TEST(HANDLERS, SynchroClientGroup) {
-//  По аналогии с Registration
-}
+//TEST(HANDLERS, WriteAddressData) {
+//
+//}
+//
+//TEST(HANDLERS, GetAddressData) {
+//
+//}
+//
+//TEST(HANDLERS, WritePersonalData) {
+//
+//}
+//
+//TEST(HANDLERS, GetPersonalData) {
+//
+//}
+//
+//TEST(HANDLERS, WriteGeneralData) {
+//
+//}
+//
+//TEST(HANDLERS, GetGeneralData) {
+//
+//}
+//
+//TEST(HANDLERS, WritePassword) {
+//
+//}
+//
+//TEST(HANDLERS, GetNickname) {
+//
+//}
+//
+//TEST(HANDLERS, AddEvent) {
+//
+//}
+//
+//TEST(HANDLERS, WriteEvent) {
+//
+//}
+//
+//TEST(HANDLERS, RmEvent) {
+//
+//}
+//
+//TEST(HANDLERS, AddUserContact) {
+//
+//}
+//
+//TEST(HANDLERS, RmUserContact) {
+//
+//}
+//
+//TEST(HANDLERS, CreateGroup) {
+//
+//}
+//
+//TEST(HANDLERS, WriteGroup) {
+//
+//}
+//
+//TEST(HANDLERS, RmGroup) {
+//
+//}
+//
+//TEST(HANDLERS, GetGroupMembers) {
+//
+//}
+//
+//TEST(HANDLERS, AddUserGroup) {
+//
+//}
+//
+//TEST(HANDLERS, RmUserGroup) {
+//
+//}
+//
+//TEST(HANDLERS, GetMeetUp) {
+//
+//}
+//
+//TEST(HANDLERS, SynchroClientEvents) {
+//
+//}
+//
+//TEST(HANDLERS, SynchroClientContacts) {
+//
+//}
+//
+//TEST(HANDLERS, SynchroClientGroup) {
+//
+//}
