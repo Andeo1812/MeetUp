@@ -9,7 +9,7 @@ class DBWorker {
     ClassConnection connection;
     const DBMethods &db_methods;
 
-    DBWorker(const DBMethods &db_methods) : db_methods(db_methods) {}
+    explicit DBWorker(const DBMethods &db_methods) : db_methods(db_methods) {}
 
     ~DBWorker() = default;
 };

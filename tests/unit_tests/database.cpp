@@ -103,7 +103,6 @@ TEST(PostgreSQL, DBEvent) {
     EXPECT_EQ(res_rm, EXIT_SUCCESS);
 
     Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().db_methods.User.Rm(user, conn);
-
 }
 
 TEST(PostgreSQL, DBContacts) {

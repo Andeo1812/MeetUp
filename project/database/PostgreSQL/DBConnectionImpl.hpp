@@ -18,7 +18,7 @@ std::string DBConnection<Connection>::LoadConfig(const std::string &path) const 
 
 template<typename Connection>
 DBConnection<Connection>::DBConnection() {
-    this->connect = std::make_shared<Connection>(LoadConfig(path_config));
+    this->connect = std::make_unique<Connection>(LoadConfig(path_config));
 }
 
 template<typename Connection>

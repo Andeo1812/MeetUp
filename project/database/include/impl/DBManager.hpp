@@ -17,7 +17,7 @@ template<typename T,
                 class DBMethods = AllDBMethods<T, ClassConnection>,
                         class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
 class DBManager {
-    std::vector<DBWorker*> db_workers_pool;
+    std::vector<std::unique_ptr<DBWorker>> db_workers_pool;
 
  public:
     DBMethods db_methods;
