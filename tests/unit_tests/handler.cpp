@@ -10,27 +10,23 @@
 #include "HandlerMeetUp.hpp"
 
 TEST(HANDLERS, Registration) {
-//    std::string user_id = {"123"};
-//    std::string password = {"GogozikPARSSS"};
-//    std::string nickname = {"Gogozik"};
-//
-//    User user;
-//
-//    user.SetUserId(user_id);
-//    user.SetPassword(password);
-//    user.SetNickname(nickname);
-//
-//    Context context;
-//
-//    context = user;
-//
-//    Registration reg_handler;
-//
-//    EXPECT_TRUE(reg_handler);
-//
-//    context = reg_handler.process(context);
-//
-//    EXPECT_TRUE(!context.IsEmpty());
+    AllDBMethods<pqxx::connection> db_methods;
+    DBWorker<pqxx::connection> db_worker(db_methods);
+
+    User user;
+
+    user.SetPassword({"password"});
+    user.SetNickname({"Gogozik"});
+
+    Context context;
+
+    context = user;
+
+    Registration<pqxx::connection> reg_handler;
+
+    context = reg_handler(context, &db_worker);
+
+    EXPECT_TRUE(!context.IsEmpty());
 }
 
 TEST(HANDLERS, Authorization) {
