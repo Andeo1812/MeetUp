@@ -29,6 +29,14 @@ std::string ParserUser::ObjectToStr(const std::string type_response, const Conte
         return res;
     }
 
+    if (type_response == RM_USER) {
+        j[type_response] = "OK";
+
+        res = j.dump();
+
+        return res;
+    }
+
     User user = other.AccessUser();
 
     nlohmann::json value;

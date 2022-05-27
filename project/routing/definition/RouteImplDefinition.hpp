@@ -32,7 +32,7 @@ RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::Ro
     //  Base            REQUEST                                        PARSER                     HANDLER
     route_map.insert({REGISTRATION,           NodeMap<T>(new const ParserUser,         new const Registration<T>)});
     route_map.insert({AUTHENTICATION,         NodeMap<T>(new const ParserUser,         new const Authentication<T>)});
-    route_map.insert({DELETE_USER,            NodeMap<T>(new const ParserUser,         new const Authentication<T>)});
+    route_map.insert({RM_USER,            NodeMap<T>(new const ParserUser,         new const Authentication<T>)});
 
     route_map.insert({ADD_EVENT,              NodeMap<T>(new const ParserEvent,        new const AddEvent<T>)});
     route_map.insert({RM_EVENT,               NodeMap<T>(new const ParserEvent,        new const RmEvent<T>)});

@@ -18,6 +18,10 @@ COVERAGE_DATABASE = build/tests/CMakeFiles/gtest_database.dir/unit_tests
 COVERAGE_HANDLING = build/tests/CMakeFiles/gtest_handling.dir/unit_tests
 COVERAGE_ROUTING = build/tests/CMakeFiles/gtest_routing.dir/unit_tests
 
+development:
+	${TEST_HANDLING}
+	${TEST_ROUTING}
+
 clean:
 	rm -rf build coverage-report valgrind.log test.log coverage.info
 
