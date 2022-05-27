@@ -44,8 +44,8 @@ std::string ParserGroup::ObjectToStr(const std::string type_response, const Cont
 
     std::string res;
 
-    if (!other.GetError().empty()) {
-        j[type_response] = other.GetError();
+    if (!other.AccessError().empty()) {
+        j[type_response] = other.AccessError();
 
         res = j.dump();
 
@@ -61,20 +61,20 @@ std::string ParserGroup::ObjectToStr(const std::string type_response, const Cont
         return res;
     }
 
-    std::set<Group> groups = other.GetGroups();
+    std::set<Group> groups = other.AccessGroups();
 
     nlohmann::json json_groups;
 
     for (auto &group : groups) {
         nlohmann::json json_group;
 
-        get_json(&Group::GetUserId,      group, &json_group, "group_id");
-        get_json(&Group::GetTitle,       group, &json_group, "title");
-        get_json(&Group::GetDescription, group, &json_group, "description");
+        get_json(&Group::AccessUserId,      group, &json_group, "group_id");
+        get_json(&Group::AccessTitle,       group, &json_group, "title");
+        get_json(&Group::AccessDescription, group, &json_group, "description");
 
 
-        if (!(group.GetMembers().empty())) {
-            json_group["members"] = group.GetMembers();
+        if (!(group.AccessMembers().empty())) {
+            json_group["members"] = group.AccessMembers();
         }
 
         json_groups.push_back(json_group);

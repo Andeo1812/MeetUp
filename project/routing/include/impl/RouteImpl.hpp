@@ -43,7 +43,7 @@ class RouteImpl : public Route<T, ClassConnection, ClassDBMethods, ClassDBWorker
 
     std::string GetHeadRequest(const std::string &request_body) const override;
 
-    std::string HandlingTask(const std::string &request_body, const ClassDBWorker &db_worker) const override;
+    std::string HandlingTask(const std::string &request_body, ClassDBWorker *db_worker) const override;
 
     std::string GetResTask(const std::string &request_body) override;
 

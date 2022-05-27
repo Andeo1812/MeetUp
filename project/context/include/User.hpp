@@ -18,6 +18,10 @@ class User {
     std::string &GetPassword() noexcept;
     std::string &GetNickname() noexcept;
 
+    const std::string &AccessId() const noexcept;
+    const std::string &AccessPassword() const noexcept;
+    const std::string &AccessNickname() const noexcept;
+
     User() = default;
     virtual ~User() = default;
 

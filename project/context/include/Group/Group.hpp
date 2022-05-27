@@ -25,6 +25,12 @@ class Group {
     std::set<std::string> &GetMembers() noexcept;
     std::string &GetUserId() noexcept;
 
+    const std::string &AccessId() const noexcept;
+    const std::string &AccessTitle() const noexcept;
+    const std::string &AccessDescription() const noexcept;
+    const std::set<std::string> &AccessMembers() const noexcept;
+    const std::string &AccessUserId() const noexcept;
+
     Group() = default;
     virtual ~Group() = default;
 

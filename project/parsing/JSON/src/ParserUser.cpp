@@ -21,21 +21,21 @@ std::string ParserUser::ObjectToStr(const std::string type_response, const Conte
 
     std::string res;
 
-    if (!other.GetError().empty()) {
-        j[type_response] = other.GetError();
+    if (!other.AccessError().empty()) {
+        j[type_response] = other.AccessError();
 
         res = j.dump();
 
         return res;
     }
 
-    User user = other.GetUser();
+    User user = other.AccessUser();
 
     nlohmann::json value;
 
-    get_json(&User::GetId,        user, &value, "user_id");
-    get_json(&User::GetPassword,  user, &value, "password");
-    get_json(&User::GetNickname,  user, &value, "nickname");
+    get_json(&User::AccessId,        user, &value, "user_id");
+    get_json(&User::AccessPassword,  user, &value, "password");
+    get_json(&User::AccessNickname,  user, &value, "nickname");
 
     j[type_response] = value;
 

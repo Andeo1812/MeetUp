@@ -2,7 +2,7 @@
 
 #include "DBUser.hpp"
 
-static enum result_registration {NOT_REGISTRATION = 0, ERROR_REGISTRATION} REG;
+static enum result_registration {NOT_REGISTRATION = 1, ERROR_REGISTRATION} REG;
 
 static enum result_authentication {NOT_AUTHENTICATION = 5, ERROR_AUTHENTICATION} AUTH;
 

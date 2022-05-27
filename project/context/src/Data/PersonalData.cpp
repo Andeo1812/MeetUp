@@ -68,3 +68,27 @@ std::ostream& operator<<(std::ostream &os, const PersonalData &it) noexcept {
 
     return os;;
 }
+
+const std::string &PersonalData::AccessUserId() const noexcept {
+    return this->user_id;
+}
+
+const std::string &PersonalData::AccessName() const noexcept {
+    return this->name;
+}
+
+const std::string &PersonalData::AccessSurname() const noexcept {
+    return this->surname;
+}
+
+const std::string &PersonalData::AccessEmail() const noexcept {
+    return this->email;
+}
+
+const std::string &PersonalData::AccessDateBirth() const noexcept {
+    return this->date_birth;
+}
+
+const std::string &PersonalData::AccessPhoneNumber() const noexcept {
+    return this->phone_number;
+}

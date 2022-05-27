@@ -16,6 +16,9 @@ class Contacts {
     std::string &GetUserId() noexcept;
     std::set<std::string> &GetContacts() noexcept;
 
+    const std::string &AccessUserId() const noexcept;
+    const std::set<std::string> &AccessContacts() const noexcept;
+
     Contacts() = default;
     virtual ~Contacts() = default;
 

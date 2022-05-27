@@ -8,7 +8,7 @@
 template<class ClassConnection>
 int DBUserImpl<ClassConnection>::Registration(const User &user, std::string *new_user_id, ClassConnection *connection) const {
     std::string SQL = "INSERT INTO user_m (nickname,password) "
-                      "VALUES ('" + user.GetNickname() + "','" + user.GetPassword() + "' ) RETURNING user_id;";
+                      "VALUES ('" + user.AccessNickname() + "','" + user.AccessPassword() + "' ) RETURNING user_id;";
 
     int res = EXIT_SUCCESS;
 
@@ -35,7 +35,7 @@ int DBUserImpl<ClassConnection>::Registration(const User &user, std::string *new
 
 template<class ClassConnection>
 int DBUserImpl<ClassConnection>::Authentication(const User &user, ClassConnection *connection) const {
-    std::string SQL = "SELECT user_id FROM user_m WHERE password = '" + user.GetPassword() + "' and nickname = '" + user.GetNickname() + "'";
+    std::string SQL = "SELECT user_id FROM user_m WHERE password = '" + user.AccessPassword() + "' and nickname = '" + user.AccessNickname() + "'";
 
     int res = EXIT_SUCCESS;
 
@@ -60,7 +60,7 @@ int DBUserImpl<ClassConnection>::Authentication(const User &user, ClassConnectio
 
 template<class ClassConnection>
 int DBUserImpl<ClassConnection>::GetId(const User &user, std::string *user_id, ClassConnection *connection) const {
-    std::string SQL = "SELECT user_id FROM user_m WHERE  nickname = '" + user.GetNickname() + "'";
+    std::string SQL = "SELECT user_id FROM user_m WHERE  nickname = '" + user.AccessNickname() + "'";
 
     int res = EXIT_SUCCESS;
 
@@ -87,7 +87,7 @@ int DBUserImpl<ClassConnection>::GetId(const User &user, std::string *user_id, C
 
 template<class ClassConnection>
 int DBUserImpl<ClassConnection>::GetNickname(const User &user, std::string *nickname, ClassConnection *connection) const {
-    std::string SQL = "SELECT nickname FROM user_m WHERE user_id = '" + user.GetId() + "'";
+    std::string SQL = "SELECT nickname FROM user_m WHERE user_id = '" + user.AccessId() + "'";
 
     int res = EXIT_SUCCESS;
 
@@ -114,7 +114,7 @@ int DBUserImpl<ClassConnection>::GetNickname(const User &user, std::string *nick
 
 template<class ClassConnection>
 int DBUserImpl<ClassConnection>::Rm(const User &user, ClassConnection *connection) const {
-    std::string SQL = "DELETE FROM user_m WHERE user_id = '" + user.GetId() + "'";
+    std::string SQL = "DELETE FROM user_m WHERE user_id = '" + user.AccessId() + "'";
 
     int res = EXIT_SUCCESS;
 

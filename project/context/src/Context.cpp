@@ -142,3 +142,44 @@ Context::Context(const Contacts& other) noexcept : Context::Context() {
     *this = other;
 }
 
+const User &Context::AccessUser() const noexcept {
+    return this->user;
+}
+
+const PersonalData &Context::AccessPersonalData() const noexcept {
+    return this->personal_data;
+}
+
+const GeneralData &Context::AccessGeneralData() const noexcept {
+    return this->general_data;
+}
+
+const AddressData &Context::AccessAddressData() const noexcept {
+    return this->address_data;
+}
+
+
+const std::set<Event> &Context::AccessEvents() const noexcept {
+    return this->events;
+}
+
+
+const std::set<Group> &Context::AccessGroups() const noexcept {
+    return this->groups;
+}
+
+
+const std::set<MeetUp> &Context::AccessMeetUp() const noexcept {
+    return this->meetups;
+}
+
+
+const Contacts &Context::AccessContacts() const noexcept {
+    return this->contacts;
+}
+
+
+const std::string &Context::AccessError() const noexcept {
+    return this->error;
+}
+

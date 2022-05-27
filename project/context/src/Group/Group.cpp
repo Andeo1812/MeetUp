@@ -76,3 +76,24 @@ bool Group::operator==(const Group &other) const noexcept {
 
     return this->title == other.title;
 }
+
+
+const std::string &Group::AccessId() const noexcept {
+    return this->id;
+}
+
+const std::string &Group::AccessTitle() const noexcept {
+    return this->title;
+}
+
+const std::string &Group::AccessDescription() const noexcept {
+    return this->description;
+}
+
+const std::set<std::string> &Group::AccessMembers() const noexcept {
+    return this->members;
+}
+
+const std::string &Group::AccessUserId() const noexcept {
+    return this->user_id;
+}

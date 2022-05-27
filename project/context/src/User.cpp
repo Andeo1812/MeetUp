@@ -40,3 +40,15 @@ std::ostream&  operator<<(std::ostream &os, const User &it) noexcept {
 
     return os;
 }
+
+const std::string &User::AccessId() const noexcept {
+    return this->id;
+}
+
+const std::string &User::AccessPassword() const noexcept {
+    return this->password;
+}
+
+const std::string &User::AccessNickname() const noexcept {
+    return this->nickname;
+}

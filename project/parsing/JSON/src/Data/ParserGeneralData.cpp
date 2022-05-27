@@ -25,8 +25,8 @@ std::string ParserGeneralData::ObjectToStr(const std::string type_response, cons
 
     std::string res;
 
-    if (!other.GetError().empty()) {
-        j[type_response] = other.GetError();
+    if (!other.AccessError().empty()) {
+        j[type_response] = other.AccessError();
 
         res = j.dump();
 
@@ -41,15 +41,15 @@ std::string ParserGeneralData::ObjectToStr(const std::string type_response, cons
         return res;
     }
 
-    GeneralData general_data = other.GetGeneralData();
+    GeneralData general_data = other.AccessGeneralData();
 
     nlohmann::json value;
 
-    get_json(&GeneralData::GetUserId,       general_data, &value, "user_id");
-    get_json(&GeneralData::GetStatus,       general_data, &value, "status");
-    get_json(&GeneralData::GetTags,         general_data, &value, "tags");
-    get_json(&GeneralData::GetDescription,  general_data, &value, "description");
-    get_json(&GeneralData::GetNickname,     general_data, &value, "nickname");
+    get_json(&GeneralData::AccessUserId,       general_data, &value, "user_id");
+    get_json(&GeneralData::AccessStatus,       general_data, &value, "status");
+    get_json(&GeneralData::AccessTags,         general_data, &value, "tags");
+    get_json(&GeneralData::AccessDescription,  general_data, &value, "description");
+    get_json(&GeneralData::AccessNickname,     general_data, &value, "nickname");
 
     j[type_response] = value;
 

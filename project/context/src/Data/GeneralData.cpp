@@ -40,7 +40,7 @@ std::string &GeneralData::GetTags() noexcept {
     return this->tags;
 }
 
-std::string &GeneralData::GetDescription()  noexcept {
+std::string &GeneralData::GetDescription() noexcept {
     return this->description;
 }
 
@@ -58,4 +58,24 @@ std::ostream&  operator<<(std::ostream &os, const GeneralData &it) noexcept {
     os << "nickname         :---: " << it.nickname << std::endl;
 
     return os;
+}
+
+const std::string &GeneralData::AccessUserId() const noexcept {
+    return this->user_id;
+}
+
+const std::string &GeneralData::AccessStatus() const noexcept {
+    return this->status;
+}
+
+const std::string &GeneralData::AccessTags() const noexcept {
+    return this->tags;
+}
+
+const std::string &GeneralData::AccessDescription() const noexcept {
+    return this->description;
+}
+
+const std::string &GeneralData::AccessNickname() const noexcept {
+    return this->nickname;
 }

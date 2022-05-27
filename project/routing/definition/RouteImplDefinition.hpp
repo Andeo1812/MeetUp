@@ -67,7 +67,7 @@ void RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager
 }
 
 template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker, class ClassDBManager>
-std::string RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::HandlingTask(const std::string &request_body, const ClassDBWorker &db_worker) const {
+std::string RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::HandlingTask(const std::string &request_body, ClassDBWorker *db_worker) const {
     std::string res;
 
     std::string type_request = GetHeadRequest(request_body);

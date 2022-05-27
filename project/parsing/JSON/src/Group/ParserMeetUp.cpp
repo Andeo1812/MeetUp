@@ -31,28 +31,28 @@ std::string ParserMeetUp::ObjectToStr(const std::string type_response, const Con
 
     std::string res;
 
-    if (!other.GetError().empty()) {
-        j[type_response] = other.GetError();
+    if (!other.AccessError().empty()) {
+        j[type_response] = other.AccessError();
 
         res = j.dump();
 
         return res;
     }
 
-    std::set<MeetUp> meetups = other.GetMeetUp();
+    std::set<MeetUp> meetups = other.AccessMeetUp();
 
     nlohmann::json json_meetups;
 
     for (auto &meetup : meetups) {
         nlohmann::json json_meetup;
 
-        get_json(&MeetUp::GetId,          meetup, &json_meetup, "meetup_id");
-        get_json(&MeetUp::GetName,        meetup, &json_meetup, "meetup_name");
-        get_json(&MeetUp::GetTimeBegin,   meetup, &json_meetup, "time_begin");
-        get_json(&MeetUp::GetTimeEnd,     meetup, &json_meetup, "time_end");
-        get_json(&MeetUp::GetDescription, meetup, &json_meetup, "description");
-        get_json(&MeetUp::GetDate,        meetup, &json_meetup, "meetup_date");
-        get_json(&MeetUp::GetGroupId,     meetup, &json_meetup, "group_id");
+        get_json(&MeetUp::AccessId,          meetup, &json_meetup, "meetup_id");
+        get_json(&MeetUp::AccessName,        meetup, &json_meetup, "meetup_name");
+        get_json(&MeetUp::AccessTimeBegin,   meetup, &json_meetup, "time_begin");
+        get_json(&MeetUp::AccessTimeEnd,     meetup, &json_meetup, "time_end");
+        get_json(&MeetUp::AccessDescription, meetup, &json_meetup, "description");
+        get_json(&MeetUp::AccessDate,        meetup, &json_meetup, "meetup_date");
+        get_json(&MeetUp::AccessGroupId,     meetup, &json_meetup, "group_id");
 
         json_meetups.push_back(json_meetup);
     }

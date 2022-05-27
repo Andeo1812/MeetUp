@@ -8,12 +8,12 @@
 template<class ClassConnection>
 int DBEventImpl<ClassConnection>::Add(const Event &event, std::string *new_event_id, ClassConnection *connection) const {
     std::string SQL = "INSERT INTO event (event_name,event_date,time_begin,time_end,description,fk_user_id) "
-                      "VALUES ('" + event.GetName() + "','"
-                      + event.GetDate() + "','"
-                      + event.GetTimeBegin() + "','"
-                      + event.GetTimeEnd() + "','"
-                      + event.GetDescription() + "','"
-                      + event.GetUserId() + "' ) RETURNING event_id;";
+                      "VALUES ('" + event.AccessName() + "','"
+                      + event.AccessDate() + "','"
+                      + event.AccessTimeBegin() + "','"
+                      + event.AccessTimeEnd() + "','"
+                      + event.AccessDescription() + "','"
+                      + event.AccessUserId() + "' ) RETURNING event_id;";
 
     int res = EXIT_SUCCESS;
 
@@ -45,7 +45,7 @@ int DBEventImpl<ClassConnection>::Write(const Event &event, ClassConnection *con
 
 template<class ClassConnection>
 int DBEventImpl<ClassConnection>::Rm(const Event &event, ClassConnection *connection) const {
-    std::string SQL = "DELETE FROM event WHERE event_id = '" + event.GetId() + "'";
+    std::string SQL = "DELETE FROM event WHERE event_id = '" + event.AccessId() + "'";
 
     int res = EXIT_SUCCESS;
 

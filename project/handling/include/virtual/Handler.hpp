@@ -9,7 +9,7 @@ template<typename T,
         class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
 class Handler {
  public:
-    virtual Context operator()(const Context &request_body, const DBWorker &db_worker) const = 0;
+    virtual Context operator()(const Context &request_body, DBWorker *db_worker) const = 0;
 
     virtual ~Handler() = default;
 };

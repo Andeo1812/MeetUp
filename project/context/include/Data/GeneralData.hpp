@@ -18,17 +18,17 @@ class GeneralData {
     void SetDescription(const std::string &description) noexcept;
     void SetNickname(const std::string &nickname) noexcept;
 
-    std::string GetUserId() const noexcept;
-    std::string GetStatus() const noexcept;
-    std::string GetTags() const noexcept;
-    std::string GetDescription() const noexcept;
-    std::string GetNickname() const noexcept;
+    std::string &GetUserId() noexcept;
+    std::string &GetStatus() noexcept;
+    std::string &GetTags() noexcept;
+    std::string &GetDescription() noexcept;
+    std::string &GetNickname() noexcept;
 
-    std::string &AccessUserId() noexcept;
-    std::string &AccessStatus() noexcept;
-    std::string &AccessTags() noexcept;
-    std::string &AccessDescription() noexcept;
-    std::string &AccessNickname() noexcept;
+    const std::string &AccessUserId() const  noexcept;
+    const std::string &AccessStatus() const  noexcept;
+    const std::string &AccessTags() const  noexcept;
+    const std::string &AccessDescription() const  noexcept;
+    const std::string &AccessNickname() const  noexcept;
 
     GeneralData() = default;
     virtual ~GeneralData() = default;

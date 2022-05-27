@@ -31,6 +31,14 @@ class Event {
     std::string &GetTimeEnd() noexcept;
     std::string &GetUserId() noexcept;
 
+    const std::string &AccessId() const noexcept;
+    const std::string &AccessName() const noexcept;
+    const std::string &AccessDate() const noexcept;
+    const std::string &AccessDescription() const noexcept;
+    const std::string &AccessTimeBegin() const noexcept;
+    const std::string &AccessTimeEnd() const noexcept;
+    const std::string &AccessUserId() const noexcept;
+
     Event() = default;
     virtual ~Event() = default;
 

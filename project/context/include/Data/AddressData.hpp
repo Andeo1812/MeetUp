@@ -24,23 +24,23 @@ class AddressData {
     void SetIndex(const std::string &index) noexcept;
     void SetCountry(const std::string &country) noexcept;
 
-    std::string GetUserId() const noexcept;
-    std::string GetBuilding() const noexcept;
-    std::string GetHousing() const noexcept;
-    std::string GetStreet() const noexcept;
-    std::string GetCity() const noexcept;
-    std::string GetDistrict() const noexcept;
-    std::string GetIndex() const noexcept;
-    std::string GetCountry() const noexcept;
+    std::string &GetUserId() noexcept;
+    std::string &GetBuilding() noexcept;
+    std::string &GetHousing() noexcept;
+    std::string &GetStreet() noexcept;
+    std::string &GetCity() noexcept;
+    std::string &GetDistrict() noexcept;
+    std::string &GetIndex() noexcept;
+    std::string &GetCountry() noexcept;
 
-    std::string &AccessUserId() noexcept;
-    std::string &AccessGetBuilding() noexcept;
-    std::string &AccessGetHousing() noexcept;
-    std::string &AccessGetStreet() noexcept;
-    std::string &AccessGetCity() noexcept;
-    std::string &AccessGetDistrict() noexcept;
-    std::string &AccessGetIndex() noexcept;
-    std::string &AccessGetCountry() noexcept;
+    const std::string &AccessUserId() const noexcept;
+    const std::string &AccessBuilding() const noexcept;
+    const std::string &AccessHousing() const noexcept;
+    const std::string &AccessStreet() const noexcept;
+    const std::string &AccessCity() const noexcept;
+    const std::string &AccessDistrict() const noexcept;
+    const std::string &AccessIndex() const noexcept;
+    const std::string &AccessCountry() const noexcept;
 
     AddressData() = default;
     virtual ~AddressData() = default;

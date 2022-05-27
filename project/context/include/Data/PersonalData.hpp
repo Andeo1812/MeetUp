@@ -20,19 +20,19 @@ class PersonalData {
     void SetDateBirth(const std::string &date_birth) noexcept;
     void SetPhoneNumber(const std::string &phone_number) noexcept;
 
-    std::string GetUserId() const noexcept;
-    std::string GetName() const noexcept;
-    std::string GetSurname() const noexcept;
-    std::string GetEmail() const noexcept;
-    std::string GetDateBirth() const noexcept;
-    std::string GetPhoneNumber() const noexcept;
+    std::string &GetUserId() noexcept;
+    std::string &GetName() noexcept;
+    std::string &GetSurname() noexcept;
+    std::string &GetEmail() noexcept;
+    std::string &GetDateBirth() noexcept;
+    std::string &GetPhoneNumber() noexcept;
 
-    std::string &AccessUserId() noexcept;
-    std::string &AccessName() noexcept;
-    std::string &AccessSurname() noexcept;
-    std::string &AccessEmail() noexcept;
-    std::string &AccessDateBirth() noexcept;
-    std::string &AccessPhoneNumber() noexcept;
+    const std::string &AccessUserId() const noexcept;
+    const std::string &AccessName() const noexcept;
+    const std::string &AccessSurname() const noexcept;
+    const std::string &AccessEmail() const noexcept;
+    const std::string &AccessDateBirth() const noexcept;
+    const std::string &AccessPhoneNumber() const noexcept;
 
     PersonalData() = default;
     virtual ~PersonalData() = default;

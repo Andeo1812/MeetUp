@@ -26,8 +26,8 @@ std::string ParserPersonalData::ObjectToStr(const std::string type_response, con
 
     std::string res;
 
-    if (!other.GetError().empty()) {
-        j[type_response] = other.GetError();
+    if (!other.AccessError().empty()) {
+        j[type_response] = other.AccessError();
 
         res = j.dump();
 
@@ -42,16 +42,16 @@ std::string ParserPersonalData::ObjectToStr(const std::string type_response, con
         return res;
     }
 
-    PersonalData personal_data = other.GetPersonalData();
+    PersonalData personal_data = other.AccessPersonalData();
 
     nlohmann::json value;
 
-    get_json(&PersonalData::GetUserId,        personal_data, &value, "user_id");
-    get_json(&PersonalData::GetName,          personal_data, &value, "status");
-    get_json(&PersonalData::GetSurname,       personal_data, &value, "name");
-    get_json(&PersonalData::GetEmail,         personal_data, &value, "email");
-    get_json(&PersonalData::GetDateBirth,     personal_data, &value, "date_birth");
-    get_json(&PersonalData::GetPhoneNumber,   personal_data, &value, "phone_number");
+    get_json(&PersonalData::AccessUserId,        personal_data, &value, "user_id");
+    get_json(&PersonalData::AccessName,          personal_data, &value, "status");
+    get_json(&PersonalData::AccessSurname,       personal_data, &value, "name");
+    get_json(&PersonalData::AccessEmail,         personal_data, &value, "email");
+    get_json(&PersonalData::AccessDateBirth,     personal_data, &value, "date_birth");
+    get_json(&PersonalData::AccessPhoneNumber,   personal_data, &value, "phone_number");
 
     j[type_response] = value;
 

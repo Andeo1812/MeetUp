@@ -50,6 +50,16 @@ class Context {
     size_t GetLeftBorder() const noexcept;
     size_t GetRightBorder() const noexcept;
 
+    const User &AccessUser() const noexcept;
+    const PersonalData &AccessPersonalData() const noexcept;
+    const GeneralData &AccessGeneralData() const noexcept;
+    const AddressData &AccessAddressData() const noexcept;
+    const std::set<Event> &AccessEvents() const noexcept;
+    const std::set<Group> &AccessGroups() const noexcept;
+    const std::set<MeetUp> &AccessMeetUp() const noexcept;
+    const Contacts &AccessContacts() const noexcept;
+    const std::string &AccessError() const noexcept;
+
     Context() : left(0), right(0) {} ;
     Context(const Context& other) = default;
     Context(const User& other) noexcept;

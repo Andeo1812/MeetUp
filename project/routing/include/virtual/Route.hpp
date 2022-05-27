@@ -15,7 +15,7 @@ class Route {
 
     virtual std::string GetHeadRequest(const std::string &request_body) const = 0;
 
-    virtual std::string HandlingTask(const std::string &request_body, const ClassDBWorker &db_worker) const = 0;
+    virtual std::string HandlingTask(const std::string &request_body, ClassDBWorker *db_worker) const = 0;
 
     virtual std::string GetResTask(const std::string &request_body) = 0;
 

@@ -8,7 +8,7 @@
 template<class ClassConnection>
 int DBGroupImplDefinition<ClassConnection>::Create(const Group &group, std::string *group_id, ClassConnection *connection) const {
     std::string SQL = "INSERT INTO group_m (title,description) "
-                      "VALUES ('" + group.GetTitle() + "','" + group.GetDescription() + "' ) RETURNING group_id;";
+                      "VALUES ('" + group.AccessTitle() + "','" + group.AccessDescription() + "' ) RETURNING group_id;";
 
     int res = EXIT_SUCCESS;
 

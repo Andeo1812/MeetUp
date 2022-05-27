@@ -32,3 +32,11 @@ std::ostream&  operator<<(std::ostream &os, const Contacts &it) noexcept {
 
     return os;
 }
+
+const std::string &Contacts::AccessUserId() const noexcept {
+    return this->user_id;
+}
+
+const std::set<std::string> &Contacts::AccessContacts() const noexcept {
+    return this->contacts;
+}

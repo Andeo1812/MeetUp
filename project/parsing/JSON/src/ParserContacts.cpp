@@ -38,8 +38,8 @@ std::string ParserUserContacts::ObjectToStr(const std::string type_response, con
 
     std::string res;
 
-    if (!other.GetError().empty()) {
-        j[type_response] = other.GetError();
+    if (!other.AccessError().empty()) {
+        j[type_response] = other.AccessError();
 
         res = j.dump();
 
@@ -54,7 +54,7 @@ std::string ParserUserContacts::ObjectToStr(const std::string type_response, con
         return res;
     }
 
-    Contacts contacts = other.GetContacts();
+    Contacts contacts = other.AccessContacts();
 
     if (other.GetLeftBorder()) {
         j["left"] = other.GetLeftBorder();

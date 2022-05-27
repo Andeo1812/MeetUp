@@ -8,7 +8,7 @@ template<typename T,
         class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
 class Registration : public Handler<T, ClassConnection, DBMethods, DBWorker> {
  public:
-    Context operator()(const Context &request_body, const DBWorker &db_worker) const override;
+    Context operator()(const Context &request_body, DBWorker *db_worker) const override;
 };
 
 template<typename T,
@@ -17,7 +17,7 @@ template<typename T,
         class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
 class Authentication : public Handler<T, ClassConnection, DBMethods, DBWorker> {
  public:
-    Context operator()(const Context &request_body, const DBWorker &db_worker) const override;
+    Context operator()(const Context &request_body, DBWorker *db_worker) const override;
 };
 
 template<typename T,
@@ -25,8 +25,8 @@ template<typename T,
         class DBMethods = AllDBMethods<T, ClassConnection>,
         class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
 class RmUser : public Handler<T, ClassConnection, DBMethods, DBWorker> {
-public:
-    Context operator()(const Context &request_body, const DBWorker &db_worker) const override;
+ public:
+    Context operator()(const Context &request_body, DBWorker *db_worker) const override;
 };
 
 #include "HandlerUserDefinition.hpp"

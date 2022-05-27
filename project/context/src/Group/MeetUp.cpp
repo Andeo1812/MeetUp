@@ -94,3 +94,31 @@ bool MeetUp::operator==(const MeetUp &other) const noexcept {
 
     return this->name == other.name;
 }
+
+const std::string &MeetUp::AccessId() const noexcept {
+    return this->id;
+}
+
+const std::string &MeetUp::AccessName() const noexcept {
+    return this->name;
+}
+
+const std::string &MeetUp::AccessDate() const noexcept {
+    return this->date;
+}
+
+const std::string &MeetUp::AccessDescription() const noexcept {
+    return this->description;
+}
+
+const std::string &MeetUp::AccessTimeBegin() const noexcept {
+    return this->time_begin;
+}
+
+const std::string &MeetUp::AccessTimeEnd() const noexcept {
+    return this->time_end;
+}
+
+const std::string &MeetUp::AccessGroupId() const noexcept {
+    return this->group_id;
+}

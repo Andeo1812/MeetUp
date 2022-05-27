@@ -31,8 +31,8 @@ std::string ParserEvent::ObjectToStr(const std::string type_response, const Cont
 
     std::string res;
 
-    if (!other.GetError().empty()) {
-        j[type_response] = other.GetError();
+    if (!other.AccessError().empty()) {
+        j[type_response] = other.AccessError();
 
         res = j.dump();
 
@@ -47,20 +47,20 @@ std::string ParserEvent::ObjectToStr(const std::string type_response, const Cont
         return res;
     }
 
-    std::set<Event> events = other.GetEvents();
+    std::set<Event> events = other.AccessEvents();
 
     nlohmann::json json_events;
 
     for (auto &event : events) {
         nlohmann::json json_event;
 
-        get_json(&Event::GetId,          event, &json_event, "event_id");
-        get_json(&Event::GetName,        event, &json_event, "event_name");
-        get_json(&Event::GetTimeBegin,   event, &json_event, "time_begin");
-        get_json(&Event::GetTimeEnd,     event, &json_event, "time_end");
-        get_json(&Event::GetDescription, event, &json_event, "description");
-        get_json(&Event::GetDate,        event, &json_event, "event_date");
-        get_json(&Event::GetUserId,      event, &json_event, "user_id");
+        get_json(&Event::AccessId,          event, &json_event, "event_id");
+        get_json(&Event::AccessName,        event, &json_event, "event_name");
+        get_json(&Event::AccessTimeBegin,   event, &json_event, "time_begin");
+        get_json(&Event::AccessTimeEnd,     event, &json_event, "time_end");
+        get_json(&Event::AccessDescription, event, &json_event, "description");
+        get_json(&Event::AccessDate,        event, &json_event, "event_date");
+        get_json(&Event::AccessUserId,      event, &json_event, "user_id");
 
         json_events.push_back(json_event);
     }

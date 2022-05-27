@@ -31,6 +31,14 @@ class MeetUp {
     std::string &GetTimeEnd() noexcept;
     std::string &GetGroupId() noexcept;
 
+    const std::string &AccessId() const noexcept;
+    const std::string &AccessName() const noexcept;
+    const std::string &AccessDate() const noexcept;
+    const std::string &AccessDescription() const noexcept;
+    const std::string &AccessTimeBegin() const noexcept;
+    const std::string &AccessTimeEnd() const noexcept;
+    const std::string &AccessGroupId() const noexcept;
+
     MeetUp() = default;
     virtual ~MeetUp() = default;
 

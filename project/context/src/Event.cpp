@@ -90,3 +90,31 @@ bool Event::operator<(const Event &other) const noexcept {
 bool Event::operator==(const Event &other) const noexcept {
     return this->id == other.id;
 }
+
+const std::string &Event::AccessId() const noexcept {
+    return this->id;
+}
+
+const std::string &Event::AccessName() const noexcept {
+    return this->name;
+}
+
+const std::string &Event::AccessDate() const noexcept {
+    return this->date;
+}
+
+const std::string &Event::AccessDescription() const noexcept {
+    return this->description;
+}
+
+const std::string &Event::AccessTimeBegin() const noexcept {
+    return this->time_begin;
+}
+
+const std::string &Event::AccessTimeEnd() const noexcept {
+    return this->time_end;
+}
+
+const std::string &Event::AccessUserId() const noexcept {
+    return this->user_id;
+}
