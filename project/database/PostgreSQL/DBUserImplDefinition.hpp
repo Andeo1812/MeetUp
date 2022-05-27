@@ -124,14 +124,14 @@ int DBUserImpl<ClassConnection>::Rm(const User &user, ClassConnection *connectio
         pqxx::result result(work.exec(SQL));
 
         if (!result.empty()) {
-            res = NOT_DELETE_USER;
+            res = NOT_RM_USER;
         }
 
         work.commit();
     } catch (const std::exception &e) {
         std::cout << e.what() << std::endl;
 
-        res = ERROR_DELETE_USER;
+        res = ERROR_RM_USER;
     }
 
     return res;

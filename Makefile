@@ -19,6 +19,7 @@ COVERAGE_HANDLING = build/tests/CMakeFiles/gtest_handling.dir/unit_tests
 COVERAGE_ROUTING = build/tests/CMakeFiles/gtest_routing.dir/unit_tests
 
 development:
+	./run_build.sh
 	${TEST_HANDLING}
 	${TEST_ROUTING}
 

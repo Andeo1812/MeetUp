@@ -37,11 +37,11 @@ Context Authentication<T, ClassConnection, DBMethods, DBWorker>::operator()(cons
 
     int res = db_worker->db_methods.User.Authentication(request_body.AccessUser(), &(db_worker->connection));
     switch (res) {
-        case NOT_AUTHENTICATION: {
+        case NOT_RM_USER: {
             response_body.SetError("Not found");
             break;
         }
-        case ERROR_AUTHENTICATION: {
+        case ERROR_RM_USER: {
             response_body.SetError("Error authentication");
             break;
         }

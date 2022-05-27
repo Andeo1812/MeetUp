@@ -10,7 +10,7 @@ static enum result_get_user_id {NOT_GET_USER_ID = 10, ERROR_GET_USER_ID} GET_USE
 
 static enum result_get_user_nickname {NOT_GET_USER_NICKNAME = 15, ERROR_GET_USER_NICKNAME} GET_NICKNAME;
 
-static enum result_delete_user {NOT_DELETE_USER = 20, ERROR_DELETE_USER} GET_USER_DELETE;
+static enum result_delete_user {NOT_RM_USER = 20, ERROR_RM_USER} GET_USER_DELETE;
 
 template<class ClassConnection>
 class DBUserImpl : public DBUser<ClassConnection> {
