@@ -27,6 +27,13 @@ class PersonalData {
     std::string GetDateBirth() const noexcept;
     std::string GetPhoneNumber() const noexcept;
 
+    std::string &AccessUserId() noexcept;
+    std::string &AccessName() noexcept;
+    std::string &AccessSurname() noexcept;
+    std::string &AccessEmail() noexcept;
+    std::string &AccessDateBirth() noexcept;
+    std::string &AccessPhoneNumber() noexcept;
+
     PersonalData() = default;
     virtual ~PersonalData() = default;
 

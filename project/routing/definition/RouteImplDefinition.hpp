@@ -11,7 +11,7 @@
 #include "HandlerEvent.hpp"
 #include "HandlerGroup.hpp"
 #include "HandlerMeetUp.hpp"
-#include "HandlerRegAuth.hpp"
+#include "HandlerUser.hpp"
 #include "HandlerSynchroClient.hpp"
 #include "HandlerAddressData.hpp"
 #include "HandlerGeneralData.hpp"
@@ -33,10 +33,14 @@ RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::Ro
     //  Base            REQUEST                                        PARSER                     HANDLER
     route_map.insert({REGISTRATION,           NodeMap<T>(new const ParserUser,         new const Registration<T>)});
     route_map.insert({AUTHENTICATION,         NodeMap<T>(new const ParserUser,         new const Authentication<T>)});
+    route_map.insert({DELETE_USER,            NodeMap<T>(new const ParserUser,         new const Authentication<T>)});
+
     route_map.insert({ADD_EVENT,              NodeMap<T>(new const ParserEvent,        new const AddEvent<T>)});
     route_map.insert({RM_EVENT,               NodeMap<T>(new const ParserEvent,        new const RmEvent<T>)});
+
     route_map.insert({ADD_USER_GROUP,         NodeMap<T>(new const ParserUserContacts, new const AddUserContacts<T>)});
     route_map.insert({RM_USER_GROUP,          NodeMap<T>(new const ParserUserContacts, new const RmUserContacts<T>)});
+
     route_map.insert({ADD_GROUP,              NodeMap<T>(new const ParserGroup,        new const AddGroup<T>)});
     route_map.insert({ADD_USER_GROUP,         NodeMap<T>(new const ParserGroup,        new const AddUserGroup<T>)});
     route_map.insert({RM_USER_GROUP,          NodeMap<T>(new const ParserGroup,        new const RmUserGroup<T>)});

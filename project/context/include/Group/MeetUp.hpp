@@ -23,13 +23,13 @@ class MeetUp {
     void SetTimeEnd(const std::string &time_end) noexcept;
     void SetGroupId(const std::string &group_id) noexcept;
 
-    std::string GetId() const noexcept;
-    std::string GetName() const noexcept;
-    std::string GetDate() const noexcept;
-    std::string GetDescription() const noexcept;
-    std::string GetTimeBegin() const noexcept;
-    std::string GetTimeEnd() const noexcept;
-    std::string GetGroupId() const noexcept;
+    std::string &GetId() noexcept;
+    std::string &GetName() noexcept;
+    std::string &GetDate() noexcept;
+    std::string &GetDescription() noexcept;
+    std::string &GetTimeBegin() noexcept;
+    std::string &GetTimeEnd() noexcept;
+    std::string &GetGroupId() noexcept;
 
     MeetUp() = default;
     virtual ~MeetUp() = default;

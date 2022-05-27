@@ -61,44 +61,44 @@ void Context::SetRightBorder(const size_t right) noexcept {
     this->right = right;
 }
 
-User Context::GetUser() const noexcept {
+User &Context::GetUser() noexcept {
     return this->user;
 }
 
-PersonalData Context::GetPersonalData() const noexcept {
+PersonalData &Context::GetPersonalData() noexcept {
     return this->personal_data;
 }
 
-GeneralData Context::GetGeneralData() const noexcept {
+GeneralData &Context::GetGeneralData() noexcept {
     return this->general_data;
 }
 
-AddressData Context::GetAddressData() const noexcept {
+AddressData &Context::GetAddressData() noexcept {
     return this->address_data;
 }
 
 
-std::set<Event> Context::GetEvents() const noexcept {
+std::set<Event> &Context::GetEvents() noexcept {
     return this->events;
 }
 
 
-std::set<Group> Context::GetGroups() const noexcept {
+std::set<Group> &Context::GetGroups() noexcept {
     return this->groups;
 }
 
 
-std::set<MeetUp> Context::GetMeetUp() const noexcept {
+std::set<MeetUp> &Context::GetMeetUp() noexcept {
     return this->meetups;
 }
 
 
-Contacts Context::GetContacts() const noexcept {
+Contacts &Context::GetContacts() noexcept {
     return this->contacts;
 }
 
 
-std::string Context::GetError() const noexcept {
+std::string &Context::GetError() noexcept {
     return this->error;
 }
 

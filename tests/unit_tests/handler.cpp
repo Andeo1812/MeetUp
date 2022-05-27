@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "HandlerRegAuth.hpp"
+#include "HandlerUser.hpp"
 #include "HandlerAddressData.hpp"
 #include "HandlerPersonalData.hpp"
 #include "HandlerPrivateData.hpp"

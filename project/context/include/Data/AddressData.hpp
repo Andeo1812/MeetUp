@@ -33,6 +33,15 @@ class AddressData {
     std::string GetIndex() const noexcept;
     std::string GetCountry() const noexcept;
 
+    std::string &AccessUserId() noexcept;
+    std::string &AccessGetBuilding() noexcept;
+    std::string &AccessGetHousing() noexcept;
+    std::string &AccessGetStreet() noexcept;
+    std::string &AccessGetCity() noexcept;
+    std::string &AccessGetDistrict() noexcept;
+    std::string &AccessGetIndex() noexcept;
+    std::string &AccessGetCountry() noexcept;
+
     AddressData() = default;
     virtual ~AddressData() = default;
 

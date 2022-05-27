@@ -28,23 +28,23 @@ void GeneralData::SetNickname(const std::string &nickname) noexcept {
     this->nickname = nickname;
 }
 
-std::string GeneralData::GetUserId() const noexcept {
+std::string &GeneralData::GetUserId() noexcept {
     return this->user_id;
 }
 
-std::string GeneralData::GetStatus() const noexcept {
+std::string &GeneralData::GetStatus() noexcept {
     return this->status;
 }
 
-std::string GeneralData::GetTags() const noexcept {
+std::string &GeneralData::GetTags() noexcept {
     return this->tags;
 }
 
-std::string GeneralData::GetDescription() const noexcept {
+std::string &GeneralData::GetDescription()  noexcept {
     return this->description;
 }
 
-std::string GeneralData::GetNickname() const noexcept {
+std::string &GeneralData::GetNickname() noexcept {
     return this->nickname;
 }
 

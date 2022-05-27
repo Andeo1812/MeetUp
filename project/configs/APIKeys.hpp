@@ -3,6 +3,7 @@
 //  RouteMapKeys
 constexpr std::string_view REGISTRATION = {"registration"};
 constexpr std::string_view AUTHENTICATION = {"authentication"};
+constexpr std::string_view DELETE_USER = {"delete_user"};
 
 constexpr std::string_view GET_EVENTS = {"get_events"};
 constexpr std::string_view GET_CONTACTS = {"get_contacts"};

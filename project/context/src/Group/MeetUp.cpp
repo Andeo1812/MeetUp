@@ -37,31 +37,31 @@ void MeetUp::SetGroupId(const std::string &group_id) noexcept {
     this->group_id = group_id;
 }
 
-std::string MeetUp::GetId() const noexcept {
+std::string &MeetUp::GetId() noexcept {
     return this->id;
 }
 
-std::string MeetUp::GetName() const noexcept {
+std::string &MeetUp::GetName() noexcept {
     return this->name;
 }
 
-std::string MeetUp::GetDate() const noexcept {
+std::string &MeetUp::GetDate() noexcept {
     return this->date;
 }
 
-std::string MeetUp::GetDescription() const noexcept {
+std::string &MeetUp::GetDescription() noexcept {
     return this->description;
 }
 
-std::string MeetUp::GetTimeBegin() const noexcept {
+std::string &MeetUp::GetTimeBegin() noexcept {
     return this->time_begin;
 }
 
-std::string MeetUp::GetTimeEnd() const noexcept {
+std::string &MeetUp::GetTimeEnd() noexcept {
     return this->time_end;
 }
 
-std::string MeetUp::GetGroupId() const noexcept {
+std::string &MeetUp::GetGroupId() noexcept {
     return this->group_id;
 }
 

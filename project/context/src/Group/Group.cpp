@@ -28,23 +28,23 @@ void Group::SetUserId(const std::string &user_id) noexcept {
     this->user_id = user_id;
 }
 
-std::string Group::GetId() const noexcept {
+std::string &Group::GetId() noexcept {
     return this->id;
 }
 
-std::string Group::GetTitle() const noexcept {
+std::string &Group::GetTitle() noexcept {
     return this->title;
 }
 
-std::string Group::GetDescription() const noexcept {
+std::string &Group::GetDescription() noexcept {
     return this->description;
 }
 
-std::set<std::string> Group::GetMembers() const noexcept {
+std::set<std::string> &Group::GetMembers() noexcept {
     return this->members;
 }
 
-std::string Group::GetUserId() const noexcept {
+std::string &Group::GetUserId() noexcept {
     return this->user_id;
 }
 

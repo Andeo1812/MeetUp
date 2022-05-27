@@ -19,15 +19,15 @@ void User::SetNickname(const std::string &nickname) noexcept {
     this->nickname = nickname;
 }
 
-std::string User::GetId() const noexcept {
+std::string &User::GetId() noexcept {
     return this->id;
 }
 
-std::string User::GetPassword() const noexcept {
+std::string &User::GetPassword() noexcept {
     return this->password;
 }
 
-std::string User::GetNickname() const noexcept {
+std::string &User::GetNickname() noexcept {
     return this->nickname;
 }
 

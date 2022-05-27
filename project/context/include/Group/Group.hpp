@@ -19,11 +19,11 @@ class Group {
     void SetMembers(const std::set<std::string> &members) noexcept;
     void SetUserId(const std::string &user_id) noexcept;
 
-    std::string GetId() const noexcept;
-    std::string GetTitle() const noexcept;
-    std::string GetDescription() const noexcept;
-    std::set<std::string> GetMembers() const noexcept;
-    std::string GetUserId() const noexcept;
+    std::string &GetId() noexcept;
+    std::string &GetTitle() noexcept;
+    std::string &GetDescription() noexcept;
+    std::set<std::string> &GetMembers() noexcept;
+    std::string &GetUserId() noexcept;
 
     Group() = default;
     virtual ~Group() = default;

@@ -14,9 +14,9 @@ class User {
     void SetPassword(const std::string &password) noexcept;
     void SetNickname(const std::string &nickname) noexcept;
 
-    std::string GetId() const noexcept;
-    std::string GetPassword() const noexcept;
-    std::string GetNickname() const noexcept;
+    std::string &GetId() noexcept;
+    std::string &GetPassword() noexcept;
+    std::string &GetNickname() noexcept;
 
     User() = default;
     virtual ~User() = default;

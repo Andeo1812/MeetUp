@@ -23,13 +23,13 @@ class Event {
     void SetTimeEnd(const std::string &time_end) noexcept;
     void SetUserId(const std::string &user_id) noexcept;
 
-    std::string GetId() const noexcept;
-    std::string GetName() const noexcept;
-    std::string GetDate() const noexcept;
-    std::string GetDescription() const noexcept;
-    std::string GetTimeBegin() const noexcept;
-    std::string GetTimeEnd() const noexcept;
-    std::string GetUserId() const noexcept;
+    std::string &GetId() noexcept;
+    std::string &GetName() noexcept;
+    std::string &GetDate() noexcept;
+    std::string &GetDescription() noexcept;
+    std::string &GetTimeBegin() noexcept;
+    std::string &GetTimeEnd() noexcept;
+    std::string &GetUserId() noexcept;
 
     Event() = default;
     virtual ~Event() = default;

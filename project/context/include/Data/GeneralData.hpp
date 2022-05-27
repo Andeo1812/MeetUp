@@ -24,6 +24,12 @@ class GeneralData {
     std::string GetDescription() const noexcept;
     std::string GetNickname() const noexcept;
 
+    std::string &AccessUserId() noexcept;
+    std::string &AccessStatus() noexcept;
+    std::string &AccessTags() noexcept;
+    std::string &AccessDescription() noexcept;
+    std::string &AccessNickname() noexcept;
+
     GeneralData() = default;
     virtual ~GeneralData() = default;
 

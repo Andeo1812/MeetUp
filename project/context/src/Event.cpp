@@ -37,31 +37,31 @@ void Event::SetUserId(const std::string &user_id) noexcept {
     this->user_id = user_id;
 }
 
-std::string Event::GetId() const noexcept {
+std::string &Event::GetId() noexcept {
     return this->id;
 }
 
-std::string Event::GetName() const noexcept {
+std::string &Event::GetName() noexcept {
     return this->name;
 }
 
-std::string Event::GetDate() const noexcept {
+std::string &Event::GetDate() noexcept {
     return this->date;
 }
 
-std::string Event::GetDescription() const noexcept {
+std::string &Event::GetDescription() noexcept {
     return this->description;
 }
 
-std::string Event::GetTimeBegin() const noexcept {
+std::string &Event::GetTimeBegin() noexcept {
     return this->time_begin;
 }
 
-std::string Event::GetTimeEnd() const noexcept {
+std::string &Event::GetTimeEnd() noexcept {
     return this->time_end;
 }
 
-std::string Event::GetUserId() const noexcept {
+std::string &Event::GetUserId() noexcept {
     return this->user_id;
 }
 

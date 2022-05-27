@@ -14,11 +14,11 @@ void Contacts::SetContacts(const std::set<std::string> &contacts) noexcept {
     this->contacts = contacts;
 }
 
-std::string Contacts::GetUserId() const noexcept {
+std::string &Contacts::GetUserId() noexcept {
     return this->user_id;
 }
 
-std::set<std::string> Contacts::GetContacts() const noexcept {
+std::set<std::string> &Contacts::GetContacts() noexcept {
     return this->contacts;
 }
 

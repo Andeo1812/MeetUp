@@ -32,27 +32,27 @@ void PersonalData::SetPhoneNumber(const std::string &phone_number) noexcept {
     this->phone_number = phone_number;
 }
 
-std::string PersonalData::GetUserId() const noexcept {
+std::string &PersonalData::GetUserId() noexcept {
     return this->user_id;
 }
 
-std::string PersonalData::GetName() const noexcept {
+std::string &PersonalData::GetName() noexcept {
     return this->name;
 }
 
-std::string PersonalData::GetSurname() const noexcept {
+std::string &PersonalData::GetSurname() noexcept {
     return this->surname;
 }
 
-std::string PersonalData::GetEmail() const noexcept {
+std::string &PersonalData::GetEmail() noexcept {
     return this->email;
 }
 
-std::string PersonalData::GetDateBirth() const noexcept {
+std::string &PersonalData::GetDateBirth() noexcept {
     return this->date_birth;
 }
 
-std::string PersonalData::GetPhoneNumber() const noexcept {
+std::string &PersonalData::GetPhoneNumber() noexcept {
     return this->phone_number;
 }
 

@@ -38,15 +38,15 @@ class Context {
     void SetRightBorder(const size_t right) noexcept;
     void SetError(const std::string& error) noexcept;
 
-    User GetUser() const noexcept;
-    PersonalData GetPersonalData() const noexcept;
-    GeneralData GetGeneralData() const noexcept;
-    AddressData GetAddressData() const noexcept;
-    std::set<Event> GetEvents() const noexcept;
-    std::set<Group> GetGroups() const noexcept;
-    std::set<MeetUp> GetMeetUp() const noexcept;
-    Contacts GetContacts() const noexcept;
-    std::string GetError() const noexcept;
+    User &GetUser() noexcept;
+    PersonalData &GetPersonalData() noexcept;
+    GeneralData &GetGeneralData() noexcept;
+    AddressData &GetAddressData() noexcept;
+    std::set<Event> &GetEvents() noexcept;
+    std::set<Group> &GetGroups() noexcept;
+    std::set<MeetUp> &GetMeetUp() noexcept;
+    Contacts &GetContacts() noexcept;
+    std::string &GetError() noexcept;
     size_t GetLeftBorder() const noexcept;
     size_t GetRightBorder() const noexcept;
 
