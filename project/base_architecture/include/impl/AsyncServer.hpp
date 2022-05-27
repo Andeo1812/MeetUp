@@ -22,18 +22,17 @@ public:
 
     /// Construct the server to listen on the specified TCP address and port, and
     /// serve up files from the given directory.
-    explicit AsyncServer(const std::string& address, const std::string& port,
-        const std::string& doc_root);
+    explicit AsyncServer(const std::string& address, const std::string& port, const std::string& file_storage);
 
     /// Run the server's io_context loop.
-    void run();
+    void run() override;
 
 private:
     /// Perform an asynchronous accept operation.
-    void do_accept();
+    void do_accept() override;
 
     /// Wait for a request to stop the server.
-    void do_await_stop();
+    void do_await_stop() override;
 
     /// The io_context used to perform asynchronous operations.
     boost::asio::io_context io_context_;

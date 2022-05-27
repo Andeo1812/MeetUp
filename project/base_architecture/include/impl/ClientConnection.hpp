@@ -29,21 +29,21 @@ public:
         ConnectionClientManager& manager, RequestHandler& handler);
 
     /// Start the first asynchronous operation for the connection.
-    void start();
+    void start() override;
 
     /// Stop all asynchronous operations associated with the connection.
-    void stop();
+    void stop() override;
 
 private:
     /// Perform an asynchronous read operation.
-    void do_read();
+    void do_read() override;
 
     /// Perform an asynchronous handle operation.
-    void do_handle();
+    void do_handle() override;
     boost::asio::steady_timer timer;
-    void async_get(std::string str, boost::asio::steady_timer* timer);
+    void async_get(std::string& str, boost::asio::steady_timer* timer);
     /// Perform an asynchronous write operation.
-    void do_write();
+    void do_write() override;
 
     /// Socket for the connection.
     boost::asio::ip::tcp::socket socket_;

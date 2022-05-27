@@ -13,7 +13,8 @@
 
 TEST(case_1, TestRequestServIntGoodRequest) {
     std::string host_name = "127.0.0.1 8000";
-    std::string test_file = "GoodRequest.txt";
+    std::string test_file = "../tests/integrated_tests/GoodRequest.txt";
+    std::string gold_file = "../tests/integrated_tests/GoodRequest_1_gold.txt";
 
     std::string command = "echo 'POST / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[\"a\" : \"b\"]}\r\n' | ncat "
         + host_name + " > " + test_file;
@@ -22,7 +23,7 @@ TEST(case_1, TestRequestServIntGoodRequest) {
 
 
     std::ifstream fin1(test_file);
-    std::ifstream fin2("GoodRequest_1.gold");
+    std::ifstream fin2(gold_file);
     ASSERT_TRUE(fin1);
     ASSERT_TRUE(fin2);
 
@@ -34,12 +35,13 @@ TEST(case_1, TestRequestServIntGoodRequest) {
             break;
         }
     }
-    ASSERT_FALSE(result == true);
+    EXPECT_EQ(result, true);
 }
 
 TEST(case_2, TestRequestServIntGoodRequest) {
     std::string host_name = "127.0.0.1 8000";
-    std::string test_file = "GoodRequest.txt";
+    std::string test_file = "../tests/integrated_tests/GoodRequest.txt";
+    std::string gold_file = "../tests/integrated_tests/GoodRequest_2_gold.txt";
 
     std::string command = "echo 'POST / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n{\"name\": \"Иван\",\"age\": 37,\"mother\": {\"name\": \"Ольга\",\"age\": 58},\"children\": [\"Маша\",\"Игорь\",\"Таня\"],\"married\": true,\"dog\": null}\r\n' | ncat "
         + host_name + " > " + test_file;
@@ -48,7 +50,7 @@ TEST(case_2, TestRequestServIntGoodRequest) {
 
 
     std::ifstream fin1(test_file);
-    std::ifstream fin2("GoodRequest_2.gold");
+    std::ifstream fin2(gold_file);
     ASSERT_TRUE(fin1);
     ASSERT_TRUE(fin2);
 
@@ -60,21 +62,22 @@ TEST(case_2, TestRequestServIntGoodRequest) {
             break;
         }
     }
-    ASSERT_FALSE(result == true);
+    EXPECT_EQ(result, true);
 }
 
 TEST(case_3, TestRequestServIntGoodRequest) {
     std::string host_name = "127.0.0.1 8000";
-    std::string test_file = "GoodRequest.txt";
+    std::string test_file = "../tests/integrated_tests/GoodRequest.txt";
+    std::string gold_file = "../tests/integrated_tests/GoodRequest_3_gold.txt";
 
-    std::string command = "echo 'GET /1.txt HTTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[\"a\" : \"b\"]}\r\n' | ncat "
+    std::string command = "echo 'POST / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n{\"Comment\":\"My comment\",\"Count\":10,\"DiskParam\":{\"DB\":10.000000,\"DBAngle\":1.234000},\"Range\":true,\"Blades\":[{\"Caption\":\"A\",\"Value\":65},{\"Caption\":\"B\",\"Value\":66},{\"Caption\":\"C\",\"Value\":67}],\"Slots\":[0,1,2]}\r\n' | ncat "
         + host_name + " > " + test_file;
 
     system(command.c_str());
 
 
     std::ifstream fin1(test_file);
-    std::ifstream fin2("GoodRequest_3.gold");
+    std::ifstream fin2(gold_file);
     ASSERT_TRUE(fin1);
     ASSERT_TRUE(fin2);
 
@@ -86,5 +89,5 @@ TEST(case_3, TestRequestServIntGoodRequest) {
             break;
         }
     }
-    ASSERT_FALSE(result == true);
+    EXPECT_EQ(result, true);
 }

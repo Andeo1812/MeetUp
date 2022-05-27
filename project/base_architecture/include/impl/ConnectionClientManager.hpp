@@ -22,13 +22,13 @@ public:
     ConnectionClientManager();
 
     /// Add the specified connection to the manager and start it.
-    void open_connection(connection_ptr c);
+    void open_connection(connection_ptr c) override;
 
     /// Stop the specified connection.
-    void close_connection(connection_ptr c);
+    void close_connection(connection_ptr c) override;
 
     /// Stop all connections.
-    void stop_all();
+    void stop_all() override;
 
 private:
     /// The managed connections.

@@ -102,6 +102,7 @@ std::vector<boost::asio::const_buffer> Reply::to_buffers() {
     buffers.push_back(boost::asio::buffer(misc_strings::crlf));
     buffers.push_back(boost::asio::buffer(content));
     buffers.push_back(boost::asio::buffer(misc_strings::crlf));
+
     return buffers;
 }
 

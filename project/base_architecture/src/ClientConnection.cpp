@@ -19,7 +19,7 @@ ClientConnection::ClientConnection(boost::asio::io_context& io_context, boost::a
         ConnectionClientManager& manager, RequestHandler& handler) : socket_(std::move(socket)),
         connection_manager_(manager),
         request_handler_(handler),
-        timer(io_context, boost::asio::chrono::milliseconds(200)) {}
+        timer(io_context, boost::asio::chrono::milliseconds(100)) {}
 
 void ClientConnection::start() {
     do_read();
@@ -30,29 +30,30 @@ void ClientConnection::stop() {
 }
 
 //Modulate back-end's work
-std::tuple<int, std::string> get_response(std::string in) {
+static std::tuple<int, std::string> get_response(std::string in) {
     std::string out;
     srand(time(NULL));
     int r = rand() % 3;
     if (r != 0) {
-        return std::make_tuple(WAIT, "\n");
+        return std::make_tuple(WAIT, "");
     }
 
-    std::for_each(in.begin(), in.end(), [&out](unsigned char c){out.push_back(c-32);});
+    std::for_each(in.begin(), in.end(), [&out](unsigned char c){out.push_back(c);});
     return std::make_tuple(READY, out);
 }
 
-void ClientConnection::async_get(std::string str, boost::asio::steady_timer* timer) {
+void ClientConnection::async_get(std::string& str, boost::asio::steady_timer* timer) {
     std::string response;
     int status_handle;
     std::tie(status_handle, response) = get_response(str);
 
     if (status_handle == WAIT) {
-        timer->expires_at(timer->expiry() + boost::asio::chrono::milliseconds(200));
+        timer->expires_at(timer->expiry() + boost::asio::chrono::milliseconds(100));
         timer->async_wait(boost::bind(&ClientConnection::async_get, this, str, timer));
         return;
     } else {
         std::cout << response << std::endl;
+        reply_.content = response;
 
         request_handler_.handle_request(request_, reply_);
         do_write();
@@ -62,7 +63,7 @@ void ClientConnection::async_get(std::string str, boost::asio::steady_timer* tim
 
 void ClientConnection::do_handle() {
     timer.async_wait(boost::bind(&ClientConnection::async_get, this,
-            "send_this_string_to_back_end_and_wait_the_response", &timer));
+            request_.content, &timer));
 }
 
 void ClientConnection::do_read() {

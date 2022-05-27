@@ -8,12 +8,12 @@
 namespace http {
 namespace AsyncServer {
 
-AsyncServer::AsyncServer(const std::string& address, const std::string& port,
-                        const std::string& doc_root): io_context_(1),
+AsyncServer::AsyncServer(const std::string& address, const std::string& port, const std::string& file_storage_):
+                        io_context_(1),
                         signals_(io_context_),
                         acceptor_(io_context_),
                         connection_manager_(),
-                        request_handler_(doc_root) {
+                        request_handler_(file_storage_) {
     signals_.add(SIGINT);
     signals_.add(SIGTERM);
     signals_.add(SIGQUIT);

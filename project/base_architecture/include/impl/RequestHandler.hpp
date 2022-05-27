@@ -20,20 +20,18 @@ public:
     RequestHandler(const RequestHandler&) = delete;
     RequestHandler& operator=(const RequestHandler&) = delete;
     /// Construct with a directory containing files to be served.
-    explicit RequestHandler(const std::string& doc_root);
+    explicit RequestHandler(const std::string& file_storage);
 
     // RouteImpl route;
 
     /// Handle a request and produce a reply.
-    void handle_request(const HttpRequest& req, Reply& rep);
+    void handle_request(const HttpRequest& req, Reply& rep) override;
 
 
 private:
     /// The directory containing the files to be served.
-    std::string doc_root_;
+    std::string file_storage_;
 
-    /// Perform URL-decoding on a string. Returns false if the encoding was invalid.
-    static bool url_decode(const std::string& in, std::string& out);
 };
 
 } // namespace AsyncServer

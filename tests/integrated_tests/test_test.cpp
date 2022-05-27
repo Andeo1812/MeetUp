@@ -7,14 +7,14 @@ int main() {
     // system("./int.sh");
     std::string host_name = "127.0.0.1 8000";
     std::string test_file = "GoodRequest.txt";
-
-    std::string command = "echo 'GET /1.txt HTTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[\"a\" : \"b\"]}\r\n' | ncat "
+// echo 'GET /1.txt HTTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[\"a\" : \"b\"]}\r\n' | ncat 127.0.0.1 8000
+    std::string command = "echo 'POST / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n{\"name\": \"Иван\",\"age\": 37,\"mother\": {\"name\": \"Ольга\",\"age\": 58},\"children\": [\"Маша\",\"Игорь\",\"Таня\"],\"married\": true,\"dog\": null}\r\n' | ncat "
         + host_name + " > " + test_file;
 
-    system(command.c_str());
+    system(command.c_str());;
 
     std::ifstream fin1(test_file);
-    std::ifstream fin2("GoodRequest_3.gold");
+    std::ifstream fin2("GoodRequest_2.gold");
     assert(fin1);
     assert(fin2);
 
