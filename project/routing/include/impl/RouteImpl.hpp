@@ -5,6 +5,8 @@
 #include <queue>
 #include <thread>  //  NOLINT
 #include <vector>
+#include <condition_variable>
+#include <mutex>
 
 template<typename connection>
 struct NodeMap {
@@ -37,6 +39,22 @@ class RouteImpl : public Route<T, ClassConnection, ClassDBMethods, ClassDBWorker
     std::vector<std::thread> workers;
 
     std::map<const std::string, NodeResponse> responses;
+
+//    void run_thread();
+//
+//    std::string &GetTask();
+//
+//    void InsertResponse(const std::string &response, const std::string &task);
+//
+//    bool data;
+//
+//    std::condition_variable cv;
+//
+//    std::mutex queue_lock;
+//
+//    std::mutex task_lock;
+//
+//    std::mutex response_lock;
 
  public:
     void InsertTask(const std::string &task) override;
