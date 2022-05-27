@@ -4,8 +4,8 @@
 
 #include "DBManager.hpp"
 
-template<typename T, class ClassConnection>
-DBManager<T, ClassConnection>::DBManager() {
+template<typename T, class ClassConnection , class DBMethods>
+DBManager<T, ClassConnection, DBMethods>::DBManager() {
     //  size_t numCPU = sysconf(_SC_NPROCESSORS_ONLN);
 
     size_t numCPU = MAX_COUNT_FREE_DB_VERSION;
@@ -15,8 +15,8 @@ DBManager<T, ClassConnection>::DBManager() {
     }
 }
 
-template<typename T, class ClassConnection>
-ClassConnection *DBManager<T, ClassConnection>::GetFreeConnection() {
+template<typename T, class ClassConnection , class DBMethods>
+ClassConnection *DBManager<T, ClassConnection, DBMethods>::GetFreeConnection() {
     while (this->connection_pool.empty()) {
         sleep(1);
     }
@@ -28,12 +28,12 @@ ClassConnection *DBManager<T, ClassConnection>::GetFreeConnection() {
     return res;
 }
 
-template<typename T, class ClassConnection>
-void DBManager<T, ClassConnection>::InsertConnection(ClassConnection *connection) {
+template<typename T, class ClassConnection , class DBMethods>
+void DBManager<T, ClassConnection, DBMethods>::InsertConnection(ClassConnection *connection) {
     this->connection_pool.push(connection);
 }
 
-template<typename T, class ClassConnection>
-size_t DBManager<T, ClassConnection>::Size() const noexcept {
+template<typename T, class ClassConnection , class DBMethods>
+size_t DBManager<T, ClassConnection, DBMethods>::Size() const noexcept {
     return this->connection_pool.size();
 }

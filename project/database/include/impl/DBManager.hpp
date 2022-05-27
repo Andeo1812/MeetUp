@@ -6,25 +6,17 @@
 #include <pqxx/pqxx>
 
 #include "DBConnectionImpl.hpp"
-#include "DBUserImpl.hpp"
-#include "DBUserDataImpl.hpp"
-#include "DBEventImpl.hpp"
-#include "DBContactsImpl.hpp"
-#include "DBGroupImpl.hpp"
+#include "DBMethods.hpp"
 
 //  LIMIT from ElephantSQL.com(source DB)
 const size_t MAX_COUNT_FREE_DB_VERSION = 2;
 
-template<typename T, class ClassConnection = DBConnection<T>>
+template<typename T, class ClassConnection = DBConnection<T>, class DBMethods = AllDBMethods<T, ClassConnection>>
 class DBManager {
     std::queue<ClassConnection *> connection_pool;
 
  public:
-    DBUserImpl<ClassConnection> User;
-    DBUserDataImplDefinition<ClassConnection> UserData;
-    DBEventImpl<ClassConnection> Event;
-    DBContactsImpl<ClassConnection> Contacts;
-    DBGroupImplDefinition<ClassConnection> Group;
+    DBMethods db_methods;
 
     ClassConnection *GetFreeConnection();
 
