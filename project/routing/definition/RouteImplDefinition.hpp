@@ -3,7 +3,6 @@
 #include <memory>
 
 #include "RouteImpl.hpp"
-
 #include "APIKeys.hpp"
 
 //  Processing classes
@@ -37,14 +36,18 @@ RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::Ro
 
     route_map.insert({ADD_EVENT,              NodeMap<T>(new const ParserEvent,        new const AddEvent<T>)});
     route_map.insert({RM_EVENT,               NodeMap<T>(new const ParserEvent,        new const RmEvent<T>)});
+    route_map.insert({GET_EVENTS,             NodeMap<T>(new const ParserEvent,        new const SynchroClientEvents<T>)});
 
     route_map.insert({ADD_USER_GROUP,         NodeMap<T>(new const ParserUserContacts, new const AddUserContacts<T>)});
     route_map.insert({RM_USER_GROUP,          NodeMap<T>(new const ParserUserContacts, new const RmUserContacts<T>)});
+    route_map.insert({GET_CONTACTS,           NodeMap<T>(new const ParserUserContacts, new const SynchroClientContacts<T>)});
 
     route_map.insert({ADD_GROUP,              NodeMap<T>(new const ParserGroup,        new const AddGroup<T>)});
     route_map.insert({ADD_USER_GROUP,         NodeMap<T>(new const ParserGroup,        new const AddUserGroup<T>)});
     route_map.insert({RM_USER_GROUP,          NodeMap<T>(new const ParserGroup,        new const RmUserGroup<T>)});
     route_map.insert({RM_GROUP,               NodeMap<T>(new const ParserGroup,        new const RmGroup<T>)});
+    route_map.insert({GET_GROUPS,             NodeMap<T>(new const ParserGroup,        new const SynchroClientGroups<T>)});
+
     route_map.insert({GET_MEETUP,             NodeMap<T>(new const ParserMeetUp,       new const GetMeetUps<T>)});
 }
 
