@@ -39,9 +39,9 @@ Parsing_hpp="project/parsing/include/impl/*.hpp project/parsing/include/impl/Dat
 Parsing_cpp="project/parsing/JSON/src/*.cpp project/parsing/JSON/src/Data/*.cpp project/parsing/JSON/src/Group/*.cpp"
 Parsing_path_hpp="-I project/parsing/include/impl -I project/parsing/include/impl/Data -I project/parsing/include/impl/Group -I project/parsing/include/virtual"
 
-Handling_hpp="project/handling/include/impl/*.hpp project/handling/include/impl/Data/*.hpp project/handling/include/impl/Group/*.hpp project/handling/include/virtual/*.hpp project/handling/src/Group/MeetUp/SupportMeetUp/include/*.hpp"
-Handling_cpp="project/handling/src/*.cpp project/handling/src/Data/*.cpp project/handling/src/Group/Base/*.cpp project/handling/src/Group/User/*.cpp project/handling/src/Group/MeetUp/*.cpp project/handling/src/Group/MeetUp/SupportMeetUp/src/*.cpp"
-Handling_path_hpp="-I project/handling/include/impl -I project/handling/include/impl/Data -I project/handling/include/impl/Group -I project/handling/include/virtual -I project/handling/src/Group/MeetUp/SupportMeetUp/include"
+Handling_hpp="project/handling/include/impl/*.hpp project/handling/include/impl/Data/*.hpp project/handling/include/impl/Group/*.hpp project/handling/include/virtual/*.hpp project/handling/definition/Group/MeetUp/SupportMeetUp/include/*.hpp"
+Handling_cpp="project/handling/definition/Group/MeetUp/SupportMeetUp/src/*.cpp"
+Handling_path_hpp="-I project/handling/include/impl -I project/handling/include/impl/Data -I project/handling/include/impl/Group -I project/handling/include/virtual -I project/handling/definition/Group/MeetUp/SupportMeetUp/include -I project/handling/definition -I project/handling/definition/Data -I project/handling/definition/Group/Base/ -I project/handling/definition/Group/User -I project/handling/definition/Group/MeetUp"
 
 Routing_hpp="project/routing/include/impl/*.hpp project/routing/include/virtual/*.hpp"
 Routing_path_hpp="-I project/routing/include/impl -I project/routing/include/virtual -I project/routing/definition"

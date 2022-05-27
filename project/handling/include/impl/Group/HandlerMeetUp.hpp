@@ -2,9 +2,13 @@
 
 #include "Handler.hpp"
 
-class GetMeetUps : public Handler {
+template<typename T,
+        class ClassConnection = DBConnection<T>,
+        class DBMethods = AllDBMethods<T, ClassConnection>,
+        class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
+class GetMeetUps : public Handler<T, ClassConnection, DBMethods, DBWorker> {
  public:
-    Context process(const Context &request_body) const override;
+    Context operator()(const Context &request_body, const DBWorker &db_worker) const override;
 };
 
 /*
@@ -13,3 +17,5 @@ public:
     Context process(const Context& request_body) const override;
 };
 */
+
+#include "HandlerMeetUpDefinition.hpp"

@@ -2,14 +2,22 @@
 
 #include "Handler.hpp"
 
-class WritePersonalData : public Handler {
+template<typename T,
+        class ClassConnection = DBConnection<T>,
+        class DBMethods = AllDBMethods<T, ClassConnection>,
+        class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
+class WritePersonalData : public Handler<T, ClassConnection, DBMethods, DBWorker> {
  public:
-    Context process(const Context &request_body) const override;
+    Context operator()(const Context &request_body, const DBWorker &db_worker) const override;
 };
 
-class GetPersonalData : public Handler {
+template<typename T,
+        class ClassConnection = DBConnection<T>,
+        class DBMethods = AllDBMethods<T, ClassConnection>,
+        class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
+class GetPersonalData : public Handler<T, ClassConnection, DBMethods, DBWorker> {
  public:
-    Context process(const Context &request_body) const override;
+    Context operator()(const Context &request_body, const DBWorker &db_worker) const override;
 };
 
-
+#include "HandlerPersonalDataDefinition.hpp"

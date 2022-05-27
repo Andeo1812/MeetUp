@@ -28,42 +28,42 @@
 #include "ParserPersonalData.hpp"
 #include "ParserMeetUp.hpp"
 
-template<class ClassDBManager>
-RouteImpl<ClassDBManager>::RouteImpl() {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker, class ClassDBManager>
+RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::RouteImpl() {
     //  Base            REQUEST                                        PARSER                     HANDLER
-    route_map.insert({REGISTRATION,           NodeMap(new const ParserUser,         new const Registration)});
-    route_map.insert({AUTHENTICATION,         NodeMap(new const ParserUser,         new const Authentication)});
-    route_map.insert({ADD_EVENT,              NodeMap(new const ParserEvent,        new const AddEvent)});
-    route_map.insert({RM_EVENT,               NodeMap(new const ParserEvent,        new const RmEvent)});
-    route_map.insert({ADD_USER_GROUP,         NodeMap(new const ParserUserContacts, new const AddUserContacts)});
-    route_map.insert({RM_USER_GROUP,          NodeMap(new const ParserUserContacts, new const RmUserContacts)});
-    route_map.insert({ADD_GROUP,              NodeMap(new const ParserGroup,        new const AddGroup)});
-    route_map.insert({ADD_USER_GROUP,         NodeMap(new const ParserGroup,        new const AddUserGroup)});
-    route_map.insert({RM_USER_GROUP,          NodeMap(new const ParserGroup,        new const RmUserGroup)});
-    route_map.insert({RM_GROUP,               NodeMap(new const ParserGroup,        new const RmGroup)});
-    route_map.insert({GET_MEETUP,             NodeMap(new const ParserMeetUp,       new const GetMeetUps)});
+    route_map.insert({REGISTRATION,           NodeMap<T>(new const ParserUser,         new const Registration<T>)});
+    route_map.insert({AUTHENTICATION,         NodeMap<T>(new const ParserUser,         new const Authentication<T>)});
+    route_map.insert({ADD_EVENT,              NodeMap<T>(new const ParserEvent,        new const AddEvent<T>)});
+    route_map.insert({RM_EVENT,               NodeMap<T>(new const ParserEvent,        new const RmEvent<T>)});
+    route_map.insert({ADD_USER_GROUP,         NodeMap<T>(new const ParserUserContacts, new const AddUserContacts<T>)});
+    route_map.insert({RM_USER_GROUP,          NodeMap<T>(new const ParserUserContacts, new const RmUserContacts<T>)});
+    route_map.insert({ADD_GROUP,              NodeMap<T>(new const ParserGroup,        new const AddGroup<T>)});
+    route_map.insert({ADD_USER_GROUP,         NodeMap<T>(new const ParserGroup,        new const AddUserGroup<T>)});
+    route_map.insert({RM_USER_GROUP,          NodeMap<T>(new const ParserGroup,        new const RmUserGroup<T>)});
+    route_map.insert({RM_GROUP,               NodeMap<T>(new const ParserGroup,        new const RmGroup<T>)});
+    route_map.insert({GET_MEETUP,             NodeMap<T>(new const ParserMeetUp,       new const GetMeetUps<T>)});
 }
 
-template<class ClassDBManager>
-std::string RouteImpl<ClassDBManager>::GetHeadRequest(const std::string &request_body) const {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker, class ClassDBManager>
+std::string RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::GetHeadRequest(const std::string &request_body) const {
     std::string type_request;
 
     return type_request;
 }
 
-template<class ClassDBManager>
-std::string RouteImpl<ClassDBManager>::GetResTask(const std::string &request_body) {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker, class ClassDBManager>
+std::string RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::GetResTask(const std::string &request_body) {
     std::string type_request;
 
     return type_request;
 }
 
-template<class ClassDBManager>
-void RouteImpl<ClassDBManager>::InsertTask(const std::string &task) {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker, class ClassDBManager>
+void RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::InsertTask(const std::string &task) {
 }
 
-template<class ClassDBManager>
-std::string RouteImpl<ClassDBManager>::HandlingTask(const std::string &request_body) const {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker, class ClassDBManager>
+std::string RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::HandlingTask(const std::string &request_body, const ClassDBWorker &db_worker) const {
     std::string res;
 
     std::string type_request = GetHeadRequest(request_body);
@@ -79,7 +79,7 @@ std::string RouteImpl<ClassDBManager>::HandlingTask(const std::string &request_b
     Context buf;
 
     buf = needed_node->second.parser->StrToObject(request_body);
-    buf = needed_node->second.handler->process(buf);
+    buf = needed_node->second.handler->operator()(buf, db_worker);
     res = needed_node->second.parser->ObjectToStr(type_request, buf);
 
     return res;

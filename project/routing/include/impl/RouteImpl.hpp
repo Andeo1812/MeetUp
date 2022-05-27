@@ -6,11 +6,12 @@
 #include <thread>  //  NOLINT
 #include <vector>
 
+template<typename connection>
 struct NodeMap {
     std::unique_ptr<const Parser> parser;
-    std::unique_ptr<const Handler> handler;
+    std::unique_ptr<const Handler<connection>> handler;
 
-    NodeMap(const Parser *parser, const Handler *handler) : parser(parser), handler(handler) {}
+    NodeMap(const Parser *parser, const Handler<connection> *handler) : parser(parser), handler(handler) {}
 };
 
 struct NodeResponse {
@@ -21,11 +22,15 @@ struct NodeResponse {
 };
 
 
-template<class ClassDBManager>
-class RouteImpl : public Route<ClassDBManager> {
+template<typename T,
+        class ClassConnection = DBConnection<T>,
+        class ClassDBMethods = AllDBMethods<T, ClassConnection>,
+        class ClassDBWorker = DBWorker<T, ClassConnection, ClassDBMethods>,
+        class ClassDBManager = DBManager<T, ClassConnection, ClassDBMethods, ClassDBWorker>>
+class RouteImpl : public Route<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager> {
     std::queue<std::string> tasks;
 
-    std::map<const std::string_view, NodeMap> route_map;
+    std::map<const std::string_view, NodeMap<T>> route_map;
 
     const ClassDBManager db_manager;
 
@@ -38,7 +43,7 @@ class RouteImpl : public Route<ClassDBManager> {
 
     std::string GetHeadRequest(const std::string &request_body) const override;
 
-    std::string HandlingTask(const std::string &request_body) const override;
+    std::string HandlingTask(const std::string &request_body, const ClassDBWorker &db_worker) const override;
 
     std::string GetResTask(const std::string &request_body) override;
 

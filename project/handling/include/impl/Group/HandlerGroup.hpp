@@ -2,36 +2,59 @@
 
 #include "Handler.hpp"
 
-class AddGroup : public Handler {
+template<typename T,
+        class ClassConnection = DBConnection<T>,
+        class DBMethods = AllDBMethods<T, ClassConnection>,
+        class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
+class AddGroup : public Handler<T, ClassConnection, DBMethods, DBWorker> {
  public:
-    Context process(const Context &request_body) const override;
+    Context operator()(const Context &request_body, const DBWorker &db_worker) const override;
 };
 
-class WriteGroup : public Handler {
+template<typename T,
+        class ClassConnection = DBConnection<T>,
+        class DBMethods = AllDBMethods<T, ClassConnection>,
+        class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
+class WriteGroup : public Handler<T, ClassConnection, DBMethods, DBWorker> {
  public:
-    Context process(const Context &request_body) const override;
+    Context operator()(const Context &request_body, const DBWorker &db_worker) const override;
 };
 
-class RmGroup : public Handler {
+template<typename T,
+        class ClassConnection = DBConnection<T>,
+        class DBMethods = AllDBMethods<T, ClassConnection>,
+        class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
+class RmGroup : public Handler<T, ClassConnection, DBMethods, DBWorker> {
  public:
-    Context process(const Context &request_body) const override;
+    Context operator()(const Context &request_body, const DBWorker &db_worker) const override;
+};
+
+template<typename T,
+        class ClassConnection = DBConnection<T>,
+        class DBMethods = AllDBMethods<T, ClassConnection>,
+        class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
+class GetGroupMembers : public Handler<T, ClassConnection, DBMethods, DBWorker> {
+ public:
+    Context operator()(const Context &request_body, const DBWorker &db_worker) const override;
 };
 
 
-class GetGroupMembers : public Handler {
+template<typename T,
+        class ClassConnection = DBConnection<T>,
+        class DBMethods = AllDBMethods<T, ClassConnection>,
+        class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
+class AddUserGroup : public Handler<T, ClassConnection, DBMethods, DBWorker> {
  public:
-    Context process(const Context &request_body) const override;
+    Context operator()(const Context &request_body, const DBWorker &db_worker) const override;
 };
 
-
-class AddUserGroup : public Handler {
+template<typename T,
+        class ClassConnection = DBConnection<T>,
+        class DBMethods = AllDBMethods<T, ClassConnection>,
+        class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
+class RmUserGroup : public Handler<T, ClassConnection, DBMethods, DBWorker> {
  public:
-    Context process(const Context &request_body) const override;
-};
-
-class RmUserGroup : public Handler {
- public:
-    Context process(const Context &request_body) const override;
+    Context operator()(const Context &request_body, const DBWorker &db_worker) const override;
 };
 
 /*
@@ -40,3 +63,6 @@ class SearchGroup: public Handler {
     Context* process(const Context* request_body) const override;
 };
  */
+
+#include "HandlerGroupDefinition.hpp"
+#include "HandlerGroupManagementDefinition.hpp"

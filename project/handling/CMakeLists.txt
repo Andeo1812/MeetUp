@@ -1,17 +1,17 @@
 project(Handling)
 
-file(GLOB SOURCES src/*.cpp
-                src/Data/*.cpp
-                src/Group/Base/*.cpp
-                src/Group/MeetUp/*.cpp
-                src/Group/MeetUp/SupportMeetUp/src/*.cpp
-                src/Group/User/*.cpp)
+file(GLOB SOURCES definition/Group/MeetUp/SupportMeetUp/src/*.cpp)
 
 set(Include_dir ${CMAKE_CURRENT_SOURCE_DIR}/include/virtual/
                 ${CMAKE_CURRENT_SOURCE_DIR}/include/impl/
                 ${CMAKE_CURRENT_SOURCE_DIR}/include/impl/Data/
                 ${CMAKE_CURRENT_SOURCE_DIR}/include/impl/Group/
-                ${CMAKE_CURRENT_SOURCE_DIR}/src/Group/MeetUp/SupportMeetUp/include)
+                ${CMAKE_CURRENT_SOURCE_DIR}/definition/Group/MeetUp/SupportMeetUp/include
+                ${CMAKE_CURRENT_SOURCE_DIR}/definition/
+                ${CMAKE_CURRENT_SOURCE_DIR}/definition/Data/
+                ${CMAKE_CURRENT_SOURCE_DIR}/definition/Group/Base/
+                ${CMAKE_CURRENT_SOURCE_DIR}/definition/Group/MeetUp/
+                ${CMAKE_CURRENT_SOURCE_DIR}/definition/Group/User/)
 
 file(GLOB INCLUDE_DIRS Include_dir)
 

@@ -2,12 +2,22 @@
 
 #include "Handler.hpp"
 
-class AddUserContacts : public Handler {
+template<typename T,
+        class ClassConnection = DBConnection<T>,
+        class DBMethods = AllDBMethods<T, ClassConnection>,
+        class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
+class AddUserContacts : public Handler<T, ClassConnection, DBMethods, DBWorker> {
  public:
-    Context process(const Context &request_body) const override;
+    Context operator()(const Context &request_body, const DBWorker &db_worker) const override;
 };
 
-class RmUserContacts : public Handler {
+template<typename T,
+        class ClassConnection = DBConnection<T>,
+        class DBMethods = AllDBMethods<T, ClassConnection>,
+        class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
+class RmUserContacts : public Handler<T, ClassConnection, DBMethods, DBWorker> {
  public:
-    Context process(const Context &request_body) const override;
+    Context operator()(const Context &request_body, const DBWorker &db_worker) const override;
 };
+
+#include "HandlerContactsDefinition.hpp"
