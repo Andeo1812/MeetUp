@@ -34,7 +34,7 @@ int DBUserImpl<ClassConnection>::Registration(const User &user, std::string *new
 }
 
 template<class ClassConnection>
-int DBUserImpl<ClassConnection>::Authentication(const User &user, ClassConnection *connection) const {
+int DBUserImpl<ClassConnection>::Authentication(const User &user, std::string *user_id, ClassConnection *connection) const {
     std::string SQL = "SELECT user_id FROM user_m WHERE password = '" + user.AccessPassword() + "' and nickname = '" + user.AccessNickname() + "'";
 
     int res = EXIT_SUCCESS;
@@ -44,7 +44,9 @@ int DBUserImpl<ClassConnection>::Authentication(const User &user, ClassConnectio
 
         pqxx::result result(work.exec(SQL));
 
-        if (result.empty()) {
+        if (!result.empty()) {
+            *user_id = result.begin()["user_id"].as<std::string>();
+        } else {
             res = NOT_AUTHENTICATION;
         }
 

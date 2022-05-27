@@ -15,10 +15,10 @@ struct NodeMap {
 };
 
 struct NodeResponse {
-    const std::string request;
     std::string response;
 
-    explicit NodeResponse(const std::string &request) : request(request) {}
+    explicit NodeResponse(const std::string &response) : response(response) {}
+    NodeResponse() = default;
 };
 
 
@@ -32,11 +32,11 @@ class RouteImpl : public Route<T, ClassConnection, ClassDBMethods, ClassDBWorker
 
     std::map<const std::string_view, NodeMap<T>> route_map;
 
-    const ClassDBManager db_manager;
+    ClassDBManager db_manager;
 
     std::vector<std::thread> workers;
 
-    std::queue<NodeResponse> responses;
+    std::map<const std::string, NodeResponse> responses;
 
  public:
     void InsertTask(const std::string &task) override;

@@ -33,14 +33,16 @@ TEST(PostgreSQL, DBUser) {
     user.SetId(new_user_id);
     EXPECT_EQ(res_reg, EXIT_SUCCESS);
 
-    int res_auth = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().db_methods.User.Authentication(user, conn);
+    std::string user_idd;
+
+    int res_auth = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().db_methods.User.Authentication(user, &user_idd, conn);
     EXPECT_EQ(res_auth, EXIT_SUCCESS);
 
     User user_not_exist;
     user_not_exist.SetPassword({"user_not_exist"});
     user_not_exist.SetNickname({"user_not_exist"});
 
-    int res_wrong_auth = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().db_methods.User.Authentication(user_not_exist, conn);
+    int res_wrong_auth = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().db_methods.User.Authentication(user_not_exist, &user_idd, conn);
     EXPECT_EQ(res_wrong_auth, NOT_AUTHENTICATION);
 
     std::string user_id;

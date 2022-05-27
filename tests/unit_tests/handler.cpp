@@ -9,7 +9,7 @@
 #include "HandlerGroup.hpp"
 #include "HandlerMeetUp.hpp"
 
-std::string user_id;
+static std::string user_id;  //  NOLINT
 
 TEST(HANDLERS, Registration) {
     AllDBMethods<pqxx::connection> db_methods;
@@ -52,7 +52,7 @@ TEST(HANDLERS, Authorization) {
 
     context = reg_handler(context, &db_worker);
 
-    EXPECT_TRUE(context.IsEmpty());
+    EXPECT_TRUE(!context.IsEmpty());
 
     EXPECT_TRUE(context.AccessError().empty());
 }
@@ -62,8 +62,6 @@ TEST(HANDLERS, RmUser) {
     DBWorker<pqxx::connection> db_worker(db_methods);
 
     User user;
-
-    std::cout << user_id << std::endl;
 
     user.SetId(user_id);
     user.SetPassword({"password"});

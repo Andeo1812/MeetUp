@@ -32,7 +32,7 @@ RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::Ro
     //  Base            REQUEST                                        PARSER                     HANDLER
     route_map.insert({REGISTRATION,           NodeMap<T>(new const ParserUser,         new const Registration<T>)});
     route_map.insert({AUTHENTICATION,         NodeMap<T>(new const ParserUser,         new const Authentication<T>)});
-    route_map.insert({RM_USER,            NodeMap<T>(new const ParserUser,         new const Authentication<T>)});
+    route_map.insert({RM_USER,                NodeMap<T>(new const ParserUser,         new const RmUser<T>)});
 
     route_map.insert({ADD_EVENT,              NodeMap<T>(new const ParserEvent,        new const AddEvent<T>)});
     route_map.insert({RM_EVENT,               NodeMap<T>(new const ParserEvent,        new const RmEvent<T>)});
@@ -55,18 +55,38 @@ template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBW
 std::string RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::GetHeadRequest(const std::string &request_body) const {
     std::string type_request;
 
-    return type_request;
-}
+    size_t begin = request_body.find("\"");
+    if (begin == request_body.npos) {
+        return type_request;
+    }
 
-template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker, class ClassDBManager>
-std::string RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::GetResTask(const std::string &request_body) {
-    std::string type_request;
+    size_t end = request_body.find("\"", begin + 1);
+    if (end == request_body.npos) {
+        return type_request;
+    }
 
+    type_request = request_body.substr(begin + 1, end - 2);
     return type_request;
 }
 
 template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker, class ClassDBManager>
 void RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::InsertTask(const std::string &task) {
+    tasks.push(task);
+}
+
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker, class ClassDBManager>
+std::string RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::GetResTask(const std::string &request_body) {
+    std::string result = HandlingTask(tasks.front(), db_manager.GetFreeWorker(0));
+
+    responses.insert({tasks.front(), NodeResponse(result)});
+
+    auto needed_node = responses.find(tasks.front());
+
+    tasks.pop();
+
+    responses.erase(needed_node);
+
+    return result;
 }
 
 template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker, class ClassDBManager>

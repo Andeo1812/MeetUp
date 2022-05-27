@@ -33,9 +33,9 @@ template<typename T, class ClassConnection, class DBMethods, class DBWorker>
 Context Authentication<T, ClassConnection, DBMethods, DBWorker>::operator()(const Context &request_body, DBWorker *db_worker) const {
     Context response_body;
 
-    std::string new_user_id;
+    std::string user_id;
 
-    int res = db_worker->db_methods.User.Authentication(request_body.AccessUser(), &(db_worker->connection));
+    int res = db_worker->db_methods.User.Authentication(request_body.AccessUser(), &user_id, &(db_worker->connection));
     switch (res) {
         case NOT_RM_USER: {
             response_body.SetError("Not found");
@@ -46,7 +46,7 @@ Context Authentication<T, ClassConnection, DBMethods, DBWorker>::operator()(cons
             break;
         }
         case EXIT_SUCCESS: {
-            response_body.GetUser().SetId(new_user_id);
+            response_body.GetUser().SetId(user_id);
             break;
         }
         default: {
@@ -75,7 +75,6 @@ Context RmUser<T, ClassConnection, DBMethods, DBWorker>::operator()(const Contex
             break;
         }
         case EXIT_SUCCESS: {
-            response_body.GetUser().SetId(new_user_id);
             break;
         }
         default: {

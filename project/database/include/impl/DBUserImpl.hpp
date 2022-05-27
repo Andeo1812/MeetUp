@@ -17,7 +17,7 @@ class DBUserImpl : public DBUser<ClassConnection> {
  public:
     int Registration(const User &user, std::string *new_user_id, ClassConnection *connection) const override;
 
-    int Authentication(const User &user, ClassConnection *connection) const override;
+    int Authentication(const User &user, std::string *user_id, ClassConnection *connection) const override;
 
     int GetId(const User &user, std::string *user_id, ClassConnection *connection) const override;
 
