@@ -17,16 +17,11 @@ TEST(PostgreSQL, DBManager) {
     //  const size_t numCPU = sysconf(_SC_NPROCESSORS_ONLN);
 
     EXPECT_EQ(Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().Size(), numCPU);
-
-    auto con = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
-    EXPECT_EQ(Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().Size(), numCPU - 1);
-
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(con);
-    EXPECT_EQ(Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().Size(), numCPU);
 }
 
 TEST(PostgreSQL, DBUser) {
-    auto conn = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
+    auto worker = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeWorker(0);
+    auto conn = &worker->connection;
 
     User user;
     user.SetPassword("TEST_DEV100");
@@ -62,8 +57,6 @@ TEST(PostgreSQL, DBUser) {
 
     int res_rm_user = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().db_methods.User.Rm(user, conn);
     EXPECT_EQ(res_rm_user, EXIT_SUCCESS);
-
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(conn);
 }
 
 
@@ -72,7 +65,8 @@ TEST(PostgreSQL, DBUser) {
 //    }
 
 TEST(PostgreSQL, DBEvent) {
-    auto conn = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
+    auto worker = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeWorker(0);
+    auto conn = &worker->connection;
 
     std::string event_date = {"2000.01.01"};
     std::string event_name = {"lunch"};
@@ -110,11 +104,11 @@ TEST(PostgreSQL, DBEvent) {
 
     Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().db_methods.User.Rm(user, conn);
 
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(conn);
 }
 
 TEST(PostgreSQL, DBContacts) {
-    auto conn = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
+    auto worker = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeWorker(0);
+    auto conn = &worker->connection;
 
     User user_1;
     user_1.SetPassword("TEST_DEV100");
@@ -169,12 +163,11 @@ TEST(PostgreSQL, DBContacts) {
     Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().db_methods.User.Rm(user_1, conn);
     Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().db_methods.User.Rm(user_2, conn);
     Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().db_methods.User.Rm(user_3, conn);
-
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(conn);
 }
 
 TEST(PostgreSQL, DBGroup) {
-    auto conn = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeConnection();
+    auto worker = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().GetFreeWorker(0);
+    auto conn = &worker->connection;
 
     User user_1;
     user_1.SetPassword("TEST_DEV100");
@@ -264,6 +257,4 @@ TEST(PostgreSQL, DBGroup) {
 
     Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().db_methods.User.Rm(user_1, conn);
     Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().db_methods.User.Rm(user_2, conn);
-
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().InsertConnection(conn);
 }

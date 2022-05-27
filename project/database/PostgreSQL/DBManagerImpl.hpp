@@ -4,36 +4,27 @@
 
 #include "DBManager.hpp"
 
-template<typename T, class ClassConnection , class DBMethods>
-DBManager<T, ClassConnection, DBMethods>::DBManager() {
+template<typename T, class ClassConnection , class DBMethods, class DBWorker>
+DBManager<T, ClassConnection, DBMethods, DBWorker>::DBManager() {
     //  size_t numCPU = sysconf(_SC_NPROCESSORS_ONLN);
 
     size_t numCPU = MAX_COUNT_FREE_DB_VERSION;
 
     for (size_t i = 0; i < numCPU; ++i) {
-        this->connection_pool.push(new ClassConnection);
+        this->db_workers_pool.push_back(new DBWorker(db_methods));
     }
 }
 
-template<typename T, class ClassConnection , class DBMethods>
-ClassConnection *DBManager<T, ClassConnection, DBMethods>::GetFreeConnection() {
-    while (this->connection_pool.empty()) {
+template<typename T, class ClassConnection , class DBMethods, class DBWorker>
+DBWorker *DBManager<T, ClassConnection, DBMethods, DBWorker>::GetFreeWorker(const size_t index) {
+    while (this->db_workers_pool.empty()) {
         sleep(1);
     }
 
-    ClassConnection *res = this->connection_pool.front();
-
-    this->connection_pool.pop();
-
-    return res;
+    return db_workers_pool[index];
 }
 
-template<typename T, class ClassConnection , class DBMethods>
-void DBManager<T, ClassConnection, DBMethods>::InsertConnection(ClassConnection *connection) {
-    this->connection_pool.push(connection);
-}
-
-template<typename T, class ClassConnection , class DBMethods>
-size_t DBManager<T, ClassConnection, DBMethods>::Size() const noexcept {
-    return this->connection_pool.size();
+template<typename T, class ClassConnection , class DBMethods, class DBWorker>
+size_t DBManager<T, ClassConnection, DBMethods, DBWorker>::Size() const noexcept {
+    return this->db_workers_pool.size();
 }
