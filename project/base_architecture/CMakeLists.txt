@@ -1,18 +1,31 @@
 project(Base)
 
-file(GLOB SOURCES src/*.cpp)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_COMPILER "g++-10")
+set(CMAKE_CXX_FLAGS "-std=c++20 -fcoroutines -lpthread")
 
-set(Include_dir ${CMAKE_CURRENT_SOURCE_DIR}/include/impl/
-        ${CMAKE_CURRENT_SOURCE_DIR}/include/virtual/)
+find_package( Boost COMPONENTS system thread filesystem REQUIRED )
 
+include_directories( include/virtual )
+include_directories( include/impl )
+
+set(SOURCES
+    src/main.cpp
+    src/ConnectionClientManager.cpp
+    src/ClientConnection.cpp
+    src/MimeTypes.cpp
+    src/Reply.cpp
+    src/RequestHandler.cpp
+    src/RequestParser.cpp
+    src/AsyncServer.cpp)
+
+set(Include_dir ${CMAKE_CURRENT_SOURCE_DIR}/include/virtual/
+                ${CMAKE_CURRENT_SOURCE_DIR}/include/impl/
+                )
 file(GLOB INCLUDE_DIRS Include_dir)
 
-find_package(Boost REQUIRED)
+add_executable( ${PROJECT_NAME} ${SOURCES} )
+target_link_libraries( ${PROJECT_NAME} ${Boost_LIBRARIES} )
 
-add_library(${PROJECT_NAME} STATIC ${SOURCES})
-target_include_directories(${PROJECT_NAME} PUBLIC ${Include_dir})
-target_link_libraries(${PROJECT_NAME} ${BOOST} ${CMAKE_THREAD_LIBS_INIT})
-
-set(Base_lib_libs ${PROJECT_NAME} PARENT_SCOPE)
-set(Base_lib_include ${Include_dir} PARENT_SCOPE)
-
+set(Base_lib_libs ${PROJECT_NAME} CACHE FILEPATH "" FORCE)
+set(Base_lib_include ${Include_dir} CACHE FILEPATH "" FORCE)

@@ -34,3 +34,5 @@ message("Handling_lib_include = ${Handling_lib_include}")
 
 message("Routing_lib_libs = ${Routing_lib_libs}")
 message("Routing_lib_include = ${Routing_lib_include}")
+
+add_subdirectory(tests)

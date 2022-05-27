@@ -1,4 +1,4 @@
-#add_subdirectory(base_architecture)
+add_subdirectory(base_architecture)
 
 set(Config_include ${CMAKE_CURRENT_SOURCE_DIR}/configs/)
 
