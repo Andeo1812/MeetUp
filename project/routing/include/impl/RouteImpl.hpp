@@ -5,8 +5,8 @@
 #include <queue>
 #include <thread>  //  NOLINT
 #include <vector>
-#include <condition_variable>
-#include <mutex>
+//    #include <condition_variable>
+//    #include <mutex>
 
 template<typename connection>
 struct NodeMap {
