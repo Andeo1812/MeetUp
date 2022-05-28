@@ -88,9 +88,7 @@ bool MeetUp::operator<(const MeetUp &other) const noexcept {
         return std::stoul(this->id) < std::stoul(other.id);
     }
 
-    if (StrToTime(this->time_end) != StrToTime(other.time_end)) {
-        return StrToTime(this->time_end) > StrToTime(other.time_end);
-    }
+    return StrToTime(this->time_end) > StrToTime(other.time_end);
 }
 
 bool MeetUp::operator==(const MeetUp &other) const noexcept {
