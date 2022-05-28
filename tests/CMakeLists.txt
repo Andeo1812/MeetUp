@@ -76,4 +76,4 @@ target_link_libraries(${PROJECT_NAME} ${Routing_lib_libs} ${GTEST_BOTH_LIBRARIES
 #
 #add_executable(${PROJECT_NAME} ${SOURCES})
 #target_include_directories(${PROJECT_NAME} PUBLIC ${Base_lib_include})
-#target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES} ${GTEST_BOTH_LIBRARIES} GTest::GTest GTest::Main)
+#target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES} ${GTEST_BOTH_LIBRARIES} GTest::GTest GTest::Main ${Routing_lib_libs})

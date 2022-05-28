@@ -9,7 +9,7 @@ Context Registration<T, ClassConnection, DBMethods, DBWorker>::operator()(const 
     int res = db_worker->db_methods.User.Registration(request_body.AccessUser(), &new_user_id, &(db_worker->connection));
     switch (res) {
         case NOT_REGISTRATION: {
-            response_body.SetError("Not found");
+            response_body.SetError("Not found data registration");
             break;
         }
         case ERROR_REGISTRATION: {
@@ -38,7 +38,7 @@ Context Authentication<T, ClassConnection, DBMethods, DBWorker>::operator()(cons
     int res = db_worker->db_methods.User.Authentication(request_body.AccessUser(), &user_id, &(db_worker->connection));
     switch (res) {
         case NOT_RM_USER: {
-            response_body.SetError("Not found");
+            response_body.SetError("Not found data authentication");
             break;
         }
         case ERROR_RM_USER: {
