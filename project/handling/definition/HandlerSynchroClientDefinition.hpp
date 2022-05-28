@@ -36,28 +36,28 @@ template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBW
 Context GetSetContacts<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
-    std::set<Group> groups;
+    std::set<std::string> contacts;
 
-    int res = db_worker->db_methods.Group.GetSet(request_body.AccessEvents().begin()->AccessUserId(),
-                                                 &groups,
+    int res = db_worker->db_methods.Contacts.GetSet(request_body.AccessContacts().AccessUserId(),
+                                                 &contacts,
                                                  request_body.GetLeftBorder(),
                                                  request_body.GetRightBorder(),
                                                  &(db_worker->connection));
     switch (res) {
-        case NOT_GET_SET_GROUPS: {
-            response_body.SetError("Not found get set groups");
+        case NOT_GET_SET_CONTACT: {
+            response_body.SetError("Not found get set contacts");
             break;
         }
-        case ERROR_GET_SET_GROUPS: {
-            response_body.SetError("Error get set groups");
+        case ERROR_GET_SET_CONTACT: {
+            response_body.SetError("Error get set contacts");
             break;
         }
         case EXIT_SUCCESS: {
-            response_body.GetGroups() = groups;
+            response_body.GetContacts().GetContacts() = contacts;
             break;
         }
         default: {
-            response_body.SetError("Bad get set groups");
+            response_body.SetError("Bad get set contacts");
             break;
         }
     }
@@ -71,18 +71,18 @@ Context GetSetGroups<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operato
 
     std::set<Group> groups;
 
-    int res = db_worker->db_methods.Group.GetSet(request_body.AccessEvents().begin()->AccessUserId(),
+    int res = db_worker->db_methods.Group.GetSet(request_body.AccessGroups().begin()->AccessUserId(),
                                                  &groups,
                                                  request_body.GetLeftBorder(),
                                                  request_body.GetRightBorder(),
                                                  &(db_worker->connection));
     switch (res) {
-        case NOT_GET_SET_CONTACT: {
-            response_body.SetError("Not found get set contacts");
+        case NOT_GET_SET_GROUPS: {
+            response_body.SetError("Not found get set groups");
             break;
         }
-        case ERROR_GET_SET_CONTACT: {
-            response_body.SetError("Error get set contacts");
+        case ERROR_GET_SET_GROUPS: {
+            response_body.SetError("Error get set groups");
             break;
         }
         case EXIT_SUCCESS: {

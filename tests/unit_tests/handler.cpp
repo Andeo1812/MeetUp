@@ -115,11 +115,12 @@ TEST(HANDLERS, GetSetEvents) {
     GetSetEvents<pqxx::connection> handler;
 
     context = handler(context, &db_worker);
-
-    std::cout << context.AccessError() << std::endl;
-
-    EXPECT_TRUE(context.AccessEvents().size() == 2);
+    EXPECT_EQ(context.AccessEvents().size(), 2);
 }
+
+static std::string friend_id_1;  //  NOLINT
+
+static std::string friend_id_2;  //  NOLINT
 
 TEST(HANDLERS, Contacts) {
     User friend_1;
@@ -132,7 +133,7 @@ TEST(HANDLERS, Contacts) {
 
     context = registration(context, &db_worker);
 
-    std::string friend_id_1 = context.AccessUser().AccessId();
+    friend_id_1 = context.AccessUser().AccessId();
 
     User friend_2;
     friend_2.SetPassword({"passwordasdasd123"});
@@ -142,10 +143,56 @@ TEST(HANDLERS, Contacts) {
 
     context = registration(context, &db_worker);
 
-    std::string friend_id_2 = context.AccessUser().AccessId();
+    friend_id_2 = context.AccessUser().AccessId();
+
+    context.GetContacts().GetContacts().clear();
+
+    AddUserContacts<pqxx::connection> add_contact;
 
     context.GetContacts().SetUserId(user_id);
-    context.GetContacts().GetContacts().insert();
+    context.GetContacts().GetContacts().insert(friend_id_1);
+
+    context = add_contact(context, &db_worker);
+    EXPECT_TRUE(context.AccessError().empty());
+
+    context.GetContacts().SetUserId(user_id);
+    context.GetContacts().GetContacts().insert(friend_id_2);
+
+    context = add_contact(context, &db_worker);
+    EXPECT_TRUE(context.AccessError().empty());
+
+    context.GetContacts().SetUserId(user_id);
+    context.SetLeftBorder(0);
+    context.SetRightBorder(2);
+
+    GetSetContacts<pqxx::connection> get_set_contacts;
+
+    context = get_set_contacts(context, &db_worker);
+
+    EXPECT_TRUE(context.AccessError().empty());
+
+    EXPECT_EQ(context.AccessContacts().AccessContacts().size(), 2);
+
+    RmUserContacts<pqxx::connection> rm_contact;
+
+    context.GetContacts().SetUserId(user_id);
+    context.GetContacts().GetContacts().insert(friend_id_1);
+
+    context = rm_contact(context, &db_worker);
+    EXPECT_TRUE(context.AccessError().empty());
+
+    context.GetContacts().SetUserId(user_id);
+    context.GetContacts().GetContacts().insert(friend_id_2);
+
+    context = rm_contact(context, &db_worker);
+    EXPECT_TRUE(context.AccessError().empty());
+
+    context.GetContacts().SetUserId(user_id);
+    context.SetLeftBorder(0);
+    context.SetRightBorder(2);
+
+    context = get_set_contacts(context, &db_worker);
+    EXPECT_TRUE(!context.AccessError().empty());
 }
 
 TEST(HANDLERS, RmEvent) {
@@ -183,4 +230,12 @@ TEST(HANDLERS, RmUser) {
     EXPECT_TRUE(context.IsEmpty());
 
     EXPECT_TRUE(context.AccessError().empty());
+
+    user.SetId(friend_id_1);
+    context = user;
+    context = handler(context, &db_worker);
+
+    user.SetId(friend_id_2);
+    context = user;
+    context = handler(context, &db_worker);
 }

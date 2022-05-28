@@ -32,7 +32,7 @@ template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBW
 Context RmUserContacts<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
-    int res = db_worker->db_methods.Contacts.Add(request_body.AccessContacts().AccessUserId(),
+    int res = db_worker->db_methods.Contacts.Rm(request_body.AccessContacts().AccessUserId(),
                                                  *request_body.AccessContacts().AccessContacts().begin(),
                                                  &(db_worker->connection));
     switch (res) {
