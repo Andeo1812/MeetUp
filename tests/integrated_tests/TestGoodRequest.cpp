@@ -10,9 +10,9 @@
 #include "RequestHandler.hpp"
 #include "Server.hpp"
 
-
 TEST(case_1, TestRequestServIntGoodRequest) {
     std::string host_name = "127.0.0.1 8000";
+
     std::string test_file = "../tests/integrated_tests/GoodRequest.txt";
     std::string gold_file = "../tests/integrated_tests/GoodRequest_1_gold.txt";
 
