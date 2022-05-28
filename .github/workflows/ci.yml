@@ -60,3 +60,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: make test_context
+  test_database:
+    runs-on: ubuntu-latest
+    container: andeo1812/meetup_project_cpp
+    needs: [ memtest_context ]
+    steps:
+      - uses: actions/checkout@v2
+      - run: make test_database;
