@@ -173,14 +173,14 @@ int DBGroupImplDefinition<ClassConnection>::GetSet(const std::string &user_id, s
                 groups->insert(group);
             }
         } else {
-            res = NOT_GET_SET_CONTACT;
+            res = NOT_GET_SET_GROUPS;
         }
 
         work.commit();
     } catch (const std::exception &e) {
         std::cout << e.what() << std::endl;
 
-        res = ERROR_GET_SET_CONTACT;
+        res = ERROR_GET_SET_GROUPS;
     }
 
     return res;

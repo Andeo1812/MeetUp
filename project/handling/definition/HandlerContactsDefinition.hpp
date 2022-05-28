@@ -5,14 +5,14 @@ Context AddUserContacts<T, ClassConnection, DBMethods, DBWorker>::operator()(con
     Context response_body;
 
     int res = db_worker->db_methods.Contacts.Add(request_body.AccessContacts().AccessUserId(),
-                                                 request_body.AccessContacts().AccessContacts().begin()->data(),
+                                                 *request_body.AccessContacts().AccessContacts().begin(),
                                                  &(db_worker->connection));
     switch (res) {
         case NOT_ADD_CONTACT: {
             response_body.SetError("Not found add contact");
             break;
         }
-        case ERROR_RM_CONTACT: {
+        case ERROR_ADD_CONTACT: {
             response_body.SetError("Error add contact");
             break;
         }
@@ -33,10 +33,10 @@ Context RmUserContacts<T, ClassConnection, DBMethods, DBWorker>::operator()(cons
     Context response_body;
 
     int res = db_worker->db_methods.Contacts.Add(request_body.AccessContacts().AccessUserId(),
-                                                 request_body.AccessContacts().AccessContacts().begin()->data(),
+                                                 *request_body.AccessContacts().AccessContacts().begin(),
                                                  &(db_worker->connection));
     switch (res) {
-        case NOT_ADD_CONTACT: {
+        case NOT_RM_CONTACT: {
             response_body.SetError("Not found rm contact");
             break;
         }
