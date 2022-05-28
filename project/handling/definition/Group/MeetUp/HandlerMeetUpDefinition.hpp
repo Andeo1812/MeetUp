@@ -8,7 +8,7 @@ Context GetMeetUps<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator(
 
     std::set<MeetUp> meetups_day;
 
-    int res_get_meetup = GetMeetUpSet(request_body.AccessMeetUps().begin()->AccessId(), request_body.AccessMeetUps().begin()->AccessDate(), db_worker, &meetups_day);
+    int res_get_meetup = GetMeetUpSet(request_body.AccessMeetUps().begin()->AccessGroupId(), request_body.AccessMeetUps().begin()->AccessDate(), db_worker, &meetups_day);
     if (res_get_meetup != EXIT_SUCCESS) {
         response_body.SetError("Bat get meetups");
         return response_body;

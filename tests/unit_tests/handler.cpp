@@ -302,6 +302,153 @@ TEST(HANDLERS, Group) {
     EXPECT_TRUE(context.AccessError().empty());
 }
 
+TEST(HANDLERS, GetMeetUp) {
+    Event event_1;
+    event_1.SetDate(date);
+    event_1.SetTimeBegin({"8:00"});
+    event_1.SetTimeEnd({"9:00"});
+    event_1.SetUserId(user_id);
+
+    Event event_2;
+    event_2.SetDate(date);
+    event_2.SetTimeBegin({"13:23"});
+    event_2.SetTimeEnd({"16:58"});
+    event_2.SetUserId(user_id);
+
+    Event event_3;
+    event_3.SetDate(date);
+    event_3.SetTimeBegin({"6:20"});
+    event_3.SetTimeEnd({"7:40"});
+    event_3.SetUserId(friend_id_1);
+
+    Event event_4;
+    event_4.SetDate(date);
+    event_4.SetTimeBegin({"8:30"});
+    event_4.SetTimeEnd({"14:20"});
+    event_4.SetUserId(friend_id_1);
+
+    Event event_5;
+    event_5.SetDate(date);
+    event_5.SetTimeBegin({"20:15"});
+    event_5.SetTimeEnd({"21:20"});
+    event_5.SetUserId(user_id);
+
+    MeetUp meetup_1;
+    meetup_1.SetTimeBegin({"00:00"});
+    meetup_1.SetTimeEnd({"6:20"});
+
+    MeetUp meetup_2;
+    meetup_2.SetTimeBegin({"16:58"});
+    meetup_2.SetTimeEnd({"20:15"});
+
+    MeetUp meetup_3;
+    meetup_3.SetTimeBegin({"21:20"});
+    meetup_3.SetTimeEnd({"24::00"});
+
+    std::set<MeetUp> expected_meetups;
+
+    expected_meetups.insert(meetup_1);
+    expected_meetups.insert(meetup_2);
+    expected_meetups.insert(meetup_3);
+
+
+
+    Context context;
+
+    context.GetEvents().insert(event_1);
+    context.GetEvents().insert(event_2);
+    context.GetEvents().insert(event_5);
+
+    AddEvent<pqxx::connection> add_event;
+
+    context = add_event(context, &db_worker);
+
+    auto iterator = context.AccessEvents().begin();
+
+    event_1.SetId(iterator->AccessId());
+    iterator++;
+
+    event_2.SetId(iterator->AccessId());
+    iterator++;
+
+    event_5.SetId(iterator->AccessId());
+
+    context.GetEvents().clear();
+    context.GetEvents().insert(event_3);
+    context.GetEvents().insert(event_4);
+
+    context = add_event(context, &db_worker);
+
+    auto iterator_2 = context.AccessEvents().begin();
+
+    event_3.SetId(iterator_2->AccessId());
+    iterator_2++;
+
+    event_4.SetId(iterator_2->AccessId());
+
+    Group group_add;
+
+    group_add.SetUserId(friend_id_1);
+    group_add.SetId(group_id_1);
+
+    AddUserGroup<pqxx::connection> add_user_group;
+
+    context.GetGroups().insert(group_add);
+
+    context = add_user_group(context, &db_worker);
+
+
+
+
+    MeetUp meetup;
+
+    meetup.SetDate(date);
+    meetup.SetGroupId(group_id_1);
+
+    context.GetMeetUps().insert(meetup);
+
+    GetMeetUps<pqxx::connection> get_set_meetups;
+
+    context = get_set_meetups(context, &db_worker);
+
+    EXPECT_TRUE(context.AccessError().empty());
+
+    EXPECT_EQ(context.AccessMeetUps(), expected_meetups);
+
+
+
+
+
+
+    Group group_rm;
+
+    group_rm.SetUserId(friend_id_1);
+    group_rm.SetId(group_id_1);
+
+    context.GetGroups().clear();
+    context.GetGroups().insert(group_rm);
+
+    RmUserGroup<pqxx::connection> rm_user_group;
+
+    context = rm_user_group(context, &db_worker);
+
+
+    context.GetEvents().clear();
+    context.GetEvents().insert(event_1);
+    context.GetEvents().insert(event_2);
+    context.GetEvents().insert(event_5);
+
+    RmEvent<pqxx::connection> rm_event;
+
+    context = rm_event(context, &db_worker);
+
+    context.GetEvents().clear();
+    context.GetEvents().insert(event_3);
+    context.GetEvents().insert(event_4);
+
+    context = rm_event(context, &db_worker);
+}
+
 TEST(HANDLERS, RmGroup) {
     Group group;
     group.SetId(group_id_1);
