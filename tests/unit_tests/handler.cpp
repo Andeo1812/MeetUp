@@ -118,6 +118,25 @@ TEST(HANDLERS, GetSetEvents) {
     EXPECT_EQ(context.AccessEvents().size(), 2);
 }
 
+TEST(HANDLERS, RmEvent) {
+    Event event_1;
+    event_1.SetId(event_id_1);
+
+    Event event_2;
+    event_2.SetId(event_id_2);
+
+    Context context;
+
+    context.GetEvents().insert(event_1);
+    context.GetEvents().insert(event_2);
+
+    RmEvent<pqxx::connection> handler;
+
+    context = handler(context, &db_worker);
+
+    EXPECT_TRUE(context.IsEmpty());
+}
+
 static std::string friend_id_1;  //  NOLINT
 
 static std::string friend_id_2;  //  NOLINT
@@ -195,25 +214,113 @@ TEST(HANDLERS, Contacts) {
     EXPECT_TRUE(!context.AccessError().empty());
 }
 
-TEST(HANDLERS, RmEvent) {
-    Event event_1;
-    event_1.SetId(event_id_1);
+static std::string group_id_1;  //  NOLINT
 
-    Event event_2;
-    event_2.SetId(event_id_2);
+static std::string group_id_2;  //  NOLINT
+
+TEST(HANDLERS, Group) {
+    Group group_1;
+
+    group_1.SetTitle({"asdasdasd"});
+    group_1.SetDescription({"asdgaagawga"});
+    group_1.SetUserId(user_id);
 
     Context context;
 
-    context.GetEvents().insert(event_1);
-    context.GetEvents().insert(event_2);
+    context.GetGroups().insert(group_1);
 
-    RmEvent<pqxx::connection> handler;
+    AddGroup<pqxx::connection> add_group;
+
+    context = add_group(context, &db_worker);
+
+    EXPECT_TRUE(!context.IsEmpty());
+
+    EXPECT_TRUE(context.AccessError().empty());
+
+    group_id_1 = context.AccessGroups().begin()->AccessId();
+
+    EXPECT_TRUE(!group_id_1.empty());
+
+    Group group_2;
+
+    group_2.SetTitle({"asdasddasdasdasdasdasdasd"});
+    group_2.SetDescription({"asdgaagawga"});
+    group_2.SetUserId(user_id);
+
+    context.GetGroups().clear();
+    context.GetGroups().insert(group_2);
+
+    context = add_group(context, &db_worker);
+
+    group_id_2 = context.AccessGroups().begin()->AccessId();
+
+    Group group_for_set;
+
+    group_for_set.SetUserId(user_id);
+
+    context.GetGroups().clear();
+    context.GetGroups().insert(group_for_set);
+    context.SetLeftBorder(0);
+    context.SetRightBorder(2);
+
+    GetSetGroups<pqxx::connection> get_set_groups;
+
+    context = get_set_groups(context, &db_worker);
+
+    EXPECT_TRUE(context.AccessError().empty());
+
+    EXPECT_EQ(context.AccessGroups().size(), 2);
+
+    context.GetGroups().clear();
+
+    Group group_add;
+
+    group_add.SetUserId(friend_id_1);
+    group_add.SetId(group_id_1);
+
+    context.GetGroups().clear();
+    context.GetGroups().insert(group_add);
+
+    AddUserGroup<pqxx::connection> add_user_group;
+
+    context = add_user_group(context, &db_worker);
+
+    EXPECT_TRUE(context.AccessError().empty());
+
+    Group group_rm;
+
+    group_rm.SetUserId(friend_id_1);
+    group_rm.SetId(group_id_1);
+
+    context.GetGroups().clear();
+    context.GetGroups().insert(group_rm);
+
+    RmUserGroup<pqxx::connection> rm_user_group;
+
+    context = add_user_group(context, &db_worker);
+
+    EXPECT_TRUE(context.AccessError().empty());
+}
+
+TEST(HANDLERS, RmGroup) {
+    Group group;
+    group.SetId(group_id_1);
+
+    Context context;
+
+    context.GetGroups().insert(group);
+
+    RmGroup<pqxx::connection> handler;
 
     context = handler(context, &db_worker);
 
-    std::cout << context.AccessError() << std::endl;
-
     EXPECT_TRUE(context.IsEmpty());
+
+    EXPECT_TRUE(context.AccessError().empty());
+
+    group.SetId(group_id_2);
+    context.GetGroups().insert(group);
+    context = handler(context, &db_worker);
 }
 
 TEST(HANDLERS, RmUser) {

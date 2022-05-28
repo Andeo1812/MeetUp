@@ -238,7 +238,7 @@
 
 **_Response:_**
 ```c
-{"get_groups":[{"user_id":"32"}],"page"left"5","right":"10"}
+{"get_groups":[{"user_id":"32"}],"left":"5","right":"10"}
 ```
 
 **_Answer:_**

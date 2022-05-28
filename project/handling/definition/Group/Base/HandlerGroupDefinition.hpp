@@ -6,10 +6,10 @@ Context AddGroup<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(
 
     std::string new_group_id;
 
-    int res = db_worker->db_methods.Group.Create(*request_body.AccessGroups().begin(),
+    int res_create = db_worker->db_methods.Group.Create(*request_body.AccessGroups().begin(),
                                               &new_group_id,
                                               &(db_worker->connection));
-    switch (res) {
+    switch (res_create) {
         case NOT_CREATE_GROUP: {
             response_body.SetError("Not found add group");
             break;
@@ -28,6 +28,36 @@ Context AddGroup<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(
         }
         default: {
             response_body.SetError("Bad add group");
+            break;
+        }
+    }
+
+    if (!response_body.AccessError().empty()) {
+        return response_body;
+    }
+
+    int res_add_owner = db_worker->db_methods.Group.AddMember(request_body.AccessGroups().begin()->AccessUserId(),
+                                                 new_group_id,
+                                                 &(db_worker->connection));
+    switch (res_add_owner) {
+        case NOT_ADD_GROUP_MEMBER: {
+            response_body.SetError("Not found add group owner");
+            break;
+        }
+        case ERROR_ADD_GROUP_MEMBER: {
+            response_body.SetError("Error add group owner");
+            break;
+        }
+        case EXIT_SUCCESS: {
+            Group group;
+
+            group.SetId(new_group_id);
+
+            response_body.GetGroups().insert(group);
+            break;
+        }
+        default: {
+            response_body.SetError("Bad add group owner");
             break;
         }
     }
@@ -64,10 +94,6 @@ Context RmGroup<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(c
             response_body.SetError("Bad rm all group members");
             break;
         }
-    }
-
-    if (!response_body.AccessError().empty()) {
-        return response_body;
     }
 
     int res_rm_group = db_worker->db_methods.Group.Rm(request_body.AccessGroups().begin()->AccessId(),
