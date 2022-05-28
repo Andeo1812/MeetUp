@@ -1,7 +1,5 @@
 #include "Time.hpp"
 
-#include <iostream>
-
 size_t StrToTime(const std::string &time) {
     size_t delimiter = time.find(':');
 
@@ -31,7 +29,5 @@ std::string TimeToStr(const size_t time) {
         minutes_str = {"00"};
     }
 
-    std::string res = hour_str + ":" + minutes_str;
-
-    return res;
+    return hour_str + ":" + minutes_str;
 }
