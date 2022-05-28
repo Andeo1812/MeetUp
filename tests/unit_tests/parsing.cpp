@@ -345,7 +345,7 @@ TEST(PARSING, MeetUps) {
 
     context = parser.StrToObject(input);
 
-    EXPECT_EQ(meetups, context.GetMeetUp());
+    EXPECT_EQ(meetups, context.GetMeetUps());
 
     std::string response = parser.ObjectToStr(type_request, context);
 

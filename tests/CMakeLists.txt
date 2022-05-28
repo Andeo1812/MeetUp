@@ -19,7 +19,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${Context_lib_include})
 target_link_libraries(${PROJECT_NAME} ${Context_lib_libs} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${Parsing_lib_include})
-target_link_libraries(${PROJECT_NAME} ${Parsing_lib_libs} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(${PROJECT_NAME} ${Parsing_lib_libs})
 
 
 project(gtest_database)
@@ -31,7 +31,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${Context_lib_include})
 target_link_libraries(${PROJECT_NAME} ${Context_lib_libs} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${Database_lib_include})
-target_link_libraries(${PROJECT_NAME} ${Database_lib_libs} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(${PROJECT_NAME} ${Database_lib_libs})
 
 
 project(gtest_handling)
@@ -43,7 +43,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${Context_lib_include})
 target_link_libraries(${PROJECT_NAME} ${Context_lib_libs} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${Handling_lib_include})
-target_link_libraries(${PROJECT_NAME} ${Handling_lib_libs} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(${PROJECT_NAME} ${Handling_lib_libs})
 
 
 project(gtest_routing)
@@ -55,16 +55,16 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${Context_lib_include})
 target_link_libraries(${PROJECT_NAME} ${Context_lib_libs} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${Parsing_lib_include})
-target_link_libraries(${PROJECT_NAME} ${Parsing_lib_libs} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(${PROJECT_NAME} ${Parsing_lib_libs})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${Database_lib_include})
-target_link_libraries(${PROJECT_NAME} ${Database_lib_libs} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(${PROJECT_NAME} ${Database_lib_libs})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${Handling_lib_include})
-target_link_libraries(${PROJECT_NAME} ${Handling_lib_libs} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(${PROJECT_NAME} ${Handling_lib_libs})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${Routing_lib_include})
-target_link_libraries(${PROJECT_NAME} ${Routing_lib_libs} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(${PROJECT_NAME} ${Routing_lib_libs})
 
 project(gtest_business_logic)
 
@@ -75,13 +75,13 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${Context_lib_include})
 target_link_libraries(${PROJECT_NAME} ${Context_lib_libs} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${Parsing_lib_include})
-target_link_libraries(${PROJECT_NAME} ${Parsing_lib_libs} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(${PROJECT_NAME} ${Parsing_lib_libs})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${Database_lib_include})
-target_link_libraries(${PROJECT_NAME} ${Database_lib_libs} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(${PROJECT_NAME} ${Database_lib_libs})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${Handling_lib_include})
-target_link_libraries(${PROJECT_NAME} ${Handling_lib_libs} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(${PROJECT_NAME} ${Handling_lib_libs})
 
 
 #project(gtest_base_architecture)

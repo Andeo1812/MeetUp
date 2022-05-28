@@ -30,7 +30,7 @@ template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBW
 int GetMeetUps<T, ClassConnection, ClassDBMethods, ClassDBWorker>::GetDataSetEvents(const std::string &group_id, const std::string &date, ClassDBWorker *db_worker, std::set<Event> *events_day) const {
     Group group;
 
-    int res_get_members = db_worker->db_methods.Group.GetMembers(group_id, group, &(db_worker->connection));
+    int res_get_members = db_worker->db_methods.Group.GetMembers(group_id, &group, &(db_worker->connection));
     if (res_get_members != EXIT_SUCCESS) {
         return res_get_members;
     }
@@ -38,7 +38,7 @@ int GetMeetUps<T, ClassConnection, ClassDBMethods, ClassDBWorker>::GetDataSetEve
     for (auto &member : group.AccessMembers()) {
         std::set<Event> events_member;
 
-        int res_get_events_member = db_worker->db_methods.Events.GetSet(member, &events_member, date, &(db_worker->connection));
+        int res_get_events_member = db_worker->db_methods.Event.GetSet(member, &events_member, date, &(db_worker->connection));
         if (res_get_events_member != EXIT_SUCCESS) {
             return res_get_members;
         }
@@ -53,7 +53,7 @@ template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBW
 int GetMeetUps<T, ClassConnection, ClassDBMethods, ClassDBWorker>::GetMeetUpSet(const std::string &group_id, const std::string &date, ClassDBWorker *db_worker, std::set<MeetUp> *meetups_day) const {
     std::set<Event> events_day;
 
-    int res_get_events_day = GetDataSetEvents(group_id, date, &(db_worker->connection), events_day);
+    int res_get_events_day = GetDataSetEvents(group_id, date, db_worker, &events_day);
     if (res_get_events_day != EXIT_SUCCESS) {
         return res_get_events_day;
     }

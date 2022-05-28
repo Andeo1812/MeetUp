@@ -39,7 +39,7 @@ std::string ParserMeetUp::ObjectToStr(const std::string type_response, const Con
         return res;
     }
 
-    std::set<MeetUp> meetups = other.AccessMeetUp();
+    std::set<MeetUp> meetups = other.AccessMeetUps();
 
     nlohmann::json json_meetups;
 

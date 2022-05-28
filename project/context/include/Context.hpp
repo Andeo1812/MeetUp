@@ -44,7 +44,7 @@ class Context {
     AddressData &GetAddressData() noexcept;
     std::set<Event> &GetEvents() noexcept;
     std::set<Group> &GetGroups() noexcept;
-    std::set<MeetUp> &GetMeetUp() noexcept;
+    std::set<MeetUp> &GetMeetUps() noexcept;
     Contacts &GetContacts() noexcept;
     std::string &GetError() noexcept;
     size_t GetLeftBorder() const noexcept;
@@ -56,7 +56,7 @@ class Context {
     const AddressData &AccessAddressData() const noexcept;
     const std::set<Event> &AccessEvents() const noexcept;
     const std::set<Group> &AccessGroups() const noexcept;
-    const std::set<MeetUp> &AccessMeetUp() const noexcept;
+    const std::set<MeetUp> &AccessMeetUps() const noexcept;
     const Contacts &AccessContacts() const noexcept;
     const std::string &AccessError() const noexcept;
 
