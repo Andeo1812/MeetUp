@@ -70,8 +70,8 @@ TEST(HANDLERS, AddEvent) {
     event_2.SetName("12asd3");
     event_2.SetDate(date);
     event_2.SetDescription("asd221");
-    event_2.SetTimeBegin("15:45");
-    event_2.SetTimeEnd("16:45");
+    event_2.SetTimeBegin("15:10");
+    event_2.SetTimeEnd("16:04");
     event_2.SetUserId(user_id);
 
     Context context;

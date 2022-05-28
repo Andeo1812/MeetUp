@@ -80,11 +80,17 @@ std::ostream& operator<<(std::ostream &os, const MeetUp &it) noexcept {
 }
 
 bool MeetUp::operator<(const MeetUp &other) const noexcept {
-    if (!this->id.empty()) {
+    if (StrToTime(this->time_begin) != StrToTime(other.time_begin)) {
+        return StrToTime(this->time_begin) < StrToTime(other.time_begin);
+    }
+
+    if (!this->id.empty() && !other.id.empty()) {
         return std::stoul(this->id) < std::stoul(other.id);
     }
 
-    return StrToTime(this->time_begin) < StrToTime(other.time_begin);
+    if (StrToTime(this->time_end) != StrToTime(other.time_end)) {
+        return StrToTime(this->time_end) > StrToTime(other.time_end);
+    }
 }
 
 bool MeetUp::operator==(const MeetUp &other) const noexcept {

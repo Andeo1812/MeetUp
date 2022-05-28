@@ -81,7 +81,7 @@ std::ostream& operator<<(std::ostream &os, const Event &it) noexcept {
 
 bool Event::operator<(const Event &other) const noexcept {
     if (!this->id.empty()) {
-        return std::stoul(this->id) < std::stoul(other.id);
+        return this->id < other.id;
     }
 
     return StrToTime(this->time_begin) < StrToTime(other.time_begin);

@@ -1,6 +1,6 @@
 .PHONY: all tesing build rebuild check test memtest_general clean test_dataclass test_parsing test_database test_handler test_routing coverage_test_dataclass coverage_test_parsing coverage_test_database coverage_test_handler coverage_test_routing memtest_dataclass memtest_parsing memtest_database memtest_handler memtest_routing
 
-all: check build test_context memtest_context test_parsing memtest_parsing test_database
+all: check build test_context memtest_context test_parsing memtest_parsing test_database test_handling test_business_logic
 
 TARGET = HttpServer
 
@@ -30,6 +30,7 @@ test:
 	${TEST_HANDLING}
 	${TEST_DATABASE}
 	${TEST_ROUTING}
+	${TEST_BUSINESS_LOGIC}
 
 clean:
 	rm -rf build coverage-report valgrind.log test.log coverage.info

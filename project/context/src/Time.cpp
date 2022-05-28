@@ -1,5 +1,7 @@
 #include "Time.hpp"
 
+#include <iostream>
+
 size_t StrToTime(const std::string &time) {
     size_t delimiter = time.find(':');
 
