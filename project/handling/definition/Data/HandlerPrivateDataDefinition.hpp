@@ -1,14 +1,14 @@
 #include <HandlerPrivateData.hpp>
 
-template<typename T, class ClassConnection, class DBMethods, class DBWorker>
-Context WritePassword<T, ClassConnection, DBMethods, DBWorker>::operator()(const Context &request_body, DBWorker *db_worker) const {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker>
+Context WritePassword<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
     return response_body;
 }
 
-template<typename T, class ClassConnection, class DBMethods, class DBWorker>
-Context WriteNickname<T, ClassConnection, DBMethods, DBWorker>::operator()(const Context &request_body, DBWorker *db_worker) const {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker>
+Context WriteNickname<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
     return response_body;

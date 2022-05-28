@@ -1,7 +1,7 @@
 #include <HandlerGroup.hpp>
 
-template<typename T, class ClassConnection, class DBMethods, class DBWorker>
-Context AddUserGroup<T, ClassConnection, DBMethods, DBWorker>::operator()(const Context &request_body, DBWorker *db_worker) const {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker>
+Context AddUserGroup<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
     int res = db_worker->db_methods.Group.AddMember(request_body.AccessGroups().begin()->AccessUserId(),
@@ -29,8 +29,8 @@ Context AddUserGroup<T, ClassConnection, DBMethods, DBWorker>::operator()(const 
     return response_body;
 }
 
-template<typename T, class ClassConnection, class DBMethods, class DBWorker>
-Context RmUserGroup<T, ClassConnection, DBMethods, DBWorker>::operator()(const Context &request_body, DBWorker *db_worker) const {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker>
+Context RmUserGroup<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
     int res = db_worker->db_methods.Group.RmMember(request_body.AccessGroups().begin()->AccessUserId(),

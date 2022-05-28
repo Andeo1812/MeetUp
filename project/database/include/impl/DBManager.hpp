@@ -14,15 +14,15 @@ const size_t MAX_COUNT_FREE_DB_VERSION = 2;
 
 template<typename T,
         class ClassConnection = DBConnection<T>,
-                class DBMethods = AllDBMethods<T, ClassConnection>,
-                        class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
+                class ClassDBMethods = DBMethods<T, ClassConnection>,
+                        class ClassDBWorker = DBWorker<T, ClassConnection, ClassDBMethods>>
 class DBManager {
-    std::vector<std::unique_ptr<DBWorker>> db_workers_pool;
+    std::vector<std::unique_ptr<ClassDBWorker>> db_workers_pool;
 
  public:
-    DBMethods db_methods;
+    ClassDBMethods db_methods;
 
-    DBWorker *GetFreeWorker(const size_t index);
+    ClassDBWorker *GetFreeWorker(const size_t index);
 
     size_t Size() const noexcept;
 

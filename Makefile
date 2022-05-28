@@ -18,9 +18,12 @@ COVERAGE_DATABASE = build/tests/CMakeFiles/gtest_database.dir/unit_tests
 COVERAGE_HANDLING = build/tests/CMakeFiles/gtest_handling.dir/unit_tests
 COVERAGE_ROUTING = build/tests/CMakeFiles/gtest_routing.dir/unit_tests
 
-development:
+test:
 	./run_build.sh
+	${TEST_CONTEXT}
+	${TEST_PARSING}
 	${TEST_HANDLING}
+	${TEST_DATABASE}
 	${TEST_ROUTING}
 
 clean:

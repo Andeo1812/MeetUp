@@ -4,29 +4,29 @@
 
 template<typename T,
         class ClassConnection = DBConnection<T>,
-        class DBMethods = AllDBMethods<T, ClassConnection>,
-        class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
-class SynchroClientEvents : public Handler<T, ClassConnection, DBMethods, DBWorker> {
+        class ClassDBMethods = DBMethods<T, ClassConnection>,
+        class ClassDBWorker = DBWorker<T, ClassConnection, ClassDBMethods>>
+class GetSetEvents : public Handler<T, ClassConnection, ClassDBMethods, ClassDBWorker> {
  public:
-    Context operator()(const Context &request_body, DBWorker *db_worker) const override;
+    Context operator()(const Context &request_body, ClassDBWorker *db_worker) const override;
 };
 
 template<typename T,
         class ClassConnection = DBConnection<T>,
-        class DBMethods = AllDBMethods<T, ClassConnection>,
-        class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
-class SynchroClientContacts : public Handler<T, ClassConnection, DBMethods, DBWorker> {
+        class ClassDBMethods = DBMethods<T, ClassConnection>,
+        class ClassDBWorker = DBWorker<T, ClassConnection, ClassDBMethods>>
+class GetSetContacts : public Handler<T, ClassConnection, ClassDBMethods, ClassDBWorker> {
  public:
-    Context operator()(const Context &request_body, DBWorker *db_worker) const override;
+    Context operator()(const Context &request_body, ClassDBWorker *db_worker) const override;
 };
 
 template<typename T,
         class ClassConnection = DBConnection<T>,
-        class DBMethods = AllDBMethods<T, ClassConnection>,
-        class DBWorker = DBWorker<T, ClassConnection, DBMethods>>
-class SynchroClientGroups : public Handler<T, ClassConnection, DBMethods, DBWorker> {
+        class ClassDBMethods = DBMethods<T, ClassConnection>,
+        class ClassDBWorker = DBWorker<T, ClassConnection, ClassDBMethods>>
+class GetSetGroups : public Handler<T, ClassConnection, ClassDBMethods, ClassDBWorker> {
  public:
-    Context operator()(const Context &request_body, DBWorker *db_worker) const override;
+    Context operator()(const Context &request_body, ClassDBWorker *db_worker) const override;
 };
 
 #include "HandlerSynchroClientDefinition.hpp"

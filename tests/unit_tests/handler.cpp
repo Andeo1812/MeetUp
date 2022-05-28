@@ -12,7 +12,7 @@
 static std::string user_id;  //  NOLINT
 
 TEST(HANDLERS, Registration) {
-    AllDBMethods<pqxx::connection> db_methods;
+    DBMethods<pqxx::connection> db_methods;
     DBWorker<pqxx::connection> db_worker(db_methods);
 
     User user;
@@ -36,7 +36,7 @@ TEST(HANDLERS, Registration) {
 }
 
 TEST(HANDLERS, Authorization) {
-    AllDBMethods<pqxx::connection> db_methods;
+    DBMethods<pqxx::connection> db_methods;
     DBWorker<pqxx::connection> db_worker(db_methods);
 
     User user;
@@ -58,7 +58,7 @@ TEST(HANDLERS, Authorization) {
 }
 
 TEST(HANDLERS, RmUser) {
-    AllDBMethods<pqxx::connection> db_methods;
+    DBMethods<pqxx::connection> db_methods;
     DBWorker<pqxx::connection> db_worker(db_methods);
 
     User user;

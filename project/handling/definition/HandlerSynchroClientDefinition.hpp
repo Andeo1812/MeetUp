@@ -1,7 +1,7 @@
 #include <HandlerSynchroClient.hpp>
 
-template<typename T, class ClassConnection, class DBMethods, class DBWorker>
-Context SynchroClientEvents<T, ClassConnection, DBMethods, DBWorker>::operator()(const Context &request_body, DBWorker *db_worker) const {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker>
+Context GetSetEvents<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
     std::set<Event> events;
@@ -32,8 +32,8 @@ Context SynchroClientEvents<T, ClassConnection, DBMethods, DBWorker>::operator()
     return response_body;
 }
 
-template<typename T, class ClassConnection, class DBMethods, class DBWorker>
-Context SynchroClientContacts<T, ClassConnection, DBMethods, DBWorker>::operator()(const Context &request_body, DBWorker *db_worker) const {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker>
+Context GetSetContacts<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
     std::set<Group> groups;
@@ -65,8 +65,8 @@ Context SynchroClientContacts<T, ClassConnection, DBMethods, DBWorker>::operator
     return response_body;
 }
 
-template<typename T, class ClassConnection, class DBMethods, class DBWorker>
-Context SynchroClientGroups<T, ClassConnection, DBMethods, DBWorker>::operator()(const Context &request_body, DBWorker *db_worker) const {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker>
+Context GetSetGroups<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
     std::set<std::string> contacts;

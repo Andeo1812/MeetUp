@@ -1,7 +1,7 @@
 #include <HandlerGroup.hpp>
 
-template<typename T, class ClassConnection, class DBMethods, class DBWorker>
-Context AddGroup<T, ClassConnection, DBMethods, DBWorker>::operator()(const Context &request_body, DBWorker *db_worker) const {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker>
+Context AddGroup<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
     std::string new_group_id;
@@ -35,15 +35,15 @@ Context AddGroup<T, ClassConnection, DBMethods, DBWorker>::operator()(const Cont
     return response_body;
 }
 
-template<typename T, class ClassConnection, class DBMethods, class DBWorker>
-Context WriteGroup<T, ClassConnection, DBMethods, DBWorker>::operator()(const Context &request_body, DBWorker *db_worker) const {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker>
+Context WriteGroup<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
     return response_body;
 }
 
-template<typename T, class ClassConnection, class DBMethods, class DBWorker>
-Context RmGroup<T, ClassConnection, DBMethods, DBWorker>::operator()(const Context &request_body, DBWorker *db_worker) const {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker>
+Context RmGroup<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
     int res_rm_members = db_worker->db_methods.Group.RmAllMembers(request_body.AccessGroups().begin()->AccessId(),
@@ -93,8 +93,8 @@ Context RmGroup<T, ClassConnection, DBMethods, DBWorker>::operator()(const Conte
     return response_body;
 }
 
-template<typename T, class ClassConnection, class DBMethods, class DBWorker>
-Context GetGroupMembers<T, ClassConnection, DBMethods, DBWorker>::operator()(const Context &request_body, DBWorker *db_worker) const {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker>
+Context GetGroupMembers<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
     return response_body;

@@ -9,7 +9,7 @@
 
 
 template<typename T, class ClassConnection = DBConnection<T>>
-class AllDBMethods {
+class DBMethods {
  public:
     DBUserImpl<ClassConnection> User;
     DBUserDataImplDefinition<ClassConnection> UserData;
@@ -17,7 +17,7 @@ class AllDBMethods {
     DBContactsImpl<ClassConnection> Contacts;
     DBGroupImplDefinition<ClassConnection> Group;
 
-    AllDBMethods() = default;
+    DBMethods() = default;
 
-    ~AllDBMethods() = default;
+    ~DBMethods() = default;
 };

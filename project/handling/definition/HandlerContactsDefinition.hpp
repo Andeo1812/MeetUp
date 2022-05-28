@@ -1,7 +1,7 @@
 #include <HandlerContacts.hpp>
 
-template<typename T, class ClassConnection, class DBMethods, class DBWorker>
-Context AddUserContacts<T, ClassConnection, DBMethods, DBWorker>::operator()(const Context &request_body, DBWorker *db_worker) const {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker>
+Context AddUserContacts<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
     int res = db_worker->db_methods.Contacts.Add(request_body.AccessContacts().AccessUserId(),
@@ -28,8 +28,8 @@ Context AddUserContacts<T, ClassConnection, DBMethods, DBWorker>::operator()(con
     return response_body;
 }
 
-template<typename T, class ClassConnection, class DBMethods, class DBWorker>
-Context RmUserContacts<T, ClassConnection, DBMethods, DBWorker>::operator()(const Context &request_body, DBWorker *db_worker) const {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker>
+Context RmUserContacts<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
     int res = db_worker->db_methods.Contacts.Add(request_body.AccessContacts().AccessUserId(),

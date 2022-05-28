@@ -6,7 +6,7 @@
 
 template<typename T,
         class ClassConnection = DBConnection<T>,
-        class ClassDBMethods = AllDBMethods<T, ClassConnection>,
+        class ClassDBMethods = DBMethods<T, ClassConnection>,
         class ClassDBWorker = DBWorker<T, ClassConnection, ClassDBMethods>,
         class ClassDBManager = DBManager<T, ClassConnection, ClassDBMethods, ClassDBWorker>>
 class Route {
