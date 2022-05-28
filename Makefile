@@ -9,6 +9,7 @@ TEST_PARSING = ./build/tests/gtest_parsing
 TEST_DATABASE = ./build/tests/gtest_database
 TEST_HANDLING = ./build/tests/gtest_handling
 TEST_ROUTING = ./build/tests/gtest_routing
+TEST_BUSINESS_LOGIC = ./build/tests/gtest_business_logic
 
 TARGET_COVERAGE = [456789]
 COVERAGE_CONTEXT = build/project/context/CMakeFiles/Context.dir/src
@@ -17,6 +18,10 @@ COVERAGE_PARSING = build/tests/CMakeFiles/gtest_parsing.dir/unit_tests
 COVERAGE_DATABASE = build/tests/CMakeFiles/gtest_database.dir/unit_tests
 COVERAGE_HANDLING = build/tests/CMakeFiles/gtest_handling.dir/unit_tests
 COVERAGE_ROUTING = build/tests/CMakeFiles/gtest_routing.dir/unit_tests
+
+test_business_logic:
+	./run_build.sh
+	${TEST_BUSINESS_LOGIC}
 
 test:
 	./run_build.sh
