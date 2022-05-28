@@ -4,7 +4,7 @@
 
 ## 1. База
 
-### `Registration`
+### `Registration STATUS : complited`
 
 **_Response:_**
 ```c
@@ -20,7 +20,7 @@
 
 Клиент присылает никнейм и пароль нового пользователя, которые размещаются в базе, вовращает id нового юсера в базе.
 
-### `Autorization`
+### `Autorization STATUS : complited`
 
 **_Response:_**
 ```c
@@ -36,7 +36,7 @@
 
 Аналогично регистрации принимает ник и пароль, при соответствии данной комбинации отдает id.
 
-### `Rm`
+### `Rm STATUS : complited`
 
 **_Response:_**
 ```c
@@ -54,7 +54,7 @@
 
 ## 2. Events
 
-### `Add`
+### `Add STATUS : complited`
 
 **_Response:_**
 ```c
@@ -86,7 +86,7 @@
 
 Изменяет **уже существующее** мероприятие в базе. Все поля обязательны (на текущий момент).
 
-### `Rm`
+### `Rm STATUS : complited`
 
 **_Response:_**
 ```c
@@ -102,7 +102,7 @@
 
 Изменяет **уже существующее** мероприятие в базе. Все поля обязательны (на текущий момент).
 
-### `Get events`
+### `Get events STATUS : complited`
 
 **_Response:_**
 ```c
@@ -120,7 +120,7 @@
 
 ## 3. Contacts
 
-### `Add`
+### `Add STATUS : complited`
 
 **_Response:_**
 ```c
@@ -136,7 +136,7 @@
 
 По нику добавляем друга к пользователю. Операция двунаправленная.
 
-### `Rm`
+### `Rm STATUS : complited`
 
 **_Response:_**
 ```c
@@ -152,7 +152,7 @@
 
 По нику удаляем друга к пользователю. Операция двунаправленная.
 
-### `Get contacts`
+### `Get contacts STATUS : complited`
 
 **_Response:_**
 ```c
@@ -170,7 +170,7 @@
 
 ## 4. Group. Base
 
-### `Create group`
+### `Create group STATUS : complited`
 
 **_Response:_**
 ```c
@@ -202,7 +202,7 @@
 
 Изменяет данные группы. Все поля обязательны (на текущий момент).
 
-### `Rm`
+### `Rm STATUS : complited`
 
 **_Response:_**
 ```c
@@ -218,7 +218,7 @@
 
 По id удаляем группу.
 
-### `Get members`
+### `Get members STATUS : complited`
 
 **_Response:_**
 ```c
@@ -234,7 +234,7 @@
 
 По id отдает всех участников группы.
 
-### `Get groups`
+### `Get groups STATUS : complited`
 
 **_Response:_**
 ```c
@@ -252,7 +252,7 @@
 
 ## 5. Group. Management
 
-### `Add user`
+### `Add user STATUS : complited`
 
 **_Response:_**
 ```c
@@ -268,7 +268,7 @@
 
 Любой пользователь группы может добавлять новых участников в группу по нику.
 
-### `Rewrite`
+### `Rm user STATUS : complited`
 
 **_Response:_**
 ```c
@@ -388,7 +388,7 @@
 
 ## 9. MeetUp
 
-### `Get MeetUp`
+### `Get MeetUp STATUS : complited`
 
 **_Response:_**
 ```c
