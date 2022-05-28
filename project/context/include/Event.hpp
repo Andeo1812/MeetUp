@@ -3,6 +3,8 @@
 #include <string>
 #include <set>
 
+#include "Time.hpp"
+
 class Event {
     std::string id;
     std::string name;

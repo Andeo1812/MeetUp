@@ -81,10 +81,10 @@ std::ostream& operator<<(std::ostream &os, const MeetUp &it) noexcept {
 
 bool MeetUp::operator<(const MeetUp &other) const noexcept {
     if (!this->id.empty()) {
-        return this->id < other.id;
+        return std::stoul(this->id) < std::stoul(other.id);
     }
 
-    return this->name < other.name;
+    return StrToTime(this->time_begin) < StrToTime(other.time_begin);
 }
 
 bool MeetUp::operator==(const MeetUp &other) const noexcept {
@@ -92,7 +92,7 @@ bool MeetUp::operator==(const MeetUp &other) const noexcept {
         return this->id == other.id;
     }
 
-    return this->name == other.name;
+    return StrToTime(this->time_begin) == StrToTime(other.time_begin);
 }
 
 const std::string &MeetUp::AccessId() const noexcept {

@@ -3,6 +3,8 @@
 #include <string>
 #include <set>
 
+#include "Time.hpp"
+
 class MeetUp {
     std::string id;
     std::string name;
