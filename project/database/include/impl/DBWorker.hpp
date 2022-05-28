@@ -3,7 +3,7 @@
 #include "DBConnectionImpl.hpp"
 #include "DBMethods.hpp"
 
-template<typename T, class ClassConnection = DBConnection<T>, class ClassDBMethods = DBMethods<T, ClassConnection>>
+template<typename T = pqxx::connection, class ClassConnection = DBConnection<T>, class ClassDBMethods = DBMethods<T, ClassConnection>>
 class DBWorker {
  public:
     ClassConnection connection;

@@ -8,7 +8,7 @@
 #include "DBGroupImpl.hpp"
 
 
-template<typename T, class ClassConnection = DBConnection<T>>
+template<typename T  = pqxx::connection, class ClassConnection = DBConnection<T>>
 class DBMethods {
  public:
     DBUserImpl<ClassConnection> User;

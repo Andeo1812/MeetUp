@@ -12,7 +12,7 @@
 //  LIMIT from ElephantSQL.com(source DB)
 const size_t MAX_COUNT_FREE_DB_VERSION = 2;
 
-template<typename T,
+template<typename T = pqxx::connection,
         class ClassConnection = DBConnection<T>,
                 class ClassDBMethods = DBMethods<T, ClassConnection>,
                         class ClassDBWorker = DBWorker<T, ClassConnection, ClassDBMethods>>

@@ -24,7 +24,7 @@ struct NodeResponse {
 };
 
 
-template<typename T,
+template<typename T = pqxx::connection,
         class ClassConnection = DBConnection<T>,
         class ClassDBMethods = DBMethods<T, ClassConnection>,
         class ClassDBWorker = DBWorker<T, ClassConnection, ClassDBMethods>,

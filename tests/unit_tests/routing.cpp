@@ -5,7 +5,7 @@
 #include "RouteImpl.hpp"
 #include "DBManager.hpp"
 
-RouteImpl<pqxx::connection> route;
+RouteImpl route;
 std::string user_id_reg;  //  NOLINT
 
 TEST(Routing, user) {
