@@ -69,10 +69,10 @@ template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBW
 Context GetSetGroups<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
-    std::set<std::string> contacts;
+    std::set<Group> groups;
 
-    int res = db_worker->db_methods.Contacts.GetSet(request_body.AccessEvents().begin()->AccessUserId(),
-                                                 &contacts,
+    int res = db_worker->db_methods.Group.GetSet(request_body.AccessEvents().begin()->AccessUserId(),
+                                                 &groups,
                                                  request_body.GetLeftBorder(),
                                                  request_body.GetRightBorder(),
                                                  &(db_worker->connection));
@@ -86,7 +86,7 @@ Context GetSetGroups<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operato
             break;
         }
         case EXIT_SUCCESS: {
-            response_body.GetContacts().GetContacts() = contacts;
+            response_body.GetGroups() = groups;
             break;
         }
         default: {

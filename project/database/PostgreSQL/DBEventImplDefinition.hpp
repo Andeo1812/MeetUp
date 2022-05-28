@@ -76,7 +76,7 @@ int DBEventImpl<ClassConnection>::GetId(const Event &event, std::string *event_i
 
 template<class ClassConnection>
 int DBEventImpl<ClassConnection>::GetSet(const std::string &user_id, std::set<Event> *events, const std::string &date, ClassConnection *connection) const {
-    std::string SQL = "SELECT * FROM event WHERE event_date = '" + date + "' ORDER BY DESK time_begin";
+    std::string SQL = "SELECT * FROM event WHERE event_date = '" + date + "'";
 
     int res = EXIT_SUCCESS;
 

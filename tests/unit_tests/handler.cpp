@@ -8,25 +8,26 @@
 #include "HandlerContacts.hpp"
 #include "HandlerGroup.hpp"
 #include "HandlerMeetUp.hpp"
+#include "HandlerSynchroClient.hpp"
+
+DBMethods<pqxx::connection> db_methods;
+DBWorker<pqxx::connection> db_worker(db_methods);
 
 static std::string user_id;  //  NOLINT
+static std::string event_id_1;  //  NOLINT
+static std::string event_id_2;  //  NOLINT
 
 TEST(HANDLERS, Registration) {
-    DBMethods<pqxx::connection> db_methods;
-    DBWorker<pqxx::connection> db_worker(db_methods);
-
     User user;
 
     user.SetPassword({"password"});
     user.SetNickname({"Gogozik"});
 
-    Context context;
+    Context context = user;
 
-    context = user;
+    Registration<pqxx::connection> handler;
 
-    Registration<pqxx::connection> reg_handler;
-
-    context = reg_handler(context, &db_worker);
+    context = handler(context, &db_worker);
 
     EXPECT_TRUE(!context.IsEmpty());
 
@@ -36,138 +37,150 @@ TEST(HANDLERS, Registration) {
 }
 
 TEST(HANDLERS, Authorization) {
-    DBMethods<pqxx::connection> db_methods;
-    DBWorker<pqxx::connection> db_worker(db_methods);
-
     User user;
 
     user.SetPassword({"password"});
     user.SetNickname({"Gogozik"});
 
-    Context context;
+    Context context = user;
 
-    context = user;
+    Authentication<pqxx::connection> handler;
 
-    Authentication<pqxx::connection> reg_handler;
-
-    context = reg_handler(context, &db_worker);
+    context = handler(context, &db_worker);
 
     EXPECT_TRUE(!context.IsEmpty());
 
     EXPECT_TRUE(context.AccessError().empty());
 }
 
-TEST(HANDLERS, RmUser) {
-    DBMethods<pqxx::connection> db_methods;
-    DBWorker<pqxx::connection> db_worker(db_methods);
+static std::string date = {"01.06.2000"};  //  NOLINT
 
-    User user;
+TEST(HANDLERS, AddEvent) {
+    Event event_1;
 
-    user.SetId(user_id);
-    user.SetPassword({"password"});
-    user.SetNickname({"Gogozik"});
+    event_1.SetName("123");
+    event_1.SetDate(date);
+    event_1.SetDescription("dfhsdftjsftksft");
+    event_1.SetTimeBegin("15:45");
+    event_1.SetTimeEnd("16:45");
+    event_1.SetUserId(user_id);
+
+    Event event_2;
+
+    event_2.SetName("12asd3");
+    event_2.SetDate(date);
+    event_2.SetDescription("asd221");
+    event_2.SetTimeBegin("15:45");
+    event_2.SetTimeEnd("16:45");
+    event_2.SetUserId(user_id);
 
     Context context;
 
-    context = user;
+    context.GetEvents().insert(event_1);
+    context.GetEvents().insert(event_2);
 
-    RmUser<pqxx::connection> reg_handler;
+    AddEvent<pqxx::connection> handler;
 
-    context = reg_handler(context, &db_worker);
+    context = handler(context, &db_worker);
+
+    EXPECT_TRUE(!context.IsEmpty());
+
+    auto iterator = context.AccessEvents().begin();
+
+    event_id_1 = iterator->AccessId();
+
+    EXPECT_TRUE(!event_id_1.empty());
+
+    iterator++;
+
+    event_id_2 = iterator->AccessId();
+
+    EXPECT_TRUE(!event_id_2.empty());
+
+    EXPECT_TRUE(context.AccessError().empty());
+}
+
+TEST(HANDLERS, GetSetEvents) {
+    Event event_1;
+    event_1.SetUserId(user_id);
+    event_1.SetDate(date);
+
+    Context context;
+
+    context.GetEvents().insert(event_1);
+
+    context.SetLeftBorder(0);
+    context.SetRightBorder(2);
+
+    GetSetEvents<pqxx::connection> handler;
+
+    context = handler(context, &db_worker);
+
+    std::cout << context.AccessError() << std::endl;
+
+    EXPECT_TRUE(context.AccessEvents().size() == 2);
+}
+
+TEST(HANDLERS, Contacts) {
+    User friend_1;
+    friend_1.SetPassword({"password123"});
+    friend_1.SetNickname({"Gogozik123"});
+
+    Context context = friend_1;
+
+    Registration<pqxx::connection> registration;
+
+    context = registration(context, &db_worker);
+
+    std::string friend_id_1 = context.AccessUser().AccessId();
+
+    User friend_2;
+    friend_2.SetPassword({"passwordasdasd123"});
+    friend_2.SetNickname({"Gogoasdadszik123"});
+
+    context = friend_2;
+
+    context = registration(context, &db_worker);
+
+    std::string friend_id_2 = context.AccessUser().AccessId();
+
+    context.GetContacts().SetUserId(user_id);
+    context.GetContacts().GetContacts().insert();
+}
+
+TEST(HANDLERS, RmEvent) {
+    Event event_1;
+    event_1.SetId(event_id_1);
+
+    Event event_2;
+    event_2.SetId(event_id_2);
+
+    Context context;
+
+    context.GetEvents().insert(event_1);
+    context.GetEvents().insert(event_2);
+
+    RmEvent<pqxx::connection> handler;
+
+    context = handler(context, &db_worker);
+
+    std::cout << context.AccessError() << std::endl;
+
+    EXPECT_TRUE(context.IsEmpty());
+}
+
+TEST(HANDLERS, RmUser) {
+    User user;
+
+    user.SetId(user_id);
+
+    Context context = user;
+
+    RmUser<pqxx::connection> handler;
+
+    context = handler(context, &db_worker);
 
     EXPECT_TRUE(context.IsEmpty());
 
     EXPECT_TRUE(context.AccessError().empty());
 }
-
-//    TEST(HANDLERS, WriteAddressData) {
-//
-//    }
-//
-//    TEST(HANDLERS, GetAddressData) {
-//
-//    }
-//
-//    TEST(HANDLERS, WritePersonalData) {
-//
-//    }
-//
-//    TEST(HANDLERS, GetPersonalData) {
-//
-//    }
-//
-//    TEST(HANDLERS, WriteGeneralData) {
-//
-//    }
-//
-//    TEST(HANDLERS, GetGeneralData) {
-//
-//    }
-//
-//    TEST(HANDLERS, WritePassword) {
-//
-//    }
-//
-//    TEST(HANDLERS, GetNickname) {
-//
-//    }
-//
-//    TEST(HANDLERS, AddEvent) {
-//
-//    }
-//
-//    TEST(HANDLERS, WriteEvent) {
-//
-//    }
-//
-//    TEST(HANDLERS, RmEvent) {
-//
-//    }
-//
-//    TEST(HANDLERS, AddUserContact) {
-//
-//    }
-//
-//    TEST(HANDLERS, RmUserContact) {
-//
-//    }
-//
-//    TEST(HANDLERS, CreateGroup) {
-//
-//    }
-//
-//    TEST(HANDLERS, WriteGroup) {
-//
-//    }
-//
-//    TEST(HANDLERS, RmGroup) {
-//
-//    }
-//
-//    TEST(HANDLERS, GetGroupMembers) {
-//
-//    }
-//
-//    TEST(HANDLERS, AddUserGroup) {
-//
-//    }
-//
-//    TEST(HANDLERS, RmUserGroup) {
-//
-//    }
-//
-//    TEST(HANDLERS, GetMeetUp) {
-//
-//    }
-//
-//    TEST(HANDLERS, SynchroClientEvents) {
-//
-//    }
-//
-//    TEST(HANDLERS, SynchroClientContacts) {
-//
-//    }
-//
-//    TEST(HANDLERS, SynchroClientGroup) {
-//
-//    }
