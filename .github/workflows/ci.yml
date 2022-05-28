@@ -42,7 +42,7 @@ jobs:
   memtestest_parsing:
     runs-on: ubuntu-latest
     container: andeo1812/meetup_project_cpp
-    needs: [ coverage_test_parsing ]
+    needs: [ test_parsing ]
     steps:
       - uses: actions/checkout@v2
       - run: make test_context
