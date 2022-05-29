@@ -46,11 +46,7 @@ void ClientConnection::async_get(std::string& str, boost::asio::steady_timer* ti
     std::string response;
     int status_handle;
 
-
-    // io_context_.post(boost::bind(&RouteImpl::GetResTask, std::ref(request_handler_.route), str));
-
     std::tie(status_handle, response) = request_handler_.route.GetResTask(str);
-    // std::tie(status_handle, response) = get_response(str);
 
     if (status_handle == WAIT) {
         timer->expires_at(timer->expiry() + boost::asio::chrono::milliseconds(100));
