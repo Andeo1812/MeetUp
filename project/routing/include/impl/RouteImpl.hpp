@@ -5,8 +5,8 @@
 #include <queue>
 #include <thread>  //  NOLINT
 #include <vector>
-#include <condition_variable>
-#include <mutex>
+#include <condition_variable>  //  NOLINT
+#include <mutex>  //  NOLINT
 #include <unordered_map>
 
 template<typename connection_>
@@ -34,7 +34,7 @@ class RouteImpl : public Route<T, ClassConnection, ClassDBMethods, ClassDBWorker
 
     std::unordered_map<std::string, std::string> responses;
 
-    std::string GetHeadRequest(const std::string &request_body) const ;
+    std::string GetHeadRequest(const std::string &request_body) const;
     std::string HandlingTask(const std::string &request_body, ClassDBWorker *db_worker) const;
 
     void run_thread(ClassDBWorker *db_worker);

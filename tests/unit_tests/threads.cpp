@@ -2,9 +2,9 @@
 
 #include <queue>
 #include <string>
-#include <thread>
-#include <condition_variable>
-#include <mutex>
+#include <thread>  //  NOLINT
+#include <condition_variable>  //  NOLINT
+#include <mutex>  //  NOLINT
 #include <cmath>
 #include <unordered_map>
 
@@ -32,7 +32,7 @@ class RouteImpl {
 
     void WaitAll();
 
-public:
+ public:
     std::string message;
 
     void InsertTask(const std::string &task);
