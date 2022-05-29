@@ -6,15 +6,16 @@
 #include <condition_variable>
 #include <mutex>
 #include <cmath>
+#include <unordered_map>
 
 class RouteImpl {
     std::queue<std::string> tasks;
 
-    std::map<const std::string, std::string > route_map;
+    std::map<const std::string, std::string> route_map;
 
     std::vector<std::thread> workers;
 
-    std::map<const std::string, std::string> responses;
+    std::unordered_map<std::string, std::string> responses;
 
     void run_thread(std::string *massage);
 
