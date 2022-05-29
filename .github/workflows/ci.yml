@@ -59,19 +59,19 @@ jobs:
     needs: [ memtest_context ]
     steps:
       - uses: actions/checkout@v2
-      - run: make memtest_handling;
+      - run: make test_handling;
   test_business_logic:
     runs-on: ubuntu-latest
     container: andeo1812/meetup_project_cpp
     needs: [ memtest_context ]
     steps:
       - uses: actions/checkout@v2
-      - run: make memtest_handling;
+      - run: make test_business_logic;
   test_routing:
     runs-on: ubuntu-latest
     container: andeo1812/meetup_project_cpp
     needs: [ test_handling, test_database, test_business_logic, memtestest_parsing ]
     steps:
       - uses: actions/checkout@v2
-      - run: make memtest_handling;
+      - run: make test_routing;
 
