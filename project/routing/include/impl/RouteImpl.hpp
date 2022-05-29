@@ -5,8 +5,8 @@
 #include <queue>
 #include <thread>  //  NOLINT
 #include <vector>
-//    #include <condition_variable>
-//    #include <mutex>
+#include <condition_variable>
+#include <mutex>
 
 template<typename connection_>
 struct NodeMap {
@@ -40,19 +40,17 @@ class RouteImpl : public Route<T, ClassConnection, ClassDBMethods, ClassDBWorker
 
     std::map<const std::string, NodeResponse> responses;
 
-//    void run_thread();
-//
-//    std::string &GetTask();
-//
-//    void InsertResponse(const std::string &response, const std::string &task);
-//
-//    std::condition_variable cv;
-//
-//    std::mutex queue_lock;
-//
-//    std::mutex task_lock;
-//
-//    std::mutex response_lock;
+    void run_thread(ClassDBWorker *db_worker);
+    std::string GetTask();
+    void InsertResponse(const std::string &response, const std::string &task);
+
+    std::condition_variable cv;
+
+    std::mutex queue_lock;
+    std::mutex task_lock;
+    std::mutex response_lock;
+
+    bool status_work;
 
  public:
     void InsertTask(const std::string &task) override;
@@ -65,7 +63,7 @@ class RouteImpl : public Route<T, ClassConnection, ClassDBMethods, ClassDBWorker
 
     RouteImpl();
     RouteImpl(const RouteImpl &other) = default;
-    ~RouteImpl() = default;
+    ~RouteImpl();
 };
 
 #include "RouteImplDefinition.hpp"

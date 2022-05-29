@@ -83,6 +83,10 @@ target_link_libraries(${PROJECT_NAME} ${Database_lib_libs})
 target_include_directories(${PROJECT_NAME} PUBLIC ${Handling_lib_include})
 target_link_libraries(${PROJECT_NAME} ${Handling_lib_libs})
 
+project(threads)
+file(GLOB SOURCES unit_tests/threads.cpp)
+add_executable(${PROJECT_NAME} ${SOURCES})
+
 
 #project(gtest_base_architecture)
 #
