@@ -18,4 +18,3 @@ target_link_libraries(${PROJECT_NAME} PRIVATE ${Boost_LIBRARIES} ${Context_lib_l
 
 set(Base_lib_libs ${PROJECT_NAME} CACHE FILEPATH "" FORCE)
 set(Base_lib_include ${Include_dir} CACHE FILEPATH "" FORCE)
-
