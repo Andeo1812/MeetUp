@@ -13,8 +13,8 @@
 TEST(true_request, TestRequestServIntInvalidRequest) {
     std::string host_name = "127.0.0.1 8000";
 
-    std::string test_file = "../tests/integrated_tests/InvalidRequest.txt";
-    std::string gold_file = "../tests/integrated_tests/InvalidRequest_gold.txt";
+    std::string test_file = "../../tests/integrated_tests/InvalidRequest.txt";
+    std::string gold_file = "../../tests/integrated_tests/InvalidRequest_gold.txt";
 
     std::string command = "echo 'POST / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[\"a\" : \"b\"]}\r\n' | ncat "
         + host_name + " > " + test_file;
@@ -41,8 +41,8 @@ TEST(true_request, TestRequestServIntInvalidRequest) {
 TEST(case_1, TestRequestServIntInvalidRequest) {
     std::string host_name = "127.0.0.1 8000";
 
-    std::string test_file = "../tests/integrated_tests/InvalidRequest.txt";
-    std::string gold_file = "../tests/integrated_tests/InvalidRequest_gold.txt";
+    std::string test_file = "../../tests/integrated_tests/InvalidRequest.txt";
+    std::string gold_file = "../../tests/integrated_tests/InvalidRequest_gold.txt";
 
     std::string command = "echo 'POST / http/1.1Host: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[\"a\" : \"b\"]}\r\n' | ncat "
         + host_name + " > " + test_file;
@@ -69,8 +69,8 @@ TEST(case_1, TestRequestServIntInvalidRequest) {
 TEST(case_2, TestRequestServIntInvalidRequest) {
     std::string host_name = "127.0.0.1 8000";
 
-    std::string test_file = "../tests/integrated_tests/InvalidRequest.txt";
-    std::string gold_file = "../tests/integrated_tests/InvalidRequest_gold.txt";
+    std::string test_file = "../../tests/integrated_tests/InvalidRequest.txt";
+    std::string gold_file = "../../tests/integrated_tests/InvalidRequest_gold.txt";
 
     std::string command = "echo 'POST / HTTP/1.1\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[\"a\" : \"b\"]}\r\n' | ncat "
         + host_name + " > " + test_file;
@@ -97,8 +97,8 @@ TEST(case_2, TestRequestServIntInvalidRequest) {
 TEST(case_3, TestRequestServIntInvalidRequest) {
     std::string host_name = "127.0.0.1 8000";
 
-    std::string test_file = "../tests/integrated_tests/InvalidRequest.txt";
-    std::string gold_file = "../tests/integrated_tests/InvalidRequest_gold.txt";
+    std::string test_file = "../../tests/integrated_tests/InvalidRequest.txt";
+    std::string gold_file = "../../tests/integrated_tests/InvalidRequest_gold.txt";
 
     std::string command = "echo 'POST / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n*CONTENT BODY*:{[\"a\" : \"b\"]}\r\n' | ncat "
         + host_name + " > " + test_file;
@@ -125,8 +125,8 @@ TEST(case_3, TestRequestServIntInvalidRequest) {
 TEST(case_4, TestRequestServIntInvalidRequest) {
     std::string host_name = "127.0.0.1 8000";
 
-    std::string test_file = "../tests/integrated_tests/InvalidRequest.txt";
-    std::string gold_file = "../tests/integrated_tests/InvalidRequest_gold.txt";
+    std::string test_file = "../../tests/integrated_tests/InvalidRequest.txt";
+    std::string gold_file = "../../tests/integrated_tests/InvalidRequest_gold.txt";
 
     std::string command = "echo 'POST / HTTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[\"a\" : \"b\"]}' | ncat "
         + host_name + " > " + test_file;
@@ -153,8 +153,8 @@ TEST(case_4, TestRequestServIntInvalidRequest) {
 TEST(case_5, TestRequestServIntInvalidRequest) {
     std::string host_name = "127.0.0.1 8000";
 
-    std::string test_file = "../tests/integrated_tests/InvalidRequest.txt";
-    std::string gold_file = "../tests/integrated_tests/InvalidRequest_gold.txt";
+    std::string test_file = "../../tests/integrated_tests/InvalidRequest.txt";
+    std::string gold_file = "../../tests/integrated_tests/InvalidRequest_gold.txt";
 
     std::string command = "echo 'POST / TTP/1.1\r\nHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[\"a\" : \"b\"]}\r\n' | ncat "
         + host_name + " > " + test_file;
@@ -181,8 +181,8 @@ TEST(case_5, TestRequestServIntInvalidRequest) {
 TEST(case_6, TestRequestServIntInvalidRequest) {
     std::string host_name = "127.0.0.1 8000";
 
-    std::string test_file = "../tests/integrated_tests/InvalidRequest.txt";
-    std::string gold_file = "../tests/integrated_tests/InvalidRequest_gold.txt";
+    std::string test_file = "../../tests/integrated_tests/InvalidRequest.txt";
+    std::string gold_file = "../../tests/integrated_tests/InvalidRequest_gold.txt";
 
     std::string command = "echo 'POST / HTTP/1.1\n\rHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[a : b]}\r\n' | ncat "
         + host_name + " > " + test_file;
@@ -209,8 +209,8 @@ TEST(case_6, TestRequestServIntInvalidRequest) {
 TEST(case_7, TestRequestServIntInvalidRequest) {
     std::string host_name = "127.0.0.1 8000";
 
-    std::string test_file = "../tests/integrated_tests/InvalidRequest.txt";
-    std::string gold_file = "../tests/integrated_tests/InvalidRequest_gold.txt";
+    std::string test_file = "../../tests/integrated_tests/InvalidRequest.txt";
+    std::string gold_file = "../../tests/integrated_tests/InvalidRequest_gold.txt";
 
     std::string command = "echo 'POST / HTTP/1.1\rHost: localhost\r\nUser-Agent: my-custom-agent\r\n\r\n*CONTENT BODY*:{[\"a\" : \"b\"]}\r\n' | ncat "
         + host_name + " > " + test_file;

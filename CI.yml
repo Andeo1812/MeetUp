@@ -1,0 +1,14 @@
+  run_server:
+    runs-on: ubuntu-latest
+    container: andeo1812/meetup_project_cpp
+    needs: [ test_business_logic ]
+    steps:
+      - uses: actions/checkout@v2
+      - run: make run_server;
+  test_server:
+    runs-on: ubuntu-latest
+    container: andeo1812/meetup_project_cpp
+    needs: [ test_business_logic ]
+    steps:
+      - uses: actions/checkout@v2
+      - run: make integrate_tests;

@@ -45,11 +45,16 @@ static std::tuple<int, std::string> get_response(std::string in) {
 void ClientConnection::async_get(std::string& str, boost::asio::steady_timer* timer) {
     std::string response;
     int status_handle;
-    std::tie(status_handle, response) = get_response(str);
+
+
+    // io_context_.post(boost::bind(&RouteImpl::GetResTask, std::ref(request_handler_.route), str));
+
+    std::tie(status_handle, response) = request_handler_.route.GetResTask(str);
+    // std::tie(status_handle, response) = get_response(str);
 
     if (status_handle == WAIT) {
         timer->expires_at(timer->expiry() + boost::asio::chrono::milliseconds(100));
-        timer->async_wait(boost::bind(&ClientConnection::async_get, this, str, timer));
+        timer->async_wait(boost::bind(&ClientConnection::async_get, shared_from_this(), str, timer));
         return;
     } else {
         std::cout << response << std::endl;
@@ -62,7 +67,8 @@ void ClientConnection::async_get(std::string& str, boost::asio::steady_timer* ti
 }
 
 void ClientConnection::do_handle() {
-    timer.async_wait(boost::bind(&ClientConnection::async_get, this,
+    request_handler_.route.InsertTask(request_.content);
+    timer.async_wait(boost::bind(&ClientConnection::async_get, shared_from_this(),
             request_.content, &timer));
 }
 
