@@ -25,17 +25,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: make test_context
-  coverage_test_context:
-    runs-on: ubuntu-latest
-    container: andeo1812/meetup_project_cpp
-    needs: [ test_context ]
-    steps:
-      - uses: actions/checkout@v2
-      - run: make test_context
   memtest_context:
     runs-on: ubuntu-latest
     container: andeo1812/meetup_project_cpp
-    needs: [ coverage_test_context ]
+    needs: [ test_context ]
     steps:
       - uses: actions/checkout@v2
       - run: make test_context
@@ -46,17 +39,39 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: make test_parsing;
-  coverage_test_parsing:
+  memtestest_parsing:
     runs-on: ubuntu-latest
     container: andeo1812/meetup_project_cpp
     needs: [ test_parsing ]
     steps:
       - uses: actions/checkout@v2
       - run: make test_context
-  memtestest_parsing:
+  test_database:
     runs-on: ubuntu-latest
     container: andeo1812/meetup_project_cpp
-    needs: [ coverage_test_parsing ]
+    needs: [ memtest_context ]
     steps:
       - uses: actions/checkout@v2
-      - run: make test_context
+      - run: make test_database;
+  test_handling:
+    runs-on: ubuntu-latest
+    container: andeo1812/meetup_project_cpp
+    needs: [ memtest_context ]
+    steps:
+      - uses: actions/checkout@v2
+      - run: make test_handling;
+  test_business_logic:
+    runs-on: ubuntu-latest
+    container: andeo1812/meetup_project_cpp
+    needs: [ memtest_context ]
+    steps:
+      - uses: actions/checkout@v2
+      - run: make test_business_logic;
+  test_routing:
+    runs-on: ubuntu-latest
+    container: andeo1812/meetup_project_cpp
+    needs: [ test_handling, test_database, test_business_logic, memtestest_parsing ]
+    steps:
+      - uses: actions/checkout@v2
+      - run: make test_routing;
+

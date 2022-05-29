@@ -6,3 +6,10 @@ coverage.info
 coverage-report/
 test.log
 valgrind.log
+/build
+/.vscode
+/send
+/project/base_architecture/build
+/project/base_architecture/send
+/tests/*.out
+*.out

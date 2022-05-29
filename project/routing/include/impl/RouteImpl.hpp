@@ -5,13 +5,15 @@
 #include <queue>
 #include <thread>  //  NOLINT
 #include <vector>
+//    #include <condition_variable>
+//    #include <mutex>
 
-template<typename connection>
+template<typename connection_>
 struct NodeMap {
     std::unique_ptr<const Parser> parser;
-    std::unique_ptr<const Handler<connection>> handler;
+    std::unique_ptr<const Handler<connection_>> handler;
 
-    NodeMap(const Parser *parser, const Handler<connection> *handler) : parser(parser), handler(handler) {}
+    NodeMap(const Parser *parser, const Handler<connection_> *handler) : parser(parser), handler(handler) {}
 };
 
 struct NodeResponse {
@@ -22,9 +24,9 @@ struct NodeResponse {
 };
 
 
-template<typename T,
+template<typename T = pqxx::connection,
         class ClassConnection = DBConnection<T>,
-        class ClassDBMethods = AllDBMethods<T, ClassConnection>,
+        class ClassDBMethods = DBMethods<T, ClassConnection>,
         class ClassDBWorker = DBWorker<T, ClassConnection, ClassDBMethods>,
         class ClassDBManager = DBManager<T, ClassConnection, ClassDBMethods, ClassDBWorker>>
 class RouteImpl : public Route<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager> {
@@ -37,6 +39,22 @@ class RouteImpl : public Route<T, ClassConnection, ClassDBMethods, ClassDBWorker
     std::vector<std::thread> workers;
 
     std::map<const std::string, NodeResponse> responses;
+
+//    void run_thread();
+//
+//    std::string &GetTask();
+//
+//    void InsertResponse(const std::string &response, const std::string &task);
+//
+//    bool data;
+//
+//    std::condition_variable cv;
+//
+//    std::mutex queue_lock;
+//
+//    std::mutex task_lock;
+//
+//    std::mutex response_lock;
 
  public:
     void InsertTask(const std::string &task) override;

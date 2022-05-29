@@ -12,6 +12,10 @@ static enum result_delete_group_all_member  {NOT_RM_GROUP_ALL_MEMBER = 10, ERROR
 
 static enum result_delete_group  {NOT_RM_GROUP = 10, ERROR_RM_GROUP} DELETE_GROUP;
 
+static enum result_get_set_groups {NOT_GET_SET_GROUPS = 5, ERROR_GET_SET_GROUPS} GET_SET_GROUPS;
+
+static enum result_get_members_group {NOT_GET_MEMBERS_GROUP = 20, ERROR_GET_MEMBERS_GROUP} GET_MEMBERS_GROUPS;
+
 template<class ClassConnection>
 class DBGroupImplDefinition : public DBGroup<ClassConnection> {
  public:

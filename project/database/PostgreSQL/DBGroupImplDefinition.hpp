@@ -90,8 +90,31 @@ int DBGroupImplDefinition<ClassConnection>::Rm(const std::string &group_id, Clas
 
 template<class ClassConnection>
 int DBGroupImplDefinition<ClassConnection>::GetMembers(const std::string &group_id, Group *group, ClassConnection *connection) const {
-    Group res;
-    return EXIT_SUCCESS;
+    std::string SQL = "SELECT fk_user_id FROM group_members WHERE fk_group_id = " + group_id + " ORDER BY fk_user_id DESC";
+
+    int res = EXIT_SUCCESS;
+
+    try {
+        pqxx::work work(connection->GetConnection());
+
+        pqxx::result result(work.exec(SQL));
+
+        if (!result.empty()) {
+            for (auto row : result) {
+                group->GetMembers().insert(row["fk_user_id"].as<std::string>());
+            }
+        } else {
+            res = NOT_GET_MEMBERS_GROUP;
+        }
+
+        work.commit();
+    } catch (const std::exception &e) {
+        std::cout << e.what() << std::endl;
+
+        res = ERROR_GET_MEMBERS_GROUP;
+    }
+
+    return res;
 }
 
 template<class ClassConnection>
@@ -173,14 +196,14 @@ int DBGroupImplDefinition<ClassConnection>::GetSet(const std::string &user_id, s
                 groups->insert(group);
             }
         } else {
-            res = NOT_GET_SET_CONTACT;
+            res = NOT_GET_SET_GROUPS;
         }
 
         work.commit();
     } catch (const std::exception &e) {
         std::cout << e.what() << std::endl;
 
-        res = ERROR_GET_SET_CONTACT;
+        res = ERROR_GET_SET_GROUPS;
     }
 
     return res;

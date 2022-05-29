@@ -36,17 +36,17 @@ RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::Ro
 
     route_map.insert({ADD_EVENT,              NodeMap<T>(new const ParserEvent,        new const AddEvent<T>)});
     route_map.insert({RM_EVENT,               NodeMap<T>(new const ParserEvent,        new const RmEvent<T>)});
-    route_map.insert({GET_EVENTS,             NodeMap<T>(new const ParserEvent,        new const SynchroClientEvents<T>)});
+    route_map.insert({GET_EVENTS,             NodeMap<T>(new const ParserEvent,        new const GetSetEvents<T>)});
 
     route_map.insert({ADD_USER_GROUP,         NodeMap<T>(new const ParserUserContacts, new const AddUserContacts<T>)});
     route_map.insert({RM_USER_GROUP,          NodeMap<T>(new const ParserUserContacts, new const RmUserContacts<T>)});
-    route_map.insert({GET_CONTACTS,           NodeMap<T>(new const ParserUserContacts, new const SynchroClientContacts<T>)});
+    route_map.insert({GET_CONTACTS,           NodeMap<T>(new const ParserUserContacts, new const GetSetContacts<T>)});
 
     route_map.insert({ADD_GROUP,              NodeMap<T>(new const ParserGroup,        new const AddGroup<T>)});
     route_map.insert({ADD_USER_GROUP,         NodeMap<T>(new const ParserGroup,        new const AddUserGroup<T>)});
     route_map.insert({RM_USER_GROUP,          NodeMap<T>(new const ParserGroup,        new const RmUserGroup<T>)});
     route_map.insert({RM_GROUP,               NodeMap<T>(new const ParserGroup,        new const RmGroup<T>)});
-    route_map.insert({GET_GROUPS,             NodeMap<T>(new const ParserGroup,        new const SynchroClientGroups<T>)});
+    route_map.insert({GET_GROUPS,             NodeMap<T>(new const ParserGroup,        new const GetSetGroups<T>)});
 
     route_map.insert({GET_MEETUP,             NodeMap<T>(new const ParserMeetUp,       new const GetMeetUps<T>)});
 }
@@ -72,6 +72,8 @@ std::string RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDB
 template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker, class ClassDBManager>
 void RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::InsertTask(const std::string &task) {
     tasks.push(task);
+
+    //  cv.notify_all();
 }
 
 template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker, class ClassDBManager>
@@ -111,3 +113,43 @@ std::string RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDB
 
     return res;
 }
+
+//template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker, class ClassDBManager>
+//std::string &RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::GetTask() {
+//    std::string task = tasks.front();
+//    tasks.pop();
+//
+//    responses.insert({task, NodeResponse()});
+//
+//    return task;
+//}
+//
+//template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker, class ClassDBManager>
+//void RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::InsertResponse(const std::string &response, const std::string &task) {
+//    auto needed_node = responses.find(task);
+//
+//    needed_node->second.response = response;
+//}
+
+//template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker, class ClassDBManager>
+//void RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::run_thread() {
+//    while (true) {
+//        std::unique_lock<std::mutex> ul(queue_lock);
+//
+//        cv.wait(ul, [=]() { return !tasks.empty(); });
+//
+//        task_lock.lock();
+//
+//        std::string task = GetTask();
+//
+//        task_lock.unlock();
+//
+//        std::string response = HandlingTask(task, db_worker);
+//
+//        response_lock.lock();
+//
+//        InsertResponse(response, task);
+//
+//        response_lock.unlock();
+//    }
+//}

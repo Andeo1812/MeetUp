@@ -84,11 +84,15 @@ bool Event::operator<(const Event &other) const noexcept {
         return this->id < other.id;
     }
 
-    return this->name < other.name;
+    return StrToTime(this->time_begin) < StrToTime(other.time_begin);
 }
 
 bool Event::operator==(const Event &other) const noexcept {
-    return this->id == other.id;
+    if (!this->id.empty()) {
+        return this->id == other.id;
+    }
+
+    return StrToTime(this->time_begin) == StrToTime(other.time_begin);
 }
 
 const std::string &Event::AccessId() const noexcept {

@@ -1,7 +1,7 @@
 #include <HandlerUser.hpp>
 
-template<typename T, class ClassConnection, class DBMethods, class DBWorker>
-Context Registration<T, ClassConnection, DBMethods, DBWorker>::operator()(const Context &request_body, DBWorker *db_worker) const {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker>
+Context Registration<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
     std::string new_user_id;
@@ -9,7 +9,7 @@ Context Registration<T, ClassConnection, DBMethods, DBWorker>::operator()(const 
     int res = db_worker->db_methods.User.Registration(request_body.AccessUser(), &new_user_id, &(db_worker->connection));
     switch (res) {
         case NOT_REGISTRATION: {
-            response_body.SetError("Not found");
+            response_body.SetError("Not found data registration");
             break;
         }
         case ERROR_REGISTRATION: {
@@ -29,8 +29,8 @@ Context Registration<T, ClassConnection, DBMethods, DBWorker>::operator()(const 
     return response_body;
 }
 
-template<typename T, class ClassConnection, class DBMethods, class DBWorker>
-Context Authentication<T, ClassConnection, DBMethods, DBWorker>::operator()(const Context &request_body, DBWorker *db_worker) const {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker>
+Context Authentication<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
     std::string user_id;
@@ -38,7 +38,7 @@ Context Authentication<T, ClassConnection, DBMethods, DBWorker>::operator()(cons
     int res = db_worker->db_methods.User.Authentication(request_body.AccessUser(), &user_id, &(db_worker->connection));
     switch (res) {
         case NOT_RM_USER: {
-            response_body.SetError("Not found");
+            response_body.SetError("Not found data authentication");
             break;
         }
         case ERROR_RM_USER: {
@@ -58,8 +58,8 @@ Context Authentication<T, ClassConnection, DBMethods, DBWorker>::operator()(cons
     return response_body;
 }
 
-template<typename T, class ClassConnection, class DBMethods, class DBWorker>
-Context RmUser<T, ClassConnection, DBMethods, DBWorker>::operator()(const Context &request_body, DBWorker *db_worker) const {
+template<typename T, class ClassConnection, class ClassDBMethods, class ClassDBWorker>
+Context RmUser<T, ClassConnection, ClassDBMethods, ClassDBWorker>::operator()(const Context &request_body, ClassDBWorker *db_worker) const {
     Context response_body;
 
     std::string new_user_id;

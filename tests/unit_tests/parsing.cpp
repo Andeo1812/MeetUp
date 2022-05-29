@@ -151,17 +151,18 @@ TEST(PARSING, GeneralData) {
 }
 
 TEST(PARSING, Events) {
-    std::string input = {"{\"add_event\":[{\"description\":\"dfhsdftjsftksft\","
-                         "\"event_date\":\"01-06-2000\","
-                         "\"event_name\":\"123\","
-                         "\"time_begin\":\"15:45\","
-                         "\"time_end\":\"16:45\","
-                         "\"user_id\":\"56\"},"
+    std::string input = {"{\"add_event\":["
                          "{\"description\":\"2132\","
                          "\"event_date\":\"01-06-2000\","
                          "\"event_name\":\"Lancj\","
                          "\"time_begin\":\"11:45\","
                          "\"time_end\":\"14:00\","
+                         "\"user_id\":\"56\"},"
+                         "{\"description\":\"dfhsdftjsftksft\","
+                         "\"event_date\":\"01-06-2000\","
+                         "\"event_name\":\"123\","
+                         "\"time_begin\":\"15:45\","
+                         "\"time_end\":\"16:45\","
                          "\"user_id\":\"56\"}]}"};
     std::string type_request = {"add_event"};
 
@@ -299,18 +300,19 @@ TEST(PARSING, Groups) {
 }
 
 TEST(PARSING, MeetUps) {
-    std::string input = {"{\"get_meetup\":[{\"description\":\"dfhsdftjsftksft\","
-                         "\"group_id\":\"56\","
-                         "\"meetup_date\":\"01-06-2000\","
-                         "\"meetup_name\":\"123\","
-                         "\"time_begin\":\"15:45\","
-                         "\"time_end\":\"16:45\"},"
+    std::string input = {"{\"get_meetup\":["
                          "{\"description\":\"2132\","
                          "\"group_id\":\"56\","
                          "\"meetup_date\":\"01-06-2000\","
                          "\"meetup_name\":\"Lancj\","
                          "\"time_begin\":\"11:45\","
-                         "\"time_end\":\"14:00\"}]}"};
+                         "\"time_end\":\"14:00\"},"
+                         "{\"description\":\"dfhsdftjsftksft\","
+                         "\"group_id\":\"56\","
+                         "\"meetup_date\":\"01-06-2000\","
+                         "\"meetup_name\":\"123\","
+                         "\"time_begin\":\"15:45\","
+                         "\"time_end\":\"16:45\"}]}"};
     std::string type_request = {"get_meetup"};
 
     ParserMeetUp parser;
@@ -343,7 +345,7 @@ TEST(PARSING, MeetUps) {
 
     context = parser.StrToObject(input);
 
-    EXPECT_EQ(meetups, context.GetMeetUp());
+    EXPECT_EQ(meetups, context.GetMeetUps());
 
     std::string response = parser.ObjectToStr(type_request, context);
 

@@ -190,7 +190,7 @@ TEST(PostgreSQL, DBGroup) {
 
     Group group_1;
 
-    group_1.SetTitle("TEST_DEV100");
+    group_1.SetTitle("TEST_DEV10000");
     group_1.SetDescription("TEST_DEV100");
     group_1.SetUserId(user_1.GetId());
 
@@ -198,7 +198,7 @@ TEST(PostgreSQL, DBGroup) {
 
     Group group_2;
 
-    group_2.SetTitle("TEST_DEV200");
+    group_2.SetTitle("TEST_DEV20000");
     group_2.SetDescription("TEST_DEV200");
     group_2.SetUserId(user_1.GetId());
 
@@ -206,8 +206,6 @@ TEST(PostgreSQL, DBGroup) {
 
     int res_create_group = Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().db_methods.Group.Create(group_1, &group_id_1, conn);
     group_1.SetId(group_id_1);
-
-    Singleton<DBManager<pqxx::connection>>::GetInstance().GetData().db_methods.Group.Create(group_2, &group_id_2, conn);
 
     EXPECT_EQ(res_create_group, EXIT_SUCCESS);
 

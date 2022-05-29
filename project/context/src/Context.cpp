@@ -88,7 +88,7 @@ std::set<Group> &Context::GetGroups() noexcept {
 }
 
 
-std::set<MeetUp> &Context::GetMeetUp() noexcept {
+std::set<MeetUp> &Context::GetMeetUps() noexcept {
     return this->meetups;
 }
 
@@ -169,7 +169,7 @@ const std::set<Group> &Context::AccessGroups() const noexcept {
 }
 
 
-const std::set<MeetUp> &Context::AccessMeetUp() const noexcept {
+const std::set<MeetUp> &Context::AccessMeetUps() const noexcept {
     return this->meetups;
 }
 

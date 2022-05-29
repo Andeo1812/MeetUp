@@ -1,9 +1,11 @@
-#include <iostream>
+//     #define BOOST_ASIO_ENABLE_HANDLER_TRACKING
+//
+//    #include <iostream>
+//    #include <string>
+//    #include <boost/asio.hpp>
+//
+//    #include "AsyncServer.hpp"
 
-#include "DBManager.hpp"
-
-int main(int argc, const char *argv[]) {
-    std::cout << "Starting server..." << std::endl;
-
-    return EXIT_SUCCESS;
+int main(int argc, char* argv[]) {
+    return 0;
 }
