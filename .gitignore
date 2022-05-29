@@ -6,6 +6,7 @@ coverage.info
 coverage-report/
 test.log
 valgrind.log
+=======
 /build
 /.vscode
 /send

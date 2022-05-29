@@ -8,7 +8,7 @@
 //    #include <condition_variable>
 //    #include <mutex>
 
-template<typename connection_>
+template<typename connection_ = pqxx::connection>
 struct NodeMap {
     std::unique_ptr<const Parser> parser;
     std::unique_ptr<const Handler<connection_>> handler;
