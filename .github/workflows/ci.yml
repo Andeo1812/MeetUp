@@ -53,25 +53,33 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: make test_database;
-  test_handling:
+  test_business_logic:
     runs-on: ubuntu-latest
     container: andeo1812/meetup_project_cpp
     needs: [ test_database ]
     steps:
       - uses: actions/checkout@v2
-      - run: make test_handling;
-  test_business_logic:
-    runs-on: ubuntu-latest
-    container: andeo1812/meetup_project_cpp
-    needs: [ test_handling ]
-    steps:
-      - uses: actions/checkout@v2
       - run: make test_business_logic;
-  test_routing:
+  test_handling:
     runs-on: ubuntu-latest
     container: andeo1812/meetup_project_cpp
     needs: [ test_business_logic ]
     steps:
       - uses: actions/checkout@v2
+      - run: make test_handling;
+  test_routing:
+    runs-on: ubuntu-latest
+    container: andeo1812/meetup_project_cpp
+    needs: [ test_handling ]
+    steps:
+      - uses: actions/checkout@v2
       - run: make test_routing;
+#  test_server:
+#    runs-on: ubuntu-latest
+#    container: andeo1812/meetup_project_cpp
+#    needs: [ test_routing ]
+#    steps:
+#      - uses: actions/checkout@v2
+#      - run: make run_server;
+#      - run: make integrate_tests;
 

@@ -19,6 +19,17 @@ COVERAGE_DATABASE = build/tests/CMakeFiles/gtest_database.dir/unit_tests
 COVERAGE_HANDLING = build/tests/CMakeFiles/gtest_handling.dir/unit_tests
 COVERAGE_ROUTING = build/tests/CMakeFiles/gtest_routing.dir/unit_tests
 
+COVERAGE_SERVER =
+# Run Server
+run_server:
+	./run_build.sh
+	./build/project/HttpServer 127.0.0.1 8000 project/base_architecture/send
+
+# Run integration tests
+integrate_tests:
+	./run_build.sh
+	./../../build/tests/test_server
+
 test_business_logic:
 	./run_build.sh
 	${TEST_BUSINESS_LOGIC}

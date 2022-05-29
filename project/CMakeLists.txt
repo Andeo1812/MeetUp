@@ -17,7 +17,5 @@ add_subdirectory(base_architecture)
 
 file(GLOB SOURCES main.cpp)
 
-#add_subdirectory(base_architecture)
-
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_link_libraries(${PROJECT_NAME} ${Base_lib_libs} ${Routing_lib_libs})
