@@ -46,7 +46,6 @@ class RouteImpl : public Route<T, ClassConnection, ClassDBMethods, ClassDBWorker
 //
 //    void InsertResponse(const std::string &response, const std::string &task);
 //
-//    bool data;
 //
 //    std::condition_variable cv;
 //
