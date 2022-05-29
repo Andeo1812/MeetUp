@@ -1,5 +1,3 @@
-add_subdirectory(base_architecture)
-
 set(Config_include ${CMAKE_CURRENT_SOURCE_DIR}/configs/)
 
 set(Config ${Config_include} CACHE FILEPATH "" FORCE)
@@ -14,6 +12,8 @@ add_subdirectory(handling)
 add_subdirectory(parsing)
 
 add_subdirectory(routing)
+
+add_subdirectory(base_architecture)
 
 file(GLOB SOURCES main.cpp)
 
