@@ -46,7 +46,6 @@ class RouteImpl : public Route<T, ClassConnection, ClassDBMethods, ClassDBWorker
 //
 //    void InsertResponse(const std::string &response, const std::string &task);
 //
-//
 //    std::condition_variable cv;
 //
 //    std::mutex queue_lock;
@@ -70,3 +69,4 @@ class RouteImpl : public Route<T, ClassConnection, ClassDBMethods, ClassDBWorker
 };
 
 #include "RouteImplDefinition.hpp"
+#include "MultithreadingRouteImplDefinition.hpp"
