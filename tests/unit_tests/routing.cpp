@@ -25,6 +25,17 @@ TEST(Routing, user) {
 
     EXPECT_TRUE(!user_id_reg.empty());
 
+//    std::vector<std::string> vec_str;
+//
+//    for (size_t i = 0; i < 10; ++i) {
+//        vec_str[i] = {"{\"registration\":{\"nickname\":\"Sasha\",\"password\":\""};
+//        vec_str[i] += std::to_string(i) + "\"}}";
+//
+//        std::cout <<  vec_str[i] << std::endl;
+//
+//        route.InsertTask( vec_str[i]);
+//    }
+
 //    std::string authentication = {"{\"authentication\":{\"nickname\":\"Sasha\",\"password\":\"123456asd64569898989\"}}"};
 //
 //    route.InsertTask(authentication);
@@ -94,18 +105,22 @@ TEST(Routing, user) {
 
 
 
-//TEST(Routing, RmUser) {
-//    std::string rm_user = {"{\"rm_user\":{\"user_id\":\""};
-//
-//    rm_user += user_id_reg + "\"}}";
-//
-//    route.InsertTask(rm_user);
-//
-//    std::string res_rm_user_answer = route.GetResTask(rm_user);
-//
-//    nlohmann::json j_rm_user = nlohmann::json::parse(res_rm_user_answer);
-//
-//    std::string res_rm_user = j_rm_user["rm_user"].get<std::string>();
-//
-//    EXPECT_EQ("OK", res_rm_user);
-//}
+TEST(Routing, RmUser) {
+    std::string rm_user = {"{\"rm_user\":{\"user_id\":\""};
+
+    rm_user += user_id_reg + "\"}}";
+
+    route.InsertTask(rm_user);
+
+    std::tuple<int, std::string> res_reg_answer;
+
+    do {
+        res_reg_answer = route.GetResTask(rm_user);
+    } while (!std::get<0>(res_reg_answer));
+
+    nlohmann::json j_rm_user = nlohmann::json::parse(std::get<1>(res_reg_answer));
+
+    std::string res_rm_user = j_rm_user["rm_user"].get<std::string>();
+
+    EXPECT_EQ("OK", res_rm_user);
+}

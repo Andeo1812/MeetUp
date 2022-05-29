@@ -105,14 +105,21 @@ void RouteImpl::InsertResponse(const std::string &response, const std::string &t
     needed_node->second = response;
 }
 
+std::string RouteImpl::GetTask() {
+    std::string task = std::move(tasks.front());
+
+    tasks.pop();
+
+    return task;
+}
+
 void RouteImpl::run_thread(std::string *message) {
     while (!status_work) {
         std::unique_lock<std::mutex> lock(queue_mtx);
         cv.wait(lock, [this]() { return !tasks.empty() || status_work; });
 
         if (!tasks.empty()) {
-            auto task = std::move(tasks.front());
-            tasks.pop();
+            auto task = GetTask();
             lock.unlock();
 
             std::this_thread::sleep_for(std::chrono::milliseconds(std::stoul(task)));
