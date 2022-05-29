@@ -13,6 +13,8 @@ DBManager<T, ClassConnection, ClassDBMethods, ClassDBWorker>::DBManager() {
     for (size_t i = 0; i < numCPU; ++i) {
         this->db_workers_pool.push_back(std::make_unique<ClassDBWorker>(db_methods));
     }
+
+    count_db_workers = db_workers_pool.size();
 }
 
 template<typename T, class ClassConnection , class ClassDBMethods, class ClassDBWorker>

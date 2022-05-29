@@ -20,6 +20,8 @@ class DBManager {
     std::vector<std::unique_ptr<ClassDBWorker>> db_workers_pool;
 
  public:
+    size_t count_db_workers;
+
     ClassDBMethods db_methods;
 
     ClassDBWorker *GetFreeWorker(const size_t index);
