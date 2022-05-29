@@ -28,7 +28,7 @@ run_server:
 # Run integration tests
 integrate_tests:
 	./run_build.sh
-	./../../build/tests/test_server
+	./build/tests/gtest_base_architecture
 
 test_business_logic:
 	./run_build.sh
