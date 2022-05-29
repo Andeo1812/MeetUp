@@ -7,6 +7,7 @@
 #include <vector>
 #include <condition_variable>
 #include <mutex>
+#include <unordered_map>
 
 template<typename connection_>
 struct NodeMap {
@@ -14,13 +15,6 @@ struct NodeMap {
     std::unique_ptr<const Handler<connection_>> handler;
 
     NodeMap(const Parser *parser, const Handler<connection_> *handler) : parser(parser), handler(handler) {}
-};
-
-struct NodeResponse {
-    std::string response;
-
-    explicit NodeResponse(const std::string &response) : response(response) {}
-    NodeResponse() = default;
 };
 
 
@@ -38,28 +32,31 @@ class RouteImpl : public Route<T, ClassConnection, ClassDBMethods, ClassDBWorker
 
     std::vector<std::thread> workers;
 
-    std::map<const std::string, NodeResponse> responses;
+    std::unordered_map<std::string, std::string> responses;
+
+    std::string GetHeadRequest(const std::string &request_body) const ;
+    std::string HandlingTask(const std::string &request_body, ClassDBWorker *db_worker) const;
 
     void run_thread(ClassDBWorker *db_worker);
+
     std::string GetTask();
+
     void InsertResponse(const std::string &response, const std::string &task);
 
+    std::atomic<bool> status_work{ false };
+
     std::condition_variable cv;
+    std::mutex queue_mtx;
 
-    std::mutex queue_lock;
-    std::mutex task_lock;
-    std::mutex response_lock;
+    std::condition_variable completed_task_cv;
+    std::mutex completed_task_mtx;
 
-    bool status_work;
+    void WaitAll();
 
  public:
     void InsertTask(const std::string &task) override;
 
-    std::string GetHeadRequest(const std::string &request_body) const override;
-
-    std::string HandlingTask(const std::string &request_body, ClassDBWorker *db_worker) const override;
-
-    std::string GetResTask(const std::string &request_body) override;
+    std::tuple<int, std::string> GetResTask(const std::string &request_body) override;
 
     RouteImpl();
     RouteImpl(const RouteImpl &other) = default;

@@ -17,8 +17,8 @@ class RouteImpl {
 
     std::unordered_map<std::string, std::string> responses;
 
-    void run_thread(std::string *massage);
 
+    void run_thread(std::string *massage);
     std::string GetTask();
     void InsertResponse(const std::string &response, const std::string &task);
 
@@ -97,15 +97,6 @@ std::tuple<int, std::string> RouteImpl::GetResTask(const std::string &request_bo
     }
 
     return std::make_tuple(0, "");
-}
-
-std::string RouteImpl::GetTask() {
-    std::string task = tasks.front();
-    tasks.pop();
-
-    responses.insert({task, {}});
-
-    return task;
 }
 
 void RouteImpl::InsertResponse(const std::string &response, const std::string &task) {

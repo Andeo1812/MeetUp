@@ -50,11 +50,9 @@ RouteImpl<T, ClassConnection, ClassDBMethods, ClassDBWorker, ClassDBManager>::Ro
 
     route_map.insert({GET_MEETUP,             NodeMap<T>(new const ParserMeetUp,       new const GetMeetUps<T>)});
 
-    status_work = true;
+    workers.reserve(db_manager.count_db_workers);
     for (size_t i = 0; i < db_manager.count_db_workers; ++i) {
-        auto work = std::bind(&RouteImpl::run_thread, this, db_manager.GetFreeWorker(i));
-
-        workers[i] = std::thread(work);
+        workers.emplace_back(&RouteImpl::run_thread, this, db_manager.GetFreeWorker(i));
     }
 }
 

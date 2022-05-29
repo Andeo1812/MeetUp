@@ -13,11 +13,7 @@ class Route {
  public:
     virtual void InsertTask(const std::string &task) = 0;
 
-    virtual std::string GetHeadRequest(const std::string &request_body) const = 0;
-
-    virtual std::string HandlingTask(const std::string &request_body, ClassDBWorker *db_worker) const = 0;
-
-    virtual std::string GetResTask(const std::string &request_body) = 0;
+    virtual std::tuple<int, std::string> GetResTask(const std::string &request_body) = 0;
 
     virtual ~Route() = default;
 };

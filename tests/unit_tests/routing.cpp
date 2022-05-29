@@ -1,5 +1,4 @@
 #include <gtest/gtest.h>
-
 #include <nlohmann/json.hpp>
 
 #include "RouteImpl.hpp"
@@ -13,15 +12,13 @@ TEST(Routing, user) {
 
     route.InsertTask(registration);
 
-    std::string res_reg_answer;
+    std::tuple<int, std::string> res_reg_answer;
 
-    while (res_reg_answer.empty()) {
-        std::cout << "I wait" << std::endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    do {
         res_reg_answer = route.GetResTask(registration);
-    }
+    } while (!std::get<0>(res_reg_answer));
 
-    nlohmann::json j_reg = nlohmann::json::parse(res_reg_answer);
+    nlohmann::json j_reg = nlohmann::json::parse(std::get<1>(res_reg_answer));
     nlohmann::json value_reg = j_reg[j_reg.begin().key()];
 
     user_id_reg = value_reg["user_id"].get<std::string>();
