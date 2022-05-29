@@ -1,8 +1,8 @@
-
 #include <signal.h>
 #include <utility>
 #include <iostream>
-
+#include <thread>
+#include <boost/thread/thread.hpp>
 #include "AsyncServer.hpp"
 
 namespace http {
@@ -31,12 +31,17 @@ AsyncServer::AsyncServer(const std::string& address, const std::string& port, co
 }
 
 void AsyncServer::run() {
-    // The io_context::run() call will block until all asynchronous operations
-    // have finished. While the server is running, there is always at least one
-    // asynchronous operation outstanding: the asynchronous accept call waiting
-    // for new incoming connections.
-    io_context_.run();
-}
+        // The io_context::run() call will block until all asynchronous operations
+        // have finished. While the server is running, there is always at least one
+        // asynchronous operation outstanding: the asynchronous accept call waiting
+        // for new incoming connections.
+        int cores_count = std::thread::hardware_concurrency();
+        std::cout << "Cores count: " << cores_count << std::endl << std::endl;
+        for (int i = 0; i < cores_count; ++i) {
+            boost::thread t(boost::bind(&boost::asio::io_context::run, &io_context_));
+        }
+        io_context_.run();
+    }
 
 void AsyncServer::do_accept() {
     acceptor_.async_accept(
