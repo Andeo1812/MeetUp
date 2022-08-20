@@ -1,6 +1,3 @@
-# MeetUp_Official
-Educational project 
-
 ## Необходиые библиотеки
 1. nlohmann/json (для Manjaro: sudo pacman -S nlohmann-json)
 2. gtest (для Manjaro: sudo pacman -S gtest)
