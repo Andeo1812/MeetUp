@@ -12,4 +12,3 @@ valgrind.log
 /project/base_architecture/build
 /tests/*.out
 *.out
-/project/configs/Database.txt
