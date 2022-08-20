@@ -106,7 +106,7 @@
 
 **_Response:_**
 ```c
-{"get_events":[{"user_id":"56", "date":"yyyy-mm-dd"}]}
+{"get_events":[{"user_id":"56", "event_date":"yyyy-mm-dd"}]}
 ```
 
 **_Answer:_**

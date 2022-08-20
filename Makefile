@@ -19,23 +19,26 @@ COVERAGE_DATABASE = build/tests/CMakeFiles/gtest_database.dir/unit_tests
 COVERAGE_HANDLING = build/tests/CMakeFiles/gtest_handling.dir/unit_tests
 COVERAGE_ROUTING = build/tests/CMakeFiles/gtest_routing.dir/unit_tests
 
-COVERAGE_SERVER =
+BUILD = ./scripts/run_build.sh
+MEMTEST = ./scripts/run_memtest.sh
+TEST_COVERAGE = ./scripts/run_coverage.sh
+
 # Run Server
 run_server:
-	./run_build.sh
+	${BUILD}
 	./build/project/HttpServer 127.0.0.1 8000 project/base_architecture/send
 
 # Run integration tests
 integrate_tests:
-	./run_build.sh
+	${BUILD}
 	./build/tests/gtest_base_architecture
 
 test_business_logic:
-	./run_build.sh
+	${BUILD}
 	${TEST_BUSINESS_LOGIC}
 
 test:
-	./run_build.sh
+	${BUILD}
 	${TEST_CONTEXT}
 	${TEST_PARSING}
 	${TEST_HANDLING}
@@ -47,77 +50,77 @@ clean:
 	rm -rf build coverage-report valgrind.log test.log coverage.info
 
 check:
-	./run_linters.sh
+	./scripts/run_linters.sh
 
 build:
-	./run_build.sh
+	${BUILD}
 
 rebuild: clean build
 
 test_context:
-	./run_build.sh
+	${BUILD}
 	${TEST_CONTEXT}
 
 test_parsing:
-	./run_build.sh
+	${BUILD}
 	${TEST_PARSING}
 
 test_database:
-	./run_build.sh
+	${BUILD}
 	${TEST_DATABASE}
 
 test_handling:
-	./run_build.sh
+	${BUILD}
 	${TEST_HANDLING}
 
 test_routing:
-	./run_build.sh
+	${BUILD}
 	${TEST_ROUTING}
 
 coverage_test_context:
-	./run_build.sh
+	${BUILD}
 	${TEST_CONTEXT}
-	./run_coverage.sh ${COVERAGE_CONTEXT} ${TARGET_COVERAGE}
+	${TEST_COVERAGE} ${COVERAGE_CONTEXT} ${TARGET_COVERAGE}
 
 coverage_test_parsing:
-	./run_build.sh
+	${BUILD}
 	${TEST_PARSING}
-	./run_coverage.sh ${COVERAGE_PARSING} ${TARGET_COVERAGE}
+	${TEST_COVERAGE} ${COVERAGE_PARSING} ${TARGET_COVERAGE}
 
 coverage_test_database:
-	./run_build.sh
+	${BUILD}
 	${TEST_DATABASE}
-	./run_coverage.sh ${COVERAGE_DATABASE} ${TARGET_COVERAGE}
+	${TEST_COVERAGE} ${COVERAGE_DATABASE} ${TARGET_COVERAGE}
 
 coverage_test_handing:
-	./run_build.sh
+	${BUILD}
 	${TEST_HANDLING}
-	./run_coverage.sh ${COVERAGE_HANDLING} ${TARGET_COVERAGE}
+	${TEST_COVERAGE} ${COVERAGE_HANDLING} ${TARGET_COVERAGE}
 
 coverage_test_routing:
-	./run_build.sh
+	${BUILD}
 	${TEST_ROUTING}
-	./run_coverage.sh ${COVERAGE_ROUTING} ${TARGET_COVERAGE}
+	${TEST_COVERAGE} ${COVERAGE_ROUTING} ${TARGET_COVERAGE}
 
 memtest_context:
-	./run_build.sh
-	./run_memtest.sh ${TEST_CONTEXT}
+	${BUILD}
+	${MEMTEST} ${TEST_CONTEXT}
 
 memtest_parsing:
-	./run_build.sh
-	./run_memtest.sh ${TEST_PARSING}
+	${BUILD}
+	${MEMTEST} ${TEST_PARSING}
 
 memtest_database:
-	./run_build.sh
-	./run_memtest.sh ${TEST_DATABASE}
+	${BUILD}
+	${MEMTEST} ${TEST_DATABASE}
 
 memtest_handling:
-	./run_build.sh
-	./run_memtest.sh ${TEST_HANDLING}
+	${BUILD}
+	${MEMTEST} ${TEST_HANDLING}
 
 memtest_routing:
-	./run_build.sh
-	./run_memtest.sh ${TEST_ROUTING}
+	${BUILD}
+	${MEMTEST} ${TEST_ROUTING}
 
 
 

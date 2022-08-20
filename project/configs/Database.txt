@@ -1,1 +1,0 @@
-postgres://geksbdhf:7-K2Rtju21HcO6adxmLXZuCEx8SQTVIQ@hattie.db.elephantsql.com/geksbdhf
