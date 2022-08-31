@@ -1,4 +1,4 @@
-## Необходиые библиотеки
+# Необходиые библиотеки
 1. nlohmann/json (для Manjaro: sudo pacman -S nlohmann-json)
 2. gtest (для Manjaro: sudo pacman -S gtest)
 3. libpqxx (для Manjaro: sudo pacman -S libpqxx)
